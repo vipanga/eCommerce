@@ -1,0 +1,11 @@
+ecommerce_article:
+    resource: "@ecommerceArticleBundle/Resources/config/routing.yml"
+    prefix:   /
+
+ecommerce_accueil:
+    resource: "@ecommerceAccueilBundle/Resources/config/routing.yml"
+    prefix:   /
+
+app:
+    resource: "@AppBundle/Controller/"
+    type:     annotation
