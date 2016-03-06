@@ -1,0 +1,310 @@
+{# app/Resources/views/layout.html.twig #}
+
+<!DOCTYPE html>
+<html lang="fr-fr">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="robots" content="all,follow">
+    <meta name="googlebot" content="index,follow,snippet,archive">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="{% block description %}{% endblock %}">
+    <meta name="author" content="{% block auteur %}{% endblock %}">
+    <meta name="keywords" content="{% block mots %}{% endblock %}">
+
+    <title>
+        {% block titre %}Lemondrop{% endblock %}
+    </title>
+
+{#    <meta name="keywords" content="{% block mots %}{% endblock %}">#}
+
+    <link href='http://fonts.googleapis.com/css?family=Roboto:400,500,700,300,100' rel='stylesheet' type='text/css'>
+
+    <!-- styles -->
+    <link href="{{ asset('css/font-awesome.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/animate.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/owl.carousel.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/owl.theme.css') }}" rel="stylesheet">
+
+    <!-- theme stylesheet -->
+    <link href="{{ asset('css/style.default.css') }}" rel="stylesheet" id="theme-stylesheet">
+
+    <!-- your stylesheet with modifications -->
+    <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
+
+    <script src="{{ asset('js/respond.min.js') }}"></script>
+
+    <link rel="shortcut icon" href="{{ asset('images/favicon.png') }}">
+
+
+
+</head>
+  
+<body>
+
+    <!-- *** TOPBAR ***
+    _________________________________________________________ -->
+    <div id="top">
+        <div class="container">
+            <div class="col-md-6 offer" data-animate="fadeInDown">
+                <a href="#" class="btn btn-success btn-sm" data-animate-hover="shake">Offre du jour</a>  <a href="#">Réduction de 35% pour tout achat de plus de $50!</a>
+            </div>
+            <div class="col-md-6" data-animate="fadeInDown">
+                <ul class="menu">
+                    <li>
+                        <a href="#" data-toggle="modal" data-target="#login-modal">Se connecter</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('ecommerce_accueil_inscription') }}">S'inscrire</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('ecommerce_accueil_contact') }}">Contact</a>
+                    </li>
+                    <li>
+                        <a href="#">Articles récents</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="Login" aria-hidden="true">
+            <div class="modal-dialog modal-sm">
+
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="Login">Se connecter</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form action="customer-orders.html" method="post">
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="email-modal" placeholder="email">
+                            </div>
+                            <div class="form-group">
+                                <input type="password" class="form-control" id="password-modal" placeholder="mot de passe">
+                            </div>
+
+                            <p class="text-center">
+                                <button class="btn btn-primary"><i class="fa fa-sign-in"></i> Connexion</button>
+                            </p>
+
+                        </form>
+
+                        <p class="text-center text-muted">Pas encore inscrit ?</p>
+                        <p class="text-center text-muted"><a href="{{ path('ecommerce_accueil_inscription') }}"><strong>S'inscrire maintenant</strong></a>! C’est très facile, en moins d’une minute pour vous permettre de publier aussi vos articles!</p>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- *** TOP BAR END *** -->
+
+    
+    <!-- *** MENU PRINCIPAL ***
+    _________________________________________________________ -->
+    {{ render(controller("ecommerceAccueilBundle:Accueil:menu")) }}
+    <!-- *** MENU PRINCIPAL FIN *** -->
+
+
+
+    <div id="all">
+
+        <div id="content">
+            
+            
+            {% block contenu %}
+            {% endblock %}
+
+
+        </div>
+        <!-- /#content -->
+        
+        <!-- *** FOOTER ***
+        _________________________________________________________ -->
+        <div id="footer" data-animate="fadeInUp">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-3 col-sm-6">
+                        <h4>Pages</h4>
+
+                        <ul>
+                            <li>
+                                <a href="text.html">A propos</a>
+                            </li>
+                            <li>
+                                <a href="text.html">Conditions d’utilisation</a>
+                            </li>
+                            <li>
+                                <a href="faq.html">FAQ</a>
+                            </li>
+                            <li>
+                                <a href="{{ path('ecommerce_accueil_contact') }}">Nous contacter</a>
+                            </li>
+                        </ul>
+
+                        <hr>
+
+                        <h4>Section utilisateur</h4>
+
+                        <ul>
+                            <li>
+                                <a href="#" data-toggle="modal" data-target="#login-modal">Connectez-vous</a>
+                            </li>
+                            <li>
+                                <a href="{{ path('ecommerce_accueil_inscription') }}">Inscrivez-vous</a>
+                            </li>
+                        </ul>
+
+                        <hr class="hidden-md hidden-lg hidden-sm">
+
+                    </div>
+                    <!-- /.col-md-3 -->
+
+                    <div class="col-md-3 col-sm-6">
+
+                        <h4>Top catégories</h4>
+
+                        <h5>Homme</h5>
+
+                        <ul>
+                            <li>
+                                <a href="category.html">T-shirts</a>
+                            </li>
+                            <li>
+                                <a href="category.html">Shirts</a>
+                            </li>
+                            <li>
+                                <a href="category.html">Accessoires</a>
+                            </li>
+                        </ul>
+
+                        <h5>Femmes</h5>
+                        <ul>
+                            <li>
+                                <a href="category.html">T-shirts</a>
+                            </li>
+                            <li>
+                                <a href="category.html">Juppes</a>
+                            </li>
+                            <li>
+                                <a href="category.html">Robes</a>
+                            </li>
+                            <li>
+                                <a href="category.html">Accessoires</a>
+                            </li>
+                        </ul>
+
+                        <hr class="hidden-md hidden-lg">
+
+                    </div>
+                    <!-- /.col-md-3 -->
+
+                    <div class="col-md-3 col-sm-6">
+
+                        <h4>Où nous trouver</h4>
+
+                        <p>
+                            <strong>Lemondrop S.A.R.L</strong>
+                            <br>357, Av. du 30 Juin
+                            <br>Q. Mutoshi
+                            <br>Commune Manika
+                            <br>Kolwezi
+                            <br>
+                            <strong>R.D. Congo</strong>
+                        </p>
+
+                        <a href="contact.html">Aller à la page de contact</a>
+
+                        <hr class="hidden-md hidden-lg">
+
+                    </div>
+                    <!-- /.col-md-3 -->
+
+
+
+                    <div class="col-md-3 col-sm-6">
+
+                        <h4>Avoir nos infos</h4>
+
+                        <p class="text-muted">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
+
+                        <form>
+                            <div class="input-group">
+
+                                <input type="text" class="form-control">
+
+                                <span class="input-group-btn">
+
+                                    <button class="btn btn-default" type="button">S'abonner!</button>
+
+                                </span>
+
+                            </div>
+                            <!-- /input-group -->
+                        </form>
+
+                        <hr>
+
+                        <h4>Restons en contact</h4>
+
+                        <p class="social">
+                            <a href="#" class="facebook external" data-animate-hover="shake"><i class="fa fa-facebook"></i></a>
+                            <a href="#" class="twitter external" data-animate-hover="shake"><i class="fa fa-twitter"></i></a>
+                            <a href="#" class="instagram external" data-animate-hover="shake"><i class="fa fa-instagram"></i></a>
+                            <a href="#" class="gplus external" data-animate-hover="shake"><i class="fa fa-google-plus"></i></a>
+                            <a href="#" class="email external" data-animate-hover="shake"><i class="fa fa-envelope"></i></a>
+                        </p>
+
+
+                    </div>
+                    <!-- /.col-md-3 -->
+
+                </div>
+                <!-- /.row -->
+
+            </div>
+            <!-- /.container -->
+        </div>
+        <!-- /#footer -->
+        <!-- *** FOOTER END *** -->
+        <!-- *** COPYRIGHT ***
+        _________________________________________________________ -->
+        <div id="copyright">
+            <div class="container">
+                <div class="col-md-6">
+                    <p class="pull-left">© 2016 Lemondrop Technology.</p>
+
+                </div>
+                <div class="col-md-6">
+                    <p class="pull-right">
+                        Site internet réalisé par <a href="http://lemondrop.tk">Lemondrop Technology</a> avec l'aide de <a href="http://symfony.com">Symfony</a>
+                        <!-- Not removing these links is part of the licence conditions of the template. Thanks for understanding :) -->
+                    </p>
+                </div>
+            </div>
+        </div>
+        <!-- *** COPYRIGHT END *** -->
+
+
+
+    </div>
+    <!-- /#all -->
+    <!-- *** SCRIPTS TO INCLUDE ***
+    _________________________________________________________ -->
+    <script src="{{ asset('js/jquery-1.11.0.min.js') }}"></script>
+    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('js/jquery.cookie.js') }}"></script>
+    <script src="{{ asset('js/waypoints.min.js') }}"></script>
+    <script src="{{ asset('js/modernizr.js') }}"></script>
+    <script src="{{ asset('js/bootstrap-hover-dropdown.js') }}"></script>
+    <script src="{{ asset('js/owl.carousel.min.js') }}"></script>
+    <script src="{{ asset('js/front.js') }}"></script>
+
+
+</body>
+
+</html>
