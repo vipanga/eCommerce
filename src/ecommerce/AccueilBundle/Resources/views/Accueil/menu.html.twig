@@ -1,0 +1,292 @@
+{# src/ecommerce/AccueilBundle/Resources/views/Accueil/menu.html.twig #}
+
+{# Ce template n'herite de personne, tout comme le template inclus avec {% include %}. #}
+
+    <!-- *** NAVBAR ***
+    _________________________________________________________ -->
+
+    <div class="navbar navbar-default yamm" role="navigation" id="navbar">
+        <div class="container">
+            <div class="navbar-header">
+
+                <a class="navbar-brand home" href="{{ path('ecommerce_accueil_accueil') }}" data-animate-hover="bounce">
+                    <img src="{{ asset('images/logo.png') }}" alt="Lemondrop" class="hidden-xs">
+                    <img src="{{ asset('images/logo-small.png') }}" alt="Lemondrop" class="visible-xs"><span class="sr-only">Lemondrop - allez à la page d'accueil</span>
+                </a>
+                <div class="navbar-buttons">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation">
+                        <span class="sr-only">Toggle navigation</span>
+                        <i class="fa fa-align-justify"></i>
+                    </button>
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#search">
+                        <span class="sr-only">Toggle search</span>
+                        <i class="fa fa-search"></i>
+                    </button>
+                    <a class="btn btn-default navbar-toggle" href="basket.html">
+                        <i class="fa fa-shopping-cart"></i>  <span class="hidden-xs">Poster un article</span>
+                    </a>
+                </div>
+            </div>
+            <!--/.navbar-header -->
+
+            <div class="navbar-collapse collapse" id="navigation">
+
+                <ul class="nav navbar-nav navbar-left">
+                    <li class="active">
+                        <a href="index.html">Accueil</a>
+                    </li>
+                    <li class="dropdown yamm-fw">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="200">Mode <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <div class="yamm-content">
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <h5>Top Catégories</h5>
+                                            <ul>
+                                                <li>
+                                                    <a href="{{ path('ecommerce_article_categorie') }}">Vêtements Femmes</a>
+                                                </li>
+                                                <li>
+                                                    <a href="{{ path('ecommerce_article_categorie') }}">Vêtements Hommes</a>
+                                                </li>
+                                                <li>
+                                                    <a href="{{ path('ecommerce_article_categorie') }}">Vêtements Enfants</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <h5>Autres catégories</h5>
+                                            <ul>
+                                                <li>
+                                                    <a href="{{ path('ecommerce_article_categorie') }}">Bijoux, Montres</a>
+                                                </li>
+                                                <li>
+                                                    <a href="{{ path('ecommerce_article_categorie') }}">Beauté, Parfums</a>
+                                                </li>
+                                                <li>
+                                                    <a href="{{ path('ecommerce_article_categorie') }}">Chaussures</a>
+                                                </li>
+                                                <li>
+                                                    <a href="{{ path('ecommerce_article_categorie') }}">Sport</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="banner">
+                                                <a href="#">
+                                                    <img src="{{ asset('images/banniere_mode.jpg') }}" class="img img-responsive" alt="Mode et vêtements">
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- /.yamm-content -->
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="dropdown yamm-fw">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="200">High-Tech <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <div class="yamm-content">
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <h5>Top catégories</h5>
+                                            <ul>
+                                                <li>
+                                                    <a href="{{ path('ecommerce_article_categorie') }}">Téléphonie, Mobilité</a>
+                                                </li>
+                                                <li>
+                                                    <a href="{{ path('ecommerce_article_categorie') }}">Informatique, Réseaux</a>
+                                                </li>
+                                                <li>
+                                                    <a href="{{ path('ecommerce_article_categorie') }}">Image, Son</a>
+                                                </li>
+                                                <li>
+                                                    <a href="{{ path('ecommerce_article_categorie') }}">Téléviseurs</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <h5>Autres catégories</h5>
+                                            <ul>
+                                                <li>
+                                                    <a href="{{ path('ecommerce_article_categorie') }}">Accessoires</a>
+                                                </li>
+                                                <li>
+                                                    <a href="{{ path('ecommerce_article_categorie') }}">Jeux Vidéo, Consoles</a>
+                                                </li>
+                                                <li>
+                                                    <a href="{{ path('ecommerce_article_categorie') }}">Photos</a>
+                                                </li>
+                                                <li>
+                                                    <a href="{{ path('ecommerce_article_categorie') }}">Caméscope</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        
+                                        <div class="col-sm-6">
+                                            <div class="banner">
+                                                <a href="#">
+                                                    <img src="{{ asset('images/banniere_hightech.jpg') }}" class="img img-responsive" alt="Produits High-Tech">
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- /.yamm-content -->
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="dropdown yamm-fw">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="200">Maison <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <div class="yamm-content">
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <h5>Top catégories</h5>
+                                            <ul>
+                                                <li>
+                                                    <a href="{{ path('ecommerce_article_categorie') }}">Jardin, Terrasse</a>
+                                                </li>
+                                                <li>
+                                                    <a href="{{ path('ecommerce_article_categorie') }}">Maison</a>
+                                                </li>
+                                                <li>
+                                                    <a href="{{ path('ecommerce_article_categorie') }}">Bricolage</a>
+                                                </li>
+                                                <li>
+                                                    <a href="{{ path('ecommerce_article_categorie') }}">Electromenager</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <h5>Autres catégories</h5>
+                                            <ul>
+                                                <li>
+                                                    <a href="{{ path('ecommerce_article_categorie') }}">Bébé, Puériculture</a>
+                                                </li>
+                                                <li>
+                                                    <a href="{{ path('ecommerce_article_categorie') }}">Animalerie</a>
+                                                </li>
+                                                <li>
+                                                    <a href="{{ path('ecommerce_article_categorie') }}">Vins, Gastronomie</a>
+                                                </li>
+                                                <li>
+                                                    <a href="{{ path('ecommerce_article_categorie') }}">Loisirs créatifs</a>
+                                                </li>
+                                                <li>
+                                                    <a href="{{ path('ecommerce_article_categorie') }}">Toitures</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="banner">
+                                                <a href="#">
+                                                    <img src="{{ asset('images/banniere_maison.jpg') }}" class="img img-responsive" alt="Maison et Jardin">
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- /.yamm-content -->
+                            </li>
+                        </ul>
+                    </li>
+                    
+                    <li class="dropdown yamm-fw">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="200">Auto & Moto <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <div class="yamm-content">
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <h5>Top catégories</h5>
+                                            <ul>
+                                                <li>
+                                                    <a href="{{ path('ecommerce_article_categorie') }}">Auto</a>
+                                                </li>
+                                                <li>
+                                                    <a href="{{ path('ecommerce_article_categorie') }}">Moto</a>
+                                                </li>
+                                                <li>
+                                                    <a href="{{ path('ecommerce_article_categorie') }}">Outils dépannage</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <h5>Autres catégories</h5>
+                                            <ul>
+                                                <li>
+                                                    <a href="{{ path('ecommerce_article_categorie') }}">Autoradio, Hi-fi</a>
+                                                </li>
+                                                <li>
+                                                    <a href="{{ path('ecommerce_article_categorie') }}">GPS</a>
+                                                </li>
+                                                <li>
+                                                    <a href="{{ path('ecommerce_article_categorie') }}">Casques</a>
+                                                </li>
+                                                <li>
+                                                    <a href="{{ path('ecommerce_article_categorie') }}">Vêtements</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="banner">
+                                                <a href="#">
+                                                    <img src="{{ asset('images/banniere_moto.jpg') }}" class="img img-responsive" alt="Auto et Moto">
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- /.yamm-content -->
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+
+            </div>
+            <!--/.nav-collapse -->
+
+            <div class="navbar-buttons">
+
+                <div class="navbar-collapse collapse right" id="basket-overview">
+                    <a href="basket.html" class="btn btn-primary navbar-btn"><i class="fa fa-shopping-cart"></i><span class="hidden-sm">Poster un article</span></a>
+                </div>
+                <!--/.nav-collapse -->
+
+                <div class="navbar-collapse collapse right" id="search-not-mobile">
+                    <button type="button" class="btn navbar-btn btn-primary" data-toggle="collapse" data-target="#search">
+                        <span class="sr-only">Toggle search</span>
+                        <i class="fa fa-search"></i>
+                    </button>
+                </div>
+
+            </div>
+
+            <div class="collapse clearfix" id="search">
+
+                <form class="navbar-form" role="search">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Recherche">
+                        <span class="input-group-btn">
+
+                            <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
+
+                        </span>
+                    </div>
+                </form>
+
+            </div>
+            <!--/.nav-collapse -->
+
+        </div>
+        <!-- /.container -->
+    </div>
+    <!-- /#navbar -->
+    <!-- *** NAVBAR END *** -->
