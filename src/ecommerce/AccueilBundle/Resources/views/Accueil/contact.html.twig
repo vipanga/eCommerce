@@ -1,0 +1,161 @@
+{# src/ecommerce/AccueilBundle/Resources/views/Accueil/contact.html.twig #}
+
+{% extends "ecommerceAccueilBundle::layout.html.twig" %}
+
+{% block titre %}
+    Nous contacter - {{ parent() }}
+{% endblock %}
+
+{% block contenu_accueil %}
+
+    <div class="container">
+
+        <div class="col-md-12">
+            <ul class="breadcrumb">
+                <li><a href="{{ path('ecommerce_accueil_accueil') }}">Accueil</a>
+                </li>
+                <li>Contact</li>
+            </ul>
+
+        </div>
+
+        <div class="col-md-3">
+            <!-- *** PAGES MENU ***
+_________________________________________________________ -->
+            <div class="panel panel-default sidebar-menu">
+
+                <div class="panel-heading">
+                    <h3 class="panel-title">Lire aussi</h3>
+                </div>
+
+                <div class="panel-body">
+                    <ul class="nav nav-pills nav-stacked">
+                        <li>
+                            <a href="#">A propos</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('ecommerce_accueil_contact') }}">Contact</a>
+                        </li>
+                        <li>
+                            <a href="#">FAQ</a>
+                        </li>
+
+                    </ul>
+
+                </div>
+            </div>
+
+            <!-- *** PAGES MENU END *** -->
+
+
+            <div class="banner">
+                <a href="#">
+                    <img src="{{ asset('images/banner.jpg') }}" alt="sales 2014" class="img-responsive">
+                </a>
+            </div>
+        </div>
+
+        <div class="col-md-9">
+
+
+            <div class="box" id="contact">
+                <h1>Nous contacter</h1>
+
+                <p class="lead">Vous voulez entrer en contact avec nous ? Avez-vous une préoccupation particulière à nous adresser ?</p>
+                <p>N’hésitez pas de nous contacter, notre centre de service clientèle travaille pour vous 24/7.</p>
+
+                <hr>
+
+                <div class="row">
+                    <div class="col-sm-4">
+                        <h3><i class="fa fa-map-marker"></i> Notre adresse</h3>
+                        <p>357, Av. du 30 Juin
+                            <br>Q. Mutoshi
+                            <br>Commune Manika
+                            <br>Kolwezi 
+                            <br>
+                            <strong>République Démocratique Congo</strong>
+                        </p>
+                    </div>
+                    <!-- /.col-sm-4 -->
+                    <div class="col-sm-4">
+                        <h3><i class="fa fa-phone"></i> Centre d'appel</h3>
+                        <p class="text-muted">Si vous êtes à l'étranger, vous pouvez utiliser le formulaire électronique.
+                            <br>Notre numéro d'appel :
+                        </p>
+                        <p><strong>+243 99 142 71 71</strong>
+                        </p>
+                    </div>
+                    <!-- /.col-sm-4 -->
+                    <div class="col-sm-4">
+                        <h3><i class="fa fa-envelope"></i> Courriel</h3>
+                        <p class="text-muted">Contactez-nous également à notre adresse électronique.</p>
+                        <ul>
+                            <li><strong><a href="mailto:">info@lemondrop.tk</a></strong>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- /.col-sm-4 -->
+                </div>
+                <!-- /.row -->
+
+                <hr>
+
+                <div id="map">
+
+                </div>
+
+                <hr>
+                <h2>Formulaire de contact</h2>
+
+                <form>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="firstname">Nom</label>
+                                <input type="text" class="form-control" id="firstname">
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="lastname">Prénom</label>
+                                <input type="text" class="form-control" id="lastname">
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="text" class="form-control" id="email">
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="subject">Sujet</label>
+                                <input type="text" class="form-control" id="subject">
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label for="message">Message</label>
+                                <textarea id="message" class="form-control"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-12 text-center">
+                            <button type="submit" class="btn btn-primary"><i class="fa fa-envelope-o"></i> Envoyer message</button>
+
+                        </div>
+                    </div>
+                    <!-- /.row -->
+                </form>
+
+
+            </div>
+
+
+        </div>
+        <!-- /.col-md-9 -->
+    </div>
+    <!-- /.container -->
+
+{% endblock %}

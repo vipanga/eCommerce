@@ -1,6 +1,6 @@
 ecommerce_article:
     resource: "@ecommerceArticleBundle/Resources/config/routing.yml"
-    prefix:   /
+    prefix:   /article
 
 ecommerce_accueil:
     resource: "@ecommerceAccueilBundle/Resources/config/routing.yml"

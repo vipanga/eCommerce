@@ -1,3 +1,7 @@
-ecommerce_article_homepage:
-    path:     /
-    defaults: { _controller: ecommerceArticleBundle:Default:index }
+ecommerce_article_categorie:
+    path:     /categorie
+    defaults: { _controller: ecommerceArticleBundle:Article:categorie }
+
+ecommerce_article_detail:
+    path:     /detail
+    defaults: { _controller: ecommerceArticleBundle:Article:detail }

@@ -1,3 +1,19 @@
-ecommerce_accueil_homepage:
+ecommerce_accueil_accueil:
     path:     /
-    defaults: { _controller: ecommerceAccueilBundle:Default:index }
+    defaults: { _controller: ecommerceAccueilBundle:Accueil:index }
+
+ecommerce_accueil_apropos:
+    path:     /apropos
+    defaults: { _controller: ecommerceAccueilBundle:Accueil:apropos }
+
+ecommerce_accueil_contact:
+    path:     /contact
+    defaults: { _controller: ecommerceAccueilBundle:Accueil:contact }
+
+ecommerce_accueil_inscription:
+    path:     /inscription
+    defaults: { _controller: ecommerceAccueilBundle:Accueil:inscription }
+
+ecommerce_accueil_publications:
+    path:     /publications
+    defaults: { _controller: ecommerceAccueilBundle:Accueil:publications }

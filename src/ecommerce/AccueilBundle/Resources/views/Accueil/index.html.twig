@@ -1,0 +1,991 @@
+{# src/ecommerce/AccueilBundle/Resources/views/Accueil/index.html.twig #}
+
+{% extends "ecommerceAccueilBundle::layout.html.twig" %}
+
+{% block titre %}
+    Bienvenu - {{ parent() }}
+{% endblock %}
+
+{% block contenu_accueil %}
+
+    <div class="container">
+        <div class="col-md-9">
+            <div id="main-slider">
+                <div class="item">
+                    <img src="{{ asset('images/main-slider1.jpg') }}" alt="" class="img-responsive">
+                </div>
+                <div class="item">
+                    <img class="img-responsive" src="{{ asset('images/main-slider2.jpg') }}" alt="">
+                </div>
+                <div class="item">
+                    <img class="img-responsive" src="{{ asset('images/main-slider3.jpg') }}" alt="">
+                </div>
+                <div class="item">
+                    <img class="img-responsive" src="{{ asset('images/main-slider4.jpg') }}" alt="">
+                </div>
+            </div>
+            <!-- /#main-slider -->
+        </div>
+
+
+        <div class="col-md-3 col-sm-6 col-xs-6">
+            <div class="banners">
+                <a href="#">
+                    <img src="{{ asset('images/banner.jpg') }}" alt="sales 2014" class="img-responsive">
+                </a>
+            </div>
+        </div>
+        <div class="col-md-3 col-sm-6 col-xs-6">
+            <div class="banners">
+                <a href="#">
+                    <img src="{{ asset('images/banner.jpg') }}" alt="sales 2014" class="img-responsive">
+                </a>
+            </div>
+        </div>
+
+    </div>
+
+
+    <!-- *** HOT PRODUCT SLIDESHOW ***
+    _________________________________________________________ -->
+    <div id="hot">
+
+        <div class="container">
+
+            <div class="col-md-12">
+                <ul class="breadcrumb">
+                    <li>
+                        <a href="#">Mode</a>
+                    </li>
+                    <li>Les collections A la Une</li>
+                </ul>
+            </div>
+
+            <div class="product-slider">
+                <div class="item">
+                    <div class="product">
+                        <div class="flip-container">
+                            <div class="flipper">
+                                <div class="front">
+                                    <a href="{{ path('ecommerce_article_detail') }}">
+                                        <img src="{{ asset('images/product1.jpg') }}" alt="" class="img-responsive">
+                                    </a>
+                                </div>
+                                <div class="back">
+                                    <a href="{{ path('ecommerce_article_detail') }}">
+                                        <img src="{{ asset('images/product1_2.jpg') }}" alt="" class="img-responsive">
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="{{ path('ecommerce_article_detail') }}" class="invisible">
+                            <img src="{{ asset('images/product1.jpg') }}" alt="" class="img-responsive">
+                        </a>
+                        <div class="text">
+                            <h3><a href="{{ path('ecommerce_article_detail') }}">Fur coat with very but very very long name</a></h3>
+                            <p class="price">$143.00</p>
+                        </div>
+                        <!-- /.text -->
+                    </div>
+                    <!-- /.product -->
+                </div>
+
+                <div class="item">
+                    <div class="product">
+                        <div class="flip-container">
+                            <div class="flipper">
+                                <div class="front">
+                                    <a href="{{ path('ecommerce_article_detail') }}">
+                                        <img src="{{ asset('images/product2.jpg') }}" alt="" class="img-responsive">
+                                    </a>
+                                </div>
+                                <div class="back">
+                                    <a href="{{ path('ecommerce_article_detail') }}">
+                                        <img src="{{ asset('images/product2_2.jpg') }}" alt="" class="img-responsive">
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="{{ path('ecommerce_article_detail') }}" class="invisible">
+                            <img src="{{ asset('images/product2.jpg') }}" alt="" class="img-responsive">
+                        </a>
+                        <div class="text">
+                            <h3><a href="{{ path('ecommerce_article_detail') }}">White Blouse Armani</a></h3>
+                            <p class="price"><del>$280</del> $143.00</p>
+                        </div>
+                        <!-- /.text -->
+
+                        <div class="ribbon sale">
+                            <div class="theribbon">SALE</div>
+                            <div class="ribbon-background"></div>
+                        </div>
+                        <!-- /.ribbon -->
+
+                        <div class="ribbon new">
+                            <div class="theribbon">NEW</div>
+                            <div class="ribbon-background"></div>
+                        </div>
+                        <!-- /.ribbon -->
+
+                        <div class="ribbon gift">
+                            <div class="theribbon">GIFT</div>
+                            <div class="ribbon-background"></div>
+                        </div>
+                        <!-- /.ribbon -->
+                    </div>
+                    <!-- /.product -->
+                </div>
+
+                <div class="item">
+                    <div class="product">
+                        <div class="flip-container">
+                            <div class="flipper">
+                                <div class="front">
+                                    <a href="{{ path('ecommerce_article_detail') }}">
+                                        <img src="{{ asset('images/product3.jpg') }}" alt="" class="img-responsive">
+                                    </a>
+                                </div>
+                                <div class="back">
+                                    <a href="{{ path('ecommerce_article_detail') }}">
+                                        <img src="{{ asset('images/product3_2.jpg') }}" alt="" class="img-responsive">
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="{{ path('ecommerce_article_detail') }}" class="invisible">
+                            <img src="{{ asset('images/product3.jpg') }}" alt="" class="img-responsive">
+                        </a>
+                        <div class="text">
+                            <h3><a href="{{ path('ecommerce_article_detail') }}">Black Blouse Versace</a></h3>
+                            <p class="price">$143.00</p>
+                        </div>
+                        <!-- /.text -->
+                    </div>
+                    <!-- /.product -->
+                </div>
+
+                <div class="item">
+                    <div class="product">
+                        <div class="flip-container">
+                            <div class="flipper">
+                                <div class="front">
+                                    <a href="{{ path('ecommerce_article_detail') }}">
+                                        <img src="{{ asset('images/product3.jpg') }}" alt="" class="img-responsive">
+                                    </a>
+                                </div>
+                                <div class="back">
+                                    <a href="{{ path('ecommerce_article_detail') }}">
+                                        <img src="{{ asset('images/product3_2.jpg') }}" alt="" class="img-responsive">
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="{{ path('ecommerce_article_detail') }}" class="invisible">
+                            <img src="{{ asset('images/product3.jpg') }}" alt="" class="img-responsive">
+                        </a>
+                        <div class="text">
+                            <h3><a href="{{ path('ecommerce_article_detail') }}">Black Blouse Versace</a></h3>
+                            <p class="price">$143.00</p>
+                        </div>
+                        <!-- /.text -->
+                    </div>
+                    <!-- /.product -->
+                </div>
+
+                <div class="item">
+                    <div class="product">
+                        <div class="flip-container">
+                            <div class="flipper">
+                                <div class="front">
+                                    <a href="{{ path('ecommerce_article_detail') }}">
+                                        <img src="{{ asset('images/product2.jpg') }}" alt="" class="img-responsive">
+                                    </a>
+                                </div>
+                                <div class="back">
+                                    <a href="{{ path('ecommerce_article_detail') }}">
+                                        <img src="{{ asset('images/product2_2.jpg') }}" alt="" class="img-responsive">
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="{{ path('ecommerce_article_detail') }}" class="invisible">
+                            <img src="{{ asset('images/product2.jpg') }}" alt="" class="img-responsive">
+                        </a>
+                        <div class="text">
+                            <h3><a href="{{ path('ecommerce_article_detail') }}">White Blouse Versace</a></h3>
+                            <p class="price">$143.00</p>
+                        </div>
+                        <!-- /.text -->
+
+                        <div class="ribbon new">
+                            <div class="theribbon">NEW</div>
+                            <div class="ribbon-background"></div>
+                        </div>
+                        <!-- /.ribbon -->
+                    </div>
+                    <!-- /.product -->
+                </div>
+
+                <div class="item">
+                    <div class="product">
+                        <div class="flip-container">
+                            <div class="flipper">
+                                <div class="front">
+                                    <a href="{{ path('ecommerce_article_detail') }}">
+                                        <img src="{{ asset('images/product1.jpg') }}" alt="" class="img-responsive">
+                                    </a>
+                                </div>
+                                <div class="back">
+                                    <a href="{{ path('ecommerce_article_detail') }}">
+                                        <img src="{{ asset('images/product1_2.jpg') }}" alt="" class="img-responsive">
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="{{ path('ecommerce_article_detail') }}" class="invisible">
+                            <img src="{{ asset('images/product1.jpg') }}" alt="" class="img-responsive">
+                        </a>
+                        <div class="text">
+                            <h3><a href="{{ path('ecommerce_article_detail') }}">Fur coat</a></h3>
+                            <p class="price">$143.00</p>
+                        </div>
+                        <!-- /.text -->
+
+                        <div class="ribbon gift">
+                            <div class="theribbon">GIFT</div>
+                            <div class="ribbon-background"></div>
+                        </div>
+                        <!-- /.ribbon -->
+
+                    </div>
+                    <!-- /.product -->
+                </div>
+                <!-- /.col-md-4 -->
+
+                <div class="item">
+                    <div class="product">
+                        <div class="flip-container">
+                            <div class="flipper">
+                                <div class="front">
+                                    <a href="{{ path('ecommerce_article_detail') }}">
+                                        <img src="{{ asset('images/product2.jpg') }}" alt="" class="img-responsive">
+                                    </a>
+                                </div>
+                                <div class="back">
+                                    <a href="{{ path('ecommerce_article_detail') }}">
+                                        <img src="{{ asset('images/product2_2.jpg') }}" alt="" class="img-responsive">
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="{{ path('ecommerce_article_detail') }}" class="invisible">
+                            <img src="{{ asset('images/product2.jpg') }}" alt="" class="img-responsive">
+                        </a>
+                        <div class="text">
+                            <h3><a href="{{ path('ecommerce_article_detail') }}">White Blouse Armani</a></h3>
+                            <p class="price"><del>$280</del> $143.00</p>
+                        </div>
+                        <!-- /.text -->
+
+                        <div class="ribbon sale">
+                            <div class="theribbon">SALE</div>
+                            <div class="ribbon-background"></div>
+                        </div>
+                        <!-- /.ribbon -->
+
+                        <div class="ribbon new">
+                            <div class="theribbon">NEW</div>
+                            <div class="ribbon-background"></div>
+                        </div>
+                        <!-- /.ribbon -->
+
+                        <div class="ribbon gift">
+                            <div class="theribbon">GIFT</div>
+                            <div class="ribbon-background"></div>
+                        </div>
+                        <!-- /.ribbon -->
+                    </div>
+                    <!-- /.product -->
+                </div>
+
+                <div class="item">
+                    <div class="product">
+                        <div class="flip-container">
+                            <div class="flipper">
+                                <div class="front">
+                                    <a href="{{ path('ecommerce_article_detail') }}">
+                                        <img src="{{ asset('images/product3.jpg') }}" alt="" class="img-responsive">
+                                    </a>
+                                </div>
+                                <div class="back">
+                                    <a href="{{ path('ecommerce_article_detail') }}">
+                                        <img src="{{ asset('images/product3_2.jpg') }}" alt="" class="img-responsive">
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="{{ path('ecommerce_article_detail') }}" class="invisible">
+                            <img src="{{ asset('images/product3.jpg') }}" alt="" class="img-responsive">
+                        </a>
+                        <div class="text">
+                            <h3><a href="{{ path('ecommerce_article_detail') }}">Black Blouse Versace</a></h3>
+                            <p class="price">$143.00</p>
+                        </div>
+                        <!-- /.text -->
+                    </div>
+                    <!-- /.product -->
+                </div>
+
+            </div>
+            <!-- /.product-slider -->
+        </div>
+        <!-- /.container -->
+
+    </div>
+    <!-- /#hot -->
+    <!-- *** HOT END *** -->
+
+
+
+
+    <!-- *** HOT PRODUCT SLIDESHOW ***
+_________________________________________________________ -->
+    <div id="hot">
+
+        <div class="container">
+
+            <div class="col-md-12">
+                <ul class="breadcrumb">
+                    <li>
+                        <a href="#">High-Tech</a>
+                    </li>
+                    <li>Les derniers Smartphones</li>
+                </ul>
+            </div>
+
+            <div class="product-slider">
+                <div class="item">
+                    <div class="product">
+                        <div class="flip-container">
+                            <div class="flipper">
+                                <div class="front">
+                                    <a href="{{ path('ecommerce_article_detail') }}">
+                                        <img src="{{ asset('images/product1.jpg') }}" alt="" class="img-responsive">
+                                    </a>
+                                </div>
+                                <div class="back">
+                                    <a href="{{ path('ecommerce_article_detail') }}">
+                                        <img src="{{ asset('images/product1_2.jpg') }}" alt="" class="img-responsive">
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="{{ path('ecommerce_article_detail') }}" class="invisible">
+                            <img src="{{ asset('images/product1.jpg') }}" alt="" class="img-responsive">
+                        </a>
+                        <div class="text">
+                            <h3><a href="{{ path('ecommerce_article_detail') }}">Fur coat with very but very very long name</a></h3>
+                            <p class="price">$143.00</p>
+                        </div>
+                        <!-- /.text -->
+                    </div>
+                    <!-- /.product -->
+                </div>
+
+                <div class="item">
+                    <div class="product">
+                        <div class="flip-container">
+                            <div class="flipper">
+                                <div class="front">
+                                    <a href="{{ path('ecommerce_article_detail') }}">
+                                        <img src="{{ asset('images/product2.jpg') }}" alt="" class="img-responsive">
+                                    </a>
+                                </div>
+                                <div class="back">
+                                    <a href="{{ path('ecommerce_article_detail') }}">
+                                        <img src="{{ asset('images/product2_2.jpg') }}" alt="" class="img-responsive">
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="{{ path('ecommerce_article_detail') }}" class="invisible">
+                            <img src="{{ asset('images/product2.jpg') }}" alt="" class="img-responsive">
+                        </a>
+                        <div class="text">
+                            <h3><a href="{{ path('ecommerce_article_detail') }}">White Blouse Armani</a></h3>
+                            <p class="price"><del>$280</del> $143.00</p>
+                        </div>
+                        <!-- /.text -->
+
+                        <div class="ribbon sale">
+                            <div class="theribbon">SALE</div>
+                            <div class="ribbon-background"></div>
+                        </div>
+                        <!-- /.ribbon -->
+
+                        <div class="ribbon new">
+                            <div class="theribbon">NEW</div>
+                            <div class="ribbon-background"></div>
+                        </div>
+                        <!-- /.ribbon -->
+
+                        <div class="ribbon gift">
+                            <div class="theribbon">GIFT</div>
+                            <div class="ribbon-background"></div>
+                        </div>
+                        <!-- /.ribbon -->
+                    </div>
+                    <!-- /.product -->
+                </div>
+
+                <div class="item">
+                    <div class="product">
+                        <div class="flip-container">
+                            <div class="flipper">
+                                <div class="front">
+                                    <a href="{{ path('ecommerce_article_detail') }}">
+                                        <img src="{{ asset('images/product3.jpg') }}" alt="" class="img-responsive">
+                                    </a>
+                                </div>
+                                <div class="back">
+                                    <a href="{{ path('ecommerce_article_detail') }}">
+                                        <img src="{{ asset('images/product3_2.jpg') }}" alt="" class="img-responsive">
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="{{ path('ecommerce_article_detail') }}" class="invisible">
+                            <img src="{{ asset('images/product3.jpg') }}" alt="" class="img-responsive">
+                        </a>
+                        <div class="text">
+                            <h3><a href="{{ path('ecommerce_article_detail') }}">Black Blouse Versace</a></h3>
+                            <p class="price">$143.00</p>
+                        </div>
+                        <!-- /.text -->
+                    </div>
+                    <!-- /.product -->
+                </div>
+
+                <div class="item">
+                    <div class="product">
+                        <div class="flip-container">
+                            <div class="flipper">
+                                <div class="front">
+                                    <a href="{{ path('ecommerce_article_detail') }}">
+                                        <img src="{{ asset('images/product3.jpg') }}" alt="" class="img-responsive">
+                                    </a>
+                                </div>
+                                <div class="back">
+                                    <a href="{{ path('ecommerce_article_detail') }}">
+                                        <img src="{{ asset('images/product3_2.jpg') }}" alt="" class="img-responsive">
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="{{ path('ecommerce_article_detail') }}" class="invisible">
+                            <img src="{{ asset('images/product3.jpg') }}" alt="" class="img-responsive">
+                        </a>
+                        <div class="text">
+                            <h3><a href="{{ path('ecommerce_article_detail') }}">Black Blouse Versace</a></h3>
+                            <p class="price">$143.00</p>
+                        </div>
+                        <!-- /.text -->
+                    </div>
+                    <!-- /.product -->
+                </div>
+
+                <div class="item">
+                    <div class="product">
+                        <div class="flip-container">
+                            <div class="flipper">
+                                <div class="front">
+                                    <a href="{{ path('ecommerce_article_detail') }}">
+                                        <img src="{{ asset('images/product2.jpg') }}" alt="" class="img-responsive">
+                                    </a>
+                                </div>
+                                <div class="back">
+                                    <a href="{{ path('ecommerce_article_detail') }}">
+                                        <img src="{{ asset('images/product2_2.jpg') }}" alt="" class="img-responsive">
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="{{ path('ecommerce_article_detail') }}" class="invisible">
+                            <img src="{{ asset('images/product2.jpg') }}" alt="" class="img-responsive">
+                        </a>
+                        <div class="text">
+                            <h3><a href="{{ path('ecommerce_article_detail') }}">White Blouse Versace</a></h3>
+                            <p class="price">$143.00</p>
+                        </div>
+                        <!-- /.text -->
+
+                        <div class="ribbon new">
+                            <div class="theribbon">NEW</div>
+                            <div class="ribbon-background"></div>
+                        </div>
+                        <!-- /.ribbon -->
+                    </div>
+                    <!-- /.product -->
+                </div>
+
+                <div class="item">
+                    <div class="product">
+                        <div class="flip-container">
+                            <div class="flipper">
+                                <div class="front">
+                                    <a href="{{ path('ecommerce_article_detail') }}">
+                                        <img src="{{ asset('images/product1.jpg') }}" alt="" class="img-responsive">
+                                    </a>
+                                </div>
+                                <div class="back">
+                                    <a href="{{ path('ecommerce_article_detail') }}">
+                                        <img src="{{ asset('images/product1_2.jpg') }}" alt="" class="img-responsive">
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="{{ path('ecommerce_article_detail') }}" class="invisible">
+                            <img src="{{ asset('images/product1.jpg') }}" alt="" class="img-responsive">
+                        </a>
+                        <div class="text">
+                            <h3><a href="{{ path('ecommerce_article_detail') }}">Fur coat</a></h3>
+                            <p class="price">$143.00</p>
+                        </div>
+                        <!-- /.text -->
+
+                        <div class="ribbon gift">
+                            <div class="theribbon">GIFT</div>
+                            <div class="ribbon-background"></div>
+                        </div>
+                        <!-- /.ribbon -->
+
+                    </div>
+                    <!-- /.product -->
+                </div>
+                <!-- /.col-md-4 -->
+
+                <div class="item">
+                    <div class="product">
+                        <div class="flip-container">
+                            <div class="flipper">
+                                <div class="front">
+                                    <a href="{{ path('ecommerce_article_detail') }}">
+                                        <img src="{{ asset('images/product2.jpg') }}" alt="" class="img-responsive">
+                                    </a>
+                                </div>
+                                <div class="back">
+                                    <a href="{{ path('ecommerce_article_detail') }}">
+                                        <img src="{{ asset('images/product2_2.jpg') }}" alt="" class="img-responsive">
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="{{ path('ecommerce_article_detail') }}" class="invisible">
+                            <img src="{{ asset('images/product2.jpg') }}" alt="" class="img-responsive">
+                        </a>
+                        <div class="text">
+                            <h3><a href="{{ path('ecommerce_article_detail') }}">White Blouse Armani</a></h3>
+                            <p class="price"><del>$280</del> $143.00</p>
+                        </div>
+                        <!-- /.text -->
+
+                        <div class="ribbon sale">
+                            <div class="theribbon">SALE</div>
+                            <div class="ribbon-background"></div>
+                        </div>
+                        <!-- /.ribbon -->
+
+                        <div class="ribbon new">
+                            <div class="theribbon">NEW</div>
+                            <div class="ribbon-background"></div>
+                        </div>
+                        <!-- /.ribbon -->
+
+                        <div class="ribbon gift">
+                            <div class="theribbon">GIFT</div>
+                            <div class="ribbon-background"></div>
+                        </div>
+                        <!-- /.ribbon -->
+                    </div>
+                    <!-- /.product -->
+                </div>
+
+                <div class="item">
+                    <div class="product">
+                        <div class="flip-container">
+                            <div class="flipper">
+                                <div class="front">
+                                    <a href="{{ path('ecommerce_article_detail') }}">
+                                        <img src="{{ asset('images/product3.jpg') }}" alt="" class="img-responsive">
+                                    </a>
+                                </div>
+                                <div class="back">
+                                    <a href="{{ path('ecommerce_article_detail') }}">
+                                        <img src="{{ asset('images/product3_2.jpg') }}" alt="" class="img-responsive">
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="{{ path('ecommerce_article_detail') }}" class="invisible">
+                            <img src="{{ asset('images/product3.jpg') }}" alt="" class="img-responsive">
+                        </a>
+                        <div class="text">
+                            <h3><a href="{{ path('ecommerce_article_detail') }}">Black Blouse Versace</a></h3>
+                            <p class="price">$143.00</p>
+                        </div>
+                        <!-- /.text -->
+                    </div>
+                    <!-- /.product -->
+                </div>
+
+            </div>
+            <!-- /.product-slider -->
+        </div>
+        <!-- /.container -->
+
+    </div>
+    <!-- /#hot -->
+    <!-- *** HOT END *** -->
+
+
+
+
+
+
+
+    <!-- *** HOT PRODUCT SLIDESHOW ***
+_________________________________________________________ -->
+    <div id="hot">
+
+        <div class="container">
+
+            <div class="col-md-12">
+                <ul class="breadcrumb">
+                    <li>
+                        <a href="#">Electro-ménagers</a>
+                    </li>
+                    <li>Appareils électro-ménagers à moindre prix</li>
+                </ul>
+            </div>
+
+            <div class="product-slider">
+                <div class="item">
+                    <div class="product">
+                        <div class="flip-container">
+                            <div class="flipper">
+                                <div class="front">
+                                    <a href="{{ path('ecommerce_article_detail') }}">
+                                        <img src="{{ asset('images/product1.jpg') }}" alt="" class="img-responsive">
+                                    </a>
+                                </div>
+                                <div class="back">
+                                    <a href="{{ path('ecommerce_article_detail') }}">
+                                        <img src="{{ asset('images/product1_2.jpg') }}" alt="" class="img-responsive">
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="{{ path('ecommerce_article_detail') }}" class="invisible">
+                            <img src="{{ asset('images/product1.jpg') }}" alt="" class="img-responsive">
+                        </a>
+                        <div class="text">
+                            <h3><a href="{{ path('ecommerce_article_detail') }}">Fur coat with very but very very long name</a></h3>
+                            <p class="price">$143.00</p>
+                        </div>
+                        <!-- /.text -->
+                    </div>
+                    <!-- /.product -->
+                </div>
+
+                <div class="item">
+                    <div class="product">
+                        <div class="flip-container">
+                            <div class="flipper">
+                                <div class="front">
+                                    <a href="{{ path('ecommerce_article_detail') }}">
+                                        <img src="{{ asset('images/product2.jpg') }}" alt="" class="img-responsive">
+                                    </a>
+                                </div>
+                                <div class="back">
+                                    <a href="{{ path('ecommerce_article_detail') }}">
+                                        <img src="{{ asset('images/product2_2.jpg') }}" alt="" class="img-responsive">
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="{{ path('ecommerce_article_detail') }}" class="invisible">
+                            <img src="{{ asset('images/product2.jpg') }}" alt="" class="img-responsive">
+                        </a>
+                        <div class="text">
+                            <h3><a href="{{ path('ecommerce_article_detail') }}">White Blouse Armani</a></h3>
+                            <p class="price"><del>$280</del> $143.00</p>
+                        </div>
+                        <!-- /.text -->
+
+                        <div class="ribbon sale">
+                            <div class="theribbon">SALE</div>
+                            <div class="ribbon-background"></div>
+                        </div>
+                        <!-- /.ribbon -->
+
+                        <div class="ribbon new">
+                            <div class="theribbon">NEW</div>
+                            <div class="ribbon-background"></div>
+                        </div>
+                        <!-- /.ribbon -->
+
+                        <div class="ribbon gift">
+                            <div class="theribbon">GIFT</div>
+                            <div class="ribbon-background"></div>
+                        </div>
+                        <!-- /.ribbon -->
+                    </div>
+                    <!-- /.product -->
+                </div>
+
+                <div class="item">
+                    <div class="product">
+                        <div class="flip-container">
+                            <div class="flipper">
+                                <div class="front">
+                                    <a href="{{ path('ecommerce_article_detail') }}">
+                                        <img src="{{ asset('images/product3.jpg') }}" alt="" class="img-responsive">
+                                    </a>
+                                </div>
+                                <div class="back">
+                                    <a href="{{ path('ecommerce_article_detail') }}">
+                                        <img src="{{ asset('images/product3_2.jpg') }}" alt="" class="img-responsive">
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="{{ path('ecommerce_article_detail') }}" class="invisible">
+                            <img src="{{ asset('images/product3.jpg') }}" alt="" class="img-responsive">
+                        </a>
+                        <div class="text">
+                            <h3><a href="{{ path('ecommerce_article_detail') }}">Black Blouse Versace</a></h3>
+                            <p class="price">$143.00</p>
+                        </div>
+                        <!-- /.text -->
+                    </div>
+                    <!-- /.product -->
+                </div>
+
+                <div class="item">
+                    <div class="product">
+                        <div class="flip-container">
+                            <div class="flipper">
+                                <div class="front">
+                                    <a href="{{ path('ecommerce_article_detail') }}">
+                                        <img src="{{ asset('images/product3.jpg') }}" alt="" class="img-responsive">
+                                    </a>
+                                </div>
+                                <div class="back">
+                                    <a href="{{ path('ecommerce_article_detail') }}">
+                                        <img src="{{ asset('images/product3_2.jpg') }}" alt="" class="img-responsive">
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="{{ path('ecommerce_article_detail') }}" class="invisible">
+                            <img src="{{ asset('images/product3.jpg') }}" alt="" class="img-responsive">
+                        </a>
+                        <div class="text">
+                            <h3><a href="{{ path('ecommerce_article_detail') }}">Black Blouse Versace</a></h3>
+                            <p class="price">$143.00</p>
+                        </div>
+                        <!-- /.text -->
+                    </div>
+                    <!-- /.product -->
+                </div>
+
+                <div class="item">
+                    <div class="product">
+                        <div class="flip-container">
+                            <div class="flipper">
+                                <div class="front">
+                                    <a href="{{ path('ecommerce_article_detail') }}">
+                                        <img src="{{ asset('images/product2.jpg') }}" alt="" class="img-responsive">
+                                    </a>
+                                </div>
+                                <div class="back">
+                                    <a href="{{ path('ecommerce_article_detail') }}">
+                                        <img src="{{ asset('images/product2_2.jpg') }}" alt="" class="img-responsive">
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="{{ path('ecommerce_article_detail') }}" class="invisible">
+                            <img src="{{ asset('images/product2.jpg') }}" alt="" class="img-responsive">
+                        </a>
+                        <div class="text">
+                            <h3><a href="{{ path('ecommerce_article_detail') }}">White Blouse Versace</a></h3>
+                            <p class="price">$143.00</p>
+                        </div>
+                        <!-- /.text -->
+
+                        <div class="ribbon new">
+                            <div class="theribbon">NEW</div>
+                            <div class="ribbon-background"></div>
+                        </div>
+                        <!-- /.ribbon -->
+                    </div>
+                    <!-- /.product -->
+                </div>
+
+                <div class="item">
+                    <div class="product">
+                        <div class="flip-container">
+                            <div class="flipper">
+                                <div class="front">
+                                    <a href="{{ path('ecommerce_article_detail') }}">
+                                        <img src="{{ asset('images/product1.jpg') }}" alt="" class="img-responsive">
+                                    </a>
+                                </div>
+                                <div class="back">
+                                    <a href="{{ path('ecommerce_article_detail') }}">
+                                        <img src="{{ asset('images/product1_2.jpg') }}" alt="" class="img-responsive">
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="{{ path('ecommerce_article_detail') }}" class="invisible">
+                            <img src="{{ asset('images/product1.jpg') }}" alt="" class="img-responsive">
+                        </a>
+                        <div class="text">
+                            <h3><a href="{{ path('ecommerce_article_detail') }}">Fur coat</a></h3>
+                            <p class="price">$143.00</p>
+                        </div>
+                        <!-- /.text -->
+
+                        <div class="ribbon gift">
+                            <div class="theribbon">GIFT</div>
+                            <div class="ribbon-background"></div>
+                        </div>
+                        <!-- /.ribbon -->
+
+                    </div>
+                    <!-- /.product -->
+                </div>
+                <!-- /.col-md-4 -->
+
+                <div class="item">
+                    <div class="product">
+                        <div class="flip-container">
+                            <div class="flipper">
+                                <div class="front">
+                                    <a href="{{ path('ecommerce_article_detail') }}">
+                                        <img src="{{ asset('images/product2.jpg') }}" alt="" class="img-responsive">
+                                    </a>
+                                </div>
+                                <div class="back">
+                                    <a href="{{ path('ecommerce_article_detail') }}">
+                                        <img src="{{ asset('images/product2_2.jpg') }}" alt="" class="img-responsive">
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="{{ path('ecommerce_article_detail') }}" class="invisible">
+                            <img src="{{ asset('images/product2.jpg') }}" alt="" class="img-responsive">
+                        </a>
+                        <div class="text">
+                            <h3><a href="{{ path('ecommerce_article_detail') }}">White Blouse Armani</a></h3>
+                            <p class="price"><del>$280</del> $143.00</p>
+                        </div>
+                        <!-- /.text -->
+
+                        <div class="ribbon sale">
+                            <div class="theribbon">SALE</div>
+                            <div class="ribbon-background"></div>
+                        </div>
+                        <!-- /.ribbon -->
+
+                        <div class="ribbon new">
+                            <div class="theribbon">NEW</div>
+                            <div class="ribbon-background"></div>
+                        </div>
+                        <!-- /.ribbon -->
+
+                        <div class="ribbon gift">
+                            <div class="theribbon">GIFT</div>
+                            <div class="ribbon-background"></div>
+                        </div>
+                        <!-- /.ribbon -->
+                    </div>
+                    <!-- /.product -->
+                </div>
+
+                <div class="item">
+                    <div class="product">
+                        <div class="flip-container">
+                            <div class="flipper">
+                                <div class="front">
+                                    <a href="{{ path('ecommerce_article_detail') }}">
+                                        <img src="{{ asset('images/product3.jpg') }}" alt="" class="img-responsive">
+                                    </a>
+                                </div>
+                                <div class="back">
+                                    <a href="{{ path('ecommerce_article_detail') }}">
+                                        <img src="{{ asset('images/product3_2.jpg') }}" alt="" class="img-responsive">
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="{{ path('ecommerce_article_detail') }}" class="invisible">
+                            <img src="{{ asset('images/product3.jpg') }}" alt="" class="img-responsive">
+                        </a>
+                        <div class="text">
+                            <h3><a href="{{ path('ecommerce_article_detail') }}">Black Blouse Versace</a></h3>
+                            <p class="price">$143.00</p>
+                        </div>
+                        <!-- /.text -->
+                    </div>
+                    <!-- /.product -->
+                </div>
+
+            </div>
+            <!-- /.product-slider -->
+        </div>
+        <!-- /.container -->
+
+    </div>
+    <!-- /#hot -->
+    <!-- *** HOT END *** -->
+
+
+
+
+
+
+
+
+    <!-- *** GET INSPIRED ***
+    _________________________________________________________ -->
+    <div class="container" data-animate="fadeInUpBig">
+        <div class="col-md-12">
+            <div class="box slideshow">
+                <h3>Get Inspired</h3>
+                <p class="lead">Get the inspiration from our world class designers</p>
+                <div id="get-inspired" class="owl-carousel owl-theme">
+                    <div class="item">
+                        <a href="#">
+                            <img src="{{ asset('images/getinspired1.jpg') }}" alt="Get inspired" class="img-responsive">
+                        </a>
+                    </div>
+                    <div class="item">
+                        <a href="#">
+                            <img src="{{ asset('images/getinspired2.jpg') }}" alt="Get inspired" class="img-responsive">
+                        </a>
+                    </div>
+                    <div class="item">
+                        <a href="#">
+                            <img src="{{ asset('images/getinspired3.jpg') }}" alt="Get inspired" class="img-responsive">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- *** GET INSPIRED END *** -->
+
+{% endblock %}

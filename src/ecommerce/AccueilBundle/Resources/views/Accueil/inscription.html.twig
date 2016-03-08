@@ -1,0 +1,81 @@
+{# src/ecommerce/AccueilBundle/Resources/views/Accueil/inscription.html.twig #}
+
+{% extends "ecommerceAccueilBundle::layout.html.twig" %}
+
+{% block titre %}
+    S'inscrire - {{ parent() }}
+{% endblock %}
+
+{% block contenu_accueil %}
+
+    <div class="container">
+
+        <div class="col-md-12">
+
+            <ul class="breadcrumb">
+                <li><a href="{{ path('ecommerce_accueil_accueil') }}">Accueil</a>
+                </li>
+                <li>Nouveau compte / Inscription</li>
+            </ul>
+
+        </div>
+
+        <div class="col-md-6">
+            <div class="box">
+                <h1>Nouveau compte</h1>
+
+                <p class="lead">Pas encore inscrit?</p>
+                <p>En vous inscrivant, vous bénéficierez des toutes les fonctionnalités exclusives réservées aux membres du site!</p>
+
+                <hr>
+
+                <form action="customer-orders.html" method="post">
+                    <div class="form-group">
+                        <label for="name">Nom</label>
+                        <input type="text" class="form-control" id="name">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="text" class="form-control" id="email">
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Mot de passe</label>
+                        <input type="password" class="form-control" id="password">
+                    </div>
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-primary"><i class="fa fa-user-md"></i> S'inscrire</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="box">
+                <h1>Connexion</h1>
+
+                <p class="lead">Déjà inscrit?</p>
+                <p class="text-muted">Veuillez vous identifier pour se connecter.</p>
+
+                <hr>
+
+                <form action="customer-orders.html" method="post">
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="text" class="form-control" id="email">
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Mot de passe</label>
+                        <input type="password" class="form-control" id="password">
+                    </div>
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-primary"><i class="fa fa-sign-in"></i> Connexion</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+
+    </div>
+    <!-- /.container -->
+
+{% endblock %}
