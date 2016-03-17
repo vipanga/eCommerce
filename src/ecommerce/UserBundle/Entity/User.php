@@ -34,16 +34,16 @@ class User extends BaseUser
     /**
      * @var string
      *
-     * @ORM\Column(name="postnom", type="string", length=255, nullable=true)
+     * @ORM\Column(name="prenom", type="string", length=255, nullable=true)
      */
-    private $postnom;
+    private $prenom;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="prenom", type="string", length=255, nullable=true)
+     * @ORM\Column(name="sexe", type="string", length=255, nullable=true)
      */
-    private $prenom;
+    private $sexe;
 
     /**
      * @var int
@@ -51,23 +51,35 @@ class User extends BaseUser
      * @ORM\Column(name="telephone", type="integer", nullable=true)
      */
     private $telephone;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="ville", type="string", length=255, nullable=true)
+     */
+    private $ville;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="province", type="string", length=255, nullable=true)
+     */
+    private $province;
+
+    /**
+     * @ORM\Column(name="adresse", type="text")
+     */
+    private $adresse;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="datedenaissance", type="datetime", nullable=true)
+     * @ORM\Column(name="date_inscription", type="datetime", nullable=true)
      */
-    private $datedenaissance;
-
-
-    /**
-     * Get id
-     *
-     * @return integer 
-     */
-    public function getId()
-    {
-        return $this->id;
+    private $date_inscription;
+    
+    public function __construct() {
+        $this->date_inscription = new \Datetime();
     }
 
     /**
@@ -94,29 +106,6 @@ class User extends BaseUser
     }
 
     /**
-     * Set postnom
-     *
-     * @param string $postnom
-     * @return User
-     */
-    public function setPostnom($postnom)
-    {
-        $this->postnom = $postnom;
-
-        return $this;
-    }
-
-    /**
-     * Get postnom
-     *
-     * @return string 
-     */
-    public function getPostnom()
-    {
-        return $this->postnom;
-    }
-
-    /**
      * Set prenom
      *
      * @param string $prenom
@@ -137,6 +126,29 @@ class User extends BaseUser
     public function getPrenom()
     {
         return $this->prenom;
+    }
+
+    /**
+     * Set sexe
+     *
+     * @param string $sexe
+     * @return User
+     */
+    public function setSexe($sexe)
+    {
+        $this->sexe = $sexe;
+
+        return $this;
+    }
+
+    /**
+     * Get sexe
+     *
+     * @return string 
+     */
+    public function getSexe()
+    {
+        return $this->sexe;
     }
 
     /**
@@ -163,25 +175,94 @@ class User extends BaseUser
     }
 
     /**
-     * Set datedenaissance
+     * Set ville
      *
-     * @param \DateTime $datedenaissance
+     * @param string $ville
      * @return User
      */
-    public function setDatedenaissance($datedenaissance)
+    public function setVille($ville)
     {
-        $this->datedenaissance = $datedenaissance;
+        $this->ville = $ville;
 
         return $this;
     }
 
     /**
-     * Get datedenaissance
+     * Get ville
+     *
+     * @return string 
+     */
+    public function getVille()
+    {
+        return $this->ville;
+    }
+
+    /**
+     * Set province
+     *
+     * @param string $province
+     * @return User
+     */
+    public function setProvince($province)
+    {
+        $this->province = $province;
+
+        return $this;
+    }
+
+    /**
+     * Get province
+     *
+     * @return string 
+     */
+    public function getProvince()
+    {
+        return $this->province;
+    }
+
+    /**
+     * Set adresse
+     *
+     * @param string $adresse
+     * @return User
+     */
+    public function setAdresse($adresse)
+    {
+        $this->adresse = $adresse;
+
+        return $this;
+    }
+
+    /**
+     * Get adresse
+     *
+     * @return string 
+     */
+    public function getAdresse()
+    {
+        return $this->adresse;
+    }
+
+    /**
+     * Set date_inscription
+     *
+     * @param \DateTime $dateInscription
+     * @return User
+     */
+    public function setDateInscription($dateInscription)
+    {
+        $this->date_inscription = $dateInscription;
+
+        return $this;
+    }
+
+    /**
+     * Get date_inscription
      *
      * @return \DateTime 
      */
-    public function getDatedenaissance()
+    public function getDateInscription()
     {
-        return $this->datedenaissance;
+        return $this->date_inscription;
     }
 }
