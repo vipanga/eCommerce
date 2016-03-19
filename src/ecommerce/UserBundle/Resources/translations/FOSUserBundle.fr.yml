@@ -19,13 +19,17 @@ profile:
     show:
         username: 'Nom d''utilisateur'
         email: 'Adresse e-mail'
-        nom: 'Nom de famille'
-        prenom: 'Prénom'
-        sexe: 'Sexe'
+        first_name: 'Nom de famille'
+        last_name: 'Prénom'
+        gender: 'Sexe'
         telephone: 'Téléphone'
-        ville: 'Ville'
+        city: 'Ville'
         province: 'Province'
-        adresse: 'Adresse'
+        address: 'Adresse'
+        birth_date: 'Date de naissance'
+        created: 'Date création'
+        update: 'Dernière mise à jour'
+        last_login: 'Dernière connexion'
     edit:
         submit: 'Mettre à jour'
     flash:

@@ -59,16 +59,16 @@ _________________________________________________________ -->
                 <div class="row">
                     <div class="col-sm-6">
                         <div class="form-group">
-                            {{ form_label(form.nom) }}
-                            {{ form_widget(form.nom, { 'attr': {'class': 'form-control' } }) }}
-                            {{ form_errors(form.nom) }}
+                            {{ form_label(form.first_name) }}
+                            {{ form_widget(form.first_name, { 'attr': {'class': 'form-control' } }) }}
+                            {{ form_errors(form.first_name) }}
                         </div>
                     </div>
                     <div class="col-sm-6">
                         <div class="form-group">
-                            {{ form_label(form.prenom) }}
-                            {{ form_widget(form.prenom, { 'attr': {'class': 'form-control' } }) }}
-                            {{ form_errors(form.prenom) }}
+                            {{ form_label(form.last_name) }}
+                            {{ form_widget(form.last_name, { 'attr': {'class': 'form-control' } }) }}
+                            {{ form_errors(form.last_name) }}
                         </div>
                     </div>
                 </div>
@@ -77,9 +77,9 @@ _________________________________________________________ -->
                 <div class="row">
                     <div class="col-sm-6 col-md-3">
                         <div class="form-group">
-                            {{ form_label(form.sexe) }}
-                            {{ form_widget(form.sexe, { 'attr': {'class': 'form-control' } }) }}
-                            {{ form_errors(form.sexe) }}
+                            {{ form_label(form.gender) }}
+                            {{ form_widget(form.gender, { 'attr': {'class': 'form-control' } }) }}
+                            {{ form_errors(form.gender) }}
                         </div>
                     </div>
                     <div class="col-sm-6 col-md-3">
@@ -91,9 +91,9 @@ _________________________________________________________ -->
                     </div>
                     <div class="col-sm-6 col-md-3">
                         <div class="form-group">
-                            {{ form_label(form.ville) }}
-                            {{ form_widget(form.ville, { 'attr': {'class': 'form-control' } }) }}
-                            {{ form_errors(form.ville) }}
+                            {{ form_label(form.city) }}
+                            {{ form_widget(form.city, { 'attr': {'class': 'form-control' } }) }}
+                            {{ form_errors(form.city) }}
                         </div>
                     </div>
                     <div class="col-sm-6 col-md-3">
@@ -104,16 +104,23 @@ _________________________________________________________ -->
                         </div>
                     </div>
 
-                    <div class="col-sm-12">
+                    <div class="col-sm-6">
                         <div class="form-group">
-                            {{ form_label(form.adresse) }}
-                            {{ form_widget(form.adresse, { 'attr': {'class': 'form-control' } }) }}
-                            {{ form_errors(form.adresse) }}
+                            {{ form_label(form.birth_date) }}
+                            {{ form_widget(form.birth_date, { 'attr': {'class': 'form-control' } }) }}
+                            {{ form_errors(form.birth_date) }}
                         </div>
                     </div>
-                        
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            {{ form_label(form.address) }}
+                            {{ form_widget(form.address, { 'attr': {'class': 'form-control', 'rows': '3' } }) }}
+                            {{ form_errors(form.address) }}
+                        </div>
+                    </div>
+
                     {{ form_rest(form) }}
-                    
+
                     <div class="col-sm-12 text-center">
                         <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Modifier mes infos</button>
 

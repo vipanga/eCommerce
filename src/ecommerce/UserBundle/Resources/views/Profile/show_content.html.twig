@@ -35,87 +35,113 @@ _________________________________________________________ -->
             <hr>
 
             <h3>Détails personnel</h3>
-            <form>
-                <div class="row">
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            <label for="firstname">{{ 'profile.show.username'|trans }}</label>
-                            <input type="text" class="form-control" id="firstname" value="{{ user.username }}" disabled="disabled">
-                        </div>
-                    </div>
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            <label for="firstname">{{ 'profile.show.email'|trans }}</label>
-                            <input type="text" class="form-control" id="firstname" value="{{ user.email }}" disabled="disabled">
-                        </div>
-                    </div>
+            <div class="row">
+                <div class="col-sm-3">
+                    <strong>{{ 'profile.show.username'|trans }}:</strong>
                 </div>
-                <!-- /.row -->
-
-                <div class="row">
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            <label for="firstname">{{ 'profile.show.nom'|trans }}</label>
-                            <input type="text" class="form-control" id="firstname" value="{{ user.nom }}" disabled="disabled">
-                        </div>
-                    </div>
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            <label for="firstname">{{ 'profile.show.prenom'|trans }}</label>
-                            <input type="text" class="form-control" id="firstname" value="{{ user.prenom }}" disabled="disabled">
-                        </div>
-                    </div>
+                <div class="col-sm-3">
+                    {{ user.username }}
                 </div>
-                <!-- /.row -->
-
-                <div class="row">
-                    <div class="col-sm-6 col-md-3">
-                        <div class="form-group">
-                            <label for="city">{{ 'profile.show.sexe'|trans }}</label>
-                            <select class="form-control" id="state" value="{{ user.sexe }}" disabled="disabled">
-                                <option>Masculin</option>
-                                <option>Feminin</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-md-3">
-                        <div class="form-group">
-                            <label for="city">{{ 'profile.show.telephone'|trans }}</label>
-                            <input type="text" class="form-control" id="city" value="{{ user.telephone }}" disabled="disabled">
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-md-3">
-                        <div class="form-group">
-                            <label for="city">{{ 'profile.show.ville'|trans }}</label>
-                            <select class="form-control" id="state" value="{{ user.ville }}" disabled="disabled">
-                                <option>Likasi</option>
-                                <option>Lubumbashi</option>
-                                <option>Kolwezi</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-md-3">
-                        <div class="form-group">
-                            <label for="city">{{ 'profile.show.province'|trans }}</label>
-                            <select class="form-control" id="state" value="{{ user.province }}" disabled="disabled">
-                                <option>Lualaba</option>
-                                <option>Haut-Katanga</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="col-sm-12">
-                        <div class="form-group">
-                            <label for="phone">{{ 'profile.show.adresse'|trans }}</label>
-                            <textarea type="text" class="form-control" id="phone" value="{{ user.adresse }}" desabled rows="3" disabled="disabled"></textarea>
-                        </div>
-                    </div>
-                    <div class="col-sm-12 text-center">
-                        <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Modifier mes infos</button>
-
-                    </div>
+                <div class="col-sm-3">
+                    <strong>{{ 'profile.show.email'|trans }}:</strong>
                 </div>
-            </form>
+                <div class="col-sm-3">
+                    {{ user.email }}
+                </div>
+            </div>
+            <!-- /.row -->
+
+            <div class="row">
+                <div class="col-sm-3">
+                    <strong>{{ 'profile.show.first_name'|trans }}:</strong>
+                </div>
+                <div class="col-sm-3">
+                    {{ user.getFirstName() }}
+                </div>
+                <div class="col-sm-3">
+                    <strong>{{ 'profile.show.last_name'|trans }}:</strong>
+                </div>
+                <div class="col-sm-3">
+                    {{ user.getLastName() }}
+                </div>
+            </div>
+            <!-- /.row -->
+
+            <div class="row">
+                <div class="col-sm-3">
+                    <strong>{{ 'profile.show.gender'|trans }}:</strong>
+                </div>
+                <div class="col-sm-3">
+                    {{ user.getGender() }}
+                </div>
+                <div class="col-sm-3">
+                    <strong>{{ 'profile.show.telephone'|trans }}:</strong>
+                </div>
+                <div class="col-sm-3">
+                    {{ user.getTelephone() }}
+                </div>
+            </div>
+            <!-- /.row -->
+
+            <div class="row">
+                <div class="col-sm-3">
+                    <strong>{{ 'profile.show.city'|trans }}:</strong>
+                </div>
+                <div class="col-sm-3">
+                    {{ user.getCity() }}
+                </div>
+                <div class="col-sm-3">
+                    <strong>{{ 'profile.show.province'|trans }}:</strong>
+                </div>
+                <div class="col-sm-3">
+                    {{ user.getProvince() }}
+                </div>
+            </div>
+            <!-- /.row -->
+            
+            <div class="row">
+                <div class="col-sm-3">
+                    <strong>{{ 'profile.show.created'|trans }}:</strong>
+                </div>
+                <div class="col-sm-3">
+                    {{ user.getCreated()|date('d-M-Y') }}
+                </div>
+                <div class="col-sm-3">
+                    <strong>{{ 'profile.show.last_login'|trans }}:</strong>
+                </div>
+                <div class="col-sm-3">
+                    {{ user.lastLogin|date('d-M-Y H:i:s') }}
+                </div>
+            </div>
+            <!-- /.row -->
+
+            <div class="row">
+                <div class="col-sm-3">
+                    <strong>{{ 'profile.show.birth_date'|trans }}:</strong>
+                </div>
+                <div class="col-sm-3">
+                    {{ user.getBirthDate()|date('d-M-Y') }}
+                </div>
+                <div class="col-sm-3">
+                    <strong>{{ 'profile.show.address'|trans }}:</strong>
+                </div>
+                <div class="col-sm-3">
+                    {{ user.getAddress() }}
+                </div>
+            </div>
+            <!-- /.row -->
+            
+            <hr>
+            
+            <div class="row">
+                <div class="col-sm-6 text-center">
+                    <a href="{{ path('fos_user_profile_edit') }}" class="btn btn-primary"><i class="fa fa-save"></i> Modifier mes infos</a>
+                </div>
+                <div class="col-sm-6 text-center">
+                    <a href="{{ path('fos_user_change_password') }}" class="btn btn-primary"><i class="fa fa-save"></i> Changer mot de passe</a>
+                </div>
+            </div>
+            <!-- /.row -->
         </div>
     </div>
 

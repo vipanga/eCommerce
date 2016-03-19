@@ -6,6 +6,7 @@ namespace ecommerce\UserBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use FOS\UserBundle\Model\User as BaseUser;
+use Symfony\Component\Validator\Constraints\DateTime;
 
 /**
  * User
@@ -13,8 +14,8 @@ use FOS\UserBundle\Model\User as BaseUser;
  * @ORM\Table(name="user")
  * @ORM\Entity(repositoryClass="ecommerce\UserBundle\Repository\UserRepository")
  */
-class User extends BaseUser
-{
+class User extends BaseUser {
+
     /**
      * @var int
      *
@@ -27,38 +28,38 @@ class User extends BaseUser
     /**
      * @var string
      *
-     * @ORM\Column(name="nom", type="string", length=255, nullable=true)
+     * @ORM\Column(name="first_name", type="string", length=255, nullable=true)
      */
-    private $nom;
+    private $first_name;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="prenom", type="string", length=255, nullable=true)
+     * @ORM\Column(name="last_name", type="string", length=255, nullable=true)
      */
-    private $prenom;
+    private $last_name;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="sexe", type="string", length=255, nullable=true)
+     * @ORM\Column(name="gender", type="string", length=255, nullable=true)
      */
-    private $sexe;
+    private $gender;
 
     /**
-     * @var int
+     * @var string
      *
-     * @ORM\Column(name="telephone", type="integer", nullable=true)
+     * @ORM\Column(name="telephone", type="string", length=255, nullable=true)
      */
     private $telephone;
-    
+
     /**
      * @var string
      *
-     * @ORM\Column(name="ville", type="string", length=255, nullable=true)
+     * @ORM\Column(name="city", type="string", length=255, nullable=true)
      */
-    private $ville;
-    
+    private $city;
+
     /**
      * @var string
      *
@@ -67,94 +68,111 @@ class User extends BaseUser
     private $province;
 
     /**
-     * @ORM\Column(name="adresse", type="text")
+     * @ORM\Column(name="address", type="text", nullable=true)
      */
-    private $adresse;
+    private $address;
+
+    /**
+     * @var \DateTime
+     * @ORM\Column(name="birth_date", type="datetime", nullable=true)
+     */
+    private $birth_date;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="date_inscription", type="datetime", nullable=true)
+     * @ORM\Column(name="created", type="datetime", nullable=true)
      */
-    private $date_inscription;
-    
+    private $created;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="updated", type="datetime", nullable=true)
+     */
+    private $updated;
+
     public function __construct() {
-        $this->date_inscription = new \Datetime();
+        parent::__construct();
+
+        $this->created = new \DateTime();
+        $this->updated = new \DateTime();
     }
 
+
     /**
-     * Set nom
+     * Set first_name
      *
-     * @param string $nom
+     * @param string $firstName
      * @return User
      */
-    public function setNom($nom)
+    public function setFirstName($firstName)
     {
-        $this->nom = $nom;
+        $this->first_name = $firstName;
 
         return $this;
     }
 
     /**
-     * Get nom
+     * Get first_name
      *
      * @return string 
      */
-    public function getNom()
+    public function getFirstName()
     {
-        return $this->nom;
+        return $this->first_name;
     }
 
     /**
-     * Set prenom
+     * Set last_name
      *
-     * @param string $prenom
+     * @param string $lastName
      * @return User
      */
-    public function setPrenom($prenom)
+    public function setLastName($lastName)
     {
-        $this->prenom = $prenom;
+        $this->last_name = $lastName;
 
         return $this;
     }
 
     /**
-     * Get prenom
+     * Get last_name
      *
      * @return string 
      */
-    public function getPrenom()
+    public function getLastName()
     {
-        return $this->prenom;
+        return $this->last_name;
     }
 
     /**
-     * Set sexe
+     * Set gender
      *
-     * @param string $sexe
+     * @param string $gender
      * @return User
      */
-    public function setSexe($sexe)
+    public function setGender($gender)
     {
-        $this->sexe = $sexe;
+        $this->gender = $gender;
 
         return $this;
     }
 
     /**
-     * Get sexe
+     * Get gender
      *
      * @return string 
      */
-    public function getSexe()
+    public function getGender()
     {
-        return $this->sexe;
+        return $this->gender;
     }
 
     /**
      * Set telephone
      *
-     * @param integer $telephone
+     * @param string $telephone
      * @return User
      */
     public function setTelephone($telephone)
@@ -167,7 +185,7 @@ class User extends BaseUser
     /**
      * Get telephone
      *
-     * @return integer 
+     * @return string 
      */
     public function getTelephone()
     {
@@ -175,26 +193,26 @@ class User extends BaseUser
     }
 
     /**
-     * Set ville
+     * Set city
      *
-     * @param string $ville
+     * @param string $city
      * @return User
      */
-    public function setVille($ville)
+    public function setCity($city)
     {
-        $this->ville = $ville;
+        $this->city = $city;
 
         return $this;
     }
 
     /**
-     * Get ville
+     * Get city
      *
      * @return string 
      */
-    public function getVille()
+    public function getCity()
     {
-        return $this->ville;
+        return $this->city;
     }
 
     /**
@@ -221,48 +239,94 @@ class User extends BaseUser
     }
 
     /**
-     * Set adresse
+     * Set address
      *
-     * @param string $adresse
+     * @param string $address
      * @return User
      */
-    public function setAdresse($adresse)
+    public function setAddress($address)
     {
-        $this->adresse = $adresse;
+        $this->address = $address;
 
         return $this;
     }
 
     /**
-     * Get adresse
+     * Get address
      *
      * @return string 
      */
-    public function getAdresse()
+    public function getAddress()
     {
-        return $this->adresse;
+        return $this->address;
     }
 
     /**
-     * Set date_inscription
+     * Set birth_date
      *
-     * @param \DateTime $dateInscription
+     * @param \DateTime $birthDate
      * @return User
      */
-    public function setDateInscription($dateInscription)
+    public function setBirthDate($birthDate)
     {
-        $this->date_inscription = $dateInscription;
+        $this->birth_date = $birthDate;
 
         return $this;
     }
 
     /**
-     * Get date_inscription
+     * Get birth_date
      *
      * @return \DateTime 
      */
-    public function getDateInscription()
+    public function getBirthDate()
     {
-        return $this->date_inscription;
+        return $this->birth_date;
+    }
+
+    /**
+     * Set created
+     *
+     * @param \DateTime $created
+     * @return User
+     */
+    public function setCreated($created)
+    {
+        $this->created = $created;
+
+        return $this;
+    }
+
+    /**
+     * Get created
+     *
+     * @return \DateTime 
+     */
+    public function getCreated()
+    {
+        return $this->created;
+    }
+
+    /**
+     * Set updated
+     *
+     * @param \DateTime $updated
+     * @return User
+     */
+    public function setUpdated($updated)
+    {
+        $this->updated = $updated;
+
+        return $this;
+    }
+
+    /**
+     * Get updated
+     *
+     * @return \DateTime 
+     */
+    public function getUpdated()
+    {
+        return $this->updated;
     }
 }
