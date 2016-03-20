@@ -5,3 +5,7 @@ ecommerce_article_categorie:
 ecommerce_article_detail:
     path:     /detail
     defaults: { _controller: ecommerceArticleBundle:Article:detail }
+
+ecommerce_article_create:
+    path:     /create
+    defaults: { _controller: ecommerceArticleBundle:Article:create }

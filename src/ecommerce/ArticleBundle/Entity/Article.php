@@ -4,11 +4,17 @@ namespace ecommerce\ArticleBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
+use Symfony\Component\Validator\Constraints as Assert;
+use Doctrine\Common\Collections\ArrayCollection;
+use Gedmo\Mapping\Annotation as Gedmo;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+
 /**
  * Article
  *
  * @ORM\Table(name="article")
  * @ORM\Entity(repositoryClass="ecommerce\ArticleBundle\Repository\ArticleRepository")
+ * @ORM\HasLifecycleCallbacks()
  */
 class Article
 {
@@ -24,44 +30,44 @@ class Article
     /**
      * @var string
      *
-     * @ORM\Column(name="nom", type="string", length=255)
+     * @ORM\Column(name="name_item", type="string", length=255)
      */
-    private $nom;
+    private $name_item;
 
     /**
      * @var float
      *
-     * @ORM\Column(name="prix", type="float")
+     * @ORM\Column(name="price", type="float")
      */
-    private $prix;
+    private $price;
 
     /**
      * @var int
      *
-     * @ORM\Column(name="quantite", type="integer")
+     * @ORM\Column(name="quantity", type="integer")
      */
-    private $quantite;
+    private $quantity;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="Etat", type="string", length=255)
+     * @ORM\Column(name="quality", type="string", length=255)
      */
-    private $etat;
+    private $quality;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="Description", type="text")
+     * @ORM\Column(name="description", type="text")
      */
     private $description;
 
     /**
      * @var bool
      *
-     * @ORM\Column(name="vendu", type="boolean")
+     * @ORM\Column(name="solde", type="boolean")
      */
-    private $vendu;
+    private $solde;
 
     /**
      * @var \DateTime
@@ -73,17 +79,33 @@ class Article
     /**
      * @var string
      *
-     * @ORM\Column(name="pays", type="string", length=255)
+     * @ORM\Column(name="country", type="string", length=255)
      */
-    private $pays;
+    private $country;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="ville", type="string", length=255)
+     * @ORM\Column(name="city", type="string", length=255)
      */
-    private $ville;
+    private $city;
+    
+    /**
+     * @Gedmo\Slug(fields={"name_item"})
+     * @ORM\Column(length=128, unique=true)
+     */
+    private $slug;
 
+    /**
+     * @ORM\OneToOne(targetEntity="ecommerce\ArticleBundle\Entity\Image", cascade={"persist", "remove"})
+     */
+    private $image;
+    
+    /**
+     * @ORM\ManyToOne(targetEntity="ecommerce\UserBundle\Entity\User", inversedBy="articles")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $user;
 
     /**
      * Get id
@@ -96,95 +118,95 @@ class Article
     }
 
     /**
-     * Set nom
+     * Set name_item
      *
-     * @param string $nom
+     * @param string $nameItem
      * @return Article
      */
-    public function setNom($nom)
+    public function setNameItem($nameItem)
     {
-        $this->nom = $nom;
+        $this->name_item = $nameItem;
 
         return $this;
     }
 
     /**
-     * Get nom
+     * Get name_item
      *
      * @return string 
      */
-    public function getNom()
+    public function getNameItem()
     {
-        return $this->nom;
+        return $this->name_item;
     }
 
     /**
-     * Set prix
+     * Set price
      *
-     * @param float $prix
+     * @param float $price
      * @return Article
      */
-    public function setPrix($prix)
+    public function setPrice($price)
     {
-        $this->prix = $prix;
+        $this->price = $price;
 
         return $this;
     }
 
     /**
-     * Get prix
+     * Get price
      *
      * @return float 
      */
-    public function getPrix()
+    public function getPrice()
     {
-        return $this->prix;
+        return $this->price;
     }
 
     /**
-     * Set quantite
+     * Set quantity
      *
-     * @param integer $quantite
+     * @param integer $quantity
      * @return Article
      */
-    public function setQuantite($quantite)
+    public function setQuantity($quantity)
     {
-        $this->quantite = $quantite;
+        $this->quantity = $quantity;
 
         return $this;
     }
 
     /**
-     * Get quantite
+     * Get quantity
      *
      * @return integer 
      */
-    public function getQuantite()
+    public function getQuantity()
     {
-        return $this->quantite;
+        return $this->quantity;
     }
 
     /**
-     * Set etat
+     * Set quality
      *
-     * @param string $etat
+     * @param string $quality
      * @return Article
      */
-    public function setEtat($etat)
+    public function setQuality($quality)
     {
-        $this->etat = $etat;
+        $this->quality = $quality;
 
         return $this;
     }
 
     /**
-     * Get etat
+     * Get quality
      *
      * @return string 
      */
-    public function getEtat()
+    public function getQuality()
     {
-        return $this->etat;
+        return $this->quality;
     }
 
     /**
@@ -211,26 +233,26 @@ class Article
     }
 
     /**
-     * Set vendu
+     * Set solde
      *
-     * @param boolean $vendu
+     * @param boolean $solde
      * @return Article
      */
-    public function setVendu($vendu)
+    public function setSolde($solde)
     {
-        $this->vendu = $vendu;
+        $this->solde = $solde;
 
         return $this;
     }
 
     /**
-     * Get vendu
+     * Get solde
      *
      * @return boolean 
      */
-    public function getVendu()
+    public function getSolde()
     {
-        return $this->vendu;
+        return $this->solde;
     }
 
     /**
@@ -257,48 +279,117 @@ class Article
     }
 
     /**
-     * Set pays
+     * Set country
      *
-     * @param string $pays
+     * @param string $country
      * @return Article
      */
-    public function setPays($pays)
+    public function setCountry($country)
     {
-        $this->pays = $pays;
+        $this->country = $country;
 
         return $this;
     }
 
     /**
-     * Get pays
+     * Get country
      *
      * @return string 
      */
-    public function getPays()
+    public function getCountry()
     {
-        return $this->pays;
+        return $this->country;
     }
 
     /**
-     * Set ville
+     * Set city
      *
-     * @param string $ville
+     * @param string $city
      * @return Article
      */
-    public function setVille($ville)
+    public function setCity($city)
     {
-        $this->ville = $ville;
+        $this->city = $city;
 
         return $this;
     }
 
     /**
-     * Get ville
+     * Get city
      *
      * @return string 
      */
-    public function getVille()
+    public function getCity()
     {
-        return $this->ville;
+        return $this->city;
+    }
+
+    /**
+     * Set slug
+     *
+     * @param string $slug
+     * @return Article
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
+
+        return $this;
+    }
+
+    /**
+     * Get slug
+     *
+     * @return string 
+     */
+    public function getSlug()
+    {
+        return $this->slug;
+    }
+
+    /**
+     * Set image
+     *
+     * @param \ecommerce\ArticleBundle\Entity\Image $image
+     * @return Article
+     */
+    public function setImage(\ecommerce\ArticleBundle\Entity\Image $image = null)
+    {
+        $this->image = $image;
+
+        return $this;
+    }
+
+    /**
+     * Get image
+     *
+     * @return \ecommerce\ArticleBundle\Entity\Image 
+     */
+    public function getImage()
+    {
+        return $this->image;
+    }
+
+    /**
+     * Set user
+     *
+     * @param \ecommerce\UserBundle\Entity\User $user
+     * @return Article
+     */
+    public function setUser(\ecommerce\UserBundle\Entity\User $user)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \ecommerce\UserBundle\Entity\User 
+     */
+    public function getUser()
+    {
+        return $this->user;
     }
 }

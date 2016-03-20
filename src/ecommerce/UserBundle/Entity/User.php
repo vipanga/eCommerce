@@ -91,14 +91,24 @@ class User extends BaseUser {
      * @ORM\Column(name="updated", type="datetime", nullable=true)
      */
     private $updated;
+    
+    /**
+     * @ORM\OneToOne(targetEntity="ecommerce\ArticleBundle\Entity\Image", cascade={"persist", "remove"})
+     */
+    private $image;
+    
+    /**
+     * @ORM\OneToMany(targetEntity="ecommerce\ArticleBundle\Entity\Article", mappedBy="user")
+     */
+    private $articles; // Ici articles prend un « s », car un user a plusieurs articles !
 
     public function __construct() {
         parent::__construct();
 
         $this->created = new \DateTime();
         $this->updated = new \DateTime();
+        $this->articles = new \Doctrine\Common\Collections\ArrayCollection();
     }
-
 
     /**
      * Set first_name
@@ -328,5 +338,61 @@ class User extends BaseUser {
     public function getUpdated()
     {
         return $this->updated;
+    }
+
+    /**
+     * Set image
+     *
+     * @param \ecommerce\ArticleBundle\Entity\Image $image
+     * @return User
+     */
+    public function setImage(\ecommerce\ArticleBundle\Entity\Image $image = null)
+    {
+        $this->image = $image;
+
+        return $this;
+    }
+
+    /**
+     * Get image
+     *
+     * @return \ecommerce\ArticleBundle\Entity\Image 
+     */
+    public function getImage()
+    {
+        return $this->image;
+    }
+
+    /**
+     * Add articles
+     *
+     * @param \ecommerce\ArticleBundle\Entity\Article $articles
+     * @return User
+     */
+    public function addArticle(\ecommerce\ArticleBundle\Entity\Article $articles)
+    {
+        $this->articles[] = $articles;
+
+        return $this;
+    }
+
+    /**
+     * Remove articles
+     *
+     * @param \ecommerce\ArticleBundle\Entity\Article $articles
+     */
+    public function removeArticle(\ecommerce\ArticleBundle\Entity\Article $articles)
+    {
+        $this->articles->removeElement($articles);
+    }
+
+    /**
+     * Get articles
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getArticles()
+    {
+        return $this->articles;
     }
 }

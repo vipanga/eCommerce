@@ -22,7 +22,7 @@
                         <span class="sr-only">Toggle search</span>
                         <i class="fa fa-search"></i>
                     </button>
-                    <a class="btn btn-default navbar-toggle" href="basket.html">
+                    <a class="btn btn-default navbar-toggle" href="{{ path('ecommerce_article_create') }}">
                         <i class="fa fa-shopping-cart"></i>  <span class="hidden-xs">Poster un article</span>
                     </a>
                 </div>
@@ -256,7 +256,7 @@
             <div class="navbar-buttons">
 
                 <div class="navbar-collapse collapse right" id="basket-overview">
-                    <a href="basket.html" class="btn btn-primary navbar-btn"><i class="fa fa-shopping-cart"></i><span class="hidden-sm">Poster un article</span></a>
+                    <a href="{{ path('ecommerce_article_create') }}" class="btn btn-primary navbar-btn"><i class="fa fa-shopping-cart"></i><span class="hidden-sm">Poster un article</span></a>
                 </div>
                 <!--/.nav-collapse -->
 
