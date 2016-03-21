@@ -3,8 +3,10 @@ ecommerce_article_categorie:
     defaults: { _controller: ecommerceArticleBundle:Article:categorie }
 
 ecommerce_article_detail:
-    path:     /detail
+    path:     /itm/{id}
     defaults: { _controller: ecommerceArticleBundle:Article:detail }
+    requirements:
+        id:  \d+
 
 ecommerce_article_create:
     path:     /create

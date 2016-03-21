@@ -16,10 +16,6 @@ class ArticleController extends Controller {
         return $this->render('ecommerceArticleBundle:Article:categorie.html.twig');
     }
 
-    public function detailAction() {
-        return $this->render('ecommerceArticleBundle:Article:detail.html.twig');
-    }
-    
     public function createAction() {
         /* PREMIERE METHODE, DEUXIEME METHODE ANNOTATIONS // On teste que l'utilisateur dispose bien du rôle ROLE_AUTEUR
           if (!$this->get('security.context')->isGranted('ROLE_AUTEUR')) {
@@ -43,6 +39,8 @@ class ArticleController extends Controller {
             // On vérifie que les valeurs entrées sont correctes
             // (Nous verrons la validation des objets en détail dans le prochain chapitre)
             if ($form->isValid()) {
+                $user = $this->getUser();
+                $article->setUser($user);
                 // On enregistre notre objet $article dans la base de données
                 $em = $this->getDoctrine()->getManager();
                 $em->persist($article);
@@ -57,6 +55,15 @@ class ArticleController extends Controller {
         }
 
         return $this->render('ecommerceArticleBundle:Article:create.html.twig', array('form' => $form->createView(),));
+    }
+
+    public function detailAction(Article $article) {
+        
+        if($article == null)
+        {
+            return $this->redirect($this->generateUrl('ecommerce_accueil_erreur404'));
+        }
+        return $this->render('ecommerceArticleBundle:Article:detail.html.twig', array('article' => $article));
     }
 
 }

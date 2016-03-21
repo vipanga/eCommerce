@@ -31,5 +31,9 @@ class AccueilController extends Controller {
     public function categorieAction() {
         return $this->render('ecommerceAccueilBundle:Accueil:categorie.html.twig');
     }
+    
+    public function error404Action() {
+        return $this->render('ecommerceAccueilBundle:Accueil:404.html.twig');
+    }
 
 }

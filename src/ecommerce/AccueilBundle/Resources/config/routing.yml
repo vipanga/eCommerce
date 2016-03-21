@@ -19,5 +19,5 @@ ecommerce_accueil_publications:
     defaults: { _controller: ecommerceAccueilBundle:Accueil:publications }
 
 ecommerce_accueil_erreur404:
-    path:     /introuvable
+    path:     /url-not-found
     defaults: { _controller: ecommerceAccueilBundle:Accueil:erreur404 }

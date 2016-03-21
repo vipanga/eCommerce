@@ -174,54 +174,78 @@ _________________________________________________________ -->
             <div class="row" id="productMain">
                 <div class="col-sm-6">
                     <div id="mainImage">
-                        <img src="{{ asset('images/detailbig1.jpg') }}" alt="" class="img-responsive">
+                        {# On vérifie qu'une image est bien associée à l'article #}
+                    {% if article.image is not null %}
+                        <img src="{{ asset(article.image.webPath) }}" alt="{{ article.image.alt }}" width="100%" class="img-responsive">
+                    {% else %}
+                        <img src="{{ asset('images/detailbig2.jpg') }}" alt="{{ article.getNameItem() }}" width="100%" class="img-responsive">                        
+                    {% endif %}
+                        
                     </div>
 
-                    <div class="ribbon sale">
-                        <div class="theribbon">SALE</div>
-                        <div class="ribbon-background"></div>
-                    </div>
-                    <!-- /.ribbon -->
-
-                    <div class="ribbon new">
-                        <div class="theribbon">NEW</div>
-                        <div class="ribbon-background"></div>
-                    </div>
-                    <!-- /.ribbon -->
-
+                    {# On vérifie si l'article n'est pas encore vendu #}
+                    {% if article.getSolde() is not null %}
+                        <div class="ribbon new">
+                            <div class="theribbon">NEW</div>
+                            <div class="ribbon-background"></div>
+                        </div>
+                        <!-- /.ribbon -->
+                    {% else %}
+                        <div class="ribbon sale">
+                            <div class="theribbon">VENDU</div>
+                            <div class="ribbon-background"></div>
+                        </div>
+                        <!-- /.ribbon -->
+                    {% endif %}
                 </div>
+
                 <div class="col-sm-6">
                     <div class="box">
-                        <h1 class="text-center">Blouse Blanche Armani</h1>
-                        <p class="goToDescription"><a href="#details" class="scroll-to">Ci-dessous les détails sur le materiel, état et la taille</a>
-                        </p>
-                        <p class="price">$124.00</p>
+                        <h1 class="text-center">{{ article.getNameItem() }}</h1>
+                        <p class="price">Prix : {{ article.getPrice() }} Fc</p>
+
+                        <dl class="dl-horizontal">
+                            <dt>Etat</dt>
+                            <dd>{{ article.getQuality() }}</dd>
+                            <dt>Quantité</dt>
+                            <dd>{{ article.getQuantity() }}</dd>
+                            <dt>Ville de provenance</dt>
+                            <dd>{{ article.getCity() }}</dd>
+                            <dt>Province</dt>
+                            <dd>{{ article.getProvince() }}</dd>
+                            <dt>Vendeur</dt>
+                            <dd>{{ app.user.username }}</dd>
+                            <dt>Contact</dt>
+                            <dd>{{ app.user.telephone }}</dd>
+                        </dl>
 
                         <p class="text-center buttons">
-                            <a href="basket.html" class="btn btn-primary"><i class="fa fa-shopping-cart"></i> Acheter</a> 
-                            <a href="basket.html" class="btn btn-default"><i class="fa fa-heart"></i> Ajouter au panier</a>
+                            <a href="#" class="btn btn-primary"><i class="fa fa-shopping-cart"></i> Acheter</a> 
+                            <a href="#" class="btn btn-default"><i class="fa fa-heart"></i> Ajouter au panier</a>
                         </p>
 
 
                     </div>
 
-                    <div class="row" id="thumbs">
+{#                    <div class="row" id="thumbs">
                         <div class="col-xs-4">
-                            <a href="{{ asset('images/detailbig1.jpg') }}" class="thumb">
-                                <img src="{{ asset('images/detailsquare.jpg') }}" alt="" class="img-responsive">
+                            <a href="{{ asset(article.image.webPath) }}" class="thumb">
+                                <img src="{{ asset(article.image.webPath) }}" alt="{{ article.image.alt }}" width="100%" height="236" class="img-responsive">
                             </a>
                         </div>
                         <div class="col-xs-4">
                             <a href="{{ asset('images/detailbig2.jpg') }}" class="thumb">
-                                <img src="{{ asset('images/detailsquare2.jpg') }}" alt="" class="img-responsive">
+                                <img src="{{ asset('images/detailsquare2.jpg') }}" alt="" width="100%" height="236" class="img-responsive">
                             </a>
                         </div>
                         <div class="col-xs-4">
                             <a href="{{ asset('images/detailbig3.jpg') }}" class="thumb">
-                                <img src="{{ asset('images/detailsquare3.jpg') }}" alt="" class="img-responsive">
+                                <img src="{{ asset('images/detailsquare3.jpg') }}" alt="" width="100%" height="236" class="img-responsive">
                             </a>
                         </div>
                     </div>
+                    <!-- /.thumbs -->#}
+
                 </div>
 
             </div>
@@ -230,22 +254,7 @@ _________________________________________________________ -->
             <div class="box" id="details">
                 <p>
                 <h4>Détails du produit</h4>
-                <p>White lace top, woven, has a round neck, short sleeves, has knitted lining attached</p>
-                <h4>Matière utilisée</h4>
-                <ul>
-                    <li>Polyester</li>
-                    <li>Machine wash</li>
-                </ul>
-                <h4>Taille</h4>
-                <ul>
-                    <li>Regular fit</li>
-                    <li>The model (height 5'8" and chest 33") is wearing a size S</li>
-                </ul>
-
-                <blockquote>
-                    <p><em>Define style this season with Armani's new range of trendy tops, crafted with intricate details. Create a chic statement look by teaming this lace number with skinny jeans and pumps.</em>
-                    </p>
-                </blockquote>
+                <p>{{ article.getDescription() }}</p>
 
                 <hr>
                 <div class="social">
@@ -286,8 +295,8 @@ _________________________________________________________ -->
                             <img src="{{ asset('images/product2.jpg') }}" alt="" class="img-responsive">
                         </a>
                         <div class="text">
-                            <h3>Fur coat</h3>
-                            <p class="price">$143</p>
+                            <h3>Polo Blanc</h3>
+                            <p class="price">12.000 Fc</p>
                         </div>
                     </div>
                     <!-- /.product -->
@@ -313,8 +322,8 @@ _________________________________________________________ -->
                             <img src="{{ asset('images/product1.jpg') }}" alt="" class="img-responsive">
                         </a>
                         <div class="text">
-                            <h3>Fur coat</h3>
-                            <p class="price">$143</p>
+                            <h3>Veste en fourure</h3>
+                            <p class="price">100.000 Fc</p>
                         </div>
                     </div>
                     <!-- /.product -->
@@ -341,8 +350,8 @@ _________________________________________________________ -->
                             <img src="{{ asset('images/product3.jpg') }}" alt="" class="img-responsive">
                         </a>
                         <div class="text">
-                            <h3>Fur coat</h3>
-                            <p class="price">$143</p>
+                            <h3>Chemise dame</h3>
+                            <p class="price">14300 Fc</p>
 
                         </div>
                     </div>

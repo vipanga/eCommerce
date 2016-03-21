@@ -75,14 +75,7 @@ class Article
      * @ORM\Column(name="datepublication", type="datetime")
      */
     private $datepublication;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="country", type="string", length=255)
-     */
-    private $country;
-
+    
     /**
      * @var string
      *
@@ -91,7 +84,21 @@ class Article
     private $city;
     
     /**
-     * @Gedmo\Slug(fields={"name_item"})
+     * @var string
+     *
+     * @ORM\Column(name="province", type="string", length=255)
+     */
+    private $province;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="country", type="string", length=255)
+     */
+    private $country;
+    
+    /**
+     * @Gedmo\Slug(fields={"id", "name_item"})
      * @ORM\Column(length=128, unique=true)
      */
     private $slug;
@@ -106,6 +113,11 @@ class Article
      * @ORM\JoinColumn(nullable=false)
      */
     private $user;
+    
+    public function __construct() {
+        $this->datepublication = new \DateTime();
+        $this->solde = FALSE;
+    }
 
     /**
      * Get id
@@ -279,29 +291,6 @@ class Article
     }
 
     /**
-     * Set country
-     *
-     * @param string $country
-     * @return Article
-     */
-    public function setCountry($country)
-    {
-        $this->country = $country;
-
-        return $this;
-    }
-
-    /**
-     * Get country
-     *
-     * @return string 
-     */
-    public function getCountry()
-    {
-        return $this->country;
-    }
-
-    /**
      * Set city
      *
      * @param string $city
@@ -322,6 +311,52 @@ class Article
     public function getCity()
     {
         return $this->city;
+    }
+
+    /**
+     * Set province
+     *
+     * @param string $province
+     * @return Article
+     */
+    public function setProvince($province)
+    {
+        $this->province = $province;
+
+        return $this;
+    }
+
+    /**
+     * Get province
+     *
+     * @return string 
+     */
+    public function getProvince()
+    {
+        return $this->province;
+    }
+
+    /**
+     * Set country
+     *
+     * @param string $country
+     * @return Article
+     */
+    public function setCountry($country)
+    {
+        $this->country = $country;
+
+        return $this;
+    }
+
+    /**
+     * Get country
+     *
+     * @return string 
+     */
+    public function getCountry()
+    {
+        return $this->country;
     }
 
     /**
