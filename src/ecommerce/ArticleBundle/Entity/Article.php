@@ -3,7 +3,6 @@
 namespace ecommerce\ArticleBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\Common\Collections\ArrayCollection;
 use Gedmo\Mapping\Annotation as Gedmo;
@@ -16,8 +15,8 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  * @ORM\Entity(repositoryClass="ecommerce\ArticleBundle\Repository\ArticleRepository")
  * @ORM\HasLifecycleCallbacks()
  */
-class Article
-{
+class Article {
+
     /**
      * @var int
      *
@@ -75,14 +74,14 @@ class Article
      * @ORM\Column(name="datepublication", type="datetime")
      */
     private $datepublication;
-    
+
     /**
      * @var string
      *
      * @ORM\Column(name="city", type="string", length=255)
      */
     private $city;
-    
+
     /**
      * @var string
      *
@@ -96,7 +95,7 @@ class Article
      * @ORM\Column(name="country", type="string", length=255)
      */
     private $country;
-    
+
     /**
      * @Gedmo\Slug(fields={"id", "name_item"})
      * @ORM\Column(length=128, unique=true)
@@ -107,13 +106,19 @@ class Article
      * @ORM\OneToOne(targetEntity="ecommerce\ArticleBundle\Entity\Image", cascade={"persist", "remove"})
      */
     private $image;
-    
+
     /**
      * @ORM\ManyToOne(targetEntity="ecommerce\UserBundle\Entity\User", inversedBy="articles")
      * @ORM\JoinColumn(nullable=false)
      */
     private $user;
-    
+
+    /**
+     * @ORM\ManyToOne(targetEntity="ecommerce\ArticleBundle\Entity\Genre", inversedBy="articles")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $genre;
+
     public function __construct() {
         $this->datepublication = new \DateTime();
         $this->solde = FALSE;
@@ -426,5 +431,28 @@ class Article
     public function getUser()
     {
         return $this->user;
+    }
+
+    /**
+     * Set genre
+     *
+     * @param \ecommerce\ArticleBundle\Entity\Genre $genre
+     * @return Article
+     */
+    public function setGenre(\ecommerce\ArticleBundle\Entity\Genre $genre)
+    {
+        $this->genre = $genre;
+
+        return $this;
+    }
+
+    /**
+     * Get genre
+     *
+     * @return \ecommerce\ArticleBundle\Entity\Genre 
+     */
+    public function getGenre()
+    {
+        return $this->genre;
     }
 }

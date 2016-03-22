@@ -29,110 +29,59 @@ _________________________________________________________ -->
     <div class="col-md-9">
         <div class="box">
             <h1>Profile</h1>
-            <p class="lead">Mettre à jour ici vos informations personnelles.</p>
-            <p class="text-muted">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
+            <p class="lead">Informations générales.</p>
 
             <hr>
 
-            <h3>Détails personnel</h3>
-            <div class="row">
-                <div class="col-sm-3">
-                    <strong>{{ 'profile.show.username'|trans }}:</strong>
-                </div>
-                <div class="col-sm-3">
-                    {{ user.username }}
-                </div>
-                <div class="col-sm-3">
-                    <strong>{{ 'profile.show.email'|trans }}:</strong>
-                </div>
-                <div class="col-sm-3">
-                    {{ user.email }}
-                </div>
-            </div>
-            <!-- /.row -->
+            <h3 class="text-center">Détails personnel</h3>
 
             <div class="row">
-                <div class="col-sm-3">
-                    <strong>{{ 'profile.show.first_name'|trans }}:</strong>
-                </div>
-                <div class="col-sm-3">
-                    {{ user.getFirstName() }}
-                </div>
-                <div class="col-sm-3">
-                    <strong>{{ 'profile.show.last_name'|trans }}:</strong>
-                </div>
-                <div class="col-sm-3">
-                    {{ user.getLastName() }}
-                </div>
-            </div>
-            <!-- /.row -->
+                <div class="col-sm-6">
+                    <dl class="dl-horizontal">
+                        <dt>{{ 'profile.show.username'|trans }} :</dt>
+                        <dd>{{ user.username }}</dd>
+                        
+                        <dt>{{ 'profile.show.email'|trans }} :</dt>
+                        <dd>{{ user.email }}</dd>
+                        
+                        <dt>{{ 'profile.show.telephone'|trans }} :</dt>
+                        <dd>{{ user.getTelephone() }}</dd>
+                        
+                        <dt>{{ 'profile.show.last_login'|trans }} :</dt>
+                        <dd>{{ user.lastLogin|date('d-M-Y H:i:s') }}</dd>                        
 
-            <div class="row">
-                <div class="col-sm-3">
-                    <strong>{{ 'profile.show.gender'|trans }}:</strong>
-                </div>
-                <div class="col-sm-3">
-                    {{ user.getGender() }}
-                </div>
-                <div class="col-sm-3">
-                    <strong>{{ 'profile.show.telephone'|trans }}:</strong>
-                </div>
-                <div class="col-sm-3">
-                    {{ user.getTelephone() }}
-                </div>
-            </div>
-            <!-- /.row -->
+                        <dt>{{ 'profile.show.created'|trans }} :</dt>
+                        <dd>{{ user.getCreated()|date('d-M-Y') }}</dd>
 
-            <div class="row">
-                <div class="col-sm-3">
-                    <strong>{{ 'profile.show.city'|trans }}:</strong>
+                        <dt>{{ 'profile.show.birth_date'|trans }} :</dt>
+                        <dd>{{ user.getBirthDate()|date('d-M-Y') }}</dd>
+                    </dl>
                 </div>
-                <div class="col-sm-3">
-                    {{ user.getCity() }}
-                </div>
-                <div class="col-sm-3">
-                    <strong>{{ 'profile.show.province'|trans }}:</strong>
-                </div>
-                <div class="col-sm-3">
-                    {{ user.getProvince() }}
-                </div>
-            </div>
-            <!-- /.row -->
-            
-            <div class="row">
-                <div class="col-sm-3">
-                    <strong>{{ 'profile.show.created'|trans }}:</strong>
-                </div>
-                <div class="col-sm-3">
-                    {{ user.getCreated()|date('d-M-Y') }}
-                </div>
-                <div class="col-sm-3">
-                    <strong>{{ 'profile.show.last_login'|trans }}:</strong>
-                </div>
-                <div class="col-sm-3">
-                    {{ user.lastLogin|date('d-M-Y H:i:s') }}
-                </div>
-            </div>
-            <!-- /.row -->
+                <div class="col-sm-6">
+                    <dl class="dl-horizontal">
+                        <dt>{{ 'profile.show.first_name'|trans }} :</dt>
+                        <dd>{{ user.getFirstName() }}</dd>
 
-            <div class="row">
-                <div class="col-sm-3">
-                    <strong>{{ 'profile.show.birth_date'|trans }}:</strong>
-                </div>
-                <div class="col-sm-3">
-                    {{ user.getBirthDate()|date('d-M-Y') }}
-                </div>
-                <div class="col-sm-3">
-                    <strong>{{ 'profile.show.address'|trans }}:</strong>
-                </div>
-                <div class="col-sm-3">
-                    {{ user.getAddress() }}
+                        <dt>{{ 'profile.show.last_name'|trans }} :</dt>
+                        <dd>{{ user.getLastName() }}</dd>
+
+                        <dt>{{ 'profile.show.gender'|trans }} :</dt>
+                        <dd>{{ user.getGender() }}</dd>
+                        
+                        <dt>{{ 'profile.show.city'|trans }} :</dt>
+                        <dd>{{ user.getCity() }}</dd>
+
+                        <dt>{{ 'profile.show.province'|trans }} :</dt>
+                        <dd>{{ user.getProvince() }}</dd>
+
+                        <dt>{{ 'profile.show.address'|trans }} :</dt>
+                        <dd>{{ user.getAddress() }}</dd>
+                    </dl>
                 </div>
             </div>
-            <!-- /.row -->
-            
+
             <hr>
-            
+
             <div class="row">
                 <div class="col-sm-6 text-center">
                     <a href="{{ path('fos_user_profile_edit') }}" class="btn btn-primary"><i class="fa fa-save"></i> Modifier mes infos</a>

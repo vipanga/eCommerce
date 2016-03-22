@@ -28,11 +28,12 @@
                 <hr>
 
                 <form action="{{ path('ecommerce_article_create') }}" {{ form_enctype(form) }} method="POST">
+
                     <div class="row">
                         <div class="col-sm-6">
                             <div class="form-group">
                                 {{ form_label(form.name_item) }}
-                                {{ form_widget(form.name_item, { 'attr': {'class': 'form-control' } }) }}
+                                {{ form_widget(form.name_item, { 'attr': {'class': 'form-control', 'placeholder': 'Ex: Samsung Galaxy S5' } }) }}
                                 <div class="has-error">
                                     {{ form_errors(form.name_item) }}
                                 </div>                                
@@ -58,7 +59,7 @@
                         <div class="col-sm-6 col-md-3">
                             <div class="form-group">
                                 {{ form_label(form.quantity) }}
-                                {{ form_widget(form.quantity, { 'attr': {'class': 'form-control' } }) }}
+                                {{ form_widget(form.quantity, { 'attr': {'class': 'form-control', 'placeholder': 'Ex: 5' } }) }}
                                 <div class="has-error">
                                     {{ form_errors(form.quantity) }}
                                 </div>
@@ -76,7 +77,7 @@
                         <div class="col-sm-6 col-md-3">
                             <div class="form-group">
                                 {{ form_label(form.city) }}
-                                {{ form_widget(form.city, { 'attr': {'class': 'form-control' } }) }}
+                                {{ form_widget(form.city, { 'attr': {'class': 'form-control', 'placeholder': 'Ex: Lubumbashi' } }) }}
                                 <div class="has-error">
                                     {{ form_errors(form.city) }}
                                 </div>
@@ -91,7 +92,10 @@
                                 </div>
                             </div>
                         </div>
+                    </div>
+                    <!-- /.row -->
 
+                    <div class="row">
                         <div class="col-sm-6">
                             <div class="form-group">
                                 {{ form_label(form.country) }}
@@ -103,6 +107,19 @@
                         </div>
                         <div class="col-sm-6">
                             <div class="form-group">
+                                {{ form_label(form.genre) }}
+                                {{ form_widget(form.genre, { 'attr': {'class': 'form-control' } }) }}
+                                <div class="has-error">
+                                    {{ form_errors(form.genre) }}
+                                </div>                                
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.row -->
+
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
                                 {{ form_widget(form.image) }}
                                 <p class="help-block">Sélectionnez l’image de votre article.</p>
                                 <div class="has-error">
@@ -110,19 +127,21 @@
                                 </div>
                             </div>
                         </div>
-
-                        <div class="col-sm-12">
+                        <div class="col-sm-6">
                             <div class="form-group">
                                 {{ form_label(form.description) }}
-                                {{ form_widget(form.description, { 'attr': {'class': 'form-control', 'rows': '3' } }) }}
+                                {{ form_widget(form.description, { 'attr': {'class': 'form-control', 'rows': '3', 'placeholder': 'Commentaires sur votre article' } }) }}
                                 <div class="has-error">
                                     {{ form_errors(form.description) }}
                                 </div>
                             </div>
                         </div>
 
-                        {{ form_rest(form) }}
+                        {{ form_rest(form) }}                        
+                    </div>
+                    <!-- /.row -->
 
+                    <div class="row">
                         <div class="col-sm-12 text-center">
                             <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Enregistrer</button>
 

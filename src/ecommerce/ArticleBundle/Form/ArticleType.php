@@ -6,6 +6,9 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+//les uses ci-dessous pour nous permettre de recuperer les genres dans la bdd
+use Doctrine\ORM\EntityRepository;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 class ArticleType extends AbstractType {
 
@@ -72,6 +75,17 @@ class ArticleType extends AbstractType {
                     'choices_as_values' => true,
                 ))
                 ->add('image', new ImageType(), array('required' => false))
+                //On recupere les genres dans la bdd
+                ->add('genre', EntityType::class, array(
+                    'class' => 'ecommerceArticleBundle:Genre',
+                    'query_builder' => function (EntityRepository $er) {
+                        return $er->createQueryBuilder('u')
+                                ->orderBy('u.id', 'ASC');
+                    },
+                    'property' => 'name',
+                    'multiple' => false,
+                    'expanded' => false
+                ))
         ;
     }
 
