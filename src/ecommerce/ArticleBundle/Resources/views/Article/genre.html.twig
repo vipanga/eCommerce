@@ -226,7 +226,7 @@ _________________________________________________________ -->
                             </a>
                             <div class="text">
                                 <h3><a href="{{ path('ecommerce_article_detail', {'id': article.id}) }}">{{ article.getNameItem() }}</a></h3>
-                                <p class="price"><del>$280</del> $143.00</p>
+                                <p class="price"><del>$280</del> {{ article.getPrice() }} Fc</p>
                             </div>
                             <!-- /.text -->
 
