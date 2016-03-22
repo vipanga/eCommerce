@@ -4,6 +4,7 @@
 
 namespace ecommerce\AccueilBundle\Controller;
 
+use ecommerce\ArticleBundle\Entity\Category;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class AccueilController extends Controller {
@@ -13,7 +14,12 @@ class AccueilController extends Controller {
     }
 
     public function menuAction() {
-        return $this->render('ecommerceAccueilBundle:Accueil:menu.html.twig');
+        $categories = $this->getDoctrine()
+                ->getManager()
+                ->getRepository('ecommerceArticleBundle:Category')
+                ->getCategories();
+        
+        return $this->render('ecommerceAccueilBundle:Accueil:menu.html.twig', array( 'categories' => $categories ));
     }
     
     public function contactAction() {

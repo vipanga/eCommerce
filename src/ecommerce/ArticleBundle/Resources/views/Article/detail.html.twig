@@ -14,7 +14,7 @@
             <ul class="breadcrumb">
                 <li><a href="{{ path('ecommerce_accueil_accueil') }}">Accueil</a>
                 </li>
-                <li><a href="{{ path('ecommerce_article_categorie') }}">Catégorie</a>
+                <li><a href="#">Catégorie</a>
                 </li>
                 <li>Téléphones</li>
             </ul>
@@ -33,41 +33,41 @@ _________________________________________________________ -->
                 <div class="panel-body">
                     <ul class="nav nav-pills nav-stacked category-menu">
                         <li>
-                            <a href="{{ path('ecommerce_article_categorie') }}">Hommes <span class="badge pull-right">42</span></a>
+                            <a href="#">Hommes <span class="badge pull-right">42</span></a>
                             <ul>
-                                <li><a href="{{ path('ecommerce_article_categorie') }}">T-shirts</a>
+                                <li><a href="#">T-shirts</a>
                                 </li>
-                                <li><a href="{{ path('ecommerce_article_categorie') }}">Chemises</a>
+                                <li><a href="#">Chemises</a>
                                 </li>
-                                <li><a href="{{ path('ecommerce_article_categorie') }}">Pantalons</a>
+                                <li><a href="#">Pantalons</a>
                                 </li>
-                                <li><a href="{{ path('ecommerce_article_categorie') }}">Accessoires</a>
+                                <li><a href="#">Accessoires</a>
                                 </li>
                             </ul>
                         </li>
                         <li class="active">
-                            <a href="{{ path('ecommerce_article_categorie') }}">Femmes  <span class="badge pull-right">123</span></a>
+                            <a href="#">Femmes  <span class="badge pull-right">123</span></a>
                             <ul>
-                                <li><a href="{{ path('ecommerce_article_categorie') }}">T-shirts</a>
+                                <li><a href="#">T-shirts</a>
                                 </li>
-                                <li><a href="{{ path('ecommerce_article_categorie') }}">Robes</a>
+                                <li><a href="#">Robes</a>
                                 </li>
-                                <li><a href="{{ path('ecommerce_article_categorie') }}">Pantalons</a>
+                                <li><a href="#">Pantalons</a>
                                 </li>
-                                <li><a href="{{ path('ecommerce_article_categorie') }}">Accessoires</a>
+                                <li><a href="#">Accessoires</a>
                                 </li>
                             </ul>
                         </li>
                         <li>
-                            <a href="{{ path('ecommerce_article_categorie') }}">Enfants  <span class="badge pull-right">11</span></a>
+                            <a href="#">Enfants  <span class="badge pull-right">11</span></a>
                             <ul>
-                                <li><a href="{{ path('ecommerce_article_categorie') }}">T-shirts</a>
+                                <li><a href="#">T-shirts</a>
                                 </li>
-                                <li><a href="{{ path('ecommerce_article_categorie') }}">Robes</a>
+                                <li><a href="#">Robes</a>
                                 </li>
-                                <li><a href="{{ path('ecommerce_article_categorie') }}">Pantalons</a>
+                                <li><a href="#">Pantalons</a>
                                 </li>
-                                <li><a href="{{ path('ecommerce_article_categorie') }}">Accessoires</a>
+                                <li><a href="#">Accessoires</a>
                                 </li>
                             </ul>
                         </li>
@@ -214,9 +214,9 @@ _________________________________________________________ -->
                             <dt>Province :</dt>
                             <dd>{{ article.getProvince() }}</dd>
                             <dt>Vendeur :</dt>
-                            <dd>{{ app.user.username }}</dd>
+                            <dd>{{ article.user.username }}</dd>
                             <dt>Contact :</dt>
-                            <dd>{{ app.user.telephone }}</dd>
+                            <dd>{{ article.user.telephone }}</dd>
                         </dl>
 
                         <p class="text-center buttons">

@@ -6,14 +6,19 @@ namespace ecommerce\ArticleBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use ecommerce\ArticleBundle\Entity\Article;
+use ecommerce\ArticleBundle\Entity\Genre;
 use ecommerce\ArticleBundle\Entity\Image;
 use ecommerce\ArticleBundle\Form\ArticleType;
 use ecommerce\ArticleBundle\Form\ImageType;
 
 class ArticleController extends Controller {
 
-    public function categorieAction() {
-        return $this->render('ecommerceArticleBundle:Article:categorie.html.twig');
+    public function genreAction(Genre $genre) {
+        if($genre == null)
+        {
+            return $this->redirect($this->generateUrl('ecommerce_accueil_erreur404'));
+        }
+        return $this->render('ecommerceArticleBundle:Article:genre.html.twig', array('genre' => $genre));
     }
 
     public function createAction() {

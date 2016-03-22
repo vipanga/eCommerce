@@ -1,6 +1,8 @@
 ecommerce_article_categorie:
-    path:     /categorie
-    defaults: { _controller: ecommerceArticleBundle:Article:categorie }
+    path:     /cat/{id}
+    defaults: { _controller: ecommerceArticleBundle:Article:genre }
+    requirements:
+        id:  \d+
 
 ecommerce_article_detail:
     path:     /itm/{id}
