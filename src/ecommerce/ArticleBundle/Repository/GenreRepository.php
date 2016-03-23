@@ -12,4 +12,19 @@ use Doctrine\ORM\EntityRepository;
  */
 class GenreRepository extends EntityRepository
 {
+    public function getGenres()
+    {
+
+        // La construction de la requête reste inchangée
+        $query = $this->createQueryBuilder('g')
+            ->andWhere('g.name = :terme1 OR g.name = :terme2 OR g.name = :terme3')
+            ->setParameter('terme1', 'Téléphonie, Mobilité')
+            ->setParameter('terme2', 'Téléviseurs, Lecteurs')
+            ->setParameter('terme3', 'Matériaux de construction')
+            ->leftJoin('g.articles', 'a')
+            ->addSelect('a')
+            ->getQuery();
+
+        return $query->getResult();
+    }
 }

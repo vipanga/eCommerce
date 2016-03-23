@@ -4,13 +4,16 @@
 
 namespace ecommerce\AccueilBundle\Controller;
 
-use ecommerce\ArticleBundle\Entity\Category;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class AccueilController extends Controller {
 
     public function indexAction() {
-        return $this->render('ecommerceAccueilBundle:Accueil:index.html.twig');
+        $genres = $this->getDoctrine()
+            ->getManager()
+            ->getRepository('ecommerceArticleBundle:Genre')
+            ->getGenres();
+        return $this->render('ecommerceAccueilBundle:Accueil:index.html.twig', array('genres' => $genres));
     }
 
     public function menuAction() {

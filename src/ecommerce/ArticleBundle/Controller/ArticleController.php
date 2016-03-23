@@ -7,9 +7,7 @@ namespace ecommerce\ArticleBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use ecommerce\ArticleBundle\Entity\Article;
 use ecommerce\ArticleBundle\Entity\Genre;
-use ecommerce\ArticleBundle\Entity\Image;
 use ecommerce\ArticleBundle\Form\ArticleType;
-use ecommerce\ArticleBundle\Form\ImageType;
 
 class ArticleController extends Controller {
 
@@ -22,12 +20,6 @@ class ArticleController extends Controller {
     }
 
     public function createAction() {
-        /* PREMIERE METHODE, DEUXIEME METHODE ANNOTATIONS // On teste que l'utilisateur dispose bien du rôle ROLE_AUTEUR
-          if (!$this->get('security.context')->isGranted('ROLE_AUTEUR')) {
-          // Sinon on déclenche une exception « Accès interdit »
-          throw new AccessDeniedHttpException('Accès limité aux auteurs');
-          } */
-
         $article = new Article;
 
         // On crée le formulaire grâce à l'ArticleType

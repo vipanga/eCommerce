@@ -14,9 +14,10 @@
             <ul class="breadcrumb">
                 <li><a href="{{ path('ecommerce_accueil_accueil') }}">Accueil</a>
                 </li>
-                <li><a href="#">Catégorie</a>
+                <li>
+                    <a href="{{ path('ecommerce_article_categorie', {'id': article.genre.id}) }}">{{ article.genre.name }}</a>
                 </li>
-                <li>Téléphones</li>
+                <li>{{ article.getNameItem() }}</li>
             </ul>
 
         </div>
@@ -280,18 +281,18 @@ _________________________________________________________ -->
                         <div class="flip-container">
                             <div class="flipper">
                                 <div class="front">
-                                    <a href="detail.html">
+                                    <a href="#">
                                         <img src="{{ asset('images/product2.jpg') }}" alt="" class="img-responsive">
                                     </a>
                                 </div>
                                 <div class="back">
-                                    <a href="detail.html">
+                                    <a href="#">
                                         <img src="{{ asset('images/product2_2.jpg') }}" alt="" class="img-responsive">
                                     </a>
                                 </div>
                             </div>
                         </div>
-                        <a href="detail.html" class="invisible">
+                        <a href="#" class="invisible">
                             <img src="{{ asset('images/product2.jpg') }}" alt="" class="img-responsive">
                         </a>
                         <div class="text">
@@ -307,18 +308,18 @@ _________________________________________________________ -->
                         <div class="flip-container">
                             <div class="flipper">
                                 <div class="front">
-                                    <a href="detail.html">
+                                    <a href="#">
                                         <img src="{{ asset('images/product1.jpg') }}" alt="" class="img-responsive">
                                     </a>
                                 </div>
                                 <div class="back">
-                                    <a href="detail.html">
+                                    <a href="#">
                                         <img src="{{ asset('images/product1_2.jpg') }}" alt="" class="img-responsive">
                                     </a>
                                 </div>
                             </div>
                         </div>
-                        <a href="detail.html" class="invisible">
+                        <a href="#" class="invisible">
                             <img src="{{ asset('images/product1.jpg') }}" alt="" class="img-responsive">
                         </a>
                         <div class="text">
@@ -335,18 +336,18 @@ _________________________________________________________ -->
                         <div class="flip-container">
                             <div class="flipper">
                                 <div class="front">
-                                    <a href="detail.html">
+                                    <a href="#">
                                         <img src="{{ asset('images/product3.jpg') }}" alt="" class="img-responsive">
                                     </a>
                                 </div>
                                 <div class="back">
-                                    <a href="detail.html">
+                                    <a href="#">
                                         <img src="{{ asset('images/product3_2.jpg') }}" alt="" class="img-responsive">
                                     </a>
                                 </div>
                             </div>
                         </div>
-                        <a href="detail.html" class="invisible">
+                        <a href="#" class="invisible">
                             <img src="{{ asset('images/product3.jpg') }}" alt="" class="img-responsive">
                         </a>
                         <div class="text">
