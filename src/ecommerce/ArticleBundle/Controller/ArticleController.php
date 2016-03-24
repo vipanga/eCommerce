@@ -11,12 +11,25 @@ use ecommerce\ArticleBundle\Form\ArticleType;
 
 class ArticleController extends Controller {
 
-    public function genreAction(Genre $genre) {
+    public function genreAction(Genre $genre, $number, $page)
+    {
         if($genre == null)
         {
             return $this->redirect($this->generateUrl('ecommerce_accueil_erreur404'));
         }
-        return $this->render('ecommerceArticleBundle:Article:genre.html.twig', array('genre' => $genre));
+
+        $articles = $this->getDoctrine()
+            ->getManager()
+            ->getRepository('ecommerceArticleBundle:Article')
+            ->getArticles($number, $page, $genre);
+
+        return $this->render('ecommerceArticleBundle:Article:genre.html.twig', array(
+            'articles' => $articles,
+            'genre' => $genre,
+            'page' => $page,
+            'number' => $number,
+            'nombrePage' => ceil(count($articles) / $number)
+        ));
     }
 
     public function createAction() {
@@ -47,7 +60,7 @@ class ArticleController extends Controller {
                 $this->get('session')->getFlashBag()->add('info', 'Article bien ajouté');
 
                 // On redirige vers la page de visualisation de l'article nouvellement créé
-                return $this->redirect($this->generateUrl('ecommerce_article_detail', array('id' => $article->getId())));
+                return $this->redirect($this->generateUrl('ecommerce_article_detail', array('id' => $article->getId(), 'slug' => $article->getSlug())));
             }
         }
 

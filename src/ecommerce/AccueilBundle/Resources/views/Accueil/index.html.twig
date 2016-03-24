@@ -6,6 +6,8 @@
     Bienvenu - {{ parent() }}
 {% endblock %}
 
+{% block active %}class="active"{% endblock %}
+
 {% block contenu_accueil %}
 
     <div class="container">
@@ -48,7 +50,7 @@
 
     <!-- *** HOT PRODUCT SLIDESHOW ***
     _________________________________________________________ -->
-    {% for genre in genres %}
+    {% for items in listOfItems %}
         <div id="hot">
 
             <div class="container">
@@ -56,41 +58,60 @@
                 <div class="col-md-12">
                     <ul class="breadcrumb">
                         <li>
-                            <a href="#">{{ genre.category.name }}</a>
+                            <a href="#">High-Tech</a>
                         </li>
-                        <li>A la Une {{ genre.name }}</li>
+                        <li>A la Une Téléphonie, Mobilité</li>
                     </ul>
                 </div>
 
                 <div class="product-slider">
 
-                    {% for article in genre.articles %}
+                    {% for article in items %}
                         <div class="item">
                             <div class="product">
                                 <div class="flip-container">
                                     <div class="flipper">
                                         <div class="front">
-                                            <a href="{{ path('ecommerce_article_detail', {'id': article.id}) }}">
-                                                <img src="{{ asset(article.image.webPath) }}"
-                                                     alt="{{ article.image.alt }}" class="img-responsive">
+                                            <a href="{{ path('ecommerce_article_detail', {'id': article.id, 'slug':article.slug}) }}">
+                                                {# On vérifie qu'une image est bien associée à l'article #}
+                                                {% if article.image is not null %}
+                                                    <img src="{{ asset(article.image.webPath) }}"
+                                                         alt="{{ article.image.alt }}" class="img-responsive">
+                                                {% else %}
+                                                    <img src="{{ asset('images/detailbig2.jpg') }}"
+                                                         alt="{{ article.getNameItem() }}" class="img-responsive">
+                                                {% endif %}
+
                                             </a>
                                         </div>
                                         <div class="back">
-                                            <a href="{{ path('ecommerce_article_detail', {'id': article.id}) }}">
-                                                <img src="{{ asset(article.image.webPath) }}"
-                                                     alt="{{ article.image.alt }}"
-                                                     class="img-responsive">
+                                            <a href="{{ path('ecommerce_article_detail', {'id': article.id, 'slug':article.slug}) }}">
+                                                {# On vérifie qu'une image est bien associée à l'article #}
+                                                {% if article.image is not null %}
+                                                    <img src="{{ asset(article.image.webPath) }}"
+                                                         alt="{{ article.image.alt }}" class="img-responsive">
+                                                {% else %}
+                                                    <img src="{{ asset('images/detailbig2.jpg') }}"
+                                                         alt="{{ article.getNameItem() }}" class="img-responsive">
+                                                {% endif %}
                                             </a>
                                         </div>
                                     </div>
                                 </div>
-                                <a href="{{ path('ecommerce_article_detail', {'id': article.id}) }}" class="invisible">
-                                    <img src="{{ asset(article.image.webPath) }}" alt="{{ article.image.alt }}"
-                                         class="img-responsive">
+                                <a href="{{ path('ecommerce_article_detail', {'id': article.id, 'slug':article.slug}) }}"
+                                   class="invisible">
+                                    {# On vérifie qu'une image est bien associée à l'article #}
+                                    {% if article.image is not null %}
+                                        <img src="{{ asset(article.image.webPath) }}" alt="{{ article.image.alt }}"
+                                             class="img-responsive">
+                                    {% else %}
+                                        <img src="{{ asset('images/detailbig2.jpg') }}"
+                                             alt="{{ article.getNameItem() }}" class="img-responsive">
+                                    {% endif %}
                                 </a>
                                 <div class="text">
                                     <h3>
-                                        <a href="{{ path('ecommerce_article_detail', {'id': article.id}) }}">{{ article.getNameItem() }}</a>
+                                        <a href="{{ path('ecommerce_article_detail', {'id': article.id, 'slug':article.slug}) }}">{{ article.getNameItem() }}</a>
                                     </h3>
                                     <p class="price">
                                         <del>143.00 Fc</del>

@@ -32,8 +32,8 @@ _________________________________________________________ -->
         <div class="navbar-collapse collapse" id="navigation">
 
             <ul class="nav navbar-nav navbar-left">
-                <li class="active">
-                    <a href="index.html">Accueil</a>
+                <li {% block active %}{% endblock %}>
+                    <a href="{{ path('ecommerce_accueil_accueil') }}">Accueil</a>
                 </li>
 
                 {% for category in categories %}

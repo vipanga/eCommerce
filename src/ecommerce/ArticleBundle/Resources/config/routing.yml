@@ -1,11 +1,13 @@
 ecommerce_article_categorie:
-    path:     /cat/{id}
-    defaults: { _controller: ecommerceArticleBundle:Article:genre }
+    path:     /cat/{id}/{number}/{page}
+    defaults: { _controller: ecommerceArticleBundle:Article:genre, number: 12, page: 1 }
     requirements:
         id:  \d+
+        number:  \d+
+        page:  \d+
 
 ecommerce_article_detail:
-    path:     /itm/{id}
+    path:     /itm/{id}/{slug}
     defaults: { _controller: ecommerceArticleBundle:Article:detail }
     requirements:
         id:  \d+

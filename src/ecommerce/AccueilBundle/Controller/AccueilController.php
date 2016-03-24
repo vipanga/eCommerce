@@ -9,11 +9,37 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 class AccueilController extends Controller {
 
     public function indexAction() {
-        $genres = $this->getDoctrine()
+        $listOfItems = array();
+        $telephones = $this->getDoctrine()
             ->getManager()
-            ->getRepository('ecommerceArticleBundle:Genre')
-            ->getGenres();
-        return $this->render('ecommerceAccueilBundle:Accueil:index.html.twig', array('genres' => $genres));
+            ->getRepository('ecommerceArticleBundle:Article')
+            ->getTelephones();
+
+        $listOfItems[] = $telephones;
+
+        $televiseurs = $this->getDoctrine()
+            ->getManager()
+            ->getRepository('ecommerceArticleBundle:Article')
+            ->getTeleviseurs();
+
+        $listOfItems[] = $televiseurs;
+
+        $materiaux = $this->getDoctrine()
+            ->getManager()
+            ->getRepository('ecommerceArticleBundle:Article')
+            ->getMateriaux();
+
+        $listOfItems[] = $materiaux;
+
+        return $this->render('ecommerceAccueilBundle:Accueil:index.html.twig', array(
+            'listOfItems' => $listOfItems
+        ));
+
+        /*return $this->render('ecommerceAccueilBundle:Accueil:index.html.twig', array(
+            'telephones' => $telephones,
+            'televiseurs' => $televiseurs,
+            'materiaux' => $materiaux
+        ));*/
     }
 
     public function menuAction() {
