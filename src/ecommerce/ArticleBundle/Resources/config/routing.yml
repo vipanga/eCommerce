@@ -16,15 +16,21 @@ ecommerce_article_create:
     path:     /create
     defaults: { _controller: ecommerceArticleBundle:Article:create }
 
-ecommerce_article_delete:
-    path:     /delete/{id}
-    defaults: { _controller: ecommerceArticleBundle:Article:delete }
-    requirements:
-        id:  \d+
-
 ecommerce_article_publications:
     path:     /publications/{page}/{numberItemsPerPage}
     defaults: { _controller: ecommerceArticleBundle:Article:publications, page: 1, numberItemsPerPage: 10 }
     requirements:
             page:  \d+
             numberItemsPerPage:  \d+
+
+ecommerce_article_delete:
+    path:     /delete/{id}
+    defaults: { _controller: ecommerceArticleBundle:Article:delete }
+    requirements:
+        id:  \d+
+
+ecommerce_article_edit:
+    path:     /edit/{id}
+    defaults: { _controller: ecommerceArticleBundle:Article:edit }
+    requirements:
+        id:  \d+

@@ -94,6 +94,36 @@ class ArticleController extends Controller
         ));
     }
 
+    public function editAction(Article $article)
+    {
+        // On utiliser le ArticleEditType
+        $form = $this->createForm(new ArticleType(), $article);
+
+        $request = $this->getRequest();
+
+        if ($request->getMethod() == 'POST') {
+            $form->bind($request);
+
+            if ($form->isValid()) {
+                // On enregistre l'article
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($article);
+                $em->flush();
+
+                // On définit un message flash
+                $this->get('session')->getFlashBag()->add('info', 'Article bien modifié');
+
+                // On redirige vers la page de visualisation de l'article modifié
+                return $this->redirect($this->generateUrl('ecommerce_article_detail', array('id' => $article->getId(), 'slug' => $article->getSlug())));
+            }
+        }
+
+        return $this->render('ecommerceArticleBundle:Article:edit.html.twig', array(
+            'form' => $form->createView(),
+            'article' => $article
+        ));
+    }
+
     public function deleteAction(Article $article)
     {
         // On crée un formulaire vide, qui ne contiendra que le champ CSRF

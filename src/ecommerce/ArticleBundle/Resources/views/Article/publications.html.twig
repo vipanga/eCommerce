@@ -60,7 +60,14 @@
                             <tr>
                                 <td>
                                     <a href="{{ path('ecommerce_article_detail', {'id': article.id, 'slug':article.slug}) }}">
-                                        <img src="{{ asset(article.image.webPath) }}" alt="{{ article.image.alt }}">
+                                        {# On vérifie qu'une image est bien associée à l'article #}
+                                        {% if article.image is not null %}
+                                            <img src="{{ asset(article.image.webPath) }}"
+                                                 alt="{{ article.image.alt }}">
+                                        {% else %}
+                                            <img src="{{ asset('images/detailbig2.jpg') }}"
+                                                 alt="{{ article.getNameItem() }}">
+                                        {% endif %}
                                     </a>
                                 </td>
                                 <td>
@@ -69,8 +76,9 @@
                                 <td>{{ article.getQuantity() }}</td>
                                 <td>{{ article.getPrice() }} Fc</td>
                                 <td>{{ article.getQuality() }}</td>
-                                <td><a href="#"><i class="fa fa-pencil-square-o fa-lg" data-toggle="tooltip"
-                                                   data-placement="top" title="Modifier l'article"></i></a></td>
+                                <td><a href="{{ path('ecommerce_article_edit', {'id': article.id}) }}"><i
+                                                class="fa fa-pencil-square-o fa-lg" data-toggle="tooltip"
+                                                data-placement="top" title="Modifier l'article"></i></a></td>
                                 <td><a href="{{ path('ecommerce_article_delete', {'id': article.id}) }}"><i
                                                 class="fa fa-trash-o fa-lg" data-toggle="tooltip" data-placement="top"
                                                 title="Supprimer l'article"></i></a>
