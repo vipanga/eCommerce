@@ -14,10 +14,6 @@ ecommerce_accueil_inscription:
     path:     /inscription
     defaults: { _controller: ecommerceAccueilBundle:Accueil:inscription }
 
-ecommerce_accueil_publications:
-    path:     /publications
-    defaults: { _controller: ecommerceAccueilBundle:Accueil:publications }
-
 ecommerce_accueil_erreur404:
     path:     /url-not-found
     defaults: { _controller: ecommerceAccueilBundle:Accueil:erreur404 }

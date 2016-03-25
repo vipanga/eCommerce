@@ -1,0 +1,158 @@
+{# src/ecommerce/ArticleBundle/Resources/views/Article/detail.html.twig #}
+
+{% extends "ecommerceArticleBundle::layout.html.twig" %}
+
+{% block titre %}
+    Nouvel article - {{ parent() }}
+{% endblock %}
+
+{% block contenu_accueil %}
+
+    <div class="container">
+
+        <div class="col-md-12">
+
+            <ul class="breadcrumb">
+                <li><a href="{{ path('ecommerce_accueil_accueil') }}">Accueil</a>
+                </li>
+                <li>Poster article</li>
+            </ul>
+
+        </div>
+
+        <div class="col-md-8 col-md-offset-2">
+            <div class="box">
+                <h1>Poster article</h1>
+                <p class="lead">Veuillez remplir tous les détails concernant votre article.</p>
+
+                <hr>
+
+                <form action="{{ path('ecommerce_article_create') }}" {{ form_enctype(form) }} method="POST">
+
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                {{ form_label(form.name_item) }}
+                                {{ form_widget(form.name_item, { 'attr': {'class': 'form-control', 'placeholder': 'Ex: Samsung Galaxy S5' } }) }}
+                                <div class="has-error">
+                                    {{ form_errors(form.name_item) }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                {{ form_label(form.price) }}
+                                <div class="input-group">
+                                    <div class="input-group-addon">FC.</div>
+                                    {{ form_widget(form.price, { 'attr': {'class': 'form-control', 'placeholder': "Prix en Franc congolais" } }) }}
+                                    <div class="input-group-addon">.00</div>
+                                </div>
+                                <div class="has-error">
+                                    {{ form_errors(form.price) }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.row -->
+
+                    <div class="row">
+                        <div class="col-sm-6 col-md-3">
+                            <div class="form-group">
+                                {{ form_label(form.quantity) }}
+                                {{ form_widget(form.quantity, { 'attr': {'class': 'form-control', 'placeholder': 'Ex: 5' } }) }}
+                                <div class="has-error">
+                                    {{ form_errors(form.quantity) }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-md-3">
+                            <div class="form-group">
+                                {{ form_label(form.quality) }}
+                                {{ form_widget(form.quality, { 'attr': {'class': 'form-control' } }) }}
+                                <div class="has-error">
+                                    {{ form_errors(form.quality) }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-md-3">
+                            <div class="form-group">
+                                {{ form_label(form.city) }}
+                                {{ form_widget(form.city, { 'attr': {'class': 'form-control', 'placeholder': 'Ex: Lubumbashi' } }) }}
+                                <div class="has-error">
+                                    {{ form_errors(form.city) }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-md-3">
+                            <div class="form-group">
+                                {{ form_label(form.province) }}
+                                {{ form_widget(form.province, { 'attr': {'class': 'form-control' } }) }}
+                                <div class="has-error">
+                                    {{ form_errors(form.province) }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.row -->
+
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                {{ form_label(form.country) }}
+                                {{ form_widget(form.country, { 'attr': {'class': 'form-control' } }) }}
+                                <div class="has-error">
+                                    {{ form_errors(form.country) }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                {{ form_label(form.genre) }}
+                                {{ form_widget(form.genre, { 'attr': {'class': 'form-control' } }) }}
+                                <div class="has-error">
+                                    {{ form_errors(form.genre) }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.row -->
+
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                {{ form_widget(form.image) }}
+                                <p class="help-block">Sélectionnez l’image de votre article.</p>
+                                <div class="has-error">
+                                    {{ form_errors(form.image) }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                {{ form_label(form.description) }}
+                                {{ form_widget(form.description, { 'attr': {'class': 'form-control', 'rows': '3', 'placeholder': 'Commentaires sur votre article' } }) }}
+                                <div class="has-error">
+                                    {{ form_errors(form.description) }}
+                                </div>
+                            </div>
+                        </div>
+
+                        {{ form_rest(form) }}
+                    </div>
+                    <!-- /.row -->
+
+                    <div class="row">
+                        <div class="col-sm-12 text-center">
+                            <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Enregistrer
+                            </button>
+
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </div>
+    <!-- /.container -->
+
+{% endblock %}

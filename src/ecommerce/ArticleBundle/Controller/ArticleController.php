@@ -7,32 +7,34 @@ namespace ecommerce\ArticleBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use ecommerce\ArticleBundle\Entity\Article;
 use ecommerce\ArticleBundle\Entity\Genre;
+use ecommerce\ArticleBundle\Entity\Category;
 use ecommerce\ArticleBundle\Form\ArticleType;
 
-class ArticleController extends Controller {
+class ArticleController extends Controller
+{
 
-    public function genreAction(Genre $genre, $number, $page)
+    public function genreAction(Genre $genre, $numberItemsPerPage, $page)
     {
-        if($genre == null)
-        {
+        if ($genre == null) {
             return $this->redirect($this->generateUrl('ecommerce_accueil_erreur404'));
         }
 
         $articles = $this->getDoctrine()
             ->getManager()
             ->getRepository('ecommerceArticleBundle:Article')
-            ->getArticles($number, $page, $genre);
+            ->getArticles($numberItemsPerPage, $page, $genre);
 
         return $this->render('ecommerceArticleBundle:Article:genre.html.twig', array(
             'articles' => $articles,
             'genre' => $genre,
             'page' => $page,
-            'number' => $number,
-            'nombrePage' => ceil(count($articles) / $number)
+            'number' => $numberItemsPerPage,
+            'nombrePage' => ceil(count($articles) / $numberItemsPerPage)
         ));
     }
 
-    public function createAction() {
+    public function createAction()
+    {
         $article = new Article;
 
         // On crée le formulaire grâce à l'ArticleType
@@ -67,13 +69,60 @@ class ArticleController extends Controller {
         return $this->render('ecommerceArticleBundle:Article:create.html.twig', array('form' => $form->createView(),));
     }
 
-    public function detailAction(Article $article) {
-        
-        if($article == null)
-        {
+    public function detailAction(Article $article)
+    {
+
+        if ($article == null) {
             return $this->redirect($this->generateUrl('ecommerce_accueil_erreur404'));
         }
         return $this->render('ecommerceArticleBundle:Article:detail.html.twig', array('article' => $article));
+    }
+
+    public function publicationsAction($page, $numberItemsPerPage)
+    {
+        $user = $this->getUser();
+        $articles = $this->getDoctrine()
+            ->getManager()
+            ->getRepository('ecommerceArticleBundle:Article')
+            ->getUserArticles($numberItemsPerPage, $page, $user);
+
+        return $this->render('ecommerceArticleBundle:Article:publications.html.twig', array(
+            'articles' => $articles,
+            'page' => $page,
+            'number' => $numberItemsPerPage,
+            'nombrePage' => ceil(count($articles) / $numberItemsPerPage)
+        ));
+    }
+
+    public function deleteAction(Article $article)
+    {
+        // On crée un formulaire vide, qui ne contiendra que le champ CSRF
+        // Cela permet de protéger la suppression d'article contre cette faille
+        $form = $this->createFormBuilder()->getForm();
+
+        $request = $this->getRequest();
+        if ($request->getMethod() == 'POST') {
+            $form->bind($request);
+
+            if ($form->isValid()) {
+                // On supprime l'article
+                $em = $this->getDoctrine()->getManager();
+                $em->remove($article);
+                $em->flush();
+
+                // On définit un message flash
+                $this->get('session')->getFlashBag()->add('info', 'Article bien supprimé');
+
+                // Puis on redirige vers l'accueil
+                return $this->redirect($this->generateUrl('ecommerce_article_publications'));
+            }
+        }
+
+        // Si la requête est en GET, on affiche une page de confirmation avant de supprimer
+        return $this->render('ecommerceArticleBundle:Article:delete.html.twig', array(
+            'article' => $article,
+            'form' => $form->createView()
+        ));
     }
 
 }

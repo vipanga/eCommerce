@@ -1,9 +1,9 @@
 ecommerce_article_categorie:
-    path:     /cat/{id}/{number}/{page}
-    defaults: { _controller: ecommerceArticleBundle:Article:genre, number: 12, page: 1 }
+    path:     /cat/{id}/{numberItemsPerPage}/{page}
+    defaults: { _controller: ecommerceArticleBundle:Article:genre, numberItemsPerPage: 12, page: 1 }
     requirements:
         id:  \d+
-        number:  \d+
+        numberItemsPerPage:  \d+
         page:  \d+
 
 ecommerce_article_detail:
@@ -15,3 +15,16 @@ ecommerce_article_detail:
 ecommerce_article_create:
     path:     /create
     defaults: { _controller: ecommerceArticleBundle:Article:create }
+
+ecommerce_article_delete:
+    path:     /delete/{id}
+    defaults: { _controller: ecommerceArticleBundle:Article:delete }
+    requirements:
+        id:  \d+
+
+ecommerce_article_publications:
+    path:     /publications/{page}/{numberItemsPerPage}
+    defaults: { _controller: ecommerceArticleBundle:Article:publications, page: 1, numberItemsPerPage: 10 }
+    requirements:
+            page:  \d+
+            numberItemsPerPage:  \d+

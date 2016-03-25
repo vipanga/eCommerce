@@ -59,10 +59,6 @@ class AccueilController extends Controller {
         return $this->render('ecommerceAccueilBundle:Accueil:inscription.html.twig');
     }
     
-    public function publicationsAction() {
-        return $this->render('ecommerceAccueilBundle:Accueil:publications.html.twig');
-    }
-    
     public function categorieAction() {
         return $this->render('ecommerceAccueilBundle:Accueil:categorie.html.twig');
     }
