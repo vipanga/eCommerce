@@ -14,7 +14,7 @@
 
         <div class="col-md-12">
             <ul class="breadcrumb">
-                <li><a href="#">{{ article.genre.category.name }}</a>
+                <li><a href="{{ path('ecommerce_accueil_accueil') }}">Accueil</a>
                 </li>
                 <li>
                     <a href="{{ path('ecommerce_article_categorie', {'id': article.genre.id}) }}">{{ article.genre.name }}</a>
@@ -78,7 +78,9 @@
                             <dt>Province :</dt>
                             <dd>{{ article.getProvince() }}</dd>
                             <dt>Vendeur :</dt>
-                            <dd>{{ article.user.username }}</dd>
+                            <dd>
+                                <a href="{{ path('ecommerce_article_publisher_items', {'id': article.user.id}) }}">{{ article.user.username }}</a>
+                            </dd>
                             <dt>Contact :</dt>
                             <dd>{{ article.user.telephone }}</dd>
                         </dl>

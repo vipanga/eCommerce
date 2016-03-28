@@ -4,10 +4,12 @@
 
 namespace ecommerce\ArticleBundle\Controller;
 
+//namespace ecommerce\UserBundle\Controller;
+
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use ecommerce\ArticleBundle\Entity\Article;
 use ecommerce\ArticleBundle\Entity\Genre;
-use ecommerce\ArticleBundle\Entity\Category;
+use ecommerce\UserBundle\Entity\User;
 use ecommerce\ArticleBundle\Form\ArticleType;
 
 class ArticleController extends Controller
@@ -28,7 +30,7 @@ class ArticleController extends Controller
             'articles' => $articles,
             'genre' => $genre,
             'page' => $page,
-            'number' => $numberItemsPerPage,
+            'numberItemsPerPage' => $numberItemsPerPage,
             'nombrePage' => ceil(count($articles) / $numberItemsPerPage)
         ));
     }
@@ -89,7 +91,23 @@ class ArticleController extends Controller
         return $this->render('ecommerceArticleBundle:Article:publications.html.twig', array(
             'articles' => $articles,
             'page' => $page,
-            'number' => $numberItemsPerPage,
+            'numberItemsPerPage' => $numberItemsPerPage,
+            'nombrePage' => ceil(count($articles) / $numberItemsPerPage)
+        ));
+    }
+
+    public function publisherItemsAction(User $user, $numberItemsPerPage, $page)
+    {
+        $articles = $this->getDoctrine()
+            ->getManager()
+            ->getRepository('ecommerceArticleBundle:Article')
+            ->getUserArticles($numberItemsPerPage, $page, $user);
+
+        return $this->render('ecommerceArticleBundle:Article:publisher_items.html.twig', array(
+            'articles' => $articles,
+            'page' => $page,
+            'user' => $user,
+            'numberItemsPerPage' => $numberItemsPerPage,
             'nombrePage' => ceil(count($articles) / $numberItemsPerPage)
         ));
     }

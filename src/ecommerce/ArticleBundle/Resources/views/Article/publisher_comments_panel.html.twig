@@ -1,0 +1,32 @@
+{# src/ecommerce/ArticleBundle/Resources/views/Article/publisher_comments_panel.html.twig #}
+
+<!-- *** MENUS AND FILTERS ***
+_________________________________________________________ -->
+
+<div class="panel panel-default sidebar-menu">
+
+    <div class="panel-heading">
+        <h3 class="panel-title">Commentaires</h3>
+    </div>
+
+    <div class="panel-body">
+        <ul class="nav nav-pills nav-stacked category-menu">
+            <li class="active">
+                <a href="#">Commentaires</a>
+                <ul>
+                    {#                    {% for genre_cate in genre.category.genres %}
+                                            <li>
+                                                <a href="{{ path('ecommerce_article_categorie', {'id': genre_cate.id}) }}">{{ genre_cate.name }}</a>
+                                            </li>
+                                        {% else %}
+                                            <li>
+                                                <a href="#">Pas encore de catégories !</a>
+                                            </li>
+                                        {% endfor %}#}
+                </ul>
+            </li>
+
+        </ul>
+
+    </div>
+</div>

@@ -32,7 +32,7 @@
                         {% if page == nombrePage %}
                             {{ articles.count }}
                         {% else %}
-                            {{ page * number }}
+                            {{ page * numberItemsPerPage }}
                         {% endif %}
                     </strong>
                     sur

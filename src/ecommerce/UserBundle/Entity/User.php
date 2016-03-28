@@ -91,6 +91,13 @@ class User extends BaseUser {
      * @ORM\Column(name="updated", type="datetime", nullable=true)
      */
     private $updated;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="note", type="float")
+     */
+    private $note;
     
     /**
      * @ORM\OneToOne(targetEntity="ecommerce\ArticleBundle\Entity\Image", cascade={"persist", "remove"})
@@ -102,12 +109,28 @@ class User extends BaseUser {
      */
     private $articles; // Ici articles prend un « s », car un user a plusieurs articles !
 
+    /**
+     * @ORM\OneToMany(targetEntity="ecommerce\ArticleBundle\Entity\Comment", mappedBy="user")
+     */
+    private $comments; // Ici articles prend un « s », car un user a plusieurs articles !
+
     public function __construct() {
         parent::__construct();
 
         $this->created = new \DateTime();
         $this->updated = new \DateTime();
         $this->articles = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->note = 0;
+    }
+
+    /**
+     * Get first_name
+     *
+     * @return string
+     */
+    public function getFirstName()
+    {
+        return $this->first_name;
     }
 
     /**
@@ -124,13 +147,13 @@ class User extends BaseUser {
     }
 
     /**
-     * Get first_name
+     * Get last_name
      *
      * @return string 
      */
-    public function getFirstName()
+    public function getLastName()
     {
-        return $this->first_name;
+        return $this->last_name;
     }
 
     /**
@@ -147,13 +170,13 @@ class User extends BaseUser {
     }
 
     /**
-     * Get last_name
+     * Get gender
      *
      * @return string 
      */
-    public function getLastName()
+    public function getGender()
     {
-        return $this->last_name;
+        return $this->gender;
     }
 
     /**
@@ -170,13 +193,13 @@ class User extends BaseUser {
     }
 
     /**
-     * Get gender
+     * Get telephone
      *
      * @return string 
      */
-    public function getGender()
+    public function getTelephone()
     {
-        return $this->gender;
+        return $this->telephone;
     }
 
     /**
@@ -193,13 +216,13 @@ class User extends BaseUser {
     }
 
     /**
-     * Get telephone
+     * Get city
      *
      * @return string 
      */
-    public function getTelephone()
+    public function getCity()
     {
-        return $this->telephone;
+        return $this->city;
     }
 
     /**
@@ -216,13 +239,13 @@ class User extends BaseUser {
     }
 
     /**
-     * Get city
+     * Get province
      *
      * @return string 
      */
-    public function getCity()
+    public function getProvince()
     {
-        return $this->city;
+        return $this->province;
     }
 
     /**
@@ -239,13 +262,13 @@ class User extends BaseUser {
     }
 
     /**
-     * Get province
+     * Get address
      *
      * @return string 
      */
-    public function getProvince()
+    public function getAddress()
     {
-        return $this->province;
+        return $this->address;
     }
 
     /**
@@ -262,13 +285,13 @@ class User extends BaseUser {
     }
 
     /**
-     * Get address
+     * Get birth_date
      *
-     * @return string 
+     * @return \DateTime 
      */
-    public function getAddress()
+    public function getBirthDate()
     {
-        return $this->address;
+        return $this->birth_date;
     }
 
     /**
@@ -285,13 +308,13 @@ class User extends BaseUser {
     }
 
     /**
-     * Get birth_date
+     * Get created
      *
      * @return \DateTime 
      */
-    public function getBirthDate()
+    public function getCreated()
     {
-        return $this->birth_date;
+        return $this->created;
     }
 
     /**
@@ -308,13 +331,13 @@ class User extends BaseUser {
     }
 
     /**
-     * Get created
+     * Get updated
      *
      * @return \DateTime 
      */
-    public function getCreated()
+    public function getUpdated()
     {
-        return $this->created;
+        return $this->updated;
     }
 
     /**
@@ -331,13 +354,36 @@ class User extends BaseUser {
     }
 
     /**
-     * Get updated
+     * Get note
      *
-     * @return \DateTime 
+     * @return float 
      */
-    public function getUpdated()
+    public function getNote()
     {
-        return $this->updated;
+        return $this->note;
+    }
+
+    /**
+     * Set note
+     *
+     * @param float $note
+     * @return User
+     */
+    public function setNote($note)
+    {
+        $this->note = $note;
+
+        return $this;
+    }
+
+    /**
+     * Get image
+     *
+     * @return \ecommerce\ArticleBundle\Entity\Image 
+     */
+    public function getImage()
+    {
+        return $this->image;
     }
 
     /**
@@ -351,16 +397,6 @@ class User extends BaseUser {
         $this->image = $image;
 
         return $this;
-    }
-
-    /**
-     * Get image
-     *
-     * @return \ecommerce\ArticleBundle\Entity\Image 
-     */
-    public function getImage()
-    {
-        return $this->image;
     }
 
     /**
@@ -394,5 +430,38 @@ class User extends BaseUser {
     public function getArticles()
     {
         return $this->articles;
+    }
+
+    /**
+     * Add comments
+     *
+     * @param \ecommerce\ArticleBundle\Entity\Comment $comments
+     * @return User
+     */
+    public function addComment(\ecommerce\ArticleBundle\Entity\Comment $comments)
+    {
+        $this->comments[] = $comments;
+
+        return $this;
+    }
+
+    /**
+     * Remove comments
+     *
+     * @param \ecommerce\ArticleBundle\Entity\Comment $comments
+     */
+    public function removeComment(\ecommerce\ArticleBundle\Entity\Comment $comments)
+    {
+        $this->comments->removeElement($comments);
+    }
+
+    /**
+     * Get comments
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getComments()
+    {
+        return $this->comments;
     }
 }

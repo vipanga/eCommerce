@@ -23,6 +23,14 @@ ecommerce_article_publications:
             page:  \d+
             numberItemsPerPage:  \d+
 
+ecommerce_article_publisher_items:
+    path:     /usr/{id}/{numberItemsPerPage}/{page}
+    defaults: { _controller: ecommerceArticleBundle:Article:publisherItems, numberItemsPerPage: 12, page: 1 }
+    requirements:
+        id:  \d+
+        numberItemsPerPage:  \d+
+        page:  \d+
+
 ecommerce_article_delete:
     path:     /delete/{id}
     defaults: { _controller: ecommerceArticleBundle:Article:delete }
