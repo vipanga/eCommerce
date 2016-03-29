@@ -14,6 +14,6 @@ ecommerce_accueil_inscription:
     path:     /inscription
     defaults: { _controller: ecommerceAccueilBundle:Accueil:inscription }
 
-ecommerce_accueil_erreur404:
+ecommerce_accueil_error404:
     path:     /url-not-found
-    defaults: { _controller: ecommerceAccueilBundle:Accueil:erreur404 }
+    defaults: { _controller: ecommerceAccueilBundle:Accueil:error404 }

@@ -12,4 +12,20 @@ use Doctrine\ORM\EntityRepository;
  */
 class CommentRepository extends EntityRepository
 {
+    public function getUserComments($user)
+    {
+        // La construction de la requête reste inchangée
+        $query = $this->createQueryBuilder('c')
+            ->where('c.user = :user')
+            ->setParameter('user', $user)
+            ->leftJoin('c.user', 'u')
+            ->addSelect('u')
+            ->leftJoin('c.author', 'aut')
+            ->addSelect('aut')
+            ->orderBy('c.date', 'DESC')
+            ->setMaxResults(3)
+            ->getQuery();
+
+        return $query->getResult();
+    }
 }

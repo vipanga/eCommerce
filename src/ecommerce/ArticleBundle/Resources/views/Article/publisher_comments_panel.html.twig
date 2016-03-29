@@ -6,27 +6,81 @@ _________________________________________________________ -->
 <div class="panel panel-default sidebar-menu">
 
     <div class="panel-heading">
-        <h3 class="panel-title">Commentaires</h3>
+        <h3 class="panel-title">Avis sur le vendeur</h3>
     </div>
 
     <div class="panel-body">
-        <ul class="nav nav-pills nav-stacked category-menu">
-            <li class="active">
-                <a href="#">Commentaires</a>
-                <ul>
-                    {#                    {% for genre_cate in genre.category.genres %}
-                                            <li>
-                                                <a href="{{ path('ecommerce_article_categorie', {'id': genre_cate.id}) }}">{{ genre_cate.name }}</a>
-                                            </li>
-                                        {% else %}
-                                            <li>
-                                                <a href="#">Pas encore de catégories !</a>
-                                            </li>
-                                        {% endfor %}#}
-                </ul>
-            </li>
+        <div id="comments" data-animate="fadeInUp">
+            <h4>{{ comments|length }} commentaires</h4>
 
-        </ul>
+
+            {% for comment in comments %}
+                <div class="row comment">
+
+                    <div class="col-md-12">
+                        <h5>{{ comment.author.username }}</h5>
+                        <p class="posted"><i class="fa fa-clock-o"></i> {{ comment.getDate()|date("m/d/Y") }}
+                            à {{ comment.getDate()|date("H:i:s") }}</p>
+                        <p>{{ comment.getContent() }}</p>
+                    </div>
+                </div>
+                <!-- /.comment -->
+            {% else %}
+                <div class="row comment">
+
+                    <div class="col-md-12">
+                        <h4>Pas encore de commentaire !</h4>
+                    </div>
+                </div>
+                <!-- /.comment -->
+            {% endfor %}
+
+        </div>
+        <!-- /#comments -->
+
+        <div id="comment-form" data-animate="fadeInUp">
+
+            <h4>Donnez votre note</h4>
+
+            <form action="{{ path('ecommerce_article_publisher_items', {'id': user.id}) }}" {{ form_enctype(form) }}
+                  method="POST">
+                <div class="row">
+
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            {{ form_label(form.note) }}
+                            {{ form_widget(form.note, { 'attr': {'class': 'form-control', 'placeholder': 'Note sur 5' } }) }}
+                            <div class="has-error">
+                                {{ form_errors(form.note) }}
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            {{ form_label(form.content) }}
+                            {{ form_widget(form.content, { 'attr': {'class': 'form-control', 'rows': '3', 'placeholder': 'Commentaire sur le vendeur' } }) }}
+                            <div class="has-error">
+                                {{ form_errors(form.content) }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                {{ form_rest(form) }}
+
+                <div class="row">
+                    <div class="col-sm-12">
+                        <button class="btn btn-primary"><i class="fa fa-comment-o"></i> Post comment</button>
+                    </div>
+                </div>
+            </form>
+
+        </div>
+        <!-- /#comment-form -->
 
     </div>
 </div>

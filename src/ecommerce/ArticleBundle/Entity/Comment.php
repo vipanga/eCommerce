@@ -22,9 +22,8 @@ class Comment
     private $id;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="author", type="string", length=255)
+     * @ORM\ManyToOne(targetEntity="ecommerce\UserBundle\Entity\User")
+     * @ORM\JoinColumn(nullable=false)
      */
     private $author;
 
@@ -36,9 +35,9 @@ class Comment
     private $content;
 
     /**
-     * @var float
+     * @var int
      *
-     * @ORM\Column(name="note", type="float")
+     * @ORM\Column(name="note", type="integer")
      */
     private $note;
 
@@ -58,13 +57,12 @@ class Comment
     public function __construct()
     {
         $this->date = new \Datetime();
-        $this->note = 0;
     }
 
     /**
      * Get id
      *
-     * @return integer
+     * @return integer 
      */
     public function getId()
     {
@@ -72,32 +70,9 @@ class Comment
     }
 
     /**
-     * Get author
-     *
-     * @return string
-     */
-    public function getAuthor()
-    {
-        return $this->author;
-    }
-
-    /**
-     * Set author
-     *
-     * @param string $author
-     * @return Comment
-     */
-    public function setAuthor($author)
-    {
-        $this->author = $author;
-
-        return $this;
-    }
-
-    /**
      * Get content
      *
-     * @return string
+     * @return string 
      */
     public function getContent()
     {
@@ -120,7 +95,7 @@ class Comment
     /**
      * Get note
      *
-     * @return float
+     * @return integer 
      */
     public function getNote()
     {
@@ -130,7 +105,7 @@ class Comment
     /**
      * Set note
      *
-     * @param float $note
+     * @param integer $note
      * @return Comment
      */
     public function setNote($note)
@@ -143,7 +118,7 @@ class Comment
     /**
      * Get date
      *
-     * @return \DateTime
+     * @return \DateTime 
      */
     public function getDate()
     {
@@ -164,9 +139,32 @@ class Comment
     }
 
     /**
-     * Get user
+     * Get author
      *
      * @return \ecommerce\UserBundle\Entity\User
+     */
+    public function getAuthor()
+    {
+        return $this->author;
+    }
+
+    /**
+     * Set author
+     *
+     * @param \ecommerce\UserBundle\Entity\User $author
+     * @return Comment
+     */
+    public function setAuthor(\ecommerce\UserBundle\Entity\User $author)
+    {
+        $this->author = $author;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \ecommerce\UserBundle\Entity\User 
      */
     public function getUser()
     {

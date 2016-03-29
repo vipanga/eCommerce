@@ -6,11 +6,13 @@ namespace ecommerce\ArticleBundle\Controller;
 
 //namespace ecommerce\UserBundle\Controller;
 
+use ecommerce\ArticleBundle\Entity\Comment;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use ecommerce\ArticleBundle\Entity\Article;
 use ecommerce\ArticleBundle\Entity\Genre;
 use ecommerce\UserBundle\Entity\User;
 use ecommerce\ArticleBundle\Form\ArticleType;
+use ecommerce\ArticleBundle\Form\CommentType;
 
 class ArticleController extends Controller
 {
@@ -103,12 +105,50 @@ class ArticleController extends Controller
             ->getRepository('ecommerceArticleBundle:Article')
             ->getUserArticles($numberItemsPerPage, $page, $user);
 
+        $comment = new Comment();
+        // On crée le formulaire grâce à l'ArticleType
+        $form = $this->createForm(new CommentType(), $comment);
+
+        // On récupère la requête
+        $request = $this->getRequest();
+
+        // On vérifie qu'elle est de type POST
+        if ($request->getMethod() == 'POST') {
+            // On fait le lien Requête <-> Formulaire
+            $form->bind($request);
+
+            // On vérifie que les valeurs entrées sont correctes
+            // (Nous verrons la validation des objets en détail dans le prochain chapitre)
+            if ($form->isValid()) {
+                $author = $this->getUser();
+                $comment->setUser($user);
+                $comment->setAuthor($author);
+                // On enregistre notre objet $article dans la base de données
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($comment);
+                $em->flush();
+
+                // On définit un message flash
+                $this->get('session')->getFlashBag()->add('info', 'Commentaire bien ajouté');
+
+                return $this->redirect($this->generateUrl('ecommerce_article_publisher_items', array('id' => $user->getId())));
+            }
+            return $this->redirect($this->generateUrl('ecommerce_accueil_error404'));
+        }
+
+        $comments = $this->getDoctrine()
+            ->getManager()
+            ->getRepository('ecommerceArticleBundle:Comment')
+            ->getUserComments($user);
+
         return $this->render('ecommerceArticleBundle:Article:publisher_items.html.twig', array(
             'articles' => $articles,
             'page' => $page,
             'user' => $user,
             'numberItemsPerPage' => $numberItemsPerPage,
-            'nombrePage' => ceil(count($articles) / $numberItemsPerPage)
+            'nombrePage' => ceil(count($articles) / $numberItemsPerPage),
+            'comments' => $comments,
+            'form' => $form->createView()
         ));
     }
 
