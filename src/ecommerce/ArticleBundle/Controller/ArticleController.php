@@ -153,7 +153,6 @@ class ArticleController extends Controller
 
                 return $this->redirect($this->generateUrl('ecommerce_article_publisher_items', array('id' => $user->getId())));
             }
-            return $this->redirect($this->generateUrl('ecommerce_accueil_error404'));
         }
 
         $comments = $this->getDoctrine()

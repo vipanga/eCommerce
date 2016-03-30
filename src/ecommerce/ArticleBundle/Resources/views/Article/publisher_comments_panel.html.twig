@@ -24,7 +24,7 @@ _________________________________________________________ -->
                         <p>
                             {{ comment.getContent() }}<br/>
                             <input class="comment_note rating rating-loading" value="{{ comment.getNote() }}" dir="ltr"
-                                   data-size="xs" disabled>
+                                   data-size="xs">
                         </p>
 
                     </div>
@@ -58,7 +58,7 @@ _________________________________________________________ -->
                         <div class="form-group">
                             {{ form_label(form.content) }}
                             {{ form_widget(form.content, { 'attr': {'class': 'form-control', 'rows': '3', 'placeholder': 'Commentaire sur le vendeur' } }) }}
-                            <div class="has-error">
+                            <div class="has-error" style="color: red">
                                 {{ form_errors(form.content) }}
                             </div>
                         </div>
@@ -70,7 +70,7 @@ _________________________________________________________ -->
                         <div class="form-group">
                             {#{{ form_label(form.note) }}#}
                             {{ form_widget(form.note, { 'attr': {'class': 'rating rating-loading' } }) }}
-                            <div class="has-error">
+                            <div class="has-error" style="color: red">
                                 {{ form_errors(form.note) }}
                             </div>
                         </div>

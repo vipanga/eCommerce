@@ -3,6 +3,10 @@
 namespace ecommerce\ArticleBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Doctrine\Common\Collections\ArrayCollection;
+use Gedmo\Mapping\Annotation as Gedmo;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * Comment
@@ -31,6 +35,13 @@ class Comment
      * @var string
      *
      * @ORM\Column(name="content", type="text")
+     *
+     * @Assert\Length(
+     *      min = 2,
+     *      max = 600,
+     *      minMessage = "Le contenu ne doit pas avoir moins de {{ limit }} caractères",
+     *      maxMessage = "Le contenu ne doit pas avoir plus de {{ limit }} caractères"
+     * )
      */
     private $content;
 
@@ -38,6 +49,13 @@ class Comment
      * @var float
      *
      * @ORM\Column(name="note", type="float")
+     *
+     * @Assert\Range(
+     *      min = 0.5,
+     *      max = 5,
+     *      minMessage = "La note ne doit pas être moins de {{ limit }}",
+     *      maxMessage = "La note ne doit pas dépasser {{ limit }}"
+     * )
      */
     private $note;
 
@@ -45,6 +63,8 @@ class Comment
      * @var \DateTime
      *
      * @ORM\Column(name="date", type="datetime")
+     *
+     * @Assert\DateTime()
      */
     private $date;
 

@@ -22,7 +22,8 @@
                 <hr>
 
                 {% if error %}
-                    <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                    <div class="has-error"
+                         style="color: red">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
                 {% endif %}
 
                 <form action="{{ path("fos_user_security_check") }}" method="post">

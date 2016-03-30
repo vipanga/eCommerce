@@ -16,10 +16,41 @@ class ProfileFormType extends AbstractType {
         $builder->remove('current_password');
         $builder->add('first_name', TextType::class, array('required' => false));
         $builder->add('last_name', TextType::class, array('required' => false));
-        $builder->add('gender', ChoiceType::class, array('choices' => array('Male' => 'm', 'Female' => 'f'), 'choices_as_values' => true));
+        $builder->add('gender', ChoiceType::class, array('choices' => array('Male' => 'M', 'Female' => 'M'), 'choices_as_values' => true));
         $builder->add('telephone', TextType::class, array('required' => false));
         $builder->add('city', TextType::class, array('required' => false));
-        $builder->add('province', TextType::class, array('required' => false));
+        $builder->add('province', ChoiceType::class, array(
+            'choices' => array(
+                'Bas-Uele' => 'Bas-Uele',
+                'Équateur' => 'Équateur',
+                'Haut-Katanga' => 'Haut-Katanga',
+                'Haut-Lomami' => 'Haut-Lomami',
+                'Haut-Uele' => 'Haut-Uele',
+                'Ituri' => 'Ituri',
+                'Kasaï' => 'Kasaï',
+                'Kasaï-Central' => 'Kasaï-Central',
+                'Kasaï-Oriental' => 'Kasaï-Oriental',
+                'Kinshasa' => 'Kinshasa',
+                'Kongo-Central' => 'Kongo-Central',
+                'Kwango' => 'Kwango',
+                'Kwilu' => 'Kwilu',
+                'Lomami' => 'Lomami',
+                'Lualaba' => 'Lualaba',
+                'Mai-Ndombe' => 'Mai-Ndombe',
+                'Maniema' => 'Maniema',
+                'Mongala' => 'Mongala',
+                'Nord-Kivu' => 'Nord-Kivu',
+                'Nord-Ubangi' => 'Nord-Ubangi',
+                'Sankuru' => 'Sankuru',
+                'Sud-Kivu' => 'Sud-Kivu',
+                'Sud-Ubangi' => 'Sud-Ubangi',
+                'Tanganyika' => 'Tanganyika',
+                'Tshopo' => 'Tshopo',
+                'Tshuapa' => 'Tshuapa',
+            ),
+            // *this line is important*
+            'choices_as_values' => true,
+        ));
         $builder->add('birth_date', DateType::class, array('widget' => 'single_text', 'format' => 'd-MM-y', 'required' => false));
         $builder->add('address', TextType::class, array('required' => false));
         //$builder->add('updated', HiddenType::class, array('data' => date('Y-m-d H:i:s')));

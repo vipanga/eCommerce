@@ -6,7 +6,8 @@ namespace ecommerce\UserBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use FOS\UserBundle\Model\User as BaseUser;
-use Symfony\Component\Validator\Constraints\DateTime;
+use Symfony\Component\Validator\Constraints as Assert;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * User
@@ -29,6 +30,13 @@ class User extends BaseUser {
      * @var string
      *
      * @ORM\Column(name="first_name", type="string", length=255, nullable=true)
+     *
+     * @Assert\Length(
+     *      min = 2,
+     *      max = 50,
+     *      minMessage = "Le prénom ne doit pas avoir moins de {{ limit }} caractères",
+     *      maxMessage = "Le prénom ne doit pas avoir plus de {{ limit }} caractères"
+     * )
      */
     private $first_name;
 
@@ -36,6 +44,13 @@ class User extends BaseUser {
      * @var string
      *
      * @ORM\Column(name="last_name", type="string", length=255, nullable=true)
+     *
+     * @Assert\Length(
+     *      min = 2,
+     *      max = 50,
+     *      minMessage = "Le nom ne doit pas avoir moins de {{ limit }} caractères",
+     *      maxMessage = "Le nom ne doit pas avoir plus de {{ limit }} caractères"
+     * )
      */
     private $last_name;
 
@@ -43,6 +58,13 @@ class User extends BaseUser {
      * @var string
      *
      * @ORM\Column(name="gender", type="string", length=255, nullable=true)
+     *
+     * @Assert\Length(
+     *      min = 1,
+     *      max = 1,
+     *      minMessage = "Le sexe ne doit pas avoir moins de {{ limit }} caractères",
+     *      maxMessage = "Le sexe ne doit pas avoir plus de {{ limit }} caractères"
+     * )
      */
     private $gender;
 
@@ -50,6 +72,13 @@ class User extends BaseUser {
      * @var string
      *
      * @ORM\Column(name="telephone", type="string", length=255, nullable=true)
+     *
+     * @Assert\Length(
+     *      min = 9,
+     *      max = 15,
+     *      minMessage = "Le numéro de téléphone ne doit pas avoir moins de {{ limit }} caractères",
+     *      maxMessage = "Le numéro de téléphone ne doit pas avoir plus de {{ limit }} caractères"
+     * )
      */
     private $telephone;
 
@@ -57,6 +86,13 @@ class User extends BaseUser {
      * @var string
      *
      * @ORM\Column(name="city", type="string", length=255, nullable=true)
+     *
+     * @Assert\Length(
+     *      min = 2,
+     *      max = 50,
+     *      minMessage = "Le nom de la ville ne doit pas avoir moins de {{ limit }} caractères",
+     *      maxMessage = "Le nom de la ville ne doit pas avoir plus de {{ limit }} caractères"
+     * )
      */
     private $city;
 
@@ -64,11 +100,25 @@ class User extends BaseUser {
      * @var string
      *
      * @ORM\Column(name="province", type="string", length=255, nullable=true)
+     *
+     * @Assert\Length(
+     *      min = 2,
+     *      max = 50,
+     *      minMessage = "Le nom de la province ne doit pas avoir moins de {{ limit }} caractères",
+     *      maxMessage = "Le nom de la province ne doit pas avoir plus de {{ limit }} caractères"
+     * )
      */
     private $province;
 
     /**
      * @ORM\Column(name="address", type="text", nullable=true)
+     *
+     * @Assert\Length(
+     *      min = 2,
+     *      max = 600,
+     *      minMessage = "L'adresse ne doit pas avoir moins de {{ limit }} caractères",
+     *      maxMessage = "L'adresse ne doit pas avoir plus de {{ limit }} caractères"
+     * )
      */
     private $address;
 

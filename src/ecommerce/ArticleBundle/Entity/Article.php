@@ -30,6 +30,13 @@ class Article {
      * @var string
      *
      * @ORM\Column(name="name_item", type="string", length=255)
+     *
+     * @Assert\Length(
+     *      min = 2,
+     *      max = 50,
+     *      minMessage = "Le nom de l’article ne doit pas avoir moins de {{ limit }} caractères",
+     *      maxMessage = "Le nom de l’article ne doit pas avoir plus de {{ limit }} caractères"
+     * )
      */
     private $name_item;
 
@@ -37,6 +44,13 @@ class Article {
      * @var float
      *
      * @ORM\Column(name="price", type="float")
+     *
+     * @Assert\Range(
+     *      min = 0,
+     *      max = 1000000,
+     *      minMessage = "Le prix de l’article ne doit pas être moins de {{ limit }}",
+     *      maxMessage = "Le prix de l’article ne doit pas dépasser {{ limit }}"
+     * )
      */
     private $price;
 
@@ -44,6 +58,13 @@ class Article {
      * @var int
      *
      * @ORM\Column(name="quantity", type="integer")
+     *
+     * @Assert\Range(
+     *      min = 1,
+     *      max = 100000,
+     *      minMessage = "La quantité de l’article ne doit pas être moins de {{ limit }}",
+     *      maxMessage = "La quantité de l’article ne doit pas dépasser {{ limit }}"
+     * )
      */
     private $quantity;
 
@@ -51,6 +72,13 @@ class Article {
      * @var string
      *
      * @ORM\Column(name="quality", type="string", length=255)
+     *
+     * @Assert\Length(
+     *      min = 2,
+     *      max = 50,
+     *      minMessage = "La qualité ne doit pas avoir moins de {{ limit }} caractères",
+     *      maxMessage = "La qualité ne doit pas avoir plus de {{ limit }} caractères"
+     * )
      */
     private $quality;
 
@@ -58,6 +86,14 @@ class Article {
      * @var string
      *
      * @ORM\Column(name="description", type="text")
+     *
+     * @Assert\Length(
+     *      min = 2,
+     *      max = 600,
+     *      minMessage = "La description ne doit pas avoir moins de {{ limit }} caractères",
+     *      maxMessage = "La description ne doit pas avoir plus de {{ limit }} caractères"
+     * )
+     *
      */
     private $description;
 
@@ -72,6 +108,8 @@ class Article {
      * @var \DateTime
      *
      * @ORM\Column(name="datepublication", type="datetime")
+     *
+     * @Assert\DateTime()
      */
     private $datepublication;
 
@@ -79,6 +117,13 @@ class Article {
      * @var string
      *
      * @ORM\Column(name="city", type="string", length=255)
+     *
+     * @Assert\Length(
+     *      min = 2,
+     *      max = 50,
+     *      minMessage = "Le nom de la ville ne doit pas avoir moins de {{ limit }} caractères",
+     *      maxMessage = "Le nom de la ville ne doit pas avoir plus de {{ limit }} caractères"
+     * )
      */
     private $city;
 
@@ -86,6 +131,13 @@ class Article {
      * @var string
      *
      * @ORM\Column(name="province", type="string", length=255)
+     *
+     * @Assert\Length(
+     *      min = 2,
+     *      max = 50,
+     *      minMessage = "Le nom de la province ne doit pas avoir moins de {{ limit }} caractères",
+     *      maxMessage = "Le nom de la province ne doit pas avoir plus de {{ limit }} caractères"
+     * )
      */
     private $province;
 
@@ -93,6 +145,13 @@ class Article {
      * @var string
      *
      * @ORM\Column(name="country", type="string", length=255)
+     *
+     * @Assert\Length(
+     *      min = 2,
+     *      max = 50,
+     *      minMessage = "Le nom du pays ne doit pas avoir moins de {{ limit }} caractères",
+     *      maxMessage = "Le nom du pays ne doit pas avoir plus de {{ limit }} caractères"
+     * )
      */
     private $country;
 
@@ -135,6 +194,16 @@ class Article {
     }
 
     /**
+     * Get name_item
+     *
+     * @return string
+     */
+    public function getNameItem()
+    {
+        return $this->name_item;
+    }
+
+    /**
      * Set name_item
      *
      * @param string $nameItem
@@ -148,13 +217,13 @@ class Article {
     }
 
     /**
-     * Get name_item
+     * Get price
      *
-     * @return string 
+     * @return float 
      */
-    public function getNameItem()
+    public function getPrice()
     {
-        return $this->name_item;
+        return $this->price;
     }
 
     /**
@@ -171,13 +240,13 @@ class Article {
     }
 
     /**
-     * Get price
+     * Get quantity
      *
-     * @return float 
+     * @return integer 
      */
-    public function getPrice()
+    public function getQuantity()
     {
-        return $this->price;
+        return $this->quantity;
     }
 
     /**
@@ -194,13 +263,13 @@ class Article {
     }
 
     /**
-     * Get quantity
+     * Get quality
      *
-     * @return integer 
+     * @return string 
      */
-    public function getQuantity()
+    public function getQuality()
     {
-        return $this->quantity;
+        return $this->quality;
     }
 
     /**
@@ -217,13 +286,13 @@ class Article {
     }
 
     /**
-     * Get quality
+     * Get description
      *
      * @return string 
      */
-    public function getQuality()
+    public function getDescription()
     {
-        return $this->quality;
+        return $this->description;
     }
 
     /**
@@ -240,13 +309,13 @@ class Article {
     }
 
     /**
-     * Get description
+     * Get solde
      *
-     * @return string 
+     * @return boolean 
      */
-    public function getDescription()
+    public function getSolde()
     {
-        return $this->description;
+        return $this->solde;
     }
 
     /**
@@ -263,13 +332,13 @@ class Article {
     }
 
     /**
-     * Get solde
+     * Get datepublication
      *
-     * @return boolean 
+     * @return \DateTime 
      */
-    public function getSolde()
+    public function getDatepublication()
     {
-        return $this->solde;
+        return $this->datepublication;
     }
 
     /**
@@ -286,13 +355,13 @@ class Article {
     }
 
     /**
-     * Get datepublication
+     * Get city
      *
-     * @return \DateTime 
+     * @return string 
      */
-    public function getDatepublication()
+    public function getCity()
     {
-        return $this->datepublication;
+        return $this->city;
     }
 
     /**
@@ -309,13 +378,13 @@ class Article {
     }
 
     /**
-     * Get city
+     * Get province
      *
      * @return string 
      */
-    public function getCity()
+    public function getProvince()
     {
-        return $this->city;
+        return $this->province;
     }
 
     /**
@@ -332,13 +401,13 @@ class Article {
     }
 
     /**
-     * Get province
+     * Get country
      *
      * @return string 
      */
-    public function getProvince()
+    public function getCountry()
     {
-        return $this->province;
+        return $this->country;
     }
 
     /**
@@ -355,13 +424,13 @@ class Article {
     }
 
     /**
-     * Get country
+     * Get slug
      *
      * @return string 
      */
-    public function getCountry()
+    public function getSlug()
     {
-        return $this->country;
+        return $this->slug;
     }
 
     /**
@@ -378,13 +447,13 @@ class Article {
     }
 
     /**
-     * Get slug
+     * Get image
      *
-     * @return string 
+     * @return \ecommerce\ArticleBundle\Entity\Image 
      */
-    public function getSlug()
+    public function getImage()
     {
-        return $this->slug;
+        return $this->image;
     }
 
     /**
@@ -401,13 +470,13 @@ class Article {
     }
 
     /**
-     * Get image
+     * Get user
      *
-     * @return \ecommerce\ArticleBundle\Entity\Image 
+     * @return \ecommerce\UserBundle\Entity\User 
      */
-    public function getImage()
+    public function getUser()
     {
-        return $this->image;
+        return $this->user;
     }
 
     /**
@@ -424,13 +493,13 @@ class Article {
     }
 
     /**
-     * Get user
+     * Get genre
      *
-     * @return \ecommerce\UserBundle\Entity\User 
+     * @return \ecommerce\ArticleBundle\Entity\Genre 
      */
-    public function getUser()
+    public function getGenre()
     {
-        return $this->user;
+        return $this->genre;
     }
 
     /**
@@ -444,15 +513,5 @@ class Article {
         $this->genre = $genre;
 
         return $this;
-    }
-
-    /**
-     * Get genre
-     *
-     * @return \ecommerce\ArticleBundle\Entity\Genre 
-     */
-    public function getGenre()
-    {
-        return $this->genre;
     }
 }
