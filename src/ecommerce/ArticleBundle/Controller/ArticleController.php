@@ -93,6 +93,10 @@ class ArticleController extends Controller
         }
 
         $total = count($comments);
+        if ($total <= 0) {
+            $total = 1;
+        }
+        
         $moyenne = $resultat / $total;
 
 
