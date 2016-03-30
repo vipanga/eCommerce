@@ -39,6 +39,11 @@ class ArticleController extends Controller
 
     public function createAction()
     {
+        // yay! Use this to see if the user is logged in
+        if (!$this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY')) {
+            throw $this->createAccessDeniedException();
+        }
+        
         $article = new Article;
 
         // On crée le formulaire grâce à l'ArticleType
