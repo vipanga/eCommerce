@@ -32,7 +32,8 @@ class AccueilController extends Controller {
         $listOfItems[] = $materiaux;
 
         return $this->render('ecommerceAccueilBundle:Accueil:index.html.twig', array(
-            'listOfItems' => $listOfItems
+            'listOfItems' => $listOfItems,
+            'break' => true
         ));
 
         /*return $this->render('ecommerceAccueilBundle:Accueil:index.html.twig', array(
@@ -53,14 +54,6 @@ class AccueilController extends Controller {
     
     public function contactAction() {
         return $this->render('ecommerceAccueilBundle:Accueil:contact.html.twig');
-    }
-    
-    public function inscriptionAction() {
-        return $this->render('ecommerceAccueilBundle:Accueil:inscription.html.twig');
-    }
-    
-    public function categorieAction() {
-        return $this->render('ecommerceAccueilBundle:Accueil:categorie.html.twig');
     }
     
     public function error404Action() {

@@ -55,14 +55,18 @@
 
             <div class="container">
 
-                <div class="col-md-12">
-                    <ul class="breadcrumb">
-                        <li>
-                            <a href="#">High-Tech</a>
-                        </li>
-                        <li>A la Une Téléphonie, Mobilité</li>
-                    </ul>
-                </div>
+                {% set break = false %}
+                {% for article in items if not break %}
+                    <div class="col-md-12">
+                        <ul class="breadcrumb">
+                            <li>
+                                <a href="#">{{ article.genre.category.name }}</a>
+                            </li>
+                            <li>{{ article.genre.name }}</li>
+                        </ul>
+                    </div>
+                    {% set break = true %}
+                {% endfor %}
 
                 <div class="product-slider">
 

@@ -10,10 +10,6 @@ ecommerce_accueil_contact:
     path:     /contact
     defaults: { _controller: ecommerceAccueilBundle:Accueil:contact }
 
-ecommerce_accueil_inscription:
-    path:     /inscription
-    defaults: { _controller: ecommerceAccueilBundle:Accueil:inscription }
-
 ecommerce_accueil_error404:
     path:     /url-not-found
     defaults: { _controller: ecommerceAccueilBundle:Accueil:error404 }
