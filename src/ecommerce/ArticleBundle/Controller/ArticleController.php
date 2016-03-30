@@ -80,11 +80,26 @@ class ArticleController extends Controller
 
     public function detailAction(Article $article)
     {
+        $user = $article->getUser();
+        $comments = $this->getDoctrine()
+            ->getManager()
+            ->getRepository('ecommerceArticleBundle:Comment')
+            ->getUserComments($user);
+
+        $resultat = 0;
+
+        foreach ($comments as $comment) {
+            $resultat = $resultat + $comment->getNote();
+        }
+
+        $total = count($comments);
+        $moyenne = $resultat / $total;
+
 
         if ($article == null) {
             return $this->redirect($this->generateUrl('ecommerce_accueil_erreur404'));
         }
-        return $this->render('ecommerceArticleBundle:Article:detail.html.twig', array('article' => $article));
+        return $this->render('ecommerceArticleBundle:Article:detail.html.twig', array('article' => $article, 'moyenne' => $moyenne));
     }
 
     public function publicationsAction($page, $numberItemsPerPage)

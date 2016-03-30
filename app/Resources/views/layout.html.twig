@@ -23,10 +23,15 @@
 
     <!-- styles -->
     <link href="{{ asset('css/font-awesome.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/animate.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/owl.carousel.css') }}" rel="stylesheet">
     <link href="{{ asset('css/owl.theme.css') }}" rel="stylesheet">
+
+    <!-- star rating styles -->
+    <link href="{{ asset('css/star-rating.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/theme-krajee-fa.min.css') }}" rel="stylesheet">
 
     <!-- theme stylesheet -->
     <link href="{{ asset('css/style.default.css') }}" rel="stylesheet" id="theme-stylesheet">
@@ -318,6 +323,7 @@ _________________________________________________________ -->
 <!-- /#all -->
 <!-- *** SCRIPTS TO INCLUDE ***
 _________________________________________________________ -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 <script src="{{ asset('js/jquery-1.11.0.min.js') }}"></script>
 <script src="{{ asset('js/bootstrap.min.js') }}"></script>
 <script src="{{ asset('js/jquery.cookie.js') }}"></script>
@@ -326,9 +332,31 @@ _________________________________________________________ -->
 <script src="{{ asset('js/bootstrap-hover-dropdown.js') }}"></script>
 <script src="{{ asset('js/owl.carousel.min.js') }}"></script>
 <script src="{{ asset('js/front.js') }}"></script>
+
+<script src="{{ asset('js/star-rating.js') }}"></script>
+<script src="{{ asset('js/star-rating_locale_fr.js') }}"></script>
 <script>
     $(document).ready(function () {
         $('[data-toggle="tooltip"]').tooltip();
+    });
+    $("#ecommerce_articlebundle_commenttype_note").rating({
+        min: 0,
+        max: 5,
+        step: 0.5,
+        size: 'xs',
+        language: 'fr',
+        showClear: true,
+        clearValue: 0,
+        clearCaption: 'Zéro étoile'
+    });
+    $(".comment_note").rating({
+        min: 0,
+        max: 5,
+        step: 0.5,
+        size: 'xs',
+        language: 'fr',
+        showClear: false,
+        showCaption: false
     });
 </script>
 

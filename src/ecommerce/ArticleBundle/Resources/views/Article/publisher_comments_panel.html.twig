@@ -21,7 +21,12 @@ _________________________________________________________ -->
                         <h5>{{ comment.author.username }}</h5>
                         <p class="posted"><i class="fa fa-clock-o"></i> {{ comment.getDate()|date("m/d/Y") }}
                             à {{ comment.getDate()|date("H:i:s") }}</p>
-                        <p>{{ comment.getContent() }}</p>
+                        <p>
+                            {{ comment.getContent() }}<br/>
+                            <input class="comment_note rating rating-loading" value="{{ comment.getNote() }}" dir="ltr"
+                                   data-size="xs" disabled>
+                        </p>
+
                     </div>
                 </div>
                 <!-- /.comment -->
@@ -38,6 +43,8 @@ _________________________________________________________ -->
         </div>
         <!-- /#comments -->
 
+        <hr>
+
         <div id="comment-form" data-animate="fadeInUp">
 
             <h4>Donnez votre note</h4>
@@ -45,19 +52,6 @@ _________________________________________________________ -->
             {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
             <form action="{{ path('ecommerce_article_publisher_items', {'id': user.id}) }}" {{ form_enctype(form) }}
                   method="POST">
-                <div class="row">
-
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            {{ form_label(form.note) }}
-                            {{ form_widget(form.note, { 'attr': {'class': 'form-control', 'placeholder': 'Note sur 5' } }) }}
-                            <div class="has-error">
-                                {{ form_errors(form.note) }}
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
 
                 <div class="row">
                     <div class="col-sm-12">
@@ -71,11 +65,24 @@ _________________________________________________________ -->
                     </div>
                 </div>
 
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            {#{{ form_label(form.note) }}#}
+                            {{ form_widget(form.note, { 'attr': {'class': 'rating rating-loading' } }) }}
+                            <div class="has-error">
+                                {{ form_errors(form.note) }}
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
                 {{ form_rest(form) }}
 
                 <div class="row">
                     <div class="col-sm-12">
-                        <button class="btn btn-primary"><i class="fa fa-comment-o"></i> Post comment</button>
+                        <button class="btn btn-primary"><i class="fa fa-comment-o"></i> Poster commentaire</button>
                     </div>
                 </div>
             </form>

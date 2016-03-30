@@ -35,9 +35,9 @@ class Comment
     private $content;
 
     /**
-     * @var int
+     * @var float
      *
-     * @ORM\Column(name="note", type="integer")
+     * @ORM\Column(name="note", type="float")
      */
     private $note;
 
@@ -95,7 +95,7 @@ class Comment
     /**
      * Get note
      *
-     * @return integer 
+     * @return float 
      */
     public function getNote()
     {
@@ -105,7 +105,7 @@ class Comment
     /**
      * Set note
      *
-     * @param integer $note
+     * @param float $note
      * @return Comment
      */
     public function setNote($note)
@@ -141,7 +141,7 @@ class Comment
     /**
      * Get author
      *
-     * @return \ecommerce\UserBundle\Entity\User
+     * @return \ecommerce\UserBundle\Entity\User 
      */
     public function getAuthor()
     {
