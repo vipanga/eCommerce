@@ -22,9 +22,13 @@
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,500,700,300,100' rel='stylesheet' type='text/css'>
 
     <!-- styles -->
-    <link href="{{ asset('css/font-awesome.css') }}" rel="stylesheet">
-    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
-    <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    {#<link href="{{ asset('css/font-awesome.css') }}" rel="stylesheet">#}
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+          integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    {#<link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">#}
+
     <link href="{{ asset('css/animate.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/owl.carousel.css') }}" rel="stylesheet">
     <link href="{{ asset('css/owl.theme.css') }}" rel="stylesheet">
@@ -323,9 +327,13 @@ _________________________________________________________ -->
 <!-- /#all -->
 <!-- *** SCRIPTS TO INCLUDE ***
 _________________________________________________________ -->
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-<script src="{{ asset('js/jquery-1.11.0.min.js') }}"></script>
-<script src="{{ asset('js/bootstrap.min.js') }}"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+{#<script src="{{ asset('js/jquery-1.11.0.min.js') }}"></script>#}
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"
+        integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
+        crossorigin="anonymous"></script>
+{#<script src="{{ asset('js/bootstrap.min.js') }}"></script>#}
 <script src="{{ asset('js/jquery.cookie.js') }}"></script>
 <script src="{{ asset('js/waypoints.min.js') }}"></script>
 <script src="{{ asset('js/modernizr.js') }}"></script>
@@ -347,7 +355,7 @@ _________________________________________________________ -->
         language: 'fr',
         showClear: true,
         clearValue: 0,
-        clearCaption: 'Zéro étoile'
+        clearCaption: 'Zéro étoile',
     });
     $(".comment_note").rating({
         min: 0,

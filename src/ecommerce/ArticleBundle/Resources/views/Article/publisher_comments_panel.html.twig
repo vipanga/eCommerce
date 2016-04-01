@@ -23,8 +23,15 @@ _________________________________________________________ -->
                             à {{ comment.getDate()|date("H:i:s") }}</p>
                         <p>
                             {{ comment.getContent() }}<br/>
-                            <input class="comment_note rating rating-loading" value="{{ comment.getNote() }}" dir="ltr"
-                                   data-size="xs">
+                            <small>
+                                <small>
+                                    <small>
+                                        <small><input class="comment_note rating rating-loading"
+                                                      value="{{ comment.getNote() }}" dir="ltr"
+                                                      data-size="xs"></small>
+                                    </small>
+                                </small>
+                            </small>
                         </p>
 
                     </div>
@@ -69,7 +76,7 @@ _________________________________________________________ -->
                     <div class="col-sm-12">
                         <div class="form-group">
                             {#{{ form_label(form.note) }}#}
-                            {{ form_widget(form.note, { 'attr': {'class': 'rating rating-loading' } }) }}
+                            <small>{{ form_widget(form.note, { 'attr': {'class': 'rating rating-loading' } }) }}</small>
                             <div class="has-error" style="color: red">
                                 {{ form_errors(form.note) }}
                             </div>
