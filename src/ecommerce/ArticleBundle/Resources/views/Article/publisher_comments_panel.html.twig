@@ -57,7 +57,7 @@ _________________________________________________________ -->
             <h4>Donnez votre note</h4>
 
             {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-            <form action="{{ path('ecommerce_article_publisher_items', {'id': user.id}) }}" {{ form_enctype(form) }}
+            <form action="{{ path('ecommerce_article_publisher_items', {'id': user.id, 'username': user.username}) }}" {{ form_enctype(form) }}
                   method="POST">
 
                 <div class="row">

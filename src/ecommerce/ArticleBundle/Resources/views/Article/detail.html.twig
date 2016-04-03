@@ -81,7 +81,7 @@
                             <dd>{{ article.getProvince() }}</dd>
                             <dt>Vendeur :</dt>
                             <dd>
-                                <a href="{{ path('ecommerce_article_publisher_items', {'id': article.user.id}) }}">{{ article.user.username }}</a>
+                                <a href="{{ path('ecommerce_article_publisher_items', {'id': article.user.id, 'username': article.user.username}) }}">{{ article.user.username }}</a>
                             </dd>
                             <dt>Contact :</dt>
                             <dd>{{ article.user.telephone }}</dd>
@@ -91,7 +91,7 @@
                                     <small>
                                         <small>
                                             <small><input class="comment_note rating rating-loading"
-                                                          value="{{ moyenne }}" dir="ltr" data-size="xs"></small>
+                                                          value="{{ note }}" dir="ltr" data-size="xs"></small>
                                         </small>
                                     </small>
                                 </small>

@@ -6,7 +6,7 @@ ecommerce_user:
 
 ecommerce_article:
     resource: "@ecommerceArticleBundle/Resources/config/routing.yml"
-    prefix:   /article
+    prefix:   /shop
 
 ecommerce_accueil:
     resource: "@ecommerceAccueilBundle/Resources/config/routing.yml"

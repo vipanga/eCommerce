@@ -23,11 +23,11 @@
 
     <!-- styles -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-    {#<link href="{{ asset('css/font-awesome.css') }}" rel="stylesheet">#}
+    <link href="{{ asset('css/font-awesome.css') }}" rel="stylesheet">
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
           integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-    {#<link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">#}
+    <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
 
     <link href="{{ asset('css/animate.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/owl.carousel.css') }}" rel="stylesheet">
@@ -68,10 +68,10 @@ _________________________________________________________ -->
                         <a href="{{ path('fos_user_profile_show') }}">{{ app.user.username }}</a>
                     </li>
                     <li>
-                        <a href="{{ path('fos_user_security_logout') }}">Déconnexion</a>
+                        <a href="{{ path('ecommerce_article_publications') }}">Mes Articles</a>
                     </li>
                     <li>
-                        <a href="{{ path('ecommerce_article_publications') }}">Mes Articles</a>
+                        <a href="{{ path('fos_user_security_logout') }}">Déconnexion</a>
                     </li>
                 {% else %}
                     <li>
@@ -308,12 +308,12 @@ _________________________________________________________ -->
     <div id="copyright">
         <div class="container">
             <div class="col-md-6">
-                <p class="pull-left">© 2016 Lemondrop Technology.</p>
+                <p class="pull-left">© 2016 Watinu Technology.</p>
 
             </div>
             <div class="col-md-6">
                 <p class="pull-right">
-                    Site internet réalisé par <a href="http://lemondrop.tk">Lemondrop Technology</a> avec l'aide de <a
+                    Site internet réalisé par <a href="#">Watinu Technology</a> avec l'aide de <a
                             href="http://symfony.com">Symfony</a>
                     <!-- Not removing these links is part of the licence conditions of the template. Thanks for understanding :) -->
                 </p>
@@ -328,12 +328,12 @@ _________________________________________________________ -->
 <!-- *** SCRIPTS TO INCLUDE ***
 _________________________________________________________ -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
-{#<script src="{{ asset('js/jquery-1.11.0.min.js') }}"></script>#}
+<script src="{{ asset('js/jquery-1.11.0.min.js') }}"></script>
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"
         integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
         crossorigin="anonymous"></script>
-{#<script src="{{ asset('js/bootstrap.min.js') }}"></script>#}
+<script src="{{ asset('js/bootstrap.min.js') }}"></script>
 <script src="{{ asset('js/jquery.cookie.js') }}"></script>
 <script src="{{ asset('js/waypoints.min.js') }}"></script>
 <script src="{{ asset('js/modernizr.js') }}"></script>

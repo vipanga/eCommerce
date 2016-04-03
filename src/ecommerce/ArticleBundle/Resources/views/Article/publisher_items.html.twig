@@ -53,26 +53,26 @@
                                     <div class="products-number">
                                         <strong>Afficher</strong>
                                         {% if numberItemsPerPage == 12 %}
-                                            <a href="{{ path('ecommerce_article_publisher_items', {'id': user.id, 'numberItemsPerPage': 12}) }}"
+                                            <a href="{{ path('ecommerce_article_publisher_items', {'id': user.id, 'username': user.username, 'numberItemsPerPage': 12}) }}"
                                                class="btn btn-default btn-sm btn-primary">12</a>
                                         {% else %}
-                                            <a href="{{ path('ecommerce_article_publisher_items', {'id': user.id, 'numberItemsPerPage': 12}) }}"
+                                            <a href="{{ path('ecommerce_article_publisher_items', {'id': user.id, 'username': user.username, 'numberItemsPerPage': 12}) }}"
                                                class="btn btn-default btn-sm">12</a>
                                         {% endif %}
 
                                         {% if numberItemsPerPage == 24 %}
-                                            <a href="{{ path('ecommerce_article_publisher_items', {'id': user.id, 'numberItemsPerPage': 24}) }}"
+                                            <a href="{{ path('ecommerce_article_publisher_items', {'id': user.id, 'username': user.username, 'numberItemsPerPage': 24}) }}"
                                                class="btn btn-default btn-sm btn-primary">24</a>
                                         {% else %}
-                                            <a href="{{ path('ecommerce_article_publisher_items', {'id': user.id, 'numberItemsPerPage': 24}) }}"
+                                            <a href="{{ path('ecommerce_article_publisher_items', {'id': user.id, 'username': user.username, 'numberItemsPerPage': 24}) }}"
                                                class="btn btn-default btn-sm">24</a>
                                         {% endif %}
 
                                         {% if numberItemsPerPage == 48 %}
-                                            <a href="{{ path('ecommerce_article_publisher_items', {'id': user.id, 'numberItemsPerPage': 48}) }}"
+                                            <a href="{{ path('ecommerce_article_publisher_items', {'id': user.id, 'username': user.username, 'numberItemsPerPage': 48}) }}"
                                                class="btn btn-default btn-sm btn-primary">48</a>
                                         {% else %}
-                                            <a href="{{ path('ecommerce_article_publisher_items', {'id': user.id, 'numberItemsPerPage': 48}) }}"
+                                            <a href="{{ path('ecommerce_article_publisher_items', {'id': user.id, 'username': user.username, 'numberItemsPerPage': 48}) }}"
                                                class="btn btn-default btn-sm">48</a>
                                         {% endif %}
 
@@ -176,7 +176,7 @@
                     {# On utilise la fonction range(a, b) qui crée un tableau de valeurs entre a et b #}
                     {% for p in range(1, nombrePage) %}
                         <li{% if p == page %} class="active"{% endif %}>
-                            <a href="{{ path('ecommerce_article_publisher_items', {'id': user.id, 'numberItemsPerPage': numberItemsPerPage, 'page': p}) }}">{{ p }}</a>
+                            <a href="{{ path('ecommerce_article_publisher_items', {'id': user.id, 'username': user.username, 'numberItemsPerPage': numberItemsPerPage, 'page': p}) }}">{{ p }}</a>
                         </li>
                     {% endfor %}
 

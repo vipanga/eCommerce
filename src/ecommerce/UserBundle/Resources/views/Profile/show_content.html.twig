@@ -28,27 +28,29 @@ _________________________________________________________ -->
 
     <div class="col-md-9">
         <div class="box">
-            <h1>Profile</h1>
-            <p class="lead">Informations générales.</p>
+            {#<h1>Profile</h1>#}
+            {#<p class="lead">Informations générales.</p>#}
 
-            <hr>
+            {#<hr>#}
 
             <h3 class="text-center">Détails personnel</h3>
+
+            <hr>
 
             <div class="row">
                 <div class="col-sm-6">
                     <dl class="dl-horizontal">
                         <dt>{{ 'profile.show.username'|trans }} :</dt>
                         <dd>{{ user.username }}</dd>
-                        
+
                         <dt>{{ 'profile.show.email'|trans }} :</dt>
                         <dd>{{ user.email }}</dd>
-                        
+
                         <dt>{{ 'profile.show.telephone'|trans }} :</dt>
                         <dd>{{ user.getTelephone() }}</dd>
-                        
+
                         <dt>{{ 'profile.show.last_login'|trans }} :</dt>
-                        <dd>{{ user.lastLogin|date('d-M-Y H:i:s') }}</dd>                        
+                        <dd>{{ user.lastLogin|date('d-M-Y H:i:s') }}</dd>
 
                         <dt>{{ 'profile.show.created'|trans }} :</dt>
                         <dd>{{ user.getCreated()|date('d-M-Y') }}</dd>
@@ -67,7 +69,7 @@ _________________________________________________________ -->
 
                         <dt>{{ 'profile.show.gender'|trans }} :</dt>
                         <dd>{{ user.getGender() }}</dd>
-                        
+
                         <dt>{{ 'profile.show.city'|trans }} :</dt>
                         <dd>{{ user.getCity() }}</dd>
 
@@ -78,20 +80,44 @@ _________________________________________________________ -->
                         <dd>{{ user.getAddress() }}</dd>
                     </dl>
                 </div>
+
+                <div class="col-sm-12" id="details">
+                    <div class="social col-sm-6">
+                        <h4>Votre Stand</h4>
+                        <h5>
+                            <a href="{{ path('ecommerce_article_publisher_items', {'id': user.getId(), 'username': user.getUserName()}) }}">
+                                http://www.watinu.com/shop/u/{{ user.getId() }}/{{ user.getUserName() }}
+                            </a>
+                        </h5>
+                    </div>
+
+                    <div class="social col-sm-6">
+                        <h4>Partager avec les amis</h4>
+                        <p>
+                            <a href="#" class="external facebook" data-animate-hover="pulse"><i class="fa fa-facebook"></i></a>
+                            <a href="#" class="external gplus" data-animate-hover="pulse"><i class="fa fa-google-plus"></i></a>
+                            <a href="#" class="external twitter" data-animate-hover="pulse"><i class="fa fa-twitter"></i></a>
+                            <a href="#" class="email" data-animate-hover="pulse"><i class="fa fa-envelope"></i></a>
+                        </p>
+                    </div>
+                </div>
             </div>
 
             <hr>
 
             <div class="row">
                 <div class="col-sm-6 text-center">
-                    <a href="{{ path('fos_user_profile_edit') }}" class="btn btn-primary"><i class="fa fa-save"></i> Modifier mes infos</a>
+                    <a href="{{ path('fos_user_profile_edit') }}" class="btn btn-primary"><i class="fa fa-save"></i>
+                        Modifier mes infos</a>
                 </div>
                 <div class="col-sm-6 text-center">
-                    <a href="{{ path('fos_user_change_password') }}" class="btn btn-primary"><i class="fa fa-save"></i> Changer mot de passe</a>
+                    <a href="{{ path('fos_user_change_password') }}" class="btn btn-primary"><i class="fa fa-save"></i>
+                        Changer mot de passe</a>
                 </div>
             </div>
             <!-- /.row -->
         </div>
+
     </div>
 
 </div>

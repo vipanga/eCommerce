@@ -17,12 +17,17 @@ use ecommerce\ArticleBundle\Form\CommentType;
 class ArticleController extends Controller
 {
 
+    /*
+     * Affichage de tous les articles selon la catégorie sélectionnée
+     *
+     * */
     public function genreAction(Genre $genre, $numberItemsPerPage, $page)
     {
         if ($genre == null) {
-            return $this->redirect($this->generateUrl('ecommerce_accueil_erreur404'));
+            return $this->redirect($this->generateUrl('ecommerce_accueil_error404'));
         }
 
+        // Sélection des articles de la catégorie sélectionnée
         $articles = $this->getDoctrine()
             ->getManager()
             ->getRepository('ecommerceArticleBundle:Article')
@@ -37,13 +42,17 @@ class ArticleController extends Controller
         ));
     }
 
+    /*
+     * Formulaire pour la création d'un article
+     *
+     * */
     public function createAction()
     {
-        // yay! Use this to see if the user is logged in
+        // On vérifie si l'utilisateur est connecté, sinon on le redirige sur le formulaire de connection
         if (!$this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY')) {
             throw $this->createAccessDeniedException();
         }
-        
+
         $article = new Article;
 
         // On crée le formulaire grâce à l'ArticleType
@@ -58,7 +67,6 @@ class ArticleController extends Controller
             $form->bind($request);
 
             // On vérifie que les valeurs entrées sont correctes
-            // (Nous verrons la validation des objets en détail dans le prochain chapitre)
             if ($form->isValid()) {
                 $user = $this->getUser();
                 $article->setUser($user);
@@ -78,59 +86,35 @@ class ArticleController extends Controller
         return $this->render('ecommerceArticleBundle:Article:create.html.twig', array('form' => $form->createView(),));
     }
 
+    /*
+     * Affichage des détails de l'article sélectionné
+     *
+     * */
     public function detailAction(Article $article)
     {
         $user = $article->getUser();
-        $comments = $this->getDoctrine()
-            ->getManager()
-            ->getRepository('ecommerceArticleBundle:Comment')
-            ->getUserComments($user);
-
-        $resultat = 0;
-
-        foreach ($comments as $comment) {
-            $resultat = $resultat + $comment->getNote();
-        }
-
-        $total = count($comments);
-        if ($total <= 0) {
-            $total = 1;
-        }
-        
-        $moyenne = $resultat / $total;
-
+        $note = $user->getNote();
 
         if ($article == null) {
-            return $this->redirect($this->generateUrl('ecommerce_accueil_erreur404'));
+            return $this->redirect($this->generateUrl('ecommerce_accueil_error404'));
         }
-        return $this->render('ecommerceArticleBundle:Article:detail.html.twig', array('article' => $article, 'moyenne' => $moyenne));
+        return $this->render('ecommerceArticleBundle:Article:detail.html.twig', array('article' => $article, 'note' => $note));
     }
 
-    public function publicationsAction($page, $numberItemsPerPage)
-    {
-        $user = $this->getUser();
-        $articles = $this->getDoctrine()
-            ->getManager()
-            ->getRepository('ecommerceArticleBundle:Article')
-            ->getUserArticles($numberItemsPerPage, $page, $user);
-
-        return $this->render('ecommerceArticleBundle:Article:publications.html.twig', array(
-            'articles' => $articles,
-            'page' => $page,
-            'numberItemsPerPage' => $numberItemsPerPage,
-            'nombrePage' => ceil(count($articles) / $numberItemsPerPage)
-        ));
-    }
-
+    /*
+     * Affichage de tous les articles du Stand du vendeur
+     *
+     * */
     public function publisherItemsAction(User $user, $numberItemsPerPage, $page)
     {
+        // On récupère tous les articles du stand du vendeur
         $articles = $this->getDoctrine()
             ->getManager()
             ->getRepository('ecommerceArticleBundle:Article')
             ->getUserArticles($numberItemsPerPage, $page, $user);
 
         $comment = new Comment();
-        // On crée le formulaire grâce à l'ArticleType
+        // On crée le formulaire grâce à CommentType
         $form = $this->createForm(new CommentType(), $comment);
 
         // On récupère la requête
@@ -142,23 +126,34 @@ class ArticleController extends Controller
             $form->bind($request);
 
             // On vérifie que les valeurs entrées sont correctes
-            // (Nous verrons la validation des objets en détail dans le prochain chapitre)
             if ($form->isValid()) {
                 $author = $this->getUser();
                 $comment->setUser($user);
                 $comment->setAuthor($author);
-                // On enregistre notre objet $article dans la base de données
+                // On enregistre notre objet $comment dans la base de données
                 $em = $this->getDoctrine()->getManager();
                 $em->persist($comment);
+                $em->flush();
+
+                // On calcul la moyenne des notes du vendeur et on l'enregistre dans la base de données
+                $user->setNote($this->moyenneNote($user));
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($user);
                 $em->flush();
 
                 // On définit un message flash
                 $this->get('session')->getFlashBag()->add('info', 'Commentaire bien ajouté');
 
-                return $this->redirect($this->generateUrl('ecommerce_article_publisher_items', array('id' => $user->getId())));
+                return $this->redirect($this->generateUrl('ecommerce_article_publisher_items',
+                    array(
+                        'id' => $user->getId(),
+                        'username' => $user->getUsername()
+                    )
+                ));
             }
         }
 
+        // On récupère ici tous les commentaires sur le vendeur
         $comments = $this->getDoctrine()
             ->getManager()
             ->getRepository('ecommerceArticleBundle:Comment')
@@ -175,8 +170,53 @@ class ArticleController extends Controller
         ));
     }
 
+    /*
+     * Administration du stand du vendeur.
+     * C'est à partir d'ici qu'on pourra lancer la modification
+     * ou soit la suppression des articles publiés par le vendeur
+     *
+     * */
+    public function publicationsAction($page, $numberItemsPerPage)
+    {
+        // On vérifie si l'utilisateur est connecté, sinon on le redirige sur le formulaire de connection
+        if (!$this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY')) {
+            throw $this->createAccessDeniedException();
+        }
+
+        $user = $this->getUser();
+        $articles = $this->getDoctrine()
+            ->getManager()
+            ->getRepository('ecommerceArticleBundle:Article')
+            ->getUserArticles($numberItemsPerPage, $page, $user);
+
+        return $this->render('ecommerceArticleBundle:Article:publications.html.twig', array(
+            'articles' => $articles,
+            'page' => $page,
+            'numberItemsPerPage' => $numberItemsPerPage,
+            'nombrePage' => ceil(count($articles) / $numberItemsPerPage)
+        ));
+    }
+
+    /*
+     * C'est ici qu'on pourra modifier l'article publié par le vendeur
+     *
+     * */
     public function editAction(Article $article)
     {
+        $user1 = $this->getUser();
+        $user2 = $article->getUser();
+
+        // On vérifie si l'utilisateur est connecté, sinon on le redirige sur le formulaire de connection
+        if (!$this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY')) {
+            throw $this->createAccessDeniedException();
+        }
+        // On vérifie si l'utilisateur n'essaie pas de modifier un article qui ne lui appartient pas
+        // Si c'est le cas, on va le rediriger sur une page d'erreur
+        elseif ($user1->getId() != $user2->getId()){
+            // On redirige vers la page de visualisation de l'article modifié
+            return $this->redirect($this->generateUrl('ecommerce_accueil_error404'));
+        }
+
         // On utiliser le ArticleEditType
         $form = $this->createForm(new ArticleType(), $article);
 
@@ -205,8 +245,26 @@ class ArticleController extends Controller
         ));
     }
 
+    /*
+     * C'est ici qu'on pourra supprimer l'article publié par le vendeur
+     *
+     * */
     public function deleteAction(Article $article)
     {
+        $user1 = $this->getUser();
+        $user2 = $article->getUser();
+
+        // On vérifie si l'utilisateur est connecté, sinon on le redirige sur le formulaire de connection
+        if (!$this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY')) {
+            throw $this->createAccessDeniedException();
+        }
+        // On vérifie si l'utilisateur n'essaie pas de supprimer un article qui ne lui appartient pas
+        // Si c'est le cas, on va le rediriger sur une page d'erreur
+        elseif ($user1->getId() != $user2->getId()){
+            // On redirige vers la page de visualisation de l'article modifié
+            return $this->redirect($this->generateUrl('ecommerce_accueil_error404'));
+        }
+
         // On crée un formulaire vide, qui ne contiendra que le champ CSRF
         // Cela permet de protéger la suppression d'article contre cette faille
         $form = $this->createFormBuilder()->getForm();
@@ -234,6 +292,34 @@ class ArticleController extends Controller
             'article' => $article,
             'form' => $form->createView()
         ));
+    }
+
+    /*
+     * Cette fonction fait des calculs et renvoie la moyenne des notes pour
+     * l'utilisateur passé en paramètre
+     *
+     * */
+    function moyenneNote(User $user)
+    {
+        $comments = $this->getDoctrine()
+            ->getManager()
+            ->getRepository('ecommerceArticleBundle:Comment')
+            ->getUserComments($user);
+
+        $resultat = 0;
+
+        foreach ($comments as $comment) {
+            $resultat = $resultat + $comment->getNote();
+        }
+
+        $total = count($comments);
+        if ($total <= 0) {
+            $total = 1;
+        }
+
+        $moyenne = $resultat / $total;
+
+        return $moyenne;
     }
 
 }
