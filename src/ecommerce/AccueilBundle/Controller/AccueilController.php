@@ -4,6 +4,8 @@
 
 namespace ecommerce\AccueilBundle\Controller;
 
+use ecommerce\ArticleBundle\Entity\Search;
+use ecommerce\ArticleBundle\Form\SearchType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class AccueilController extends Controller {
@@ -44,12 +46,17 @@ class AccueilController extends Controller {
     }
 
     public function menuAction() {
+        $search = new Search();
+
+        // On crée le formulaire grâce à l'SearchType
+        $form = $this->createForm(new SearchType(), $search);
+
         $categories = $this->getDoctrine()
                 ->getManager()
                 ->getRepository('ecommerceArticleBundle:Category')
                 ->getCategories();
-        
-        return $this->render('ecommerceAccueilBundle:Accueil:menu.html.twig', array( 'categories' => $categories ));
+
+        return $this->render('ecommerceAccueilBundle:Accueil:menu.html.twig', array('categories' => $categories, 'form' => $form->createView()));
     }
     
     public function contactAction() {

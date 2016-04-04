@@ -42,3 +42,11 @@ ecommerce_article_edit:
     defaults: { _controller: ecommerceArticleBundle:Article:edit }
     requirements:
         id:  \d+
+
+ecommerce_article_search:
+    path:     /s/{numberItemsPerPage}/{page}/{item}
+    defaults: { _controller: ecommerceArticleBundle:Article:search, numberItemsPerPage: 12, page: 1, item: null }
+    requirements:
+            numberItemsPerPage:  \d+
+            page:  \d+
+            item: \w+

@@ -10,9 +10,11 @@ use ecommerce\ArticleBundle\Entity\Comment;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use ecommerce\ArticleBundle\Entity\Article;
 use ecommerce\ArticleBundle\Entity\Genre;
+use ecommerce\ArticleBundle\Entity\Search;
 use ecommerce\UserBundle\Entity\User;
 use ecommerce\ArticleBundle\Form\ArticleType;
 use ecommerce\ArticleBundle\Form\CommentType;
+use ecommerce\ArticleBundle\Form\SearchType;
 
 class ArticleController extends Controller
 {
@@ -102,6 +104,63 @@ class ArticleController extends Controller
     }
 
     /*
+     * Fonction de recherche d'un article
+     *
+     * */
+    public function searchAction($numberItemsPerPage, $page, $item)
+    {
+        $search = new Search();
+
+        // On crée le formulaire grâce à l'SearchType
+        $form = $this->createForm(new SearchType(), $search);
+
+        // On récupère la requête
+        $request = $this->getRequest();
+
+        // On vérifie qu'elle est de type POST
+        if ($request->getMethod() == 'POST') {
+            // On fait le lien Requête <-> Formulaire
+            $form->bind($request);
+
+            // On vérifie que les valeurs entrées sont correctes
+            if ($form->isValid()) {
+                // On enregistre notre objet $search dans la base de données
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($search);
+                $em->flush();
+
+                $item = $search->getItem();
+                // Sélection des articles de la catégorie sélectionnée
+                $articles = $this->getDoctrine()
+                    ->getManager()
+                    ->getRepository('ecommerceArticleBundle:Article')
+                    ->getSearchArticles($numberItemsPerPage, $page, $item);
+
+                return $this->render('ecommerceArticleBundle:Article:search.html.twig', array(
+                    'articles' => $articles,
+                    'item' => $item,
+                    'page' => $page,
+                    'numberItemsPerPage' => $numberItemsPerPage,
+                    'nombrePage' => ceil(count($articles) / $numberItemsPerPage)
+                ));
+            }
+        }
+
+        $articles = $this->getDoctrine()
+            ->getManager()
+            ->getRepository('ecommerceArticleBundle:Article')
+            ->getSearchArticles($numberItemsPerPage, $page, $item);
+
+        return $this->render('ecommerceArticleBundle:Article:search.html.twig', array(
+            'articles' => $articles,
+            'item' => $item,
+            'page' => $page,
+            'numberItemsPerPage' => $numberItemsPerPage,
+            'nombrePage' => ceil(count($articles) / $numberItemsPerPage)
+        ));
+    }
+
+    /*
      * Affichage de tous les articles du Stand du vendeur
      *
      * */
@@ -176,6 +235,35 @@ class ArticleController extends Controller
      * ou soit la suppression des articles publiés par le vendeur
      *
      * */
+
+    function moyenneNote(User $user)
+    {
+        $comments = $this->getDoctrine()
+            ->getManager()
+            ->getRepository('ecommerceArticleBundle:Comment')
+            ->getUserComments($user);
+
+        $resultat = 0;
+
+        foreach ($comments as $comment) {
+            $resultat = $resultat + $comment->getNote();
+        }
+
+        $total = count($comments);
+        if ($total <= 0) {
+            $total = 1;
+        }
+
+        $moyenne = $resultat / $total;
+
+        return $moyenne;
+    }
+
+    /*
+     * C'est ici qu'on pourra modifier l'article publié par le vendeur
+     *
+     * */
+
     public function publicationsAction($page, $numberItemsPerPage)
     {
         // On vérifie si l'utilisateur est connecté, sinon on le redirige sur le formulaire de connection
@@ -198,9 +286,10 @@ class ArticleController extends Controller
     }
 
     /*
-     * C'est ici qu'on pourra modifier l'article publié par le vendeur
+     * C'est ici qu'on pourra supprimer l'article publié par le vendeur
      *
      * */
+
     public function editAction(Article $article)
     {
         $user1 = $this->getUser();
@@ -246,9 +335,11 @@ class ArticleController extends Controller
     }
 
     /*
-     * C'est ici qu'on pourra supprimer l'article publié par le vendeur
+     * Cette fonction fait des calculs et renvoie la moyenne des notes pour
+     * l'utilisateur passé en paramètre
      *
      * */
+
     public function deleteAction(Article $article)
     {
         $user1 = $this->getUser();
@@ -292,34 +383,6 @@ class ArticleController extends Controller
             'article' => $article,
             'form' => $form->createView()
         ));
-    }
-
-    /*
-     * Cette fonction fait des calculs et renvoie la moyenne des notes pour
-     * l'utilisateur passé en paramètre
-     *
-     * */
-    function moyenneNote(User $user)
-    {
-        $comments = $this->getDoctrine()
-            ->getManager()
-            ->getRepository('ecommerceArticleBundle:Comment')
-            ->getUserComments($user);
-
-        $resultat = 0;
-
-        foreach ($comments as $comment) {
-            $resultat = $resultat + $comment->getNote();
-        }
-
-        $total = count($comments);
-        if ($total <= 0) {
-            $total = 1;
-        }
-
-        $moyenne = $resultat / $total;
-
-        return $moyenne;
     }
 
 }

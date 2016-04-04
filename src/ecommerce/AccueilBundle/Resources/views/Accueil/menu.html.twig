@@ -108,9 +108,16 @@ _________________________________________________________ -->
 
         <div class="collapse clearfix" id="search">
 
-            <form class="navbar-form" role="search">
+            <form class="navbar-form" role="search"
+                  action="{{ path('ecommerce_article_search') }}" {{ form_enctype(form) }} method="POST">
                 <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Recherche">
+                    {{ form_widget(form.item, { 'attr': {'class': 'form-control', 'placeholder': 'Rechercher' } }) }}
+                    <div class="has-error" style="color: red">
+                        {{ form_errors(form.item) }}
+                    </div>
+
+                    {{ form_rest(form) }}
+
                     <span class="input-group-btn">
 
                         <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
