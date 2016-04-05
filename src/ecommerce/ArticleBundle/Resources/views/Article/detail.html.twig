@@ -3,7 +3,7 @@
 {% extends "ecommerceArticleBundle::layout.html.twig" %}
 
 {% block titre %}
-    {{ article.getNameItem() }} - {{ parent() }}
+    Acheter {{ article.getNameItem() }} - {{ parent() }}
 {% endblock %}
 
 {% block active %}active{% endblock %}
@@ -35,15 +35,17 @@
 
         <div class="col-md-9">
 
-            <div class="row" id="productMain">
+            <div itemscope itemtype="http://schema.org/Product" class="row" id="productMain">
                 <div class="col-sm-6">
                     <div id="mainImage">
                         {# On vérifie qu'une image est bien associée à l'article #}
                         {% if article.image is not null %}
-                            <img src="{{ asset(article.image.webPath) }}" alt="{{ article.image.alt }}" width="100%"
+                            <img itemprop="image" src="{{ asset(article.image.webPath) }}"
+                                 alt="{{ article.getNameItem() }}" width="100%"
                                  class="img-responsive">
                         {% else %}
-                            <img src="{{ asset('images/detailbig2.jpg') }}" alt="{{ article.getNameItem() }}"
+                            <img itemprop="image" src="{{ asset('images/detailbig2.jpg') }}"
+                                 alt="{{ article.getNameItem() }}"
                                  width="100%" class="img-responsive">
                         {% endif %}
 
@@ -67,8 +69,21 @@
 
                 <div class="col-sm-6">
                     <div class="box">
-                        <h1 class="text-center">{{ article.getNameItem() }}</h1>
-                        <p class="price">Prix : {{ article.getPrice() }} Fc</p>
+                        <h1 class="text-center">
+                            <span itemprop="name">
+                                {{ article.getNameItem() }}
+                            </span>
+                        </h1>
+                        <div itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+                            <p class="price">
+                                <span itemprop="priceCurrency" content="USD">
+                                    Prix: $
+                                </span>
+                                <span itemprop="price" content="{{ article.getPrice() }}">
+                                    {{ article.getPrice() }}
+                                </span>
+                            </p>
+                        </div>
 
                         <dl class="dl-horizontal">
                             <dt>Etat :</dt>
@@ -81,21 +96,36 @@
                             <dd>{{ article.getProvince() }}</dd>
                             <dt>Vendeur :</dt>
                             <dd>
-                                <a href="{{ path('ecommerce_article_publisher_items', {'id': article.user.id, 'username': article.user.username}) }}">{{ article.user.username }}</a>
+                                <a href="{{ path('ecommerce_article_publisher_items', {'id': article.user.id, 'username': article.user.username}) }}">
+                                    <span itemprop="author">
+                                        {{ article.user.username }}
+                                    </span>
+                                </a>
                             </dd>
                             <dt>Contact :</dt>
                             <dd>{{ article.user.telephone }}</dd>
+                            <dt>Date publication :</dt>
+                            <dd>
+                                <meta itemprop="datePublished"
+                                      content="{{ article.getDatepublication()|date('d-M-Y') }}">{{ article.getDatepublication()|date('d-M-Y') }}
+                            </dd>
+                            <hr>
                             <dt>Note vendeur :</dt>
                             <dd>
                                 <small>
                                     <small>
                                         <small>
-                                            <small><input class="comment_note rating rating-loading"
-                                                          value="{{ note }}" dir="ltr" data-size="xs"></small>
+                                            <small>
+                                                <div itemprop="aggregateRating" itemscope
+                                                     itemtype="http://schema.org/AggregateRating">
+                                                    <span itemprop="ratingValue">{{ note }}</span>
+                                                </div>
+                                            </small>
                                         </small>
                                     </small>
                                 </small>
                             </dd>
+
                         </dl>
 
 
@@ -128,7 +158,11 @@
             <div class="box" id="details">
                 <p>
                 <h4>Détails du produit</h4>
-                <p>{{ article.getDescription() }}</p>
+                <p>
+                    <span itemprop="description">
+                        {{ article.getDescription() }}
+                    </span>
+                </p>
 
                 <hr>
                 <div class="social">

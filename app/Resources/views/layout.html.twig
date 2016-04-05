@@ -47,14 +47,6 @@
 
     <link rel="shortcut icon" href="{{ asset('images/favicon.png') }}">
 
-    <!-- Place this tag in your head or just before your close body tag. -->
-    <script src="https://apis.google.com/js/platform.js" async defer>
-        {
-            lang: 'fr'
-        }
-    </script>
-
-
 </head>
 
 <body>
@@ -334,6 +326,13 @@ _________________________________________________________ -->
 <!-- /#all -->
 <!-- *** SCRIPTS TO INCLUDE ***
 _________________________________________________________ -->
+<!-- Place this tag in your head or just before your close body tag. -->
+<script src="https://apis.google.com/js/platform.js" async defer>
+    {
+        lang: 'fr'
+    }
+</script>
+
 <div id="fb-root"></div>
 <script>
     (function (d, s, id) {
@@ -402,6 +401,33 @@ _________________________________________________________ -->
         displayOnly: true
     });
 </script>
+
+{% if googlemap is defined %}
+    <script>
+        function initMap() {
+            var mapDiv = document.getElementById('map');
+            var myLatLng = {lat: -10.71136628894856, lng: 25.49554770421572};
+
+            var map = new google.maps.Map(mapDiv, {
+                center: myLatLng,
+                zoom: 16
+            });
+
+            // Create a marker and set its position.
+            var marker = new google.maps.Marker({
+                map: map,
+                position: myLatLng,
+                title: 'Watinu Offices !'
+            });
+
+        }
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?callback=initMap"
+            async defer>
+
+    </script>
+{% endif %}
+
 
 
 </body>

@@ -60,7 +60,8 @@ class AccueilController extends Controller {
     }
     
     public function contactAction() {
-        return $this->render('ecommerceAccueilBundle:Accueil:contact.html.twig');
+        $googlemap = true;
+        return $this->render('ecommerceAccueilBundle:Accueil:contact.html.twig', array('googlemap' => $googlemap));
     }
     
     public function error404Action() {

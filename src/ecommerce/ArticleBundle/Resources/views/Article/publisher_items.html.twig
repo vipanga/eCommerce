@@ -98,17 +98,17 @@
 
                 {% for article in articles %}
                     <div class="col-md-3 col-sm-4 col-xs-6">
-                        <div class="product">
+                        <div itemscope itemtype="http://schema.org/Product" class="product">
                             <div class="flip-container">
                                 <div class="flipper">
                                     <div class="front">
                                         <a href="{{ path('ecommerce_article_detail', {'id': article.id, 'slug':article.slug}) }}">
                                             {# On vérifie qu'une image est bien associée à l'article #}
                                             {% if article.image is not null %}
-                                                <img src="{{ asset(article.image.webPath) }}"
-                                                     alt="{{ article.image.alt }}" class="img-responsive">
+                                                <img itemprop="image" src="{{ asset(article.image.webPath) }}"
+                                                     alt="{{ article.getNameItem() }}" class="img-responsive">
                                             {% else %}
-                                                <img src="{{ asset('images/detailbig2.jpg') }}"
+                                                <img itemprop="image" src="{{ asset('images/detailbig2.jpg') }}"
                                                      alt="{{ article.getNameItem() }}" class="img-responsive">
                                             {% endif %}
                                         </a>
@@ -117,10 +117,10 @@
                                         <a href="{{ path('ecommerce_article_detail', {'id': article.id, 'slug':article.slug}) }}">
                                             {# On vérifie qu'une image est bien associée à l'article #}
                                             {% if article.image is not null %}
-                                                <img src="{{ asset(article.image.webPath) }}"
-                                                     alt="{{ article.image.alt }}" class="img-responsive">
+                                                <img itemprop="image" src="{{ asset(article.image.webPath) }}"
+                                                     alt="{{ article.getNameItem() }}" class="img-responsive">
                                             {% else %}
-                                                <img src="{{ asset('images/detailbig2.jpg') }}"
+                                                <img itemprop="image" src="{{ asset('images/detailbig2.jpg') }}"
                                                      alt="{{ article.getNameItem() }}" class="img-responsive">
                                             {% endif %}
                                         </a>
@@ -129,14 +129,22 @@
                             </div>
                             <a href="{{ path('ecommerce_article_detail', {'id': article.id, 'slug':article.slug}) }}"
                                class="invisible">
-                                <img src="{{ asset('images/product2.jpg') }}" alt="" class="img-responsive">
+                                <img itemprop="image" src="{{ asset('images/product2.jpg') }}" alt=""
+                                     class="img-responsive">
                             </a>
                             <div class="text">
                                 <h3>
-                                    <a href="{{ path('ecommerce_article_detail', {'id': article.id, 'slug':article.slug}) }}">{{ article.getNameItem() }}</a>
+                                    <a href="{{ path('ecommerce_article_detail', {'id': article.id, 'slug':article.slug}) }}">
+                                        <span itemprop="name">{{ article.getNameItem() }}</span>
+                                    </a>
                                 </h3>
                                 <p class="price">
-                                    <del>$280</del> {{ article.getPrice() }} Fc
+                                    <span itemprop="priceCurrency" content="USD">
+                                        $
+                                    </span>
+                                    <span itemprop="price" content="{{ article.getPrice() }}">
+                                        {{ article.getPrice() }}
+                                    </span>
                                 </p>
                             </div>
                             <!-- /.text -->

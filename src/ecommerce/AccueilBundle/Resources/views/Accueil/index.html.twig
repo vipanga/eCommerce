@@ -72,30 +72,29 @@
 
                     {% for article in items %}
                         <div class="item">
-                            <div class="product">
+                            <div itemscope itemtype="http://schema.org/Product" class="product">
                                 <div class="flip-container">
                                     <div class="flipper">
                                         <div class="front">
                                             <a href="{{ path('ecommerce_article_detail', {'id': article.id, 'slug':article.slug}) }}">
                                                 {# On vérifie qu'une image est bien associée à l'article #}
                                                 {% if article.image is not null %}
-                                                    <img src="{{ asset(article.image.webPath) }}"
-                                                         alt="{{ article.image.alt }}" class="img-responsive">
+                                                    <img itemprop="image" src="{{ asset(article.image.webPath) }}"
+                                                         alt="{{ article.getNameItem() }}" class="img-responsive">
                                                 {% else %}
-                                                    <img src="{{ asset('images/detailbig2.jpg') }}"
+                                                    <img itemprop="image" src="{{ asset('images/detailbig2.jpg') }}"
                                                          alt="{{ article.getNameItem() }}" class="img-responsive">
                                                 {% endif %}
-
                                             </a>
                                         </div>
                                         <div class="back">
                                             <a href="{{ path('ecommerce_article_detail', {'id': article.id, 'slug':article.slug}) }}">
                                                 {# On vérifie qu'une image est bien associée à l'article #}
                                                 {% if article.image is not null %}
-                                                    <img src="{{ asset(article.image.webPath) }}"
-                                                         alt="{{ article.image.alt }}" class="img-responsive">
+                                                    <img itemprop="image" src="{{ asset(article.image.webPath) }}"
+                                                         alt="{{ article.getNameItem() }}" class="img-responsive">
                                                 {% else %}
-                                                    <img src="{{ asset('images/detailbig2.jpg') }}"
+                                                    <img itemprop="image" src="{{ asset('images/detailbig2.jpg') }}"
                                                          alt="{{ article.getNameItem() }}" class="img-responsive">
                                                 {% endif %}
                                             </a>
@@ -106,10 +105,10 @@
                                    class="invisible">
                                     {# On vérifie qu'une image est bien associée à l'article #}
                                     {% if article.image is not null %}
-                                        <img src="{{ asset(article.image.webPath) }}" alt="{{ article.image.alt }}"
-                                             class="img-responsive">
+                                        <img itemprop="image" src="{{ asset(article.image.webPath) }}"
+                                             alt="{{ article.getNameItem() }}" class="img-responsive">
                                     {% else %}
-                                        <img src="{{ asset('images/detailbig2.jpg') }}"
+                                        <img itemprop="image" src="{{ asset('images/detailbig2.jpg') }}"
                                              alt="{{ article.getNameItem() }}" class="img-responsive">
                                     {% endif %}
                                 </a>
@@ -118,8 +117,12 @@
                                         <a href="{{ path('ecommerce_article_detail', {'id': article.id, 'slug':article.slug}) }}">{{ article.getNameItem() }}</a>
                                     </h3>
                                     <p class="price">
-                                        <del>143.00 Fc</del>
-                                        {{ article.price }} Fc
+                                        <span itemprop="priceCurrency" content="USD">
+                                            $
+                                        </span>
+                                        <span itemprop="price" content="{{ article.getPrice() }}">
+                                            {{ article.getPrice() }}
+                                        </span>
                                     </p>
                                 </div>
                                 <!-- /.text -->

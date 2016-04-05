@@ -94,7 +94,7 @@ _________________________________________________________ -->
                     <div class="social col-sm-6">
                         <h4>Partager avec les amis</h4>
                         <div class="row">
-                            <div class="col-md-3">
+                            <div class="col-md-4 col-sm-6">
                                 <div
                                         class="fb-like"
                                         data-href="{{ path('ecommerce_article_publisher_items', {'id': user.getId(), 'username': user.getUserName()}) }}"
@@ -104,12 +104,12 @@ _________________________________________________________ -->
                                 </div>
                             </div>
 
-                            <div class="col-md-3">
+                            <div class="col-md-2 col-sm-6">
                                 <!-- Place this tag where you want the +1 button to render. -->
                                 <div class="g-plusone"></div>
                             </div>
 
-                            <div class="col-md-3">
+                            <div class="col-md-3 col-sm-6">
                                 <script
                                         type="IN/Share"
                                         data-url="{{ path('ecommerce_article_publisher_items', {'id': user.getId(), 'username': user.getUserName()}) }}"
@@ -117,7 +117,7 @@ _________________________________________________________ -->
                                 </script>
                             </div>
 
-                            <div class="col-md-3">
+                            <div class="col-md-3 col-sm-6">
                                 <a href="https://twitter.com/share" class="twitter-share-button">Tweet</a>
                             </div>
                         </div>

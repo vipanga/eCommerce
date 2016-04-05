@@ -4,6 +4,9 @@ namespace ecommerce\ArticleBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
+use Symfony\Component\Validator\Constraints as Assert;
+use Gedmo\Mapping\Annotation as Gedmo;
+
 /**
  * Search
  *
@@ -28,6 +31,19 @@ class Search
      */
     private $item;
 
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date", type="datetime")
+     *
+     * @Assert\DateTime()
+     */
+    private $date;
+
+    public function __construct()
+    {
+        $this->date = new \DateTime();
+    }
 
     /**
      * Get id
@@ -58,6 +74,29 @@ class Search
     public function setItem($item)
     {
         $this->item = $item;
+
+        return $this;
+    }
+
+    /**
+     * Get date
+     *
+     * @return \DateTime
+     */
+    public function getDate()
+    {
+        return $this->date;
+    }
+
+    /**
+     * Set date
+     *
+     * @param \DateTime $date
+     * @return Search
+     */
+    public function setDate($date)
+    {
+        $this->date = $date;
 
         return $this;
     }
