@@ -85,6 +85,17 @@ class User extends BaseUser {
     /**
      * @var string
      *
+     * @ORM\Column(name="website", type="string", length=255, nullable=true)
+     *
+     * @Assert\Url(
+     *    message = "L'url '{{ value }}' ne",
+     * )
+     */
+    private $website;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="city", type="string", length=255, nullable=true)
      *
      * @Assert\Length(
@@ -160,9 +171,9 @@ class User extends BaseUser {
     private $articles; // Ici articles prend un « s », car un user a plusieurs articles !
 
     /**
-     * @ORM\OneToMany(targetEntity="ecommerce\ArticleBundle\Entity\Comment", mappedBy="user")
+     * @ORM\OneToMany(targetEntity="ecommerce\ArticleBundle\Entity\Review", mappedBy="user")
      */
-    private $comments; // Ici articles prend un « s », car un user a plusieurs articles !
+    private $reviews; // Ici review prend un « s », car un user a plusieurs reviews !
 
     public function __construct() {
         parent::__construct();
@@ -176,7 +187,7 @@ class User extends BaseUser {
     /**
      * Get first_name
      *
-     * @return string
+     * @return string 
      */
     public function getFirstName()
     {
@@ -261,6 +272,29 @@ class User extends BaseUser {
     public function setTelephone($telephone)
     {
         $this->telephone = $telephone;
+
+        return $this;
+    }
+
+    /**
+     * Get website
+     *
+     * @return string
+     */
+    public function getWebsite()
+    {
+        return $this->website;
+    }
+
+    /**
+     * Set website
+     *
+     * @param string $website
+     * @return User
+     */
+    public function setWebsite($website)
+    {
+        $this->website = $website;
 
         return $this;
     }
@@ -483,35 +517,35 @@ class User extends BaseUser {
     }
 
     /**
-     * Add comments
+     * Add reviews
      *
-     * @param \ecommerce\ArticleBundle\Entity\Comment $comments
+     * @param \ecommerce\ArticleBundle\Entity\Review $reviews
      * @return User
      */
-    public function addComment(\ecommerce\ArticleBundle\Entity\Comment $comments)
+    public function addReview(\ecommerce\ArticleBundle\Entity\Review $reviews)
     {
-        $this->comments[] = $comments;
+        $this->reviews[] = $reviews;
 
         return $this;
     }
 
     /**
-     * Remove comments
+     * Remove reviews
      *
-     * @param \ecommerce\ArticleBundle\Entity\Comment $comments
+     * @param \ecommerce\ArticleBundle\Entity\Review $reviews
      */
-    public function removeComment(\ecommerce\ArticleBundle\Entity\Comment $comments)
+    public function removeReview(\ecommerce\ArticleBundle\Entity\Review $reviews)
     {
-        $this->comments->removeElement($comments);
+        $this->reviews->removeElement($reviews);
     }
 
     /**
-     * Get comments
+     * Get reviews
      *
-     * @return \Doctrine\Common\Collections\Collection
+     * @return \Doctrine\Common\Collections\Collection 
      */
-    public function getComments()
+    public function getReviews()
     {
-        return $this->comments;
+        return $this->reviews;
     }
 }

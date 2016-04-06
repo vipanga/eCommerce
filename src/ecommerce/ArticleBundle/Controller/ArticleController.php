@@ -7,6 +7,7 @@ namespace ecommerce\ArticleBundle\Controller;
 //namespace ecommerce\UserBundle\Controller;
 
 use ecommerce\ArticleBundle\Entity\Comment;
+use ecommerce\ArticleBundle\Entity\Review;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use ecommerce\ArticleBundle\Entity\Article;
 use ecommerce\ArticleBundle\Entity\Genre;
@@ -14,6 +15,7 @@ use ecommerce\ArticleBundle\Entity\Search;
 use ecommerce\UserBundle\Entity\User;
 use ecommerce\ArticleBundle\Form\ArticleType;
 use ecommerce\ArticleBundle\Form\CommentType;
+use ecommerce\ArticleBundle\Form\ReviewType;
 use ecommerce\ArticleBundle\Form\SearchType;
 
 class ArticleController extends Controller
@@ -97,10 +99,43 @@ class ArticleController extends Controller
         $user = $article->getUser();
         $note = $user->getNote();
 
-        if ($article == null) {
-            return $this->redirect($this->generateUrl('ecommerce_accueil_error404'));
+        $comment = new Comment();
+        // On crée le formulaire grâce à CommentType
+        $form = $this->createForm(new CommentType(), $comment);
+
+        // On récupère la requête
+        $request = $this->getRequest();
+
+        // On vérifie qu'elle est de type POST
+        if ($request->getMethod() == 'POST') {
+            // On fait le lien Requête <-> Formulaire
+            $form->bind($request);
+
+            // On vérifie que les valeurs entrées sont correctes
+            if ($form->isValid()) {
+                $author = $this->getUser();
+                $comment->setAuthor($author);
+                $comment->setArticle($article);
+                // On enregistre notre objet $comment dans la base de données
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($comment);
+                $em->flush();
+
+                // On définit un message flash
+                $this->get('session')->getFlashBag()->add('info', 'Commentaire bien ajouté');
+
+                // On redirige vers la page de visualisation de l'article où on vient de commenter
+                return $this->redirect($this->generateUrl('ecommerce_article_detail', array('id' => $article->getId(), 'slug' => $article->getSlug())));
+            }
         }
-        return $this->render('ecommerceArticleBundle:Article:detail.html.twig', array('article' => $article, 'note' => $note));
+
+        // On récupère ici tous les commentaires de l'article
+        $comments = $this->getDoctrine()
+            ->getManager()
+            ->getRepository('ecommerceArticleBundle:Comment')
+            ->getProductComments($article);
+
+        return $this->render('ecommerceArticleBundle:Article:detail.html.twig', array('article' => $article, 'note' => $note, 'comments' => $comments, 'form' => $form->createView()));
     }
 
     /*
@@ -172,9 +207,9 @@ class ArticleController extends Controller
             ->getRepository('ecommerceArticleBundle:Article')
             ->getUserArticles($numberItemsPerPage, $page, $user);
 
-        $comment = new Comment();
-        // On crée le formulaire grâce à CommentType
-        $form = $this->createForm(new CommentType(), $comment);
+        $review = new Review();
+        // On crée le formulaire grâce à ReviewType
+        $form = $this->createForm(new ReviewType(), $review);
 
         // On récupère la requête
         $request = $this->getRequest();
@@ -187,11 +222,11 @@ class ArticleController extends Controller
             // On vérifie que les valeurs entrées sont correctes
             if ($form->isValid()) {
                 $author = $this->getUser();
-                $comment->setUser($user);
-                $comment->setAuthor($author);
-                // On enregistre notre objet $comment dans la base de données
+                $review->setUser($user);
+                $review->setAuthor($author);
+                // On enregistre notre objet $review dans la base de données
                 $em = $this->getDoctrine()->getManager();
-                $em->persist($comment);
+                $em->persist($review);
                 $em->flush();
 
                 // On calcul la moyenne des notes du vendeur et on l'enregistre dans la base de données
@@ -201,7 +236,7 @@ class ArticleController extends Controller
                 $em->flush();
 
                 // On définit un message flash
-                $this->get('session')->getFlashBag()->add('info', 'Commentaire bien ajouté');
+                $this->get('session')->getFlashBag()->add('info', 'Avis bien ajouté');
 
                 return $this->redirect($this->generateUrl('ecommerce_article_publisher_items',
                     array(
@@ -212,11 +247,11 @@ class ArticleController extends Controller
             }
         }
 
-        // On récupère ici tous les commentaires sur le vendeur
-        $comments = $this->getDoctrine()
+        // On récupère ici toutes les notes sur le vendeur
+        $reviews = $this->getDoctrine()
             ->getManager()
-            ->getRepository('ecommerceArticleBundle:Comment')
-            ->getUserComments($user);
+            ->getRepository('ecommerceArticleBundle:Review')
+            ->getUserReviews($user);
 
         return $this->render('ecommerceArticleBundle:Article:publisher_items.html.twig', array(
             'articles' => $articles,
@@ -224,7 +259,7 @@ class ArticleController extends Controller
             'user' => $user,
             'numberItemsPerPage' => $numberItemsPerPage,
             'nombrePage' => ceil(count($articles) / $numberItemsPerPage),
-            'comments' => $comments,
+            'reviews' => $reviews,
             'form' => $form->createView()
         ));
     }
@@ -238,18 +273,18 @@ class ArticleController extends Controller
 
     function moyenneNote(User $user)
     {
-        $comments = $this->getDoctrine()
+        $reviews = $this->getDoctrine()
             ->getManager()
-            ->getRepository('ecommerceArticleBundle:Comment')
-            ->getUserComments($user);
+            ->getRepository('ecommerceArticleBundle:Review')
+            ->getUserReviews($user);
 
         $resultat = 0;
 
-        foreach ($comments as $comment) {
-            $resultat = $resultat + $comment->getNote();
+        foreach ($reviews as $review) {
+            $resultat = $resultat + $review->getNote();
         }
 
-        $total = count($comments);
+        $total = count($reviews);
         if ($total <= 0) {
             $total = 1;
         }

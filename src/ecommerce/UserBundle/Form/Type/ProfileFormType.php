@@ -18,6 +18,7 @@ class ProfileFormType extends AbstractType {
         $builder->add('last_name', TextType::class, array('required' => false));
         $builder->add('gender', ChoiceType::class, array('choices' => array('Male' => 'M', 'Female' => 'M'), 'choices_as_values' => true));
         $builder->add('telephone', TextType::class, array('required' => false));
+        $builder->add('website', TextType::class, array('required' => false));
         $builder->add('city', TextType::class, array('required' => false));
         $builder->add('province', ChoiceType::class, array(
             'choices' => array(
@@ -52,7 +53,7 @@ class ProfileFormType extends AbstractType {
             'choices_as_values' => true,
         ));
         $builder->add('birth_date', DateType::class, array('widget' => 'single_text', 'format' => 'd-MM-y', 'required' => false));
-        $builder->add('address', TextType::class, array('required' => false));
+        $builder->add('address', 'textarea', array('required' => false));
         //$builder->add('updated', HiddenType::class, array('data' => date('Y-m-d H:i:s')));
     }
 

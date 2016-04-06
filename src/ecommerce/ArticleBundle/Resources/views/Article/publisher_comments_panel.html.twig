@@ -11,23 +11,23 @@ _________________________________________________________ -->
 
     <div class="panel-body">
         <div id="comments" data-animate="fadeInUp">
-            <h4>{{ comments|length }} commentaires</h4>
+            <h4>{{ reviews|length }} avis</h4>
 
 
-            {% for comment in comments %}
+            {% for review in reviews %}
                 <div class="row comment">
 
                     <div class="col-md-12">
-                        <h5>{{ comment.author.username }}</h5>
-                        <p class="posted"><i class="fa fa-clock-o"></i> {{ comment.getDate()|date("m/d/Y") }}
-                            à {{ comment.getDate()|date("H:i:s") }}</p>
+                        <h5>{{ review.author.username }}</h5>
+                        <p class="posted"><i class="fa fa-clock-o"></i> {{ review.getDate()|date("m/d/Y") }}
+                            à {{ review.getDate()|date("H:i:s") }}</p>
                         <p>
-                            {{ comment.getContent() }}<br/>
+                            {{ review.getContent() }}<br/>
                             <small>
                                 <small>
                                     <small>
                                         <small><input class="comment_note rating rating-loading"
-                                                      value="{{ comment.getNote() }}" dir="ltr"
+                                                      value="{{ review.getNote() }}" dir="ltr"
                                                       data-size="xs"></small>
                                     </small>
                                 </small>

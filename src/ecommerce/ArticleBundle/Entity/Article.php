@@ -178,6 +178,11 @@ class Article {
      */
     private $genre;
 
+    /**
+     * @ORM\OneToMany(targetEntity="ecommerce\ArticleBundle\Entity\Comment", mappedBy="article", cascade={"persist", "remove"})
+     */
+    private $comments; // Ici comments prend un « s », car un article a plusieurs comments !
+
     public function __construct() {
         $this->datepublication = new \DateTime();
         $this->solde = FALSE;
@@ -196,7 +201,7 @@ class Article {
     /**
      * Get name_item
      *
-     * @return string
+     * @return string 
      */
     public function getNameItem()
     {
@@ -513,5 +518,38 @@ class Article {
         $this->genre = $genre;
 
         return $this;
+    }
+
+    /**
+     * Add comments
+     *
+     * @param \ecommerce\ArticleBundle\Entity\Comment $comments
+     * @return Article
+     */
+    public function addComment(\ecommerce\ArticleBundle\Entity\Comment $comments)
+    {
+        $this->comments[] = $comments;
+
+        return $this;
+    }
+
+    /**
+     * Remove comments
+     *
+     * @param \ecommerce\ArticleBundle\Entity\Comment $comments
+     */
+    public function removeComment(\ecommerce\ArticleBundle\Entity\Comment $comments)
+    {
+        $this->comments->removeElement($comments);
+    }
+
+    /**
+     * Get comments
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getComments()
+    {
+        return $this->comments;
     }
 }

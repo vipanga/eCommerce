@@ -44,8 +44,8 @@
                             <div class="form-group">
                                 {{ form_label(form.price) }}
                                 <div class="input-group">
-                                    <div class="input-group-addon">FC.</div>
-                                    {{ form_widget(form.price, { 'attr': {'class': 'form-control', 'placeholder': "Prix en Franc congolais", 'pattern': '^(([1-9]*)|(([1-9]*)\.([0-9]*)))$' } }) }}
+                                    <div class="input-group-addon">$</div>
+                                    {{ form_widget(form.price, { 'attr': {'class': 'form-control', 'placeholder': "Prix", 'pattern': '^(([1-9]*)|(([1-9]*)\.([0-9]*)))$' } }) }}
                                     <div class="input-group-addon">.00</div>
                                 </div>
                                 <div class="has-error" style="color: red">

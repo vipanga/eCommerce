@@ -30,6 +30,7 @@ profile:
         created: 'Date création'
         update: 'Dernière mise à jour'
         last_login: 'Dernière connexion'
+        website: 'Site web'
     edit:
         submit: 'Mettre à jour'
     flash:

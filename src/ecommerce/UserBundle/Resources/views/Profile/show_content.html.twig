@@ -57,6 +57,9 @@ _________________________________________________________ -->
 
                         <dt>{{ 'profile.show.birth_date'|trans }} :</dt>
                         <dd>{{ user.getBirthDate()|date('d-M-Y') }}</dd>
+
+                        <dt>{{ 'profile.show.website'|trans }} :</dt>
+                        <dd><a target="_blank" href="{{ user.getWebsite() }}">{{ user.getWebsite() }}</a></dd>
                     </dl>
                 </div>
                 <div class="col-sm-6">
@@ -83,7 +86,7 @@ _________________________________________________________ -->
 
                 <div class="col-sm-12" id="details">
                     <div class="social col-sm-6">
-                        <h4>Votre Stand</h4>
+                        <h4>Vos produits</h4>
                         <h5>
                             <a href="{{ path('ecommerce_article_publisher_items', {'id': user.getId(), 'username': user.getUserName()}) }}">
                                 http://www.watinu.com/shop/u/{{ user.getId() }}/{{ user.getUserName() }}

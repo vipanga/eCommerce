@@ -7,12 +7,12 @@ use Symfony\Component\Validator\Constraints as Assert;
 use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
- * Comment
+ * Review
  *
- * @ORM\Table(name="comment")
- * @ORM\Entity(repositoryClass="ecommerce\ArticleBundle\Repository\CommentRepository")
+ * @ORM\Table(name="review")
+ * @ORM\Entity(repositoryClass="ecommerce\ArticleBundle\Repository\ReviewRepository")
  */
-class Comment
+class Review
 {
     /**
      * @var int
@@ -44,6 +44,20 @@ class Comment
     private $content;
 
     /**
+     * @var float
+     *
+     * @ORM\Column(name="note", type="float")
+     *
+     * @Assert\Range(
+     *      min = 0.5,
+     *      max = 5,
+     *      minMessage = "La note ne doit pas être moins de {{ limit }}",
+     *      maxMessage = "La note ne doit pas dépasser {{ limit }}"
+     * )
+     */
+    private $note;
+
+    /**
      * @var \DateTime
      *
      * @ORM\Column(name="date", type="datetime")
@@ -53,10 +67,10 @@ class Comment
     private $date;
 
     /**
-     * @ORM\ManyToOne(targetEntity="ecommerce\ArticleBundle\Entity\Article", inversedBy="comments")
+     * @ORM\ManyToOne(targetEntity="ecommerce\UserBundle\Entity\User", inversedBy="reviews")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $article;
+    private $user;
 
     public function __construct()
     {
@@ -66,7 +80,7 @@ class Comment
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -76,7 +90,7 @@ class Comment
     /**
      * Get content
      *
-     * @return string 
+     * @return string
      */
     public function getContent()
     {
@@ -87,7 +101,7 @@ class Comment
      * Set content
      *
      * @param string $content
-     * @return Comment
+     * @return Rating
      */
     public function setContent($content)
     {
@@ -97,9 +111,32 @@ class Comment
     }
 
     /**
+     * Get note
+     *
+     * @return float
+     */
+    public function getNote()
+    {
+        return $this->note;
+    }
+
+    /**
+     * Set note
+     *
+     * @param float $note
+     * @return Rating
+     */
+    public function setNote($note)
+    {
+        $this->note = $note;
+
+        return $this;
+    }
+
+    /**
      * Get date
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getDate()
     {
@@ -110,7 +147,7 @@ class Comment
      * Set date
      *
      * @param \DateTime $date
-     * @return Comment
+     * @return Rating
      */
     public function setDate($date)
     {
@@ -122,7 +159,7 @@ class Comment
     /**
      * Get author
      *
-     * @return \ecommerce\UserBundle\Entity\User 
+     * @return \ecommerce\UserBundle\Entity\User
      */
     public function getAuthor()
     {
@@ -133,7 +170,7 @@ class Comment
      * Set author
      *
      * @param \ecommerce\UserBundle\Entity\User $author
-     * @return Comment
+     * @return Rating
      */
     public function setAuthor(\ecommerce\UserBundle\Entity\User $author)
     {
@@ -143,24 +180,24 @@ class Comment
     }
 
     /**
-     * Get article
+     * Get user
      *
-     * @return \ecommerce\ArticleBundle\Entity\Article 
+     * @return \ecommerce\UserBundle\Entity\User
      */
-    public function getArticle()
+    public function getUser()
     {
-        return $this->article;
+        return $this->user;
     }
 
     /**
-     * Set article
+     * Set user
      *
-     * @param \ecommerce\ArticleBundle\Entity\Article $article
-     * @return Comment
+     * @param \ecommerce\UserBundle\Entity\User $user
+     * @return Rating
      */
-    public function setArticle(\ecommerce\ArticleBundle\Entity\Article $article)
+    public function setUser(\ecommerce\UserBundle\Entity\User $user)
     {
-        $this->article = $article;
+        $this->user = $user;
 
         return $this;
     }

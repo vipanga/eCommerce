@@ -6,7 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class CommentType extends AbstractType
+class ReviewType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -15,7 +15,8 @@ class CommentType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('content');
+            ->add('content')
+            ->add('note');
     }
 
     /**
@@ -24,12 +25,12 @@ class CommentType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'ecommerce\ArticleBundle\Entity\Comment'
+            'data_class' => 'ecommerce\ArticleBundle\Entity\Review'
         ));
     }
 
     public function getName()
     {
-        return 'ecommerce_articlebundle_commenttype';
+        return 'ecommerce_articlebundle_reviewtype';
     }
 }

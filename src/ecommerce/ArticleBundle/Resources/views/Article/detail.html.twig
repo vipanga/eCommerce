@@ -90,10 +90,14 @@
                             <dd>{{ article.getQuality() }}</dd>
                             <dt>Quantité :</dt>
                             <dd>{{ article.getQuantity() }}</dd>
-                            <dt>Ville de provenance :</dt>
+                            <dt>Contact :</dt>
+                            <dd>{{ article.user.telephone }}</dd>
+                            <dt>Email :</dt>
+                            <dd>{{ article.user.email }}</dd>
+                            <dt>Ville :</dt>
                             <dd>{{ article.getCity() }}</dd>
-                            <dt>Province :</dt>
-                            <dd>{{ article.getProvince() }}</dd>
+                            <dt>Pays :</dt>
+                            <dd>{{ article.getCountry() }}</dd>
                             <dt>Vendeur :</dt>
                             <dd>
                                 <a href="{{ path('ecommerce_article_publisher_items', {'id': article.user.id, 'username': article.user.username}) }}">
@@ -102,31 +106,11 @@
                                     </span>
                                 </a>
                             </dd>
-                            <dt>Contact :</dt>
-                            <dd>{{ article.user.telephone }}</dd>
+
                             <dt>Date publication :</dt>
                             <dd>
                                 <meta itemprop="datePublished"
                                       content="{{ article.getDatepublication()|date('d-M-Y') }}">{{ article.getDatepublication()|date('d-M-Y') }}
-                            </dd>
-                            <hr>
-                            <dt>Note vendeur :</dt>
-                            <dd>
-                                <small>
-                                    <small>
-                                        <small>
-                                            <small>
-                                                <div itemprop="aggregateRating" itemscope
-                                                     itemtype="http://schema.org/AggregateRating">
-                                                    <span itemprop="ratingValue">
-                                                        <input class="comment_note rating rating-loading"
-                                                               value="{{ note }}" dir="ltr" data-size="xs">
-                                                    </span>
-                                                </div>
-                                            </small>
-                                        </small>
-                                    </small>
-                                </small>
                             </dd>
 
                         </dl>
@@ -157,16 +141,37 @@
 
             </div>
 
-
             <div class="box" id="details">
-                <p>
+
                 <h4>Détails du produit</h4>
+
+
                 <p>
                     <span itemprop="description">
                         {{ article.getDescription() }}
                     </span>
-                </p>
+                <div class="row">
+                    <div class="col-md-12">
+                        Note vendeur :
+                        <small>
+                            <small>
+                                <small>
+                                    <small>
+                                        <div itemprop="aggregateRating" itemscope
+                                             itemtype="http://schema.org/AggregateRating">
+                                                    <span itemprop="ratingValue">
+                                                        <input class="comment_note rating rating-loading"
+                                                               value="{{ note }}" dir="ltr" data-size="xs">
+                                                    </span>
+                                        </div>
+                                    </small>
+                                </small>
+                            </small>
+                        </small>
+                    </div>
+                </div>
 
+                </p>
                 <hr>
                 <div class="social">
                     <div class="row">
@@ -179,7 +184,7 @@
                             <div class="fb-share-button"
                                  data-href="{{ path('ecommerce_article_detail', {'id': article.getId(), 'slug':article.getSlug()}) }}"
                                  data-layout="button"></div>
-                            </div>
+                        </div>
 
                         <div class="col-md-2 col-sm-4 col-xs-4">
                             <a href="https://twitter.com/share" class="twitter-share-button">Tweet</a>
@@ -189,101 +194,84 @@
                             <div class="g-plus" data-action="share" data-annotation="none"></div>
                         </div>
                     </div>
-
                 </div>
             </div>
 
-            {#<div class="row same-height-row">
-                <div class="col-md-3 col-sm-6 col-xs-6">
-                    <div class="box same-height">
-                        <h3>Articles similaires</h3>
-                    </div>
-                </div>
+            <div class="box">
+                <div id="comments" data-animate="fadeInUp">
+                    <h4>{{ comments|length }} commentaire(s)</h4>
 
-                <div class="col-md-3 col-sm-6 col-xs-6">
-                    <div class="product same-height">
-                        <div class="flip-container">
-                            <div class="flipper">
-                                <div class="front">
-                                    <a href="#">
-                                        <img src="{{ asset('images/product2.jpg') }}" alt="" class="img-responsive">
-                                    </a>
-                                </div>
-                                <div class="back">
-                                    <a href="#">
-                                        <img src="{{ asset('images/product2_2.jpg') }}" alt="" class="img-responsive">
-                                    </a>
-                                </div>
+                    {% for comment in comments %}
+                        <div class="row comment">
+                            <div class="col-sm-3 col-md-2 text-center-xs">
+                                <p>
+                                    <img src="{{ asset('images/blog-avatar2.jpg') }}" class="img-responsive img-circle"
+                                         alt="">
+                                </p>
+                            </div>
+                            <div class="col-sm-9 col-md-10">
+                                <h5>{{ comment.author.username }}</h5>
+                                <p class="posted">
+                                    <i class="fa fa-clock-o"></i>
+                                    {{ comment.getDate()|date("m/d/Y") }}
+                                    à {{ comment.getDate()|date("H:i:s") }}
+                                </p>
+                                <p>{{ comment.getContent() }}</p>
                             </div>
                         </div>
-                        <a href="#" class="invisible">
-                            <img src="{{ asset('images/product2.jpg') }}" alt="" class="img-responsive">
-                        </a>
-                        <div class="text">
-                            <h3>Polo Blanc</h3>
-                            <p class="price">12.000 Fc</p>
-                        </div>
-                    </div>
-                    <!-- /.product -->
-                </div>
+                        <!-- /.comment -->
+                    {% else %}
+                        <div class="row comment">
 
-                <div class="col-md-3 col-sm-6 col-xs-6">
-                    <div class="product same-height">
-                        <div class="flip-container">
-                            <div class="flipper">
-                                <div class="front">
-                                    <a href="#">
-                                        <img src="{{ asset('images/product1.jpg') }}" alt="" class="img-responsive">
-                                    </a>
-                                </div>
-                                <div class="back">
-                                    <a href="#">
-                                        <img src="{{ asset('images/product1_2.jpg') }}" alt="" class="img-responsive">
-                                    </a>
-                                </div>
+                            <div class="col-md-12">
+                                <h5>Pas encore de commentaire !</h5>
                             </div>
                         </div>
-                        <a href="#" class="invisible">
-                            <img src="{{ asset('images/product1.jpg') }}" alt="" class="img-responsive">
-                        </a>
-                        <div class="text">
-                            <h3>Veste en fourure</h3>
-                            <p class="price">100.000 Fc</p>
-                        </div>
-                    </div>
-                    <!-- /.product -->
+                        <!-- /.comment -->
+                    {% endfor %}
+
                 </div>
+                <!-- /#comments -->
 
+                <div id="comment-form" data-animate="fadeInUp">
 
-                <div class="col-md-3 col-sm-6 col-xs-6">
-                    <div class="product same-height">
-                        <div class="flip-container">
-                            <div class="flipper">
-                                <div class="front">
-                                    <a href="#">
-                                        <img src="{{ asset('images/product3.jpg') }}" alt="" class="img-responsive">
-                                    </a>
-                                </div>
-                                <div class="back">
-                                    <a href="#">
-                                        <img src="{{ asset('images/product3_2.jpg') }}" alt="" class="img-responsive">
-                                    </a>
+                    <h4>Donnez votre avis</h4>
+
+                    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                        <form action="{{ path('ecommerce_article_detail', {'id': article.id, 'slug':article.slug}) }}" {{ form_enctype(form) }}
+                              method="POST">
+
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="form-group">
+                                        {{ form_label(form.content) }} *
+                                        {{ form_widget(form.content, { 'attr': {'class': 'form-control', 'rows': '3', 'placeholder': 'Commentaire' } }) }}
+                                        <div class="has-error" style="color: red">
+                                            {{ form_errors(form.content) }}
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <a href="#" class="invisible">
-                            <img src="{{ asset('images/product3.jpg') }}" alt="" class="img-responsive">
-                        </a>
-                        <div class="text">
-                            <h3>Chemise dame</h3>
-                            <p class="price">14300 Fc</p>
 
-                        </div>
-                    </div>
-                    <!-- /.product -->
+                            {{ form_rest(form) }}
+
+                            <div class="row">
+                                <div class="col-sm-12 text-right">
+                                    <button class="btn btn-primary"><i class="fa fa-comment-o"></i> Poster commentaire
+                                    </button>
+                                </div>
+                            </div>
+
+
+                        </form>
+                    {% else %}
+                        <h5>Veuillez vous <a href="{{ path('fos_user_security_login') }}">connecter</a> pour poster
+                            votre commentaire.</h5>
+                    {% endif %}
+
                 </div>
-
-            </div>#}
+                <!-- /#comment-form -->
+            </div>
 
         </div>
         <!-- /.col-md-9 -->
