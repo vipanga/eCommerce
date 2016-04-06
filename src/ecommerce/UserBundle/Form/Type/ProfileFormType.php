@@ -10,6 +10,7 @@ use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use ecommerce\ArticleBundle\Form\ImageType;
 
 class ProfileFormType extends AbstractType {
     public function buildForm(FormBuilderInterface $builder, array $options) {
@@ -54,6 +55,7 @@ class ProfileFormType extends AbstractType {
         ));
         $builder->add('birth_date', DateType::class, array('widget' => 'single_text', 'format' => 'd-MM-y', 'required' => false));
         $builder->add('address', 'textarea', array('required' => false));
+        $builder->add('image', new ImageType(), array('required' => false));
         //$builder->add('updated', HiddenType::class, array('data' => date('Y-m-d H:i:s')));
     }
 

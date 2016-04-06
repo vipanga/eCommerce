@@ -30,14 +30,8 @@ _________________________________________________________ -->
 
     <div class="col-md-9">
         <div class="box">
-            <h1>Profile</h1>
-            <p class="lead">Mettre à jour ici vos informations personnelles.</p>
-            <p class="text-muted">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis
-                egestas.</p>
-
+            <h3 class="text-center">Modifier vos détails personnel</h3>
             <hr>
-
-            <h3>Détails personnel</h3>
             <form action="{{ path('fos_user_profile_edit') }}" {{ form_enctype(form) }} method="POST">
                 <div class="row">
                     <div class="col-sm-6">
@@ -144,7 +138,17 @@ _________________________________________________________ -->
                         </div>
                     </div>
 
-                    <div class="col-sm-12">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            {{ form_widget(form.image) }}
+                            <p class="help-block">Sélectionnez l’image de votre profile.</p>
+                            <div class="has-error">
+                                {{ form_errors(form.image) }}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6">
                         <div class="form-group">
                             {{ form_label(form.address) }}
                             {{ form_widget(form.address, { 'attr': {'class': 'form-control', 'rows': '2', 'placeholder': 'Votre adresse' } }) }}

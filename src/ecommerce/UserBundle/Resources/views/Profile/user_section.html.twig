@@ -1,10 +1,25 @@
 <div class="panel panel-default sidebar-menu">
 
     <div class="panel-heading">
-        <h3 class="panel-title">Section utilisateur</h3>
+        <h3 class="panel-title">Paramètres personnels</h3>
     </div>
 
     <div class="panel-body">
+        <div class="row">
+            <div class="col-md-12">
+                <p class="text-center">
+                    {# On vérifie qu'une image est bien associée à l'article #}
+                    {% if app.user.getImage() is not null %}
+                        <img itemprop="image" src="{{ asset(app.user.image.webPath) }}"
+                             alt="{{ app.user.getUsername() }}" class="img-rounded img-responsive" alt="">
+                    {% else %}
+                        <img src="{{ asset('img/default_profile.jpg') }}" alt="{{ app.user.getUsername() }}"
+                             class="img-rounded img-responsive" alt="">
+                    {% endif %}
+                </p>
+                {#<p class="text-center">rounded</p>#}
+            </div>
+        </div>
 
         <ul class="nav nav-pills nav-stacked">
             <li class="active">
