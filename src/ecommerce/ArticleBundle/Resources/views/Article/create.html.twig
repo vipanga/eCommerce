@@ -33,23 +33,19 @@
                     <div class="row">
                         <div class="col-sm-6">
                             <div class="form-group">
-                                {{ form_label(form.name_item) }}
-                                {{ form_widget(form.name_item, { 'attr': {'class': 'form-control', 'placeholder': 'Ex: Samsung Galaxy S5' } }) }}
+                                {{ form_label(form.genre) }}
+                                {{ form_widget(form.genre, { 'attr': {'class': 'form-control' } }) }}
                                 <div class="has-error" style="color: red">
-                                    {{ form_errors(form.name_item) }}
-                                </div>                                
+                                    {{ form_errors(form.genre) }}
+                                </div>
                             </div>
                         </div>
                         <div class="col-sm-6">
                             <div class="form-group">
-                                {{ form_label(form.price) }}
-                                <div class="input-group">
-                                    <div class="input-group-addon">$</div>
-                                    {{ form_widget(form.price, { 'attr': {'class': 'form-control', 'placeholder': "Prix", 'pattern': '^(([1-9]*)|(([1-9]*)\.([0-9]*)))$' } }) }}
-                                    <div class="input-group-addon">.00</div>
-                                </div>
+                                {{ form_label(form.name_item) }}
+                                {{ form_widget(form.name_item, { 'attr': {'class': 'form-control', 'placeholder': 'Ex: Samsung Galaxy S5' } }) }}
                                 <div class="has-error" style="color: red">
-                                    {{ form_errors(form.price) }}
+                                    {{ form_errors(form.name_item) }}
                                 </div>
                             </div>
                         </div>
@@ -75,6 +71,23 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                {{ form_label(form.price) }}
+                                <div class="input-group">
+                                    <div class="input-group-addon">$</div>
+                                    {{ form_widget(form.price, { 'attr': {'class': 'form-control', 'placeholder': "Prix", 'pattern': '^(([1-9]*)|(([1-9]*)\.([0-9]*)))$' } }) }}
+                                    <div class="input-group-addon">.00</div>
+                                </div>
+                                <div class="has-error" style="color: red">
+                                    {{ form_errors(form.price) }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.row -->
+
+                    <div class="row">
                         <div class="col-sm-6 col-md-3">
                             <div class="form-group">
                                 {{ form_label(form.city) }}
@@ -93,10 +106,6 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <!-- /.row -->
-
-                    <div class="row">
                         <div class="col-sm-6">
                             <div class="form-group">
                                 {{ form_label(form.country) }}
@@ -105,15 +114,6 @@
                                     {{ form_errors(form.country) }}
                                 </div>
                             </div>    
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                {{ form_label(form.genre) }}
-                                {{ form_widget(form.genre, { 'attr': {'class': 'form-control' } }) }}
-                                <div class="has-error" style="color: red">
-                                    {{ form_errors(form.genre) }}
-                                </div>                                
-                            </div>
                         </div>
                     </div>
                     <!-- /.row -->

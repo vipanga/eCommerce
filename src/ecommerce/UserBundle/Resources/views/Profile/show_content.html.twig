@@ -13,7 +13,7 @@
         <ul class="breadcrumb">
             <li><a href="{{ path('ecommerce_accueil_accueil') }}">Accueil</a>
             </li>
-            <li>Mon compte</li>
+            <li>Profile</li>
         </ul>
 
     </div>
@@ -21,7 +21,7 @@
     <div class="col-md-3">
         <!-- *** CUSTOMER MENU ***
 _________________________________________________________ -->
-        {{ render(controller("ecommerceUserBundle:Profile:user_section")) }}
+        {% include "ecommerceUserBundle:Profile:user_section.html.twig" %}
 
         <!-- *** CUSTOMER MENU END *** -->
     </div>
@@ -118,13 +118,9 @@ _________________________________________________________ -->
             <hr>
 
             <div class="row">
-                <div class="col-sm-6 text-center">
+                <div class="col-sm-12 text-center">
                     <a href="{{ path('fos_user_profile_edit') }}" class="btn btn-primary"><i class="fa fa-save"></i>
-                        Modifier mes infos</a>
-                </div>
-                <div class="col-sm-6 text-center">
-                    <a href="{{ path('fos_user_change_password') }}" class="btn btn-primary"><i class="fa fa-save"></i>
-                        Changer mot de passe</a>
+                        Modifier le profile</a>
                 </div>
             </div>
             <!-- /.row -->

@@ -205,8 +205,16 @@
                         <div class="row comment">
                             <div class="col-sm-3 col-md-2 text-center-xs">
                                 <p>
-                                    <img src="{{ asset('images/blog-avatar2.jpg') }}" class="img-responsive img-circle"
-                                         alt="">
+                                    {# On vérifie qu'une image est bien associée à l'utilisateur #}
+                                    {% if app.user.getImage() is not null %}
+                                        <img itemprop="image" src="{{ asset(comment.author.image.webPath) }}"
+                                             alt="{{ comment.author.username }}" class="img-rounded img-responsive"
+                                             alt="">
+                                    {% else %}
+                                        <img src="{{ asset('img/default_profile.jpg') }}"
+                                             alt="{{ comment.author.username }}"
+                                             class="img-rounded img-responsive">
+                                    {% endif %}
                                 </p>
                             </div>
                             <div class="col-sm-9 col-md-10">

@@ -3,7 +3,7 @@
 {% extends "ecommerceArticleBundle::layout.html.twig" %}
 
 {% block titre %}
-    Articles de {{ user.username }} - {{ parent() }}
+    Produits de {{ user.username }} - {{ parent() }}
 {% endblock %}
 
 {% block active %}active{% endblock %}
@@ -23,7 +23,7 @@
 
         <div class="col-md-9">
             <div class="box">
-                <h1>Articles postés par {{ user.username }}</h1>
+                <h4>Produits postés par {{ user.username }}</h4>
                 {#<p>In our Ladies department we offer wide selection of the best products we have found and carefully
                     selected worldwide.</p>#}
             </div>
