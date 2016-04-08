@@ -10,7 +10,7 @@
 
 {% block contenu_accueil %}
 
-    <div class="container">
+    {#<div class="container">
         <div class="col-md-9">
             <div id="main-slider">
                 <div class="item">
@@ -45,11 +45,90 @@
             </div>
         </div>
 
+    </div>#}
+
+
+
+    <div class="container">
+        <div class="box">
+            <form class="navbar-form" role="search"
+                  action="{{ path('ecommerce_article_search') }}" {{ form_enctype(form) }} method="POST">
+                <div class="input-group">
+                    {{ form_widget(form.item, { 'attr': {'class': 'form-control col-md-12', 'placeholder': 'Rechercher' } }) }}
+                    <div class="has-error" style="color: red">
+                        {{ form_errors(form.item) }}
+                    </div>
+
+                    {{ form_rest(form) }}
+
+                    <span class="input-group-btn">
+
+                        <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
+
+                    </span>
+                </div>
+            </form>
+
+            <hr>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <h4 class="text-center">Provinces</h4>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-6">
+                    <p>
+                        Bas-Uele<br>
+                        Équateur<br>
+                        HautKatanga<br>
+                        Haut-Lomami<br>
+                        Haut-Uele<br>
+                        Ituri
+                    </p>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-6">
+                    <p>
+                        Kasaï<br>
+                        Kasaï-Central<br>
+                        Kasaï-Oriental<br>
+                        Kinshasa<br>
+                        Kongo-Central<br>
+                        Kwango
+                    </p>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-6">
+                    <p>
+                        Kwilu<br>
+                        Lomami<br>
+                        Lualaba<br>
+                        Mai-Ndombe<br>
+                        Maniema<br>
+                        Mongala<br>
+                        Nord-Kivu
+                    </p>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-6">
+                    <p>
+                        Nord-Ubangi<br>
+                        Sankuru<br>
+                        Sud-Kivu<br>
+                        Sud-Ubangi<br>
+                        Tanganyika<br>
+                        Tshopo<br>
+                        Tshuapa
+                    </p>
+                </div>
+            </div>
+
+            <hr>
+
+        </div>
     </div>
+
 
 
     <!-- *** HOT PRODUCT SLIDESHOW ***
     _________________________________________________________ -->
+    {#<div class="container">
     <div id="hot">
 
         <div class="box">
@@ -61,6 +140,7 @@
         </div>
 
     </div>
+    </div>#}
 
     <!-- *** HOT END *** -->
 
@@ -101,7 +181,7 @@
                     <!-- /.text -->
 
                     <div class="ribbon new">
-                        <div class="theribbon">NEW</div>
+                        <div class="theribbon">MODE</div>
                         <div class="ribbon-background"></div>
                     </div>
                     <!-- /.ribbon -->
@@ -140,7 +220,7 @@
                     <!-- /.text -->
 
                     <div class="ribbon gift">
-                        <div class="theribbon">GIFT</div>
+                        <div class="theribbon">HI-TECH</div>
                         <div class="ribbon-background"></div>
                     </div>
                     <!-- /.ribbon -->
@@ -179,22 +259,11 @@
                     <!-- /.text -->
 
                     <div class="ribbon sale">
-                        <div class="theribbon">SALE</div>
+                        <div class="theribbon">MAISON</div>
                         <div class="ribbon-background"></div>
                     </div>
                     <!-- /.ribbon -->
 
-                    <div class="ribbon new">
-                        <div class="theribbon">NEW</div>
-                        <div class="ribbon-background"></div>
-                    </div>
-                    <!-- /.ribbon -->
-
-                    <div class="ribbon gift">
-                        <div class="theribbon">GIFT</div>
-                        <div class="ribbon-background"></div>
-                    </div>
-                    <!-- /.ribbon -->
                 </div>
                 <!-- /.product -->
             </div>
@@ -227,6 +296,12 @@
 
                     </div>
                     <!-- /.text -->
+
+                    <div class="ribbon new">
+                        <div class="theribbon">AUTO</div>
+                        <div class="ribbon-background"></div>
+                    </div>
+                    <!-- /.ribbon -->
                 </div>
                 <!-- /.product -->
             </div>

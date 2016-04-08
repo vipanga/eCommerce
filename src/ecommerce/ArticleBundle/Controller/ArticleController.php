@@ -172,7 +172,20 @@ class ArticleController extends Controller
             ->getRepository('ecommerceArticleBundle:Comment')
             ->getProductComments($article);
 
-        return $this->render('ecommerceArticleBundle:Article:detail.html.twig', array('article' => $article, 'note' => $note, 'comments' => $comments, 'form' => $form->createView()));
+        $categories = $this->getDoctrine()
+            ->getManager()
+            ->getRepository('ecommerceArticleBundle:Category')
+            ->getCategories();
+
+        return $this->render('ecommerceArticleBundle:Article:detail.html.twig',
+            array(
+                'article' => $article,
+                'note' => $note,
+                'comments' => $comments,
+                'categories' => $categories,
+                'form' => $form->createView()
+            )
+        );
     }
 
     /*

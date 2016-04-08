@@ -17,6 +17,9 @@
                 <li><a href="{{ path('ecommerce_accueil_accueil') }}">Accueil</a>
                 </li>
                 <li>
+                    <a href="{{ path('ecommerce_article_cat', {'id': article.genre.getCategory().id}) }}">{{ article.genre.category.name }}</a>
+                </li>
+                <li>
                     <a href="{{ path('ecommerce_article_categorie', {'id': article.genre.id}) }}">{{ article.genre.name }}</a>
                 </li>
                 <li>{{ article.getNameItem() }}</li>
@@ -206,7 +209,7 @@
                             <div class="col-sm-3 col-md-2 text-center-xs">
                                 <p>
                                     {# On vérifie qu'une image est bien associée à l'utilisateur #}
-                                    {% if app.user.getImage() is not null %}
+                                    {% if comment.author.getImage() is not null %}
                                         <img itemprop="image" src="{{ asset(comment.author.image.webPath) }}"
                                              alt="{{ comment.author.username }}" class="img-rounded img-responsive"
                                              alt="">
@@ -274,7 +277,7 @@
                         </form>
                     {% else %}
                         <h5>Veuillez vous <a href="{{ path('fos_user_security_login') }}">connecter</a> pour poster
-                            votre commentaire.</h5>
+                            un commentaire.</h5>
                     {% endif %}
 
                 </div>

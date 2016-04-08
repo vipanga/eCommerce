@@ -11,7 +11,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 class AccueilController extends Controller {
 
     public function indexAction() {
-        $listOfItems = array();
+        /*$listOfItems = array();
         $telephones = $this->getDoctrine()
             ->getManager()
             ->getRepository('ecommerceArticleBundle:Article')
@@ -31,11 +31,15 @@ class AccueilController extends Controller {
             ->getRepository('ecommerceArticleBundle:Article')
             ->getMateriaux();
 
-        $listOfItems[] = $materiaux;
+        $listOfItems[] = $materiaux;*/
+
+        $search = new Search();
+
+        // On crée le formulaire grâce à l'SearchType
+        $form = $this->createForm(new SearchType(), $search);
 
         return $this->render('ecommerceAccueilBundle:Accueil:index.html.twig', array(
-            'listOfItems' => $listOfItems,
-            'break' => true
+            'form' => $form->createView(),
         ));
 
         /*return $this->render('ecommerceAccueilBundle:Accueil:index.html.twig', array(
