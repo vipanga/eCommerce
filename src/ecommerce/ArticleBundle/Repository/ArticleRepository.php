@@ -13,6 +13,34 @@ use Doctrine\ORM\Tools\Pagination\Paginator;
  */
 class ArticleRepository extends EntityRepository
 {
+    public function getArticlesByCategory($numberItemsPerPage, $page, $category)
+    {
+        // On déplace la vérification du numéro de page dans cette méthode
+        if ($page < 1) {
+            throw new \InvalidArgumentException('L\'argument $page ne peut être inférieur à 1 (valeur : "' . $page . '").');
+        }
+
+        // La construction de la requête reste inchangée
+        $query = $this->createQueryBuilder('a')
+            ->where('g.category = :category')
+            ->setParameter('category', $category)
+            ->leftJoin('a.image', 'i')
+            ->addSelect('i')
+            ->leftJoin('a.genre', 'g')
+            ->addSelect('g')
+            ->orderBy('a.datepublication', 'DESC')
+            ->getQuery();
+
+        // On définit l'article à partir duquel commencer la liste
+        $query->setFirstResult(($page - 1) * $numberItemsPerPage)
+            // Ainsi que le nombre d'articles à afficher
+            ->setMaxResults($numberItemsPerPage);
+
+        // Enfin, on retourne l'objet Paginator correspondant à la requête construite
+        // (n'oubliez pas le use correspondant en début de fichier)
+        return new Paginator($query);
+    }
+
     public function getArticles($numberItemsPerPage, $page, $genre)
     {
         // On déplace la vérification du numéro de page dans cette méthode

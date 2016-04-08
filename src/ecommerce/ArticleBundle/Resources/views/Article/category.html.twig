@@ -3,7 +3,7 @@
 {% extends "ecommerceArticleBundle::layout.html.twig" %}
 
 {% block titre %}
-    {{ genre.name }} - {{ parent() }}
+    {{ category.name }} - {{ parent() }}
 {% endblock %}
 
 {% block active %}active{% endblock %}
@@ -16,10 +16,7 @@
             <ul class="breadcrumb">
                 <li><a href="{{ path('ecommerce_accueil_accueil') }}">Accueil</a>
                 </li>
-                <li>
-                    <a href="{{ path('ecommerce_article_cat', {'id': genre.getCategory().id}) }}">{{ genre.category.name }}</a>
-                </li>
-                <li>{{ genre.name }}</li>
+                <li>{{ category.name }}</li>
 
             </ul>
         </div>
@@ -28,17 +25,15 @@
 
             <!-- *** PANNEAU DES CATEGORIES ***
         _________________________________________________________ -->
-            {% include "ecommerceArticleBundle:Article:genre_panel.html.twig" %}
+            {% include "ecommerceArticleBundle:Article:category_panel.html.twig" %}
             <!-- *** ANNEAU DES CATEGORIES FIN *** -->
 
         </div>
 
         <div class="col-md-9">
-            <div class="box">
-                <h1>{{ genre.name }}</h1>
-                {#<p>In our Ladies department we offer wide selection of the best products we have found and carefully
-                    selected worldwide.</p>#}
-            </div>
+            {#<div class="box">#}
+            {#<h1>{{ category.name }}</h1>#}
+            {#</div>#}
 
             <div class="box info-bar">
                 <div class="row">
@@ -65,26 +60,26 @@
                                     <div class="products-number">
                                         <strong>Afficher</strong>
                                         {% if numberItemsPerPage == 12 %}
-                                            <a href="{{ path('ecommerce_article_categorie', {'id': genre.id, 'numberItemsPerPage': 12}) }}"
+                                            <a href="{{ path('ecommerce_article_cat', {'id': category.id, 'numberItemsPerPage': 12}) }}"
                                                class="btn btn-default btn-sm btn-primary">12</a>
                                         {% else %}
-                                            <a href="{{ path('ecommerce_article_categorie', {'id': genre.id, 'numberItemsPerPage': 12}) }}"
+                                            <a href="{{ path('ecommerce_article_cat', {'id': category.id, 'numberItemsPerPage': 12}) }}"
                                                class="btn btn-default btn-sm">12</a>
                                         {% endif %}
 
                                         {% if numberItemsPerPage == 24 %}
-                                            <a href="{{ path('ecommerce_article_categorie', {'id': genre.id, 'numberItemsPerPage': 24}) }}"
+                                            <a href="{{ path('ecommerce_article_cat', {'id': category.id, 'numberItemsPerPage': 24}) }}"
                                                class="btn btn-default btn-sm btn-primary">24</a>
                                         {% else %}
-                                            <a href="{{ path('ecommerce_article_categorie', {'id': genre.id, 'numberItemsPerPage': 24}) }}"
+                                            <a href="{{ path('ecommerce_article_cat', {'id': category.id, 'numberItemsPerPage': 24}) }}"
                                                class="btn btn-default btn-sm">24</a>
                                         {% endif %}
 
                                         {% if numberItemsPerPage == 48 %}
-                                            <a href="{{ path('ecommerce_article_categorie', {'id': genre.id, 'numberItemsPerPage': 48}) }}"
+                                            <a href="{{ path('ecommerce_article_cat', {'id': category.id, 'numberItemsPerPage': 48}) }}"
                                                class="btn btn-default btn-sm btn-primary">48</a>
                                         {% else %}
-                                            <a href="{{ path('ecommerce_article_categorie', {'id': genre.id, 'numberItemsPerPage': 48}) }}"
+                                            <a href="{{ path('ecommerce_article_cat', {'id': category.id, 'numberItemsPerPage': 48}) }}"
                                                class="btn btn-default btn-sm">48</a>
                                         {% endif %}
 
@@ -195,7 +190,7 @@
                     {# On utilise la fonction range(a, b) qui crée un tableau de valeurs entre a et b #}
                     {% for p in range(1, nombrePage) %}
                         <li{% if p == page %} class="active"{% endif %}>
-                            <a href="{{ path('ecommerce_article_categorie', {'id': genre.id, 'numberItemsPerPage': numberItemsPerPage, 'page': p}) }}">{{ p }}</a>
+                            <a href="{{ path('ecommerce_article_cat', {'id': category.id, 'numberItemsPerPage': numberItemsPerPage, 'page': p}) }}">{{ p }}</a>
                         </li>
                     {% endfor %}
                 </ul>

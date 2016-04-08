@@ -6,6 +6,7 @@ namespace ecommerce\ArticleBundle\Controller;
 
 //namespace ecommerce\UserBundle\Controller;
 
+use ecommerce\ArticleBundle\Entity\Category;
 use ecommerce\ArticleBundle\Entity\Comment;
 use ecommerce\ArticleBundle\Entity\Review;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -20,9 +21,39 @@ use ecommerce\ArticleBundle\Form\SearchType;
 
 class ArticleController extends Controller
 {
-
     /*
      * Affichage de tous les articles selon la catégorie sélectionnée
+     *
+     * */
+    public function categoryAction(Category $category, $numberItemsPerPage, $page)
+    {
+        if ($category == null) {
+            return $this->redirect($this->generateUrl('ecommerce_accueil_error404'));
+        }
+
+        // Sélection des articles de la catégorie sélectionnée
+        $articles = $this->getDoctrine()
+            ->getManager()
+            ->getRepository('ecommerceArticleBundle:Article')
+            ->getArticlesByCategory($numberItemsPerPage, $page, $category);
+
+        $categories = $this->getDoctrine()
+            ->getManager()
+            ->getRepository('ecommerceArticleBundle:Category')
+            ->getCategories();
+
+        return $this->render('ecommerceArticleBundle:Article:category.html.twig', array(
+            'articles' => $articles,
+            'category' => $category,
+            'categories' => $categories,
+            'page' => $page,
+            'numberItemsPerPage' => $numberItemsPerPage,
+            'nombrePage' => ceil(count($articles) / $numberItemsPerPage)
+        ));
+    }
+
+    /*
+     * Affichage de tous les articles selon le genre sélectionné
      *
      * */
     public function genreAction(Genre $genre, $numberItemsPerPage, $page)
@@ -37,9 +68,15 @@ class ArticleController extends Controller
             ->getRepository('ecommerceArticleBundle:Article')
             ->getArticles($numberItemsPerPage, $page, $genre);
 
+        $categories = $this->getDoctrine()
+            ->getManager()
+            ->getRepository('ecommerceArticleBundle:Category')
+            ->getCategories();
+
         return $this->render('ecommerceArticleBundle:Article:genre.html.twig', array(
             'articles' => $articles,
             'genre' => $genre,
+            'categories' => $categories,
             'page' => $page,
             'numberItemsPerPage' => $numberItemsPerPage,
             'nombrePage' => ceil(count($articles) / $numberItemsPerPage)

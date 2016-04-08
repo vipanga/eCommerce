@@ -39,7 +39,7 @@ class Categories implements FixtureInterface {
         $manager->flush();
 
         // Liste des noms de catégorie à ajouter
-        $names = array('Téléphonie, Mobilité', 'Informatique, Réseaux', 'Téléviseurs, Lecteurs', 'Jeux Vidéo, Consoles', 'Appareils Photos', 'Caméscope');
+        $names = array('Téléphonie, Mobilité', 'Informatique, Réseaux', 'Téléviseurs, Lecteurs', 'Jeux Vidéo, Consoles', 'Appareils Photos', 'Electroménager');
 
         foreach ($names as $i => $name) {
             // On crée la catégorie
@@ -54,12 +54,12 @@ class Categories implements FixtureInterface {
 
         //MAISON
         $category = new Category();
-        $category->setName("Maison");
+        $category->setName("Immobilier");
         $manager->persist($category);
         $manager->flush();
 
         // Liste des noms de catégorie à ajouter
-        $names = array('Maison', 'Matériaux de construction', 'Bricolage', 'Electroménager', 'Bébé, Puériculture', 'Animalerie', 'Vins, Gastronomie', 'Loisirs créatifs');
+        $names = array('Maisons à vendre', 'Maisons à louer', 'Chambre à louer', 'Terrains', 'Matériaux de construction', 'Animalerie', 'Vins, Gastronomie');
 
         foreach ($names as $i => $name) {
             // On crée la catégorie

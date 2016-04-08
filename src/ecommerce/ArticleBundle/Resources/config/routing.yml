@@ -1,6 +1,14 @@
 ecommerce_article_categorie:
-    path:     /c/{id}/{numberItemsPerPage}/{page}
+    path:     /g/{id}/{numberItemsPerPage}/{page}
     defaults: { _controller: ecommerceArticleBundle:Article:genre, numberItemsPerPage: 12, page: 1 }
+    requirements:
+        id:  \d+
+        numberItemsPerPage:  \d+
+        page:  \d+
+
+ecommerce_article_cat:
+    path:     /c/{id}/{numberItemsPerPage}/{page}
+    defaults: { _controller: ecommerceArticleBundle:Article:category, numberItemsPerPage: 12, page: 1 }
     requirements:
         id:  \d+
         numberItemsPerPage:  \d+
