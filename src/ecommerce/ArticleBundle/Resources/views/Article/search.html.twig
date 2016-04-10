@@ -3,7 +3,7 @@
 {% extends "ecommerceArticleBundle::layout.html.twig" %}
 
 {% block titre %}
-    Recherche {{ item }} - {{ parent() }}
+    Recherche {{ product }} - {{ parent() }}
 {% endblock %}
 
 {% block active %}active{% endblock %}
@@ -21,14 +21,15 @@
             </ul>
         </div>
 
-        <div class="col-md-8 col-md-offset-2">
-            <div class="box">
-                <h2>Résultat pour "{{ item }}"</h2>
+        <div class="col-md-12">
+            <div class="box info-bar">
+                <h4 class="text-center">Résultat pour "{{ product }}" dans la province "{{ province }}"</h4>
                 {#<p>In our Ladies department we offer wide selection of the best products we have found and carefully
                     selected worldwide.</p>#}
-            </div>
+                {#</div>#}
 
-            <div class="box info-bar">
+                {#<div class="box info-bar">#}
+                <hr>
                 <div class="row">
                     <div class="col-sm-12 col-md-4 products-showing">
                         Affichage de
@@ -53,26 +54,26 @@
                                     <div class="products-number">
                                         <strong>Afficher</strong>
                                         {% if numberItemsPerPage == 12 %}
-                                            <a href="{{ path('ecommerce_article_search', {'numberItemsPerPage': 12, 'item': item}) }}"
+                                            <a href="{{ path('ecommerce_article_search', {'numberItemsPerPage': 12, 'product': product, 'province': province}) }}"
                                                class="btn btn-default btn-sm btn-primary">12</a>
                                         {% else %}
-                                            <a href="{{ path('ecommerce_article_search', {'numberItemsPerPage': 12, 'item': item}) }}"
+                                            <a href="{{ path('ecommerce_article_search', {'numberItemsPerPage': 12, 'product': product, 'province': province}) }}"
                                                class="btn btn-default btn-sm">12</a>
                                         {% endif %}
 
                                         {% if numberItemsPerPage == 24 %}
-                                            <a href="{{ path('ecommerce_article_search', {'numberItemsPerPage': 24, 'item': item}) }}"
+                                            <a href="{{ path('ecommerce_article_search', {'numberItemsPerPage': 24, 'product': product, 'province': province}) }}"
                                                class="btn btn-default btn-sm btn-primary">24</a>
                                         {% else %}
-                                            <a href="{{ path('ecommerce_article_search', {'numberItemsPerPage': 24, 'item': item}) }}"
+                                            <a href="{{ path('ecommerce_article_search', {'numberItemsPerPage': 24, 'product': product, 'province': province}) }}"
                                                class="btn btn-default btn-sm">24</a>
                                         {% endif %}
 
                                         {% if numberItemsPerPage == 48 %}
-                                            <a href="{{ path('ecommerce_article_search', {'numberItemsPerPage': 48, 'item': item}) }}"
+                                            <a href="{{ path('ecommerce_article_search', {'numberItemsPerPage': 48, 'product': product, 'province': province}) }}"
                                                class="btn btn-default btn-sm btn-primary">48</a>
                                         {% else %}
-                                            <a href="{{ path('ecommerce_article_search', {'numberItemsPerPage': 48, 'item': item}) }}"
+                                            <a href="{{ path('ecommerce_article_search', {'numberItemsPerPage': 48, 'product': product, 'province': province}) }}"
                                                class="btn btn-default btn-sm">48</a>
                                         {% endif %}
 
@@ -183,7 +184,7 @@
                     {# On utilise la fonction range(a, b) qui crée un tableau de valeurs entre a et b #}
                     {% for p in range(1, nombrePage) %}
                         <li{% if p == page %} class="active"{% endif %}>
-                            <a href="{{ path('ecommerce_article_search', {'numberItemsPerPage': numberItemsPerPage, 'page': p, 'item': item}) }}">{{ p }}</a>
+                            <a href="{{ path('ecommerce_article_search', {'numberItemsPerPage': numberItemsPerPage, 'page': p, 'product': product, 'province': province}) }}">{{ p }}</a>
                         </li>
                     {% endfor %}
 

@@ -51,7 +51,23 @@
 
     <div class="container">
         <div class="box">
-            <form class="navbar-form" role="search"
+
+
+            {#<div class="container">#}
+            <div class="row">
+                <div class="col-xs-12">
+
+                    <!-- *** FORMULAIRE DE RECHERCHE ***
+_________________________________________________________ -->
+                    {{ render(controller("ecommerceArticleBundle:Article:searchForm")) }}
+                    <!-- *** FORMULAIRE DE RECHERCHE FIN *** -->
+
+                </div>
+            </div>
+            {#</div>#}
+
+
+            {#<form class="navbar-form" role="search"
                   action="{{ path('ecommerce_article_search') }}" {{ form_enctype(form) }} method="POST">
                 <div class="input-group">
                     {{ form_widget(form.item, { 'attr': {'class': 'form-control col-md-12', 'placeholder': 'Rechercher' } }) }}
@@ -67,7 +83,7 @@
 
                     </span>
                 </div>
-            </form>
+            </form>#}
 
             <hr>
 
@@ -79,7 +95,7 @@
                     <p>
                         Bas-Uele<br>
                         Équateur<br>
-                        HautKatanga<br>
+                        Haut-Katanga<br>
                         Haut-Lomami<br>
                         Haut-Uele<br>
                         Ituri

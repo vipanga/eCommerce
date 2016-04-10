@@ -192,7 +192,7 @@ class ArticleController extends Controller
      * Fonction de recherche d'un article
      *
      * */
-    public function searchAction($numberItemsPerPage, $page, $item)
+    public function searchAction($numberItemsPerPage, $page, $product, $province)
     {
         $search = new Search();
 
@@ -214,16 +214,28 @@ class ArticleController extends Controller
                 $em->persist($search);
                 $em->flush();
 
-                $item = $search->getItem();
-                // Sélection des articles de la catégorie sélectionnée
-                $articles = $this->getDoctrine()
-                    ->getManager()
-                    ->getRepository('ecommerceArticleBundle:Article')
-                    ->getSearchArticles($numberItemsPerPage, $page, $item);
+                $product = $search->getProduct();
+                $province = $search->getProvince();
+
+                if (($province == 'Toutes') || ($province == "")) {
+                    // Sélection des articles de la catégorie sélectionnée
+                    $articles = $this->getDoctrine()
+                        ->getManager()
+                        ->getRepository('ecommerceArticleBundle:Article')
+                        ->getSearchArticlesOnly($numberItemsPerPage, $page, $product);
+                } else {
+                    // Sélection des articles de la catégorie sélectionnée
+                    $articles = $this->getDoctrine()
+                        ->getManager()
+                        ->getRepository('ecommerceArticleBundle:Article')
+                        ->getSearchArticles($numberItemsPerPage, $page, $product, $province);
+                }
+
 
                 return $this->render('ecommerceArticleBundle:Article:search.html.twig', array(
                     'articles' => $articles,
-                    'item' => $item,
+                    'product' => $product,
+                    'province' => $province,
                     'page' => $page,
                     'numberItemsPerPage' => $numberItemsPerPage,
                     'nombrePage' => ceil(count($articles) / $numberItemsPerPage)
@@ -231,14 +243,24 @@ class ArticleController extends Controller
             }
         }
 
-        $articles = $this->getDoctrine()
-            ->getManager()
-            ->getRepository('ecommerceArticleBundle:Article')
-            ->getSearchArticles($numberItemsPerPage, $page, $item);
+        if (($province == 'Toutes') || ($province == "")) {
+            // Sélection des articles de la catégorie sélectionnée
+            $articles = $this->getDoctrine()
+                ->getManager()
+                ->getRepository('ecommerceArticleBundle:Article')
+                ->getSearchArticlesOnly($numberItemsPerPage, $page, $product);
+        } else {
+            // Sélection des articles de la catégorie sélectionnée
+            $articles = $this->getDoctrine()
+                ->getManager()
+                ->getRepository('ecommerceArticleBundle:Article')
+                ->getSearchArticles($numberItemsPerPage, $page, $product, $province);
+        }
 
         return $this->render('ecommerceArticleBundle:Article:search.html.twig', array(
             'articles' => $articles,
-            'item' => $item,
+            'product' => $product,
+            'province' => $province,
             'page' => $page,
             'numberItemsPerPage' => $numberItemsPerPage,
             'nombrePage' => ceil(count($articles) / $numberItemsPerPage)
@@ -468,6 +490,16 @@ class ArticleController extends Controller
             'article' => $article,
             'form' => $form->createView()
         ));
+    }
+
+    public function searchFormAction()
+    {
+        $search = new Search();
+
+        // On crée le formulaire grâce à l'SearchType
+        $form = $this->createForm(new SearchType(), $search);
+
+        return $this->render('ecommerceArticleBundle:Article:search_form.html.twig', array('form' => $form->createView()));
     }
 
 }

@@ -52,9 +52,10 @@ ecommerce_article_edit:
         id:  \d+
 
 ecommerce_article_search:
-    path:     /s/{numberItemsPerPage}/{page}/{item}
-    defaults: { _controller: ecommerceArticleBundle:Article:search, numberItemsPerPage: 12, page: 1, item: null }
+    path:     /s/{numberItemsPerPage}/{page}/{product}/{province}
+    defaults: { _controller: ecommerceArticleBundle:Article:search, numberItemsPerPage: 12, page: 1, product: null, province: null }
     requirements:
             numberItemsPerPage:  \d+
             page:  \d+
-            item: \w+
+            product: \w+
+            province: \w+

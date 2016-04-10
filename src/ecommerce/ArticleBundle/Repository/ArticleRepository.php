@@ -145,7 +145,7 @@ class ArticleRepository extends EntityRepository
         return new Paginator($query);
     }
 
-    public function getSearchArticles($numberItemsPerPage, $page, $item)
+    public function getSearchArticles($numberItemsPerPage, $page, $product, $province)
     {
         // On déplace la vérification du numéro de page dans cette méthode
         if ($page < 1) {
@@ -154,8 +154,38 @@ class ArticleRepository extends EntityRepository
 
         // La construction de la requête reste inchangée
         $query = $this->createQueryBuilder('a')
-            ->where('a.name_item LIKE :item')
-            ->setParameter('item', "%$item%")
+            ->where('a.name_item LIKE :product')
+            ->setParameter('product', "%$product%")
+            ->andWhere('a.province = :province')
+            ->setParameter('province', $province)
+            ->leftJoin('a.image', 'i')
+            ->addSelect('i')
+            ->leftJoin('a.genre', 'g')
+            ->addSelect('g')
+            ->orderBy('a.datepublication', 'DESC')
+            ->getQuery();
+
+        // On définit l'article à partir duquel commencer la liste
+        $query->setFirstResult(($page - 1) * $numberItemsPerPage)
+            // Ainsi que le nombre d'articles à afficher
+            ->setMaxResults($numberItemsPerPage);
+
+        // Enfin, on retourne l'objet Paginator correspondant à la requête construite
+        // (n'oubliez pas le use correspondant en début de fichier)
+        return new Paginator($query);
+    }
+
+    public function getSearchArticlesOnly($numberItemsPerPage, $page, $product)
+    {
+        // On déplace la vérification du numéro de page dans cette méthode
+        if ($page < 1) {
+            throw new \InvalidArgumentException('L\'argument $page ne peut être inférieur à 1 (valeur : "' . $page . '").');
+        }
+
+        // La construction de la requête reste inchangée
+        $query = $this->createQueryBuilder('a')
+            ->where('a.name_item LIKE :product')
+            ->setParameter('product', "%$product%")
             ->leftJoin('a.image', 'i')
             ->addSelect('i')
             ->leftJoin('a.genre', 'g')

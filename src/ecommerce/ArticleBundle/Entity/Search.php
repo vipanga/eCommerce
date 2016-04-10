@@ -27,9 +27,21 @@ class Search
     /**
      * @var string
      *
-     * @ORM\Column(name="item", type="string", length=255)
+     * @ORM\Column(name="product", type="string", length=255)
      */
-    private $item;
+    private $product;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="province", type="string", length=255, nullable=true)
+     *
+     * @Assert\Length(
+     *      max = 50,
+     *      maxMessage = "Le nom de la province ne doit pas avoir plus de {{ limit }} caractères"
+     * )
+     */
+    private $province;
 
     /**
      * @var \DateTime
@@ -48,7 +60,7 @@ class Search
     /**
      * Get id
      *
-     * @return integer
+     * @return integer 
      */
     public function getId()
     {
@@ -56,24 +68,47 @@ class Search
     }
 
     /**
-     * Get item
+     * Get product
      *
-     * @return string
+     * @return string 
      */
-    public function getItem()
+    public function getProduct()
     {
-        return $this->item;
+        return $this->product;
     }
 
     /**
-     * Set item
+     * Set product
      *
-     * @param string $item
+     * @param string $product
      * @return Search
      */
-    public function setItem($item)
+    public function setProduct($product)
     {
-        $this->item = $item;
+        $this->product = $product;
+
+        return $this;
+    }
+
+    /**
+     * Get province
+     *
+     * @return string
+     */
+    public function getProvince()
+    {
+        return $this->province;
+    }
+
+    /**
+     * Set province
+     *
+     * @param string $province
+     * @return Search
+     */
+    public function setProvince($province)
+    {
+        $this->province = $province;
 
         return $this;
     }
@@ -81,7 +116,7 @@ class Search
     /**
      * Get date
      *
-     * @return \DateTime
+     * @return \DateTime 
      */
     public function getDate()
     {

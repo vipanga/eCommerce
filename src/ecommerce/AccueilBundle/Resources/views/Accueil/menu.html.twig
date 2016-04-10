@@ -111,9 +111,9 @@ _________________________________________________________ -->
             <form class="navbar-form" role="search"
                   action="{{ path('ecommerce_article_search') }}" {{ form_enctype(form) }} method="POST">
                 <div class="input-group">
-                    {{ form_widget(form.item, { 'attr': {'class': 'form-control', 'placeholder': 'Rechercher' } }) }}
+                    {{ form_widget(form.product, { 'attr': {'class': 'form-control', 'placeholder': 'Rechercher' } }) }}
                     <div class="has-error" style="color: red">
-                        {{ form_errors(form.item) }}
+                        {{ form_errors(form.product) }}
                     </div>
 
                     {{ form_rest(form) }}

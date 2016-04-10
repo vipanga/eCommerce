@@ -31,11 +31,18 @@
         </div>
 
         <div class="col-md-9">
-            {#<div class="box">#}
-            {#<h1>{{ category.name }}</h1>#}
+            <div class="box info-bar">
+                {#<h4>Produits postés par {{ user.username }}</h4>#}
+                {#<p>In our Ladies department we offer wide selection of the best products we have found and carefully
+                    selected worldwide.</p>#}
+                <!-- *** FORMULAIRE DE RECHERCHE ***
+    _________________________________________________________ -->
+                {{ render(controller("ecommerceArticleBundle:Article:searchForm")) }}
+                <!-- *** FORMULAIRE DE RECHERCHE FIN *** -->
             {#</div>#}
 
-            <div class="box info-bar">
+                {#<div class="box info-bar">#}
+                <hr>
                 <div class="row">
                     <div class="col-sm-12 col-md-4 products-showing">
                         Affichage de
