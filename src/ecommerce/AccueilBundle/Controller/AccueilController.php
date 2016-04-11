@@ -11,56 +11,18 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 class AccueilController extends Controller {
 
     public function indexAction() {
-        /*$listOfItems = array();
-        $telephones = $this->getDoctrine()
-            ->getManager()
-            ->getRepository('ecommerceArticleBundle:Article')
-            ->getTelephones();
 
-        $listOfItems[] = $telephones;
-
-        $televiseurs = $this->getDoctrine()
-            ->getManager()
-            ->getRepository('ecommerceArticleBundle:Article')
-            ->getTeleviseurs();
-
-        $listOfItems[] = $televiseurs;
-
-        $materiaux = $this->getDoctrine()
-            ->getManager()
-            ->getRepository('ecommerceArticleBundle:Article')
-            ->getMateriaux();
-
-        $listOfItems[] = $materiaux;*/
-
-        $search = new Search();
-
-        // On crée le formulaire grâce à l'SearchType
-        $form = $this->createForm(new SearchType(), $search);
-
-        return $this->render('ecommerceAccueilBundle:Accueil:index.html.twig', array(
-            'form' => $form->createView(),
-        ));
-
-        /*return $this->render('ecommerceAccueilBundle:Accueil:index.html.twig', array(
-            'telephones' => $telephones,
-            'televiseurs' => $televiseurs,
-            'materiaux' => $materiaux
-        ));*/
+        return $this->render('ecommerceAccueilBundle:Accueil:index.html.twig');
     }
 
     public function menuAction() {
-        $search = new Search();
-
-        // On crée le formulaire grâce à l'SearchType
-        $form = $this->createForm(new SearchType(), $search);
 
         $categories = $this->getDoctrine()
                 ->getManager()
                 ->getRepository('ecommerceArticleBundle:Category')
                 ->getCategories();
 
-        return $this->render('ecommerceAccueilBundle:Accueil:menu.html.twig', array('categories' => $categories, 'form' => $form->createView()));
+        return $this->render('ecommerceAccueilBundle:Accueil:menu.html.twig', array('categories' => $categories));
     }
     
     public function contactAction() {

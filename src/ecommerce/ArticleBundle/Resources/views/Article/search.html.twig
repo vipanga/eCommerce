@@ -16,19 +16,23 @@
             <ul class="breadcrumb">
                 <li><a href="{{ path('ecommerce_accueil_accueil') }}">Accueil</a>
                 </li>
-                <li>Recherche</li>
+                <li>Résultat pour "{{ product }}" dans la province "{{ province }}"</li>
 
             </ul>
         </div>
 
         <div class="col-md-12">
             <div class="box info-bar">
-                <h4 class="text-center">Résultat pour "{{ product }}" dans la province "{{ province }}"</h4>
-                {#<p>In our Ladies department we offer wide selection of the best products we have found and carefully
-                    selected worldwide.</p>#}
-                {#</div>#}
+                <div class="row">
+                    <div class="col-xs-12 text-center">
 
-                {#<div class="box info-bar">#}
+                        <!-- *** FORMULAIRE DE RECHERCHE ***
+    _________________________________________________________ -->
+                        {{ render(controller("ecommerceArticleBundle:Article:searchForm")) }}
+                        <!-- *** FORMULAIRE DE RECHERCHE FIN *** -->
+
+                    </div>
+                </div>
                 <hr>
                 <div class="row">
                     <div class="col-sm-12 col-md-4 products-showing">
@@ -149,7 +153,7 @@
                             </div>
                             <!-- /.text -->
 
-                            <div class="ribbon sale">
+                            {#<div class="ribbon sale">
                                 <div class="theribbon">SALE</div>
                                 <div class="ribbon-background"></div>
                             </div>
@@ -165,12 +169,13 @@
                                 <div class="theribbon">GIFT</div>
                                 <div class="ribbon-background"></div>
                             </div>
-                            <!-- /.ribbon -->
+                            <!-- /.ribbon -->#}
                         </div>
                         <!-- /.product -->
                     </div>
                 {% else %}
                     <div class="col-sm-12">
+                        <h3 class="text-center">Résultat pour "{{ product }}" dans la province "{{ province }}"</h3>
                         <h3 class="text-center">Pas d'article(s) trouvé !</h3>
                     </div>
                 {% endfor %}

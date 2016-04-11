@@ -201,12 +201,12 @@
             </div>
 
             <div class="box">
-                <div id="comments" data-animate="fadeInUp">
+                <div id="comments">
                     <h4>{{ comments|length }} commentaire(s)</h4>
 
                     {% for comment in comments %}
                         <div class="row comment">
-                            <div class="col-sm-3 col-md-2 text-center-xs">
+                            <div class="col-md-2 col-sm-3 col-xs-3 text-center-xs">
                                 <p>
                                     {# On vérifie qu'une image est bien associée à l'utilisateur #}
                                     {% if comment.author.getImage() is not null %}
@@ -220,7 +220,7 @@
                                     {% endif %}
                                 </p>
                             </div>
-                            <div class="col-sm-9 col-md-10">
+                            <div class="col-md-10 col-sm-9 col-xs-9">
                                 <h5>{{ comment.author.username }}</h5>
                                 <p class="posted">
                                     <i class="fa fa-clock-o"></i>
@@ -244,7 +244,7 @@
                 </div>
                 <!-- /#comments -->
 
-                <div id="comment-form" data-animate="fadeInUp">
+                <div id="comment-form">
 
                     <h4>Donnez votre avis</h4>
 

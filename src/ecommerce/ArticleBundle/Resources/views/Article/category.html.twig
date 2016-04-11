@@ -32,17 +32,8 @@
 
         <div class="col-md-9">
             <div class="box info-bar">
-                {#<h4>Produits postés par {{ user.username }}</h4>#}
-                {#<p>In our Ladies department we offer wide selection of the best products we have found and carefully
-                    selected worldwide.</p>#}
-                <!-- *** FORMULAIRE DE RECHERCHE ***
-    _________________________________________________________ -->
-                {{ render(controller("ecommerceArticleBundle:Article:searchForm")) }}
-                <!-- *** FORMULAIRE DE RECHERCHE FIN *** -->
-            {#</div>#}
-
-                {#<div class="box info-bar">#}
-                <hr>
+                {#<h3>{{ category.name }}</h3>
+                <hr>#}
                 <div class="row">
                     <div class="col-sm-12 col-md-4 products-showing">
                         Affichage de
@@ -162,7 +153,7 @@
                             </div>
                             <!-- /.text -->
 
-                            <div class="ribbon sale">
+                            {#<div class="ribbon sale">
                                 <div class="theribbon">SALE</div>
                                 <div class="ribbon-background"></div>
                             </div>
@@ -178,7 +169,7 @@
                                 <div class="theribbon">GIFT</div>
                                 <div class="ribbon-background"></div>
                             </div>
-                            <!-- /.ribbon -->
+                            <!-- /.ribbon -->#}
                         </div>
                         <!-- /.product -->
                     </div>

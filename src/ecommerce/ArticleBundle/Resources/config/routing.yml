@@ -57,5 +57,5 @@ ecommerce_article_search:
     requirements:
             numberItemsPerPage:  \d+
             page:  \d+
-            product: \w+
-            province: \w+
+#            product: \w+
+#            province: \w+
