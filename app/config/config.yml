@@ -79,3 +79,16 @@ fos_user:
     profile:
         form:
             type: ecommerce\UserBundle\Form\Type\ProfileFormType
+
+# LiipImagineBundle Configuration
+liip_imagine:
+    resolvers:
+       default:
+          web_path: ~
+
+    filter_sets:
+        cache: ~
+        my_thumb:
+            quality: 75
+            filters:
+                thumbnail: { size: [270, 270], mode: outbound }

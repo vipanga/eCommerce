@@ -231,9 +231,14 @@ class ArticleController extends Controller
                         ->getSearchArticles($numberItemsPerPage, $page, $product, $province);
                 }
 
+                $categories = $this->getDoctrine()
+                    ->getManager()
+                    ->getRepository('ecommerceArticleBundle:Category')
+                    ->getCategories();
 
                 return $this->render('ecommerceArticleBundle:Article:search.html.twig', array(
                     'articles' => $articles,
+                    'categories' => $categories,
                     'product' => $product,
                     'province' => $province,
                     'page' => $page,

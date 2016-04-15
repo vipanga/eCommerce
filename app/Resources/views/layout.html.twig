@@ -1,431 +1,1053 @@
 {# app/Resources/views/layout.html.twig #}
 
 <!DOCTYPE html>
-<html lang="fr-fr">
-
+<!--[if IE]><![endif]-->
+<!--[if IE 8 ]>
+<html dir="ltr" lang="1" class="ie8"><![endif]-->
+<!--[if IE 9 ]>
+<html dir="ltr" lang="1" class="ie9"><![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!-->
+<html idmmzcc-ext-docid="2301399631872" dir="ltr"><!--<![endif]-->
 <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
 
-    <meta charset="utf-8">
-    <meta name="robots" content="all,follow">
-    <meta name="googlebot" content="index,follow,snippet,archive">
+
+    <title>
+        {% block titre %}Shop{% endblock %}
+    </title>
+    <meta charset="UTF-8">
+    <!-- base href="http://opencart.magentech.com/themes/so_lovefashion/" -->
+    <meta name="format-detection" content="telephone=no">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="{% block description %}{% endblock %}">
     <meta name="author" content="{% block auteur %}{% endblock %}">
     <meta name="keywords" content="{% block mots %}{% endblock %}">
 
-    <title>
-        {% block titre %}Netil{% endblock %}
-    </title>
+    <!--[if IE]>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"><![endif]-->
 
-    {#    <meta name="keywords" content="{% block mots %}{% endblock %}">#}
-
-    <link href='https://fonts.googleapis.com/css?family=Roboto:400,500,700,300,100' rel='stylesheet' type='text/css'>
-
-    <!-- styles -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-    <link href="{{ asset('css/font-awesome.css') }}" rel="stylesheet">
+    <link href="{{ asset('img/favicon.png') }}" rel="icon">
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
           integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link href="{{ asset('css/font-awesome.min') }}" rel="stylesheet">
+    <link href="{{ asset('css/lib.css') }}" rel="stylesheet">
 
-    <link href="{{ asset('css/animate.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/owl.carousel.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/owl.theme.css') }}" rel="stylesheet">
 
-    <!-- star rating styles -->
-    <link href="{{ asset('css/star-rating.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/theme-krajee-fa.min.css') }}" rel="stylesheet">
+    <link id="color_scheme" href="{{ asset('css/theme-red.css') }}"
+          rel="stylesheet">
 
-    <!-- theme stylesheet -->
-    <link href="{{ asset('css/style.default.css') }}" rel="stylesheet" id="theme-stylesheet">
+    <link href="{{ asset('css/style_004.css') }}" type="text/css" rel="stylesheet" media="screen">
+    <link href="{{ asset('css/css3.css') }}" type="text/css" rel="stylesheet" media="screen">
+    <link href="{{ asset('css/owl.css') }}" type="text/css" rel="stylesheet" media="screen">
+    <link href="{{ asset('css/so-listing-tabs.css') }}" type="text/css" rel="stylesheet" media="screen">
+    <link href="{{ asset('css/animate.css') }}" type="text/css" rel="stylesheet" media="screen">
+    <link href="{{ asset('css/style_002.css') }}" type="text/css" rel="stylesheet" media="screen">
+    <link href="{{ asset('css/style.css') }}" type="text/css" rel="stylesheet" media="screen">
+    <link href="{{ asset('css/style_003.css') }}" type="text/css" rel="stylesheet" media="screen">
+    <link href="{{ asset('css/so_searchpro.css') }}" type="text/css" rel="stylesheet" media="screen">
+    <link href="{{ asset('css/so_megamenu.css') }}" type="text/css" rel="stylesheet" media="screen">
+    <link href="{{ asset('css/wide-grid.css') }}" type="text/css" rel="stylesheet" media="screen">
 
-    <!-- your stylesheet with modifications -->
-    <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
 
-    <script src="{{ asset('js/respond.min.js') }}"></script>
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/responsive.css') }}" media="screen">
 
-    <link rel="shortcut icon" href="{{ asset('images/favicon.png') }}">
+    <!--[if gt IE 9]><!-->
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/ie9-and-up.css') }}">
+    <!--<![endif]-->
+
+
+    <style type="text/css">
+        body {
+            font-family: Arial, Helvetica, sans-serif
+        }        </style>
+
+    <link href="{{ asset('css/css.css') }}" rel="stylesheet" type="text/css">
+
+    <style type="text/css">
+        .module.newsletter .form-group .subcribe .btn-lg, .so-extraslider .extraslider-inner .item-wrap .item-info a, h1, h2, h3, h4, h5, h6, .blog-category ul li.list-group-item a, .price .price-new, .price span.price, .block_category a, .addToCart, .label-sale, .label-new, .num-time, .quickview, .ltabs-tabs li > span, .name, .quick-login, .quick-register, .menu .main-menu, .loadmore .more-view, .popup-title, .send-mail, .producttab .tabsslider .nav-tabs li a, .left-content-product .cart input, .subcribe, .box-heading, ul.megamenu > li > a, .price-old, .sohomeslider-description a, .time-item, .custom-shipping .btn, .slider-sale-up .button, .Our-stories .block-right .content a.btn {
+            font-family: Roboto Condensed, sans-serif
+        }        </style>
+
+
+    <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+    <script src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+    <script type="text/javascript" src="{{ asset('js/jquery-1.12.3.min.js') }}"></script>
+    <script type="text/javascript"
+            src="{{ asset('js/jquery-2.js') }}"></script>
+    <script type="text/javascript"
+            src="{{ asset('js/bootstrap.js') }}"></script>
+    <script type="text/javascript"
+            src="{{ asset('js/libs.js') }}"></script>
+
+    <script type="text/javascript"
+            src="{{ asset('js/jquery.js') }}"></script>
+    <script type="text/javascript"
+            src="{{ asset('js/common.js') }}"></script>
+
+    <script type="text/javascript"
+            src="{{ asset('js/so.js') }}"></script>
+
+
+    <script type="text/javascript"
+            src="{{ asset('js/jquery_002.js') }}"></script>
+
+
+    <script type="text/javascript"
+            src="{{ asset('js/owl.js') }}"></script>
+    <script type="text/javascript"
+            src="{{ asset('js/so_megamenu.js') }}"></script>
+
+
+    <style type="text/css">
+        body {
+            background-color: inherit;
+        }
+    </style>
+
+
+    <link href="{{ asset('css/shortcodes.css') }}" rel="stylesheet">
+    <script type="text/javascript"
+            src="{{ asset('js/shortcodes.js') }}"></script>
 
 </head>
 
-<body>
+<body class="common-home ltr res layout-1  no_msie">
+<div id="wrapper" class="wrapper-boxed">
 
-<!-- *** TOPBAR ***
-_________________________________________________________ -->
-<div id="top">
-    <div class="container">
-        <div class="col-md-6 offer" data-animate="fadeInDown">
-            <a href="#" class="btn btn-success btn-sm" data-animate-hover="shake">Offre du jour</a> <a href="#">Réduction
-                de 35% pour tout achat de plus de $50!</a>
-        </div>
-        <div class="col-md-6" data-animate="fadeInDown">
-            <ul class="menu">
+    <header id="header" class=" variantleft">
 
-                {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-                    <li>
-                        <a href="{{ path('fos_user_profile_show') }}">{{ app.user.username }}</a>
-                    </li>
-                    <li>
-                        <a href="{{ path('ecommerce_article_publications') }}">Mes Articles</a>
-                    </li>
-                    <li>
-                        <a href="{{ path('fos_user_security_logout') }}">Déconnexion</a>
-                    </li>
-                {% else %}
-                    <li>
-                        <a href="{{ path('fos_user_security_login') }}">Se connecter</a>
-                    </li>
-                    <li>
-                        <a href="{{ path('fos_user_registration_register') }}">S'inscrire</a>
-                    </li>
-                {% endif %}
-
-                {#                        <li>
-                                            <a href="#" data-toggle="modal" data-target="#login-modal">Se connecter</a>
-                                        </li>#}
-            </ul>
-        </div>
-    </div>
-
-    {#            <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="Login" aria-hidden="true">
-                    <div class="modal-dialog modal-sm">
-
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                <h4 class="modal-title" id="Login">Se connecter</h4>
-                            </div>
-                            <div class="modal-body">
-
-                                {% if error %}
-                                    <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-                                {% endif %}
-
-                                <form action="{{ path("fos_user_security_check") }}" method="post">
-                                    <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
-                                    <div class="form-group">
-                                        <input type="text" class="form-control" id="email-modal" name="_username" value="{{ last_username }}" required="required" placeholder="nom utilisateur">
-                                    </div>
-                                    <div class="form-group">
-                                        <input type="password" class="form-control" id="password-modal" name="_password" required="required" placeholder="mot de passe">
-                                    </div>
-                                    <div class="form-group">
-                                        <input type="checkbox" class="form-control" id="remember_me" name="_remember_me" value="on">
-                                        <label for="remember_me">{{ 'security.login.remember_me'|trans }}</label>
-                                    </div>
-
-                                    <p class="text-center">
-                                        <button class="btn btn-primary" id="_submit" name="_submit"><i class="fa fa-sign-in"></i> Connexion</button>
-                                    </p>
-
+        <!-- Header Top -->
+        <section class="header-top">
+            <div class="container">
+                <div class="row">
+                    <div class="header-top-left form-inline col-sm-6 compact-hidden">
+                        <div class="curr">
+                            <div class="form-group currencies-block">
+                                <form action="http://opencart.magentech.com/themes/so_lovefashion/index.php?route=common/currency/currency"
+                                      method="post" enctype="multipart/form-data" id="currency">
+                                    <a class="btn btn-xs dropdown-toggle" data-toggle="dropdown">
+                                        <span class="icon icon-credit "></span>
+                                        US Dollar <span class="fa fa-angle-down"></span>
+                                    </a>
+                                    <ul class="dropdown-menu btn-xs">
+                                        <li>
+                                            <a title="Euro"
+                                               onclick="$('input[name=\'code\']').attr('value', 'EUR'); $('#currency').submit();">(€)
+                                                &nbsp;Euro </a>
+                                        </li>
+                                        <li>
+                                            <a title="Pounds"
+                                               onclick="$('input[name=\'code\']').attr('value', 'GBP'); $('#currency').submit();">(£)
+                                                &nbsp;Pounds </a>
+                                        </li>
+                                        <li>
+                                            <a title="US Dollar"
+                                               onclick="$('input[name=\'code\']').attr('value', 'USD'); $('#currency').submit();">($)
+                                                &nbsp;US Dollar </a>
+                                        </li>
+                                    </ul>
+                                    <input name="code" value="" type="hidden">
+                                    <input name="redirect"
+                                           value="http://opencart.magentech.com/themes/so_lovefashion/index.php?route=common/home"
+                                           type="hidden">
                                 </form>
-
-                                <p class="text-center text-muted">Pas encore inscrit ?</p>
-                                <p class="text-center text-muted"><a href="{{ path('ecommerce_accueil_inscription') }}"><strong>S'inscrire maintenant</strong></a>! C’est très facile, en moins d’une minute pour vous permettre de publier aussi vos articles!</p>
-
                             </div>
+
+
+                        </div>
+
+                        <div class="lang">
+                            <div class="form-group languages-block ">
+                                <form action="#" method="post" id="bt-language">
+                                    <a class="btn btn-xs dropdown-toggle" data-toggle="dropdown">
+                                        <img src="{{ asset('img/fr.png') }}"
+                                             alt="Français" title="Français">
+                                        <span>Français</span>
+                                        <span class="fa fa-angle-down"></span>
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li>
+                                            <a>
+                                                <img class="image_flag"
+                                                     src="{{ asset('img/fr.png') }}"
+                                                     alt="Français" title="Français">
+                                                Français </a>
+                                        </li>
+                                        <li>
+                                            <a>
+                                                <img class="image_flag"
+                                                     src="{{ asset('img/gb.png') }}"
+                                                     alt="English" title="English">
+                                                English
+                                            </a>
+                                        </li>
+                                    </ul>
+
+                                    <input name="code" value="" type="hidden">
+                                    <input name="redirect"
+                                           value="#"
+                                           type="hidden">
+                                </form>
+                            </div>
+
+
+                        </div>
+
+                    </div>
+                    <div class="header-top-right collapsed-block col-xs-6 compact-hidden">
+                        <h5 class="tabBlockTitle visible-sm visible-xs">More<a class="expander " href="#TabBlock-1"><i
+                                        class="fa fa-angle-down"></i></a></h5>
+                        <div class="tabBlock" id="TabBlock-1">
+
+                            <ul class="top-link list-inline">
+                                {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                                    <li class="account" id="my_account">
+                                        <a href="{{ path('fos_user_profile_show') }}" title="{{ app.user.username }}"
+                                           class="btn btn-xs dropdown-toggle ">
+                                            <span>{{ app.user.username }}</span>
+                                        </a>
+                                    </li>
+                                    <li class="checkout">
+                                        <a href="{{ path('ecommerce_article_publications') }}" class="top-link-checkout"
+                                           title="Checkout">
+                                            <span>Mes Articles</span>
+                                        </a>
+                                    </li>
+                                    <li class="checkout">
+                                        <a href="{{ path('fos_user_security_logout') }}" class="top-link-checkout"
+                                           title="Checkout">
+                                            <span>Déconnexion</span>
+                                        </a>
+                                    </li>
+                                {% else %}
+                                    <li class="checkout">
+                                        <a href="{{ path('fos_user_security_login') }}" class="top-link-checkout"
+                                           title="Checkout">
+                                            <span>Se connecter</span>
+                                        </a>
+                                    </li>
+                                    <li class="checkout">
+                                        <a href="{{ path('fos_user_registration_register') }}" class="top-link-checkout"
+                                           title="Checkout">
+                                            <span>S'inscrire</span>
+                                        </a>
+                                    </li>
+                                {% endif %}
+                            </ul>
                         </div>
                     </div>
-                </div>#}
+                </div>
+            </div>
+        </section>
+        <!-- container for top line of header -->
 
-</div>
+        <section class="header-center left">
+            <div class="container">
+                <div class="row">
+                    <!--header variant center-->
+                    <!-- Logo -->
+                    <div class="navbar-logo col-md-3 col-sm-12 col-xs-12">
+                        <a href="http://opencart.magentech.com/themes/so_lovefashion/index.php?route=common/home"><img
+                                    src="{{ asset('img/theme_logo_red.png') }}"
+                                    title="Your Store" alt="Your Store"></a>
+                    </div>
+                    <!-- //end Logo -->
 
-<!-- *** TOP BAR END *** -->
+                    <!-- Search -->
+                    <div class="search-res col-md-5 col-sm-12 col-xs-12">
+                        <div id="sosearchpro" class="sosearchpro-wrapper so-search search-pro collapsed-block">
+                            <h5 class="tabBlockTitle dropdow-search visible-sm visible-xs"><a class="expander "
+                                                                                              href="#TabBlock-search">Search&nbsp;<i
+                                            class="fa fa-angle-down"></i></a></h5>
+                            <div class="tabBlock" id="TabBlock-search">
+                                <form method="GET" action="index.php">
+                                    <div id="search0" class="search input-group">
+                                        <div class="select_category filter_type  icon-select">
+                                            <select class="no-border" name="category_id">
+                                                <option selected="selected" value="0">All Categories</option>
+                                                <option value="97">Bags</option>
+                                                <option value="77">Boys</option>
+                                                <option value="78">Men</option>
+                                                <option value="94">Wedding</option>
+                                                <option value="20">Jewelry</option>
+                                            </select>
+                                        </div>
+
+                                        <input class="autosearch-input form-control" size="50" autocomplete="off"
+                                               placeholder="Enter keywords here..." name="search" type="text">
+                                        <ul class="dropdown-menu"></ul>
+	    <span class="input-group-btn">
+			<button type="submit" class="button-search btn btn-default btn-lg" name="submit_search"><i
+                        class="fa fa-search"></i></button>
+		</span>
+                                    </div>
 
 
-<!-- *** MENU PRINCIPAL ***
+                                    <input name="route" value="product/search" type="hidden">
+                                </form>
+                            </div>
+                        </div>
+                        <script type="text/javascript">
+                            // Autocomplete */
+                            (function ($) {
+                                $.fn.Soautocomplete = function (option) {
+                                    return this.each(function () {
+                                        this.timer = null;
+                                        this.items = new Array();
+
+                                        $.extend(this, option);
+
+                                        $(this).attr('autocomplete', 'off');
+
+                                        // Focus
+                                        $(this).on('focus', function () {
+                                            this.request();
+                                        });
+
+                                        // Blur
+                                        $(this).on('blur', function () {
+                                            setTimeout(function (object) {
+                                                object.hide();
+                                            }, 200, this);
+                                        });
+
+                                        // Keydown
+                                        $(this).on('keydown', function (event) {
+                                            switch (event.keyCode) {
+                                                case 27: // escape
+                                                    this.hide();
+                                                    break;
+                                                default:
+                                                    this.request();
+                                                    break;
+                                            }
+                                        });
+
+                                        // Click
+                                        this.click = function (event) {
+                                            event.preventDefault();
+
+                                            value = $(event.target).parent().attr('data-value');
+
+                                            if (value && this.items[value]) {
+                                                this.select(this.items[value]);
+                                            }
+                                        }
+
+                                        // Show
+                                        this.show = function () {
+                                            var pos = $(this).position();
+
+                                            $(this).siblings('ul.dropdown-menu').css({
+                                                top: pos.top + $(this).outerHeight(),
+                                                left: pos.left
+                                            });
+
+                                            $(this).siblings('ul.dropdown-menu').show();
+                                        }
+
+                                        // Hide
+                                        this.hide = function () {
+                                            $(this).siblings('ul.dropdown-menu').hide();
+                                        }
+
+                                        // Request
+                                        this.request = function () {
+                                            clearTimeout(this.timer);
+
+                                            this.timer = setTimeout(function (object) {
+                                                object.source($(object).val(), $.proxy(object.response, object));
+                                            }, 200, this);
+                                        }
+
+                                        // Response
+                                        this.response = function (json) {
+                                            html = '';
+
+                                            if (json.length) {
+                                                for (i = 0; i < json.length; i++) {
+                                                    this.items[json[i]['value']] = json[i];
+                                                }
+
+                                                for (i = 0; i < json.length; i++) {
+                                                    if (!json[i]['category']) {
+                                                        html += '<li class="media" data-value="' + json[i]['value'] + '">';
+                                                        if (json[i]['image'] && json[i]['show_image'] && json[i]['show_image'] == 1) {
+                                                            html += '	<a class="media-left" href="' + json[i]['link'] + '"><img class="pull-left" src="' + json[i]['image'] + '"></a>';
+                                                        }
+
+                                                        html += '<div class="media-body">';
+                                                        html += '<h3 class="title"><a href="' + json[i]['link'] + '"><span>' + json[i]['label'] + '</span></a></h3>';
+                                                        if (json[i]['price'] && json[i]['show_price'] && json[i]['show_price'] == 1) {
+                                                            html += '	<div class="price">';
+                                                            if (!json[i]['special']) {
+                                                                html += '<span class="price">Price : ' + json[i]['price'] + '</span>';
+                                                                ;
+                                                            } else {
+                                                                html += '<span class="price-old">' + json[i]['price'] + '</span><span class="price-new">' + json[i]['special'] + '</span>';
+                                                            }
+                                                            if (json[i]['tax']) {
+                                                                html += '<br />';
+                                                                html += '<span class="price-tax">Tax : ' + json[i]['tax'] + '</span>';
+                                                            }
+                                                            html += '	</div>';
+                                                        }
+
+                                                        if (json[i]['show_addtocart'] || json[i]['show_addtowishlist'] || json[i]['show_addtocompare']) {
+                                                            html += '<div class="button-group">';
+                                                            if (json[i]['show_addtocart'])
+                                                                html += '<button type="button" onclick="cart.add(' + json[i]['value'] + ',' + json[i]['minimum'] + ');"><span class="hidden-xs hidden-sm hidden-md">Add to Cart</span> <i class="fa fa-shopping-cart"></i></button>';
+                                                            if (json[i]['show_addtowishlist'])
+                                                                html += '<button type="button" data-toggle="tooltip" title="Add to Wish List" onclick="wishlist.add(' + json[i]['value'] + ');"><i class="fa fa-heart"></i></button>';
+                                                            if (json[i]['show_addtocompare'])
+                                                                html += '<button type="button" data-toggle="tooltip" title="Add to Compare" onclick="compare.add(' + json[i]['value'] + ');"><i class="fa fa-exchange"></i></button>';
+                                                            html += '</div>';
+                                                        }
+                                                        html += '</div></li>';
+                                                        html += '<li class="clearfix"></li>';
+                                                    }
+                                                }
+
+                                                // Get all the ones with a categories
+                                                var category = new Array();
+
+                                                for (i = 0; i < json.length; i++) {
+                                                    if (json[i]['category']) {
+                                                        if (!category[json[i]['category']]) {
+                                                            category[json[i]['category']] = new Array();
+                                                            category[json[i]['category']]['name'] = json[i]['category'];
+                                                            category[json[i]['category']]['item'] = new Array();
+                                                        }
+
+                                                        category[json[i]['category']]['item'].push(json[i]);
+                                                    }
+                                                }
+
+                                                for (i in category) {
+                                                    html += '<li class="dropdown-header">' + category[i]['name'] + '</li>';
+
+                                                    for (j = 0; j < category[i]['item'].length; j++) {
+                                                        html += '<li data-value="' + category[i]['item'][j]['value'] + '"><a href="#">&nbsp;&nbsp;&nbsp;' + category[i]['item'][j]['label'] + '</a></li>';
+                                                    }
+                                                }
+                                            }
+
+                                            if (html) {
+                                                this.show();
+                                            } else {
+                                                this.hide();
+                                            }
+
+                                            $(this).siblings('ul.dropdown-menu').html(html);
+                                        }
+
+                                        $(this).after('<ul class="dropdown-menu"></ul>');
+
+                                    });
+                                }
+                            })(window.jQuery);
+
+                            $(document).ready(function () {
+                                var selector = '#search0';
+                                var total = 0;
+                                var showimage = 1;
+                                var showprice = 1;
+                                var character = 1;
+                                var height = 100;
+                                var width = 100;
+
+
+                                $(selector).find('input[name=\'search\']').Soautocomplete({
+                                    delay: 500,
+                                    source: function (request, response) {
+                                        var category_id = $(".select_category select[name=\"category_id\"]").first().val();
+                                        if (typeof(category_id) == 'undefined')
+                                            category_id = 0;
+                                        var limit = 10;
+                                        if (request.length >= character) {
+                                            $.ajax({
+                                                url: 'index.php?route=module/so_searchpro/autocomplete&filter_category_id=' + category_id + '&limit=' + limit + '&width=' + width + '&height=' + height + '&filter_name=' + encodeURIComponent(request),
+                                                dataType: 'json',
+                                                success: function (json) {
+                                                    response($.map(json, function (item) {
+                                                        total = 0;
+                                                        if (item.total) {
+                                                            total = item.total;
+                                                        }
+
+                                                        return {
+                                                            price: item.price,
+                                                            special: item.special,
+                                                            tax: item.tax,
+                                                            label: item.name,
+                                                            image: item.image,
+                                                            link: item.link,
+                                                            minimum: item.minimum,
+                                                            show_price: showprice,
+                                                            show_image: showimage,
+                                                            value: item.product_id,
+                                                        }
+                                                    }));
+                                                }
+                                            });
+                                        }
+                                    },
+                                });
+                            });
+
+                        </script>
+
+                    </div>
+                    <!-- //end Search -->
+
+                    <!-- Secondary menu -->
+                    <div class="cart-wishlish-compare pull-right col-md-4 col-sm-12 col-xs-12">
+                        <ul class="wishlish-compare">
+                            <li class="wishlist"><i class="fa fa-heart"></i><a
+                                        href="http://opencart.magentech.com/themes/so_lovefashion/index.php?route=account/wishlist"
+                                        id="wishlist-total" class="top-link-wishlist" title="My Wishlish (0)"><span>My Wishlish (0)</span></a>
+                            </li>
+                            <li class="compare"><i class="fa fa-book"></i> <a
+                                        href="http://opencart.magentech.com/themes/so_lovefashion/index.php?route=product/compare"
+                                        id="compare-total" class="top-link-compare"
+                                        title="Compare (0)"><span>Compare (0)</span></a></li>
+
+                        </ul>
+                        <!--Cart desktop-->
+                        <div class="shopping_cart">
+
+
+                            <div id="cart" class=" btn-group btn-shopping-cart">
+
+                                <div data-loading-text="Loading..." class="top_cart dropdown-toggle"
+                                     data-toggle="dropdown">
+                                    <h3 class="title-mod">My Cart</h3>
+                                    <span class="number">0</span>
+                                    <span class="text">item(s) - $0.00</span>
+
+                                </div>
+
+
+                                <ul class="tab-content content dropdown-menu pull-right shoppingcart-box" role="menu">
+
+                                    <li>
+                                        <p class="text-center">Your shopping cart is empty!</p>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!--//cart-->
+                    </div>
+                </div>
+
+
+            </div>
+        </section>
+        <!-- end container for top line of header -->
+
+
+        <!-- Header Bottom -->
+        <section class="header-bottom">
+
+            <!-- *** MENU PRINCIPAL ***
 _________________________________________________________ -->
-{{ render(controller("ecommerceAccueilBundle:Accueil:menu")) }}
-<!-- *** MENU PRINCIPAL FIN *** -->
+            {{ render(controller("ecommerceAccueilBundle:Accueil:menu")) }}
+            <!-- *** MENU PRINCIPAL FIN *** -->
+
+        </section>
+
+        <!-- Navbar switcher -->
+        <!-- //end Navbar switcher -->
+    </header>
 
 
-<div id="all">
-
-    <div id="content">
-
-
-        {% block contenu %}
+    {% block contenu %}
         {% endblock %}
 
 
-    </div>
-    <!-- /#content -->
+    <footer class="footer-container">
+        <section class="footer-top-block ">
+            <div class="container content">
+                <div class="row">
+                    <div class="col-md-5 col-sm-5 col-xs-12 contact-payment-footer">
+                        <div class="content-payment">
+                            <h3 class="title">
+                                <img alt="logo"
+                                     src="{{ asset('img/logo_footer.png') }}">
+                            </h3>
 
-    <!-- *** FOOTER ***
-    _________________________________________________________ -->
-    <div id="footer">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-3 col-sm-6">
-                    <h4>Pages</h4>
+                            <p>
+                                Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam
+                                nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat
+                                volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation
+                                ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.
+                                Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse
+                                molestie consequatt, vel illum dolore eu feugiat nulla facilisis at vero
+                                eros et accumsan.
+                            </p>
 
-                    <ul>
-                        <li>
-                            <a href="#">A propos</a>
-                        </li>
-                        <li>
-                            <a href="#">Conditions d’utilisation</a>
-                        </li>
-                        <li>
-                            <a href="#">FAQ</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('ecommerce_accueil_contact') }}">Nous contacter</a>
-                        </li>
-                    </ul>
+                            <h4>
+                                Payment Method
+                            </h4>
 
-                    <hr>
+                            <p>
+                                We are using secure Paypal &amp; Money-bookers payment method. You can
+                                pay directly form your Credit Card via Moneybookers or Paypal and NEVER
+                                store your card information on our site
+                            </p>
 
-                    <h4>Section utilisateur</h4>
-
-                    <ul>
-                        <li>
-                            <a href="{{ path('fos_user_security_login') }}">Connectez-vous</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('fos_user_registration_register') }}">Inscrivez-vous</a>
-                        </li>
-                    </ul>
-
-                    <hr class="hidden-md hidden-lg hidden-sm">
-
-                </div>
-                <!-- /.col-md-3 -->
-
-                <div class="col-md-3 col-sm-6">
-
-                    <h4>Top catégories</h4>
-
-                    <h5>Homme</h5>
-
-                    <ul>
-                        <li>
-                            <a href="#">T-shirts</a>
-                        </li>
-                        <li>
-                            <a href="#">Shirts</a>
-                        </li>
-                        <li>
-                            <a href="#">Accessoires</a>
-                        </li>
-                    </ul>
-
-                    <h5>Femmes</h5>
-                    <ul>
-                        <li>
-                            <a href="#">T-shirts</a>
-                        </li>
-                        <li>
-                            <a href="#">Juppes</a>
-                        </li>
-                        <li>
-                            <a href="#">Robes</a>
-                        </li>
-                        <li>
-                            <a href="#">Accessoires</a>
-                        </li>
-                    </ul>
-
-                    <hr class="hidden-md hidden-lg">
-
-                </div>
-                <!-- /.col-md-3 -->
-
-                <div class="col-md-3 col-sm-6">
-
-                    <h4>Où nous trouver</h4>
-
-                    <p>
-                        <strong>Lemondrop S.A.R.L</strong>
-                        <br>357, Av. du 30 Juin
-                        <br>Q. Mutoshi
-                        <br>Commune Manika
-                        <br>Kolwezi
-                        <br>
-                        <strong>R.D. Congo</strong>
-                    </p>
-
-                    <a href="{{ path('ecommerce_accueil_contact') }}">Aller à la page de contact</a>
-
-                    <hr class="hidden-md hidden-lg">
-
-                </div>
-                <!-- /.col-md-3 -->
-
-
-                <div class="col-md-3 col-sm-6">
-
-                    <h4>Avoir nos infos</h4>
-
-                    <p class="text-muted">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac
-                        turpis egestas.</p>
-
-                    <form>
-                        <div class="input-group">
-
-                            <input type="text" class="form-control">
-
-                                    <span class="input-group-btn">
-
-                                        <button class="btn btn-default" type="button">S'abonner!</button>
-
-                                    </span>
-
+                            <div class="block-payment">
+                                <img alt="payment"
+                                     src="{{ asset('img/payment.png') }}">
+                            </div>
                         </div>
-                        <!-- /input-group -->
-                    </form>
+                    </div>
+                    <div class="col-md-7 col-sm-7 col-xs-12 footer-link-block">
+                        <div class="row">
+                            <div class="col-lg-4 col-md-4 col-xs-6">
 
-                    <hr>
+                                <div class="module clearfix">
+                                    <h3 class="modtitle">
+                                        Connect with Us </h3>
+                                    <div class="modcontent">
+                                        <ul class="connect-with-us">
 
-                    <h4>Restons en contact</h4>
+                                            <li>
+                                                <a href="https://www.facebook.com/SmartAddons.page"><i
+                                                            class="fa fa-facebook"></i><span>Follow us on facebook</span></a>
+                                            </li>
 
-                    <p class="social">
-                        <a href="#" class="facebook external" data-animate-hover="shake"><i class="fa fa-facebook"></i></a>
-                        <a href="#" class="twitter external" data-animate-hover="shake"><i
-                                    class="fa fa-twitter"></i></a>
-                        <a href="#" class="instagram external" data-animate-hover="shake"><i
-                                    class="fa fa-instagram"></i></a>
-                        <a href="#" class="gplus external" data-animate-hover="shake"><i class="fa fa-google-plus"></i></a>
-                        <a href="#" class="email external" data-animate-hover="shake"><i class="fa fa-envelope"></i></a>
-                    </p>
+                                            <li>
+                                                <a href="https://twitter.com/smartaddons"><i
+                                                            class="fa fa-twitter"></i><span>Follow us on twitter</span></a>
+                                            </li>
+
+                                            <li>
+                                                <a href="https://www.linkedin.com/in/smartaddons"><i
+                                                            class="fa fa-linkedin-square"></i><span>Follow us on linkedin</span></a>
+                                            </li>
+
+                                            <li>
+                                                <a href="#"><i class="fa fa-rss"></i><span>RSS feeds</span></a>
+                                            </li>
+
+                                        </ul>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-xs-6">
+
+                                <div class="module clearfix">
+                                    <h3 class="modtitle">Information</h3>
+                                    <div class="modcontent">
+                                        <ul class="menu">
+                                            <li>
+                                                <a href="http://opencart.magentech.com/themes/so_lovefashion/index.php?route=information/information&amp;information_id=11">Gallery</a>
+                                            </li>
+                                            <li>
+                                                <a href="http://opencart.magentech.com/themes/so_lovefashion/index.php?route=information/information&amp;information_id=4">About
+                                                    Us</a></li>
+                                            <li>
+                                                <a href="http://opencart.magentech.com/themes/so_lovefashion/index.php?route=information/information&amp;information_id=6">FAQ</a>
+                                            </li>
+                                            <li>
+                                                <a href="http://opencart.magentech.com/themes/so_lovefashion/index.php?route=information/information&amp;information_id=3">Pricing
+                                                    Tables</a></li>
+                                            <li>
+                                                <a href="http://opencart.magentech.com/themes/so_lovefashion/index.php?route=information/information&amp;information_id=5">Terms
+                                                    &amp; Conditions</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-xs-6">
+
+                                <div class="module clearfix">
+                                    <h3 class="modtitle">Customer Service</h3>
+                                    <div class="modcontent">
+                                        <ul class="menu">
+                                            <li>
+                                                <a href="http://opencart.magentech.com/themes/so_lovefashion/index.php?route=information/contact">Contact
+                                                    Us</a></li>
+                                            <li>
+                                                <a href="http://opencart.magentech.com/themes/so_lovefashion/index.php?route=account/return/add">Returns</a>
+                                            </li>
+                                            <li>
+                                                <a href="http://opencart.magentech.com/themes/so_lovefashion/index.php?route=information/sitemap">Site
+                                                    Map</a></li>
+
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-4 col-md-4 col-xs-6 account-links-ft">
+                                <div class="module clearfix">
+                                    <h3 class="modtitle">My Account</h3>
+                                    <div class="modcontent">
+                                        <ul class="menu">
+                                            <li>
+                                                <a href="http://opencart.magentech.com/themes/so_lovefashion/index.php?route=product/manufacturer">Brands</a>
+                                            </li>
+                                            <li>
+                                                <a href="http://opencart.magentech.com/themes/so_lovefashion/index.php?route=account/voucher">Gift
+                                                    Vouchers</a></li>
+                                            <li>
+                                                <a href="http://opencart.magentech.com/themes/so_lovefashion/index.php?route=affiliate/account">Affiliates</a>
+                                            </li>
+                                            <li>
+                                                <a href="http://opencart.magentech.com/themes/so_lovefashion/index.php?route=product/special">Specials</a>
+                                            </li>
+
+                                            <li>
+                                                <a href="http://opencart.magentech.com/themes/so_lovefashion/index.php?route=simple_blog/article"
+                                                   target="_blank">Our Blog</a></li>
+
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-8 col-md-8 col-xs-12 contact-links-ft">
+
+                                <div class="module clearfix">
+                                    <h3 class="modtitle">
+                                        Contact Us </h3>
+                                    <div class="modcontent">
+                                        <ul class="contact-us">
 
 
+                                            <li>
+                                                <i class="fa fa-map-marker"></i><span>Address : No 40 Baria Sreet 133/2 NewYork City, NY,
+United States</span>
+                                            </li>
+
+
+                                            <li>
+                                                <i class="fa fa-envelope"></i><span>Email : support@salamy.com</span>
+                                            </li>
+
+
+                                            <li>
+                                                <i class="fa fa-mobile"></i><span><small>Phone 1 : 0123456789</small><small>
+                                                        Phone 2 : 0123456789
+                                                    </small></span>
+                                            </li>
+
+
+                                        </ul>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="copyright-text">
+                            © 2016 SO LoveFashion. All Rights Reserved.
+                        </div>
+                    </div>
                 </div>
-                <!-- /.col-md-3 -->
-
             </div>
-            <!-- /.row -->
+        </section>
+
+        <!-- Begin Cookie  plugin -->
+        {#<script type="text/javascript">!function () {
+                if (!window.hasCookieConsent) {
+                    window.hasCookieConsent = !0;
+                    var e = "cookieconsent_options", t = "update_cookieconsent_options", n = "cookieconsent_dismissed", i = "catalog/view/theme/default/stylesheet/cookie/";
+                    if (!(document.cookie.indexOf(n) > -1)) {
+                        "function" != typeof String.prototype.trim && (String.prototype.trim = function () {
+                            return this.replace(/^\s+|\s+$/g, "")
+                        });
+                        var o, s = {
+                            isArray: function (e) {
+                                var t = Object.prototype.toString.call(e);
+                                return "[object Array]" == t
+                            }, isObject: function (e) {
+                                return "[object Object]" == Object.prototype.toString.call(e)
+                            }, each: function (e, t, n, i) {
+                                if (s.isObject(e) && !i)for (var o in e)e.hasOwnProperty(o) && t.call(n, e[o], o, e); else for (var r = 0, c = e.length; c > r; r++)t.call(n, e[r], r, e)
+                            }, merge: function (e, t) {
+                                e && s.each(t, function (t, n) {
+                                    s.isObject(t) && s.isObject(e[n]) ? s.merge(e[n], t) : e[n] = t
+                                })
+                            }, bind: function (e, t) {
+                                return function () {
+                                    return e.apply(t, arguments)
+                                }
+                            }, queryObject: function (e, t) {
+                                var n, i = 0, o = e;
+                                for (t = t.split("."); (n = t[i++]) && o.hasOwnProperty(n) && (o = o[n]);)if (i === t.length)return o;
+                                return null
+                            }, setCookie: function (e, t, n) {
+                                var i = new Date;
+                                n = n || 365, i.setDate(i.getDate() + n), document.cookie = e + "=" + t + "; expires=" + i.toUTCString() + "; path=/"
+                            }, addEventListener: function (e, t, n) {
+                                e.addEventListener ? e.addEventListener(t, n) : e.attachEvent("on" + t, n)
+                            }
+                        }, r = function () {
+                            var e = "data-cc-event", t = "data-cc-if", n = function (e, t, i) {
+                                return s.isArray(t) ? s.each(t, function (t) {
+                                    n(e, t, i)
+                                }) : void(e.addEventListener ? e.addEventListener(t, i) : e.attachEvent("on" + t, i))
+                            }, i = function (e, t) {
+                                return e.replace(/\{\{(.*?)\}\}/g, function (e, n) {
+                                    for (var i, o = n.split("||"); token = o.shift();) {
+                                        if (token = token.trim(), '"' === token[0])return token.slice(1, token.length - 1);
+                                        if (i = s.queryObject(t, token))return i
+                                    }
+                                    return ""
+                                })
+                            }, o = function (e) {
+                                var t = document.createElement("div");
+                                return t.innerHTML = e, t.children[0]
+                            }, r = function (e, t, n) {
+                                var i = e.parentNode.querySelectorAll("[" + t + "]");
+                                s.each(i, function (e) {
+                                    var i = e.getAttribute(t);
+                                    n(e, i)
+                                }, window, !0)
+                            }, c = function (t, i) {
+                                r(t, e, function (e, t) {
+                                    var o = t.split(":"), r = s.queryObject(i, o[1]);
+                                    n(e, o[0], s.bind(r, i))
+                                })
+                            }, a = function (e, n) {
+                                r(e, t, function (e, t) {
+                                    var i = s.queryObject(n, t);
+                                    i || e.parentNode.removeChild(e)
+                                })
+                            };
+                            return {
+                                build: function (e, t) {
+                                    s.isArray(e) && (e = e.join("")), e = i(e, t);
+                                    var n = o(e);
+                                    return c(n, t), a(n, t), n
+                                }
+                            }
+                        }(), c = {
+                            options: {
+                                message: "This website uses cookies to ensure you get the best experience on our website. ",
+                                dismiss: "Got it!",
+                                learnMore: "More info",
+                                link: null,
+                                container: null,
+                                theme: "light-floating",
+                                markup: ['<div class="cc_banner-wrapper {{containerClasses}}">', '<div class="cc_banner cc_container cc_container--open">', '<a href="#null" data-cc-event="click:dismiss" class="cc_btn cc_btn_accept_all">{{options.dismiss}}</a>', '<p class="cc_message">{{options.message}} <a data-cc-if="options.link" class="cc_more_info" href="{{options.link || "#null"}}">{{options.learnMore}}</a></p>', "</div>", "</div>"]
+                            }, init: function () {
+                                var t = window[e];
+                                t && this.setOptions(t), this.setContainer(), this.options.theme ? this.loadTheme(this.render) : this.render()
+                            }, setOptionsOnTheFly: function (e) {
+                                this.setOptions(e), this.render()
+                            }, setOptions: function (e) {
+                                s.merge(this.options, e)
+                            }, setContainer: function () {
+                                this.container = this.options.container ? document.querySelector(this.options.container) : document.body, this.containerClasses = "", navigator.appVersion.indexOf("MSIE 8") > -1 && (this.containerClasses += " cc_ie8")
+                            }, loadTheme: function (e) {
+                                var t = this.options.theme;
+                                -1 === t.indexOf(".css") && (t = i + t + ".css");
+                                var n = document.createElement("link");
+                                n.rel = "stylesheet", n.type = "text/css", n.href = t;
+                                var o = !1;
+                                n.onload = s.bind(function () {
+                                    !o && e && (e.call(this), o = !0)
+                                }, this), document.getElementsByTagName("head")[0].appendChild(n)
+                            }, render: function () {
+                                this.element && this.element.parentNode && (this.element.parentNode.removeChild(this.element), delete this.element), this.element = r.build(this.options.markup, this), this.container.firstChild ? this.container.insertBefore(this.element, this.container.firstChild) : this.container.appendChild(this.element)
+                            }, dismiss: function (e) {
+                                e.preventDefault && e.preventDefault(), e.returnValue = !1, this.setDismissedCookie(), this.container.removeChild(this.element)
+                            }, setDismissedCookie: function () {
+                                s.setCookie(n, "yes")
+                            }
+                        }, a = !1;
+                        (o = function () {
+                            a || "complete" != document.readyState || (c.init(), a = !0, window[t] = s.bind(c.setOptionsOnTheFly, c))
+                        })(), s.addEventListener(document, "readystatechange", o)
+                    }
+                }
+            }();</script>#}
+
+        <script type="text/javascript">
+            window.cookieconsent_options = {
+                "message": "This website uses cookies to ensure you get the best experience on our website - ",
+                "dismiss": "Got it!",
+                "learnMore": "More info",
+                "link": "https://en.wikipedia.org/wiki/HTTP_cookie",
+                "theme": "dark-bottom"
+            };
+        </script>
+
+        <!-- End Cookie plugin -->
+
+
+    </footer>
+    <!-- //end Footer -->
+
+
+    <div id="sp-cpanel_btn" class="isDown visible-lg">
+        <i class="fa fa-cog"></i>
+    </div>
+
+    <div id="sp-cpanel" class="sp-delay">
+        <h2 class="sp-cpanel-title"> Demo Options <span class="sp-cpanel-close"> <i class="fa fa-times"> </i></span>
+        </h2>
+        <div id="sp-cpanel_settings">
+            <div class="panel-group">
+                <label>Color Scheme</label>
+                <div class="group-schemes">
+                    <span data-original-title="Red" data-toggle="tooltip" title="" data-scheme="red"
+                          class="item_scheme selected"><span style="background: #e74847"></span></span>
+                    <span data-original-title="Blue" data-toggle="tooltip" title="" data-scheme="blue"
+                          class="item_scheme "><span style="background: #3f9dd3"></span></span>
+                    <span data-original-title="Orange" data-toggle="tooltip" title="" data-scheme="orange"
+                          class="item_scheme "><span style="background: #fb9220"></span></span>
+                    <span data-original-title="Violet" data-toggle="tooltip" title="" data-scheme="violet"
+                          class="item_scheme "><span style="background: #a44ec4"></span></span>
+                    <span data-original-title="Green" data-toggle="tooltip" title="" data-scheme="green"
+                          class="item_scheme "><span style="background: #84cd5c"></span></span>
+                </div>
+            </div>
+
+            <div class="panel-group ">
+                <label>Layout Box</label>
+                <div class="group-boxed">
+                    <select id="cp-layoutbox" name="cplayoutbox" class="form-control"
+                            onchange="changeLayoutBox(this.value);">
+                        <option value="full">Wide</option>
+                        <option selected="selected" value="boxed">Boxed</option>
+                        <option value="iframed">Iframed</option>
+                        <option value="rounded">Rounded</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="panel-group">
+                <label>Body Image</label>
+
+                <div class="group-pattern">
+                    <div data-pattern="28" class="img-pattern "><img
+                                src="{{ asset('img/28.png') }}"
+                                alt="pattern 28"></div>
+                    <div data-pattern="29" class="img-pattern "><img
+                                src="{{ asset('img/29.png') }}"
+                                alt="pattern 29"></div>
+                    <div data-pattern="30" class="img-pattern "><img
+                                src="{{ asset('img/30.png') }}"
+                                alt="pattern 30"></div>
+                    <div data-pattern="31" class="img-pattern "><img
+                                src="{{ asset('img/31.png') }}"
+                                alt="pattern 31"></div>
+                    <div data-pattern="32" class="img-pattern "><img
+                                src="{{ asset('img/32.png') }}"
+                                alt="pattern 32"></div>
+                    <div data-pattern="33" class="img-pattern "><img
+                                src="{{ asset('img/33.png') }}"
+                                alt="pattern 33"></div>
+                    <div data-pattern="34" class="img-pattern "><img
+                                src="{{ asset('img/34.png') }}"
+                                alt="pattern 34"></div>
+                    <div data-pattern="35" class="img-pattern "><img
+                                src="{{ asset('img/35.png') }}"
+                                alt="pattern 35"></div>
+                    <div data-pattern="36" class="img-pattern "><img
+                                src="{{ asset('img/36.png') }}"
+                                alt="pattern 36"></div>
+                    <div data-pattern="37" class="img-pattern "><img
+                                src="{{ asset('img/37.png') }}"
+                                alt="pattern 37"></div>
+                    <div data-pattern="38" class="img-pattern "><img
+                                src="{{ asset('img/38.png') }}"
+                                alt="pattern 38"></div>
+                    <div data-pattern="39" class="img-pattern "><img
+                                src="{{ asset('img/39.png') }}"
+                                alt="pattern 39"></div>
+                    <div data-pattern="40" class="img-pattern "><img
+                                src="{{ asset('img/40.png') }}"
+                                alt="pattern 40"></div>
+                    <div data-pattern="41" class="img-pattern "><img
+                                src="{{ asset('img/41.png') }}"
+                                alt="pattern 41"></div>
+                    <div data-pattern="42" class="img-pattern "><img
+                                src="{{ asset('img/42.png') }}"
+                                alt="pattern 42"></div>
+                    <div data-pattern="43" class="img-pattern "><img
+                                src="{{ asset('img/43.png') }}"
+                                alt="pattern 43"></div>
+                    <div data-pattern="44" class="img-pattern "><img
+                                src="{{ asset('img/44.png') }}"
+                                alt="pattern 44"></div>
+                    <div data-pattern="45" class="img-pattern "><img
+                                src="{{ asset('img/45.png') }}"
+                                alt="pattern 45"></div>
+                </div>
+                <p class="label-sm">Background only applies for Boxed,Framed, Rounded Layout</p>
+            </div>
+
+            <div class="reset-group">
+                <a href="http://opencart.magentech.com/themes/so_lovefashion/index.php" class="btn btn-success "
+                   onclick="ResetAll()">Reset</a>
+            </div>
 
         </div>
-        <!-- /.container -->
-    </div>
-    <!-- /#footer -->
-    <!-- *** FOOTER END *** -->
-    <!-- *** COPYRIGHT ***
-    _________________________________________________________ -->
-    <div id="copyright">
-        <div class="container">
-            <div class="col-md-6">
-                <p class="pull-left">© 2016 Watinu Technology.</p>
 
-            </div>
-            <div class="col-md-6">
-                <p class="pull-right">
-                    Site internet réalisé par <a href="#">Watinu Technology</a> avec l'aide de <a
-                            href="http://symfony.com">Symfony</a>
-                    <!-- Not removing these links is part of the licence conditions of the template. Thanks for understanding :) -->
-                </p>
-            </div>
-        </div>
     </div>
-    <!-- *** COPYRIGHT END *** -->
 
+    <script type="text/javascript"><!--
+        var themes = 'so-lovefashion';
+        //--></script>
+    <link rel="stylesheet" property="stylesheet"
+          href="{{ asset('css/cpanel.css') }}" type="text/css"
+          media="all">
+    <script type="text/javascript" src="{{ asset('js/cpanel.js') }}"></script>
+
+
+    <!-- Social widgets -->
+    <section class="social-widgets visible-lg">
+        <ul class="items">
+            <li class="item item-01 facebook">
+                <a href="http://opencart.magentech.com/themes/so_lovefashion/catalog/view/theme/so-lovefashion/template/social/facebook.php?account=SmartAddons.page"
+                   class="tab-icon"><span class="fa fa-facebook"></span></a>
+                <div class="tab-content">
+                    <div class="title"><h5>FACEBOOK</h5></div>
+                    <div class="loading">
+                        <img src="{{ asset('img/ajax-loader.gif') }}"
+                             class="ajaxloader" alt="loader">
+                    </div>
+                </div>
+            </li>
+
+            <li class="item item-02 twitter">
+                <a href="http://opencart.magentech.com/themes/so_lovefashion/catalog/view/theme/so-lovefashion/template/social/twitter.php?account_twitter=envato"
+                   class="tab-icon"><span class="fa fa-twitter"></span></a>
+                <div class="tab-content">
+                    <div class="title"><h5>TWITTER FEEDS</h5></div>
+                    <div class="loading">
+                        <img src="{{ asset('img/ajax-loader.gif') }}"
+                             class="ajaxloader" alt="loader">
+                    </div>
+                </div>
+            </li>
+
+            <li class="item item-03 youtube">
+                <a href="http://opencart.magentech.com/themes/so_lovefashion/catalog/view/theme/so-lovefashion/template/social/youtubevideo.php?account_video=LHdVkPrdRYg"
+                   class="tab-icon"><span class="fa fa-youtube"></span></a>
+                <div class="tab-content">
+                    <div class="title"><h5>YouTube</h5></div>
+                    <div class="loading">
+                        <img src="{{ asset('img/ajax-loader.gif') }}"
+                             class="ajaxloader" alt="loader">
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </section>
+    <!-- //end Social widgets -->
 
 </div>
-<!-- /#all -->
-<!-- *** SCRIPTS TO INCLUDE ***
-_________________________________________________________ -->
-<!-- Place this tag in your head or just before your close body tag. -->
-<!-- Place this tag in your head or just before your close body tag. -->
-<script src="https://apis.google.com/js/platform.js" async defer>
-    {
-        lang: 'fr'
-    }
-</script>
-
-<div id="fb-root"></div>
-<script>(function (d, s, id) {
-        var js, fjs = d.getElementsByTagName(s)[0];
-        if (d.getElementById(id)) return;
-        js = d.createElement(s);
-        js.id = id;
-        js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5";
-        fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));</script>
-
-<script>
-    !function (d, s, id) {
-        var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https';
-        if (!d.getElementById(id)) {
-            js = d.createElement(s);
-            js.id = id;
-            js.src = p + '://platform.twitter.com/widgets.js';
-            fjs.parentNode.insertBefore(js, fjs);
-        }
-    }(document, 'script', 'twitter-wjs');
-</script>
-
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
-<script src="{{ asset('js/jquery-1.11.0.min.js') }}"></script>
-<!-- Latest compiled and minified JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"
-        integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
-        crossorigin="anonymous"></script>
-<script src="{{ asset('js/bootstrap.min.js') }}"></script>
-<script src="{{ asset('js/jquery.cookie.js') }}"></script>
-<script src="{{ asset('js/waypoints.min.js') }}"></script>
-<script src="{{ asset('js/modernizr.js') }}"></script>
-<script src="{{ asset('js/bootstrap-hover-dropdown.js') }}"></script>
-<script src="{{ asset('js/owl.carousel.min.js') }}"></script>
-<script src="{{ asset('js/front.js') }}"></script>
-
-<script src="{{ asset('js/star-rating.js') }}"></script>
-<script src="{{ asset('js/star-rating_locale_fr.js') }}"></script>
-<script>
-    $(document).ready(function () {
-        $('[data-toggle="tooltip"]').tooltip();
-    });
-    $("#ecommerce_articlebundle_commenttype_note").rating({
-        min: 0,
-        max: 5,
-        step: 0.5,
-        size: 'xs',
-        language: 'fr',
-        showClear: true,
-        clearValue: 0,
-        clearCaption: 'Zéro étoile',
-    });
-    $(".comment_note").rating({
-        min: 0,
-        max: 5,
-        step: 0.5,
-        size: 'xs',
-        language: 'fr',
-        showClear: false,
-        showCaption: false,
-        displayOnly: true
-    });
-</script>
-
-{% if googlemap is defined %}
-    <script>
-        function initMap() {
-            var mapDiv = document.getElementById('map');
-            var myLatLng = {lat: -10.71136628894856, lng: 25.49554770421572};
-
-            var map = new google.maps.Map(mapDiv, {
-                center: myLatLng,
-                zoom: 16
-            });
-
-            // Create a marker and set its position.
-            var marker = new google.maps.Marker({
-                map: map,
-                position: myLatLng,
-                title: 'Watinu Offices !'
-            });
-
-        }
-    </script>
-    <script src="https://maps.googleapis.com/maps/api/js?callback=initMap"
-            async defer>
-
-    </script>
-{% endif %}
 
 
 </body>
-
 </html>
