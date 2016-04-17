@@ -1,57 +1,86 @@
 {% extends "FOSUserBundle::layout.html.twig" %}
 
 {% block fos_user_content %}
-    <div class="container">
-
-        <div class="col-md-12">
-
-            <ul class="breadcrumb">
-                <li><a href="{{ path('ecommerce_accueil_accueil') }}">Accueil</a>
-                </li>
-                <li>Connexion</li>
-            </ul>
-
-        </div>
-
-        <div class="col-sm-6 col-sm-offset-3">
-            <div class="box">
-                <h1>Se connecter</h1>
-
-                <p class="text-muted">Vous n’avez pas encore de compte ? <a href="{{ path('fos_user_registration_register') }}">S’enregistrer gratuitement</a></p>
-
-                <hr>
-
-                {% if error %}
-                    <div class="has-error"
-                         style="color: red">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-                {% endif %}
-
-                <form action="{{ path("fos_user_security_check") }}" method="post">
-                    <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
-
-                    <div class="form-group">
-                        <label for="username">{{ 'security.login.username'|trans({}, 'FOSUserBundle') }}</label>
-                        <input type="text" class="form-control" id="username" name="_username" value="{{ last_username }}" required="required" >
-                    </div>
-                    <div class="form-group">
-                        <label for="password">{{ 'security.login.password'|trans({}, 'FOSUserBundle') }}</label>
-                        <input type="password" class="form-control" id="password" name="_password" required="required" >
-                    </div>
-                    <div class="form-group">
-                            <div class="checkbox">
-                                <label>
-                                    <input type="checkbox" id="remember_me" name="_remember_me" value="on"> {{ 'security.login.remember_me'|trans({}, 'FOSUserBundle') }}
-                                </label>
-                            </div>
-                    </div>
-                    <div class="text-center">
-                        <button type="submit" class="btn btn-primary" id="_submit" name="_submit" ><i class="fa fa-sign-in"></i> Connexion</button>
-                    </div>
-                </form>
+    <section id="yt_breadcrumb">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <ul class="breadcrumb">
+                        <li><a href="{{ path('ecommerce_accueil_accueil') }}">Accueil</a>
+                        </li>
+                        <li>Connexion</li>
+                    </ul>
+                </div>
             </div>
         </div>
+    </section>
+
+    <div class="container">
+
+        <div class="row">
+            <div id="content" class="col-md-12">
+                <div class="page-login">
+                    <div class="account-border">
+                        <div class="row">
+
+                            <form action="{{ path("fos_user_security_check") }}" method="post">
+                                <div class="col-sm-6 col-sm-offset-3 customer-login">
+                                    <div class="well">
+                                        <h2>Se connecter</h2>
+                                        <p>Vous n’avez pas encore de compte ? <a
+                                                    href="{{ path('fos_user_registration_register') }}"><strong>S’enregistrer
+                                                    gratuitement</strong></a></p>
+
+                                        {% if error %}
+                                            <div class="has-error"
+                                                 style="color: red">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                                        {% endif %}
+
+                                        <div class="form-group">
+                                            <label class="control-label col-lg-12 col-md-12 col-xs-12 col-sm-12"
+                                                   for="username">{{ 'security.login.username'|trans({}, 'FOSUserBundle') }}</label>
+                                            <input name="_username" id="username"
+                                                   class="col-lg-6 col-md-6 col-xs-11 col-sm-11 form-control"
+                                                   type="text" value="{{ last_username }}" required="required">
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="control-label col-lg-12 col-md-12 col-xs-12 col-sm-12"
+                                                   for="password">{{ 'security.login.password'|trans({}, 'FOSUserBundle') }}</label>
+                                            <input name="_password" value="" id="password"
+                                                   class="col-lg-6 col-md-6 col-xs-11 col-sm-11 form-control"
+                                                   type="password" required="required">
+                                        </div>
+
+                                        <div class="form-group">
+
+                                            <div class="control-label col-lg-12 col-md-12 col-xs-12 col-sm-12">
+                                                <div class="checkbox">
+                                                    <label>
+                                                        <input type="checkbox" id="remember_me" name="_remember_me"
+                                                               value="on"> {{ 'security.login.remember_me'|trans({}, 'FOSUserBundle') }}
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="bottom-form">
+                                        <a href="#" class="forgot">Mot de passe oublié</a>
+                                        <input value="Connexion" class="btn btn-primary" type="submit" id="_submit"
+                                               name="_submit">
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
 
 
+                </div>
+            </div>
+        </div>
     </div>
-    <!-- /.container -->
+
+    <br><br>
+
 {% endblock fos_user_content %}

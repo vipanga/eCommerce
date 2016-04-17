@@ -10,7 +10,7 @@
 
 {% block contenu_accueil %}
 
-    <div class="container">
+    {#<div class="container">
 
         <div class="col-md-12">
             <ul class="breadcrumb">
@@ -98,7 +98,7 @@
                                 <div class="flipper">
                                     <div class="front">
                                         <a href="{{ path('ecommerce_article_detail', {'id': article.id, 'slug':article.slug}) }}">
-                                            {# On vérifie qu'une image est bien associée à l'article #}
+                                            #}{# On vérifie qu'une image est bien associée à l'article #}{#
                                             {% if article.image is not null %}
                                                 <img itemprop="image" src="{{ asset(article.image.webPath) }}"
                                                      alt="{{ article.getNameItem() }}" class="img-responsive">
@@ -110,7 +110,7 @@
                                     </div>
                                     <div class="back">
                                         <a href="{{ path('ecommerce_article_detail', {'id': article.id, 'slug':article.slug}) }}">
-                                            {# On vérifie qu'une image est bien associée à l'article #}
+                                            #}{# On vérifie qu'une image est bien associée à l'article #}{#
                                             {% if article.image is not null %}
                                                 <img itemprop="image" src="{{ asset(article.image.webPath) }}"
                                                      alt="{{ article.getNameItem() }}" class="img-responsive">
@@ -142,25 +142,6 @@
                                     </span>
                                 </p>
                             </div>
-                            <!-- /.text -->
-
-                            {#<div class="ribbon sale">
-                                <div class="theribbon">SALE</div>
-                                <div class="ribbon-background"></div>
-                            </div>
-                            <!-- /.ribbon -->
-
-                            <div class="ribbon new">
-                                <div class="theribbon">NEW</div>
-                                <div class="ribbon-background"></div>
-                            </div>
-                            <!-- /.ribbon -->
-
-                            <div class="ribbon gift">
-                                <div class="theribbon">GIFT</div>
-                                <div class="ribbon-background"></div>
-                            </div>
-                            <!-- /.ribbon -->#}
                         </div>
                         <!-- /.product -->
                     </div>
@@ -176,27 +157,12 @@
 
             <div class="pages">
                 <ul class="pagination">
-                    {# On utilise la fonction range(a, b) qui crée un tableau de valeurs entre a et b #}
+                    #}{# On utilise la fonction range(a, b) qui crée un tableau de valeurs entre a et b #}{#
                     {% for p in range(1, nombrePage) %}
                         <li{% if p == page %} class="active"{% endif %}>
                             <a href="{{ path('ecommerce_article_publisher_items', {'id': user.id, 'username': user.username, 'numberItemsPerPage': numberItemsPerPage, 'page': p}) }}">{{ p }}</a>
                         </li>
                     {% endfor %}
-
-                    {#<li><a href="#">&laquo;</a>#}
-                    {#</li>#}
-                    {#<li class="active"><a href="#">1</a>#}
-                    {#</li>#}
-                    {#<li><a href="#">2</a>#}
-                    {#</li>#}
-                    {#<li><a href="#">3</a>#}
-                    {#</li>#}
-                    {#<li><a href="#">4</a>#}
-                    {#</li>#}
-                    {#<li><a href="#">5</a>#}
-                    {#</li>#}
-                    {#<li><a href="#">&raquo;</a>#}
-                    {#</li>#}
                 </ul>
             </div>
 
@@ -215,6 +181,432 @@
         <!-- /.col-md-3 -->
 
     </div>
-    <!-- /.container -->
+    <!-- /.container -->#}
+
+
+
+    <section id="yt_breadcrumb">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <ul class="breadcrumb">
+                        <li><a href="{{ path('ecommerce_accueil_accueil') }}">Accueil</a>
+                        </li>
+                        <li>{{ user.username }}</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="container">
+        <div class="row">
+
+            <div id="content" class="col-md-12">
+                <div class="products-category">
+                    {#<div class="row">
+                        <div class="col-sm-12"><img src="{{ asset('img/image-cat-1.jpg') }}" alt="banner"></div>
+                    </div>#}
+
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <h3>Produits publiés par {{ user.username }}</h3>
+                        </div>
+                    </div>
+
+
+                    <!-- Filters -->
+                    <div class="product-filter filters-panel">
+                        <div class="view-mode hidden-sm hidden-xs">
+                            <div class="list-view">
+                                <button data-original-title="Grid" class="btn btn-default grid active" data-view="grid"
+                                        data-toggle="tooltip" title=""><i class="fa fa-th"></i></button>
+                                <button data-original-title="List" class="btn btn-default list" data-view="list"
+                                        data-toggle="tooltip" title=""><i class="fa fa-th-list"></i></button>
+                            </div>
+                        </div>
+                        <div class="short-by-show form-inline text-right ">
+                            <div class="form-group short-by">
+                                <label class="control-label" for="input-sort">Province:</label>
+                                <select id="input-sort" class="form-control" onchange="location = this.value;">
+                                    <option value="#"
+                                            selected="selected">Toutes
+                                    </option>
+                                    <option value="#">
+                                        Name (A - Z)
+                                    </option>
+                                    <option value="#">
+                                        Name (Z - A)
+                                    </option>
+                                    <option value="#">
+                                        Price (Low &gt; High)
+                                    </option>
+                                    <option value="#">
+                                        Price (High &gt; Low)
+                                    </option>
+                                    <option value="#">
+                                        Rating (Highest)
+                                    </option>
+                                    <option value="#">
+                                        Rating (Lowest)
+                                    </option>
+                                    <option value="#">
+                                        Model (A - Z)
+                                    </option>
+                                    <option value="#">
+                                        Model (Z - A)
+                                    </option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label" for="input-limit">Articles:</label>
+                                <select id="input-limit" class="form-control" onchange="location = this.value;">
+                                    <option value="{{ path('ecommerce_article_publisher_items', {'id': user.id, 'username': user.username, 'numberItemsPerPage': 12}) }}"
+                                            {% if numberItemsPerPage == 12 %}selected="selected"{% endif %}>12
+                                    </option>
+                                    <option value="{{ path('ecommerce_article_publisher_items', {'id': user.id, 'username': user.username, 'numberItemsPerPage': 24}) }}"
+                                            {% if numberItemsPerPage == 24 %}selected="selected"{% endif %}>
+                                        24
+                                    </option>
+                                    <option value="{{ path('ecommerce_article_publisher_items', {'id': user.id, 'username': user.username, 'numberItemsPerPage': 48}) }}"
+                                            {% if numberItemsPerPage == 48 %}selected="selected"{% endif %}>
+                                        48
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="box-pagination text-right">
+                            <ul class="pagination">
+                                {#On utilise la fonction range(a, b) qui crée un tableau de valeurs entre a et b#}
+                                {% for p in range(1, nombrePage) %}
+                                    {% if p == page %}
+                                        <li class="active">
+                                            <span>{{ p }}</span>
+                                        </li>
+                                    {% else %}
+                                        <li>
+                                            <a href="{{ path('ecommerce_article_publisher_items', {'id': user.id, 'username': user.username, 'numberItemsPerPage': numberItemsPerPage, 'page': p}) }}">{{ p }}</a>
+                                        </li>
+                                    {% endif %}
+
+                                {% endfor %}
+                                <li>
+                                    <a href="{{ path('ecommerce_article_publisher_items', {'id': user.id, 'username': user.username, 'numberItemsPerPage': numberItemsPerPage, 'page': nombrePage}) }}">
+                                        <i class="fa fa-angle-double-right"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- //end Filters -->
+
+
+                    <!--changed listings-->
+
+                    <div class="products-list row grid">
+
+
+                        {% for article in articles %}
+                            <div class="product-layout col-md-3 col-sm-4 col-xs-4">
+                                <div class="product-item-container">
+                                    <div class="left-block">
+                                        <div class="product-image-container lazy second_img ">
+                                            <div class="image lazy-loaded flipper">
+                                                {# On vérifie qu'une image est bien associée à l'article #}
+                                                {% if article.image is not null %}
+                                                    <img data-src="{{ asset(article.image.webPath|imagine_filter('my_thumb')) }}"
+                                                         src="{{ asset(article.image.webPath|imagine_filter('my_thumb')) }}"
+                                                         title="{{ article.getNameItem() }}"
+                                                         class="img_1 img-thumbnail">
+                                                    <img data-src="{{ asset(article.image.webPath|imagine_filter('my_thumb')) }}"
+                                                         src="{{ asset(article.image.webPath|imagine_filter('my_thumb')) }}"
+                                                         alt="{{ article.getNameItem() }}"
+                                                         title="{{ article.getNameItem() }}"
+                                                         class="img_0 img-thumbnail">
+                                                {% else %}
+                                                    <img data-src="{{ asset('images/detailbig2.jpg'|imagine_filter('my_thumb')) }}"
+                                                         src="{{ asset('images/detailbig2.jpg'|imagine_filter('my_thumb')) }}"
+                                                         title="{{ article.getNameItem() }}"
+                                                         class="img_1 img-thumbnail">
+                                                    <img data-src="{{ asset('images/detailbig2.jpg'|imagine_filter('my_thumb')) }}"
+                                                         src="{{ asset('images/detailbig2.jpg'|imagine_filter('my_thumb')) }}"
+                                                         alt="{{ article.getNameItem() }}"
+                                                         title="{{ article.getNameItem() }}"
+                                                         class="img_0 img-thumbnail">
+                                                {% endif %}
+
+                                            </div>
+
+                                            <a data-original-title="Quick View" class="quickview iframe-link visible-lg"
+                                               data-toggle="tooltip" title="" data-fancybox-type="iframe"
+                                               href="{{ path('ecommerce_article_detail', {'id': article.id, 'slug':article.slug}) }}"></a>
+                                            <!--countdown box-->
+
+
+                                            <!--end countdown box-->
+                                        </div>
+
+
+                                    </div>
+                                    <!-- end left block -->
+
+                                    <div class="right-block">
+                                        <div class="caption">
+                                            <h4>
+                                                <a href="{{ path('ecommerce_article_detail', {'id': article.id, 'slug':article.slug}) }}"
+                                                   title="{{ article.getNameItem() }}">{{ article.getNameItem() }}</a>
+                                            </h4>
+                                            {#<div class="ratings">
+                                                <div class="rating-box">
+                                                <span class="fa fa-stack"><i class="fa fa-star fa-stack-1x"></i><i
+                                                            class="fa fa-star-o fa-stack-1x"></i></span>
+                                                <span class="fa fa-stack"><i class="fa fa-star fa-stack-1x"></i><i
+                                                            class="fa fa-star-o fa-stack-1x"></i></span>
+                                                <span class="fa fa-stack"><i class="fa fa-star fa-stack-1x"></i><i
+                                                            class="fa fa-star-o fa-stack-1x"></i></span>
+                                                <span class="fa fa-stack"><i
+                                                            class="fa fa-star-o fa-stack-1x"></i></span>
+                                                <span class="fa fa-stack"><i
+                                                            class="fa fa-star-o fa-stack-1x"></i></span>
+                                                </div>
+                                            </div>#}
+
+                                            <div class="price">
+                                                <span class="price-new">${{ article.getPrice() }}</span>
+                                            </div>
+                                            <div class="text-muted">
+                                                <small>{{ article.getProvince() }}, {{ article.getCity() }}</small>
+                                            </div>
+
+                                            <div class="description  item-desc  hidden">
+                                                <br>
+                                                <p>
+                                                    {{ article.getDescription() }}
+                                                </p>
+                                            </div>
+                                        </div>
+
+                                    </div><!-- right block -->
+
+                                </div>
+                            </div>
+                        {% else %}
+                            <div class="col-sm-12">
+                                <h3 class="text-center">Pas (encore !) d'articles</h3>
+                            </div>
+                        {% endfor %}
+
+
+                        <div class="clearfix visible-lg-block"></div>
+                    </div>
+                    <!--// End Changed listings-->
+
+
+                    <!-- Filters -->
+                    <div class="product-filter product-filter-bottom filters-panel" style="float: left; width: 100%;">
+
+                        <div class="view-mode hidden-sm hidden-xs">
+                            <div class="list-view">
+                                <button class="btn btn-default grid active" data-view="grid"><i
+                                            class="fa fa-th-large"></i></button>
+                                <button class="btn btn-default list" data-view="list"><i class="fa fa-th-list"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="short-by-show text-center ">
+                            <div class="form-group">
+                                Affichage de {% if page == nombrePage %}
+                                    {{ articles.count }}
+                                {% else %}
+                                    {{ page * numberItemsPerPage }}
+                                {% endif %} sur {{ articles.count }} articles({{ nombrePage }} Pages)
+                            </div>
+                        </div>
+
+
+                        <div class="box-pagination text-right">
+                            <ul class="pagination">
+                                {#On utilise la fonction range(a, b) qui crée un tableau de valeurs entre a et b#}
+                                {% for p in range(1, nombrePage) %}
+                                    {% if p == page %}
+                                        <li class="active">
+                                            <span>{{ p }}</span>
+                                        </li>
+                                    {% else %}
+                                        <li>
+                                            <a href="{{ path('ecommerce_article_publisher_items', {'id': user.id, 'username': user.username, 'numberItemsPerPage': numberItemsPerPage, 'page': p}) }}">{{ p }}</a>
+                                        </li>
+                                    {% endif %}
+
+                                {% endfor %}
+                                <li>
+                                    <a href="{{ path('ecommerce_article_publisher_items', {'id': user.id, 'username': user.username, 'numberItemsPerPage': numberItemsPerPage, 'page': nombrePage}) }}">
+                                        <i class="fa fa-angle-double-right"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- //end Filters -->
+
+
+                    <div class="producttab ">
+
+                        <div class="tabsslider   col-xs-12">
+                            <ul class="nav nav-tabs ">
+                                <li class="active"><a data-toggle="tab" href="#tab-review">Avis sur le vendeur
+                                        ({{ reviews|length }})</a></li>
+                            </ul>
+
+                            <div class="tab-content  col-xs-12">
+
+                                <div id="tab-review" class="tab-pane fade active in">
+                                    <div id="review">
+                                        {% for review in reviews %}
+                                            <table class="table table-striped table-bordered">
+                                                <tbody>
+                                                <tr>
+                                                    <td style="width: 50%;">
+                                                        <strong>{{ review.author.username }}</strong></td>
+                                                    <td class="text-right">publié
+                                                        le {{ review.getDate()|date("d/M/Y") }}
+                                                        à {{ review.getDate()|date("H:i:s") }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td colspan="2"><p>{{ review.getContent() }}</p>
+                                                        <!-- *** ETOILES ***-->
+                                                        {% include "ecommerceArticleBundle:Article:Stars/stars_review.html.twig" %}
+                                                        <!-- *** ETOILES *** -->
+                                                    </td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                        {% else %}
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <h5>Pas encore de commentaire !</h5>
+                                                </div>
+                                            </div>
+                                        {% endfor %}
+                                        <div class="text-right"></div>
+                                    </div>
+                                    <h2 id="review-title">Votre Avis</h2>
+                                    <div class="contacts-form">
+                                        {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                                            <form action="{{ path('ecommerce_article_publisher_items', {'id': user.id, 'username': user.username}) }}" {{ form_enctype(form) }}
+                                                  method="POST">
+                                                <div class="form-group">
+                                                    <span class="icon icon-bubbles-2"></span>
+                                                    {{ form_widget(form.content, { 'attr': {'class': 'form-control', 'rows': '3', 'placeholder': 'Commentaire' } }) }}
+                                                    <div class="has-error" style="color: red">
+                                                        {{ form_errors(form.content) }}
+                                                    </div>
+                                                </div>
+
+                                                <div class="list-rating">
+                                                    <b>Votre note sur 5</b>
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            {{ form_widget(form.note, { 'attr': {'class': 'rating rating-loading' } }) }}
+                                                            <div class="has-error" style="color: red">
+                                                                {{ form_errors(form.note) }}
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <div class="col-sm-12">
+                                                        <div class="g-recaptcha"></div>
+                                                    </div>
+                                                </div>
+
+                                                {{ form_rest(form) }}
+
+                                                <button class="btn btn-primary"><i class="fa fa-comment-o"></i> Poster
+                                                    commentaire
+                                                </button>
+                                            </form>
+                                        {% else %}
+                                            <h4>Veuillez vous <a
+                                                        href="{{ path('fos_user_security_login') }}">connecter</a>
+                                                pour poster
+                                                un commentaire.</h4>
+                                        {% endif %}
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+
+                        </div>
+
+                    </div>
+
+
+                    <!--changed listings-->
+
+                    <!--end content-->
+                    <script type="text/javascript"><!--
+                        function display(view) {
+                            $('.products-list').removeClass('list grid').addClass(view);
+                            $('.list-view .btn').removeClass('active');
+                            if (view == 'list') {
+                                $('.products-list .product-layout').addClass('col-lg-12');
+                                $('.products-list .product-layout .left-block').addClass('col-lg-4 col-md-4 col-xs-12');
+                                $('.products-list .product-layout .right-block').addClass('col-lg-8 col-md-8 col-xs-12');
+                                $('.products-list .product-layout .item-desc').removeClass('hidden')
+                                $('.list-view .' + view).addClass('active');
+                                $.cookie('display', 'list');
+                            } else {
+                                $('.products-list .product-layout').removeClass('col-lg-12');
+                                $('.products-list .product-layout .left-block').removeClass('col-lg-4 col-md-4 col-xs-12');
+                                $('.products-list .product-layout .right-block').removeClass('col-lg-8 col-md-8 col-xs-12');
+                                $('.products-list .product-layout .item-desc').addClass('hidden');
+                                $('.list-view .' + view).addClass('active');
+                                $.cookie('display', 'grid');
+                            }
+                        }
+
+                        $(document).ready(function () {
+                            // Check if Cookie exists
+                            if ($.cookie('display')) {
+                                view = $.cookie('display');
+                            } else {
+                                view = 'grid';
+                            }
+                            if (view) display(view);
+
+                            // Click Button
+                            $('.list-view .btn').each(function () {
+                                var ua = navigator.userAgent,
+                                        event = (ua.match(/iPad/i)) ? 'touchstart' : 'click';
+                                $(this).bind(event, function () {
+                                    $(this).addClass(function () {
+                                        if ($(this).hasClass('active')) return '';
+                                        return 'active';
+                                    });
+                                    $(this).siblings('.btn').removeClass('active');
+                                    $catalog_mode = $(this).data('view');
+                                    display($catalog_mode);
+                                });
+
+                            });
+                        });
+
+                        //--></script>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+
+
 
 {% endblock %}

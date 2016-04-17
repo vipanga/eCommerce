@@ -8,18 +8,22 @@
 <h1>Bebe</h1>
 {{ form_end(form) }}#}
 
-<div class="container">
-
-    <div class="col-md-12">
-
-        <ul class="breadcrumb">
-            <li><a href="{{ path('ecommerce_accueil_accueil') }}">Accueil</a>
-            </li>
-            <li><a href="{{ path('fos_user_profile_show') }}">Profile</a></li>
-            <li>Modification</li>
-        </ul>
-
+<section id="yt_breadcrumb">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <ul class="breadcrumb">
+                    <li><a href="{{ path('ecommerce_accueil_accueil') }}">Accueil</a>
+                    </li>
+                    <li><a href="{{ path('fos_user_profile_show') }}">Profile</a></li>
+                    <li>Modification</li>
+                </ul>
+            </div>
+        </div>
     </div>
+</section>
+
+<div class="container">
 
     <div class="col-md-3">
         <!-- *** CUSTOMER MENU ***
@@ -173,3 +177,5 @@ _________________________________________________________ -->
 
 </div>
 <!-- /.container -->
+
+<br><br>

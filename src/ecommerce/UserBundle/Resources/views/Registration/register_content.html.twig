@@ -1,4 +1,4 @@
-<div class="container">
+{#<div class="container">
 
     <div class="col-md-12">
 
@@ -13,8 +13,9 @@
     <div class="col-sm-6 col-sm-offset-3">
         <div class="box">
             <h1>Inscription</h1>
-            
-            <p class="text-muted">Vous avez déjà un compte? <a href="{{ path('fos_user_security_login') }}">Connectez-vous</a></p>
+
+            <p class="text-muted">Vous avez déjà un compte? <a href="{{ path('fos_user_security_login') }}">Connectez-vous</a>
+            </p>
 
             <hr>
 
@@ -57,4 +58,104 @@
         </div>
     </div>
 </div>
-<!-- /.container -->
+<!-- /.container -->#}
+
+
+<section id="yt_breadcrumb">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <ul class="breadcrumb">
+                    <li><a href="{{ path('ecommerce_accueil_accueil') }}">Accueil</a>
+                    </li>
+                    <li>Inscription</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="container">
+    <div class="row">
+        <div id="content" class="col-md-12">
+            <div class="col-md-8 col-md-offset-2">
+                <h1>Créer un compte</h1>
+                <p>Vous avez déjà un compte? <a
+                            href="{{ path('fos_user_security_login') }}"><strong>Connectez-vous</strong></a>.</p>
+                <form action="{{ path('fos_user_registration_register') }}" {{ form_enctype(form) }} method="POST"
+                      class="form-horizontal account-register">
+                    <fieldset id="account">
+                        <legend>Détails Personnels</legend>
+                        <div class="form-group required" style="display: none;">
+                            <label class="col-sm-2 control-label">Customer Group</label>
+                            <div class="col-sm-10">
+                                <div class="radio">
+                                    <label>
+                                        <input name="customer_group_id" value="1" checked="checked" type="radio">
+                                        Default</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group required">
+                            <label class="col-sm-2 control-label" for="username">Nom d'utilisateur</label>
+                            <div class="col-sm-10">
+                                {{ form_widget(form.username, { 'attr': {'class': 'form-control', 'placeholder': 'form.username'|trans } }) }}
+                                <div class="has-error" style="color: red">
+                                    <small>{{ form_errors(form.username) }}</small>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group required">
+                            <label class="col-sm-2 control-label" for="email">Email</label>
+                            <div class="col-sm-10">
+                                {{ form_widget(form.email, { 'attr': {'class': 'form-control', 'placeholder': 'form.email'|trans } }) }}
+                                <div class="has-error" style="color: red">
+                                    <small>{{ form_errors(form.email) }}</small>
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+
+                    <fieldset>
+                        <legend>Votre mot de passe</legend>
+                        <div class="form-group required">
+                            <label class="col-sm-2 control-label" for="password">Mot de passe</label>
+                            <div class="col-sm-10">
+                                {{ form_widget(form.plainPassword.first, { 'attr': {'class': 'form-control', 'placeholder': 'form.password'|trans } }) }}
+                                <div class="has-error" style="color: red">
+                                    <small>{{ form_errors(form.plainPassword.first) }}</small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group required">
+                            <label class="col-sm-2 control-label" for="password_confirmation">Vérification</label>
+                            <div class="col-sm-10">
+                                {{ form_widget(form.plainPassword.second, { 'attr': {'class': 'form-control', 'placeholder': 'form.password_confirmation'|trans } }) }}
+                                <div class="has-error" style="color: red">
+                                    <small>{{ form_errors(form.plainPassword.second) }}</small>
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+
+
+                    {{ form_rest(form) }}
+
+                    <div class="buttons">
+                        <div class="pull-right">Je suis d'accord avec les <a
+                                    href="#"
+                                    class="agree"><b>Conditions &amp; D'utilisation</b></a>
+                            <input class="box-checkbox" name="agree" value="1" type="checkbox">
+                            &nbsp;
+                            <input value="S'inscrire" class="btn btn-primary" type="submit">
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+<br>
+<br>

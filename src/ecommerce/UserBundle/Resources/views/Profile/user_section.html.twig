@@ -23,11 +23,15 @@
 
         <ul class="nav nav-pills nav-stacked">
 
-            <li {% if ((user.getUsername() is defined) or (form.username is defined)) %}class="active"{% endif %}>
-                <a href="{{ path('fos_user_profile_show') }}"><i class="fa fa-list"></i> Mon profile</a>
+            <li {% if ((user.getUsername() is defined) or (form.username is defined)) %}style="background-color: #E74847;"{% endif %}>
+                <a href="{{ path('fos_user_profile_show') }}"
+                   {% if ((user.getUsername() is defined) or (form.username is defined)) %}style="color: white"{% endif %}><i
+                            class="fa fa-list"></i> Mon profile</a>
             </li>
-            <li {% if ((user.getUsername() is not defined) and (form.username is not defined)) %}class="active"{% endif %}>
-                <a href="{{ path('fos_user_change_password') }}"><i class="fa fa-user"></i> Sécurité</a>
+            <li {% if ((user.getUsername() is not defined) and (form.username is not defined)) %}style="background-color: #E74847;"{% endif %}>
+                <a href="{{ path('fos_user_change_password') }}"
+                   {% if ((user.getUsername() is not defined) and (form.username is not defined)) %}style="color: white"{% endif %}><i
+                            class="fa fa-user"></i> Sécurité</a>
             </li>
             <li>
                 <a href="{{ path('fos_user_security_logout') }}"><i class="fa fa-sign-out"></i> Déconnexion</a>
