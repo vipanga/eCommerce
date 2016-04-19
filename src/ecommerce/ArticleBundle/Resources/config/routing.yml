@@ -59,3 +59,9 @@ ecommerce_article_search:
             page:  \d+
 #            product: \w+
 #            province: \w+
+
+ecommerce_article_cart:
+    path:     /cart/{id}
+    defaults: { _controller: ecommerceArticleBundle:Article:cart }
+    requirements:
+            article_id:  \d+

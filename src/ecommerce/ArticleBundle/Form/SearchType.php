@@ -19,6 +19,7 @@ class SearchType extends AbstractType
             ->add('product')
             ->add('province', ChoiceType::class, array(
                 'choices' => array(
+                    'Toutes' => 'Toutes',
                     'Bas-Uele' => 'Bas-Uele',
                     'Équateur' => 'Équateur',
                     'Haut-Katanga' => 'Haut-Katanga',
@@ -46,9 +47,10 @@ class SearchType extends AbstractType
                     'Tshopo' => 'Tshopo',
                     'Tshuapa' => 'Tshuapa',
                 ),
-                'placeholder' => 'Choisir la province',
+                'placeholder' => 'Province',
                 // *this line is important*
                 'choices_as_values' => true,
+                'required' => false,
             ));
     }
 

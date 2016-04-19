@@ -166,7 +166,7 @@ class User extends BaseUser {
     private $image;
     
     /**
-     * @ORM\OneToMany(targetEntity="ecommerce\ArticleBundle\Entity\Article", mappedBy="user")
+     * @ORM\OneToMany(targetEntity="ecommerce\ArticleBundle\Entity\Article", mappedBy="user", cascade={"persist", "remove"})
      */
     private $articles; // Ici articles prend un « s », car un user a plusieurs articles !
 
@@ -175,12 +175,19 @@ class User extends BaseUser {
      */
     private $reviews; // Ici review prend un « s », car un user a plusieurs reviews !
 
+    /**
+     * @ORM\OneToMany(targetEntity="ecommerce\ArticleBundle\Entity\Cart", mappedBy="user", cascade={"persist", "remove"})
+     */
+    private $carts; // Ici carts prend un « s », car un user a plusieurs carts !
+
     public function __construct() {
         parent::__construct();
 
         $this->created = new \DateTime();
         $this->updated = new \DateTime();
         $this->articles = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->reviews = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->carts = new \Doctrine\Common\Collections\ArrayCollection();
         $this->note = 0;
     }
 
@@ -279,7 +286,7 @@ class User extends BaseUser {
     /**
      * Get website
      *
-     * @return string
+     * @return string 
      */
     public function getWebsite()
     {
@@ -547,5 +554,38 @@ class User extends BaseUser {
     public function getReviews()
     {
         return $this->reviews;
+    }
+
+    /**
+     * Add carts
+     *
+     * @param \ecommerce\ArticleBundle\Entity\Cart $carts
+     * @return User
+     */
+    public function addCart(\ecommerce\ArticleBundle\Entity\Cart $carts)
+    {
+        $this->carts[] = $carts;
+
+        return $this;
+    }
+
+    /**
+     * Remove carts
+     *
+     * @param \ecommerce\ArticleBundle\Entity\Cart $carts
+     */
+    public function removeCart(\ecommerce\ArticleBundle\Entity\Cart $carts)
+    {
+        $this->carts->removeElement($carts);
+    }
+
+    /**
+     * Get carts
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getCarts()
+    {
+        return $this->carts;
     }
 }

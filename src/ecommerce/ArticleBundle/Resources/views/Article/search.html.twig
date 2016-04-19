@@ -3,7 +3,7 @@
 {% extends "ecommerceArticleBundle::layout.html.twig" %}
 
 {% block titre %}
-    Recherche {{ product }} - {{ parent() }}
+    Résultat pour "{{ product }}", province "{{ province }}" - {{ parent() }}
 {% endblock %}
 
 {% block active %}active{% endblock %}
@@ -17,7 +17,7 @@
                     <ul class="breadcrumb">
                         <li><a href="{{ path('ecommerce_accueil_accueil') }}">Accueil</a>
                         </li>
-                        <li>Résultat pour "{{ product }}" dans la province "{{ province }}"</li>
+                        <li>Résultat pour "{{ product }}", province "{{ province }}"</li>
                     </ul>
                 </div>
             </div>
@@ -42,6 +42,13 @@
                     {#<div class="row">
                         <div class="col-sm-12"><img src="{{ asset('img/image-cat-1.jpg') }}" alt="banner"></div>
                     </div>#}
+
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <h3>Résultat pour "{{ product }}", province
+                                "{% if province == "" %}Toutes les provinces{% else %}{{ province }}{% endif %}"</h3>
+                        </div>
+                    </div>
 
 
                     <!-- Filters -->

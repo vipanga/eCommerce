@@ -1,6 +1,6 @@
 {# src/ecommerce/ArticleBundle/Resources/views/Article/search_form.html.twig #}
 
-<form class="form-inline" role="search"
+{#<form class="form-inline" role="search"
       action="{{ path('ecommerce_article_search') }}" {{ form_enctype(form) }} method="POST">
     <div class="form-group">
         {{ form_widget(form.product, { 'attr': {'class': 'form-control input-md', 'placeholder': 'Rechercher...' } }) }}
@@ -14,4 +14,34 @@
 
         {{ form_rest(form) }}
     <button type="submit" class="btn btn-primary input-md"><i class="fa fa-search"></i> Rechercher</button>
+</form>#}
+
+<form action="{{ path('ecommerce_article_search') }}" {{ form_enctype(form) }} method="POST">
+    <div id="search0" class="search input-group">
+        <div class="select_category filter_type  icon-select">
+            {{ form_widget(form.province, { 'attr': {'class': 'no-border'} }) }}
+            {#<select class="no-border" name="category_id">
+                <option selected="selected" value="0">All Categories</option>
+                <option value="97">Bags</option>
+                <option value="77">Boys</option>
+                <option value="78">Men</option>
+                <option value="94">Wedding</option>
+                <option value="20">Jewelry</option>
+            </select>#}
+        </div>
+
+        {{ form_widget(form.product, { 'attr': {'class': 'autosearch-input form-control', 'size': 50, 'autocomplete': 'off', 'placeholder': 'Rechercher...' } }) }}
+        {#<input class="autosearch-input form-control" size="50" autocomplete="off" placeholder="Enter keywords here..." name="search" type="text">#}
+        <ul class="dropdown-menu"></ul>
+
+
+        {{ form_rest(form) }}
+        <span class="input-group-btn">
+			<button type="submit" class="button-search btn btn-default btn-lg" name="submit_search"><i
+                        class="fa fa-search"></i></button>
+		</span>
+    </div>
+
+
+    <input name="route" value="product/search" type="hidden">
 </form>

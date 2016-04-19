@@ -13,11 +13,13 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use ecommerce\ArticleBundle\Entity\Article;
 use ecommerce\ArticleBundle\Entity\Genre;
 use ecommerce\ArticleBundle\Entity\Search;
+use ecommerce\ArticleBundle\Entity\Cart;
 use ecommerce\UserBundle\Entity\User;
 use ecommerce\ArticleBundle\Form\ArticleType;
 use ecommerce\ArticleBundle\Form\CommentType;
 use ecommerce\ArticleBundle\Form\ReviewType;
 use ecommerce\ArticleBundle\Form\SearchType;
+use ecommerce\ArticleBundle\Form\CartType;
 
 class ArticleController extends Controller
 {
@@ -140,6 +142,10 @@ class ArticleController extends Controller
         // On crée le formulaire grâce à CommentType
         $form = $this->createForm(new CommentType(), $comment);
 
+        $cart = new Cart();
+        // On crée le formulaire ici
+        $form_cart = $this->createForm(new CartType(), $cart);
+
         // On récupère la requête
         $request = $this->getRequest();
 
@@ -183,9 +189,51 @@ class ArticleController extends Controller
                 'note' => $note,
                 'comments' => $comments,
                 'categories' => $categories,
-                'form' => $form->createView()
+                'form' => $form->createView(),
+                'form_cart' => $form_cart->createView(),
             )
         );
+    }
+
+    /*
+     * Ajout de l'article au panier
+     *
+     * */
+    public function cartAction(Article $article)
+    {
+        $cart = new Cart();
+        // On crée le formulaire ici
+        $form = $this->createForm(new CartType(), $cart);
+
+        // On récupère la requête
+        $request = $this->getRequest();
+
+        // On vérifie qu'elle est de type POST
+        if ($request->getMethod() == 'POST') {
+            // On fait le lien Requête <-> Formulaire
+            $form->bind($request);
+
+            // On vérifie que les valeurs entrées sont correctes
+            if ($form->isValid()) {
+                $user = $article->getUser();
+                $cart->setUser($user);
+                $cart->setArticle($article);
+                $cart->setUnitPrice($article->getPrice());
+                $cart->setTotalPrice($article->getPrice() * $cart->getQuantity());
+                // On enregistre notre objet $review dans la base de données
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($cart);
+                $em->flush();
+
+                // On définit un message flash
+                $this->get('session')->getFlashBag()->add('info', 'Le produit a ete ajouté au panier');
+
+                // On redirige vers la page de visualisation de l'article modifié
+                return $this->redirect($this->generateUrl('ecommerce_article_detail', array('id' => $article->getId(), 'slug' => $article->getSlug())));
+            }
+        }
+
+        return $this->redirect($this->generateUrl('ecommerce_article_detail', array('id' => $article->getId(), 'slug' => $article->getSlug())));
     }
 
     /*

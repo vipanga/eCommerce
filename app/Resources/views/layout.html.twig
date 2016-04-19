@@ -263,31 +263,14 @@
                                                                                               href="#TabBlock-search">Search&nbsp;<i
                                             class="fa fa-angle-down"></i></a></h5>
                             <div class="tabBlock" id="TabBlock-search">
-                                <form method="GET" action="index.php">
-                                    <div id="search0" class="search input-group">
-                                        <div class="select_category filter_type  icon-select">
-                                            <select class="no-border" name="category_id">
-                                                <option selected="selected" value="0">All Categories</option>
-                                                <option value="97">Bags</option>
-                                                <option value="77">Boys</option>
-                                                <option value="78">Men</option>
-                                                <option value="94">Wedding</option>
-                                                <option value="20">Jewelry</option>
-                                            </select>
-                                        </div>
-
-                                        <input class="autosearch-input form-control" size="50" autocomplete="off"
-                                               placeholder="Enter keywords here..." name="search" type="text">
-                                        <ul class="dropdown-menu"></ul>
-	    <span class="input-group-btn">
-			<button type="submit" class="button-search btn btn-default btn-lg" name="submit_search"><i
-                        class="fa fa-search"></i></button>
-		</span>
-                                    </div>
 
 
-                                    <input name="route" value="product/search" type="hidden">
-                                </form>
+                                <!-- *** FORMULAIRE DE RECHERCHE ***
+_________________________________________________________ -->
+                                {{ render(controller("ecommerceArticleBundle:Article:searchForm")) }}
+                                <!-- *** FORMULAIRE DE RECHERCHE FIN *** -->
+
+
                             </div>
                         </div>
                         <script type="text/javascript">
