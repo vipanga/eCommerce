@@ -135,7 +135,7 @@ _________________________________________________________ -->
             <ul class="log-reg">
                 <li class="quick-login">
 
-                    <div class="dropdown-login">
+                    {#<div class="dropdown-login">
                         <div class="row">
                             <div class="col-sm-12" id="quick-login">
 
@@ -160,10 +160,10 @@ _________________________________________________________ -->
 
                         </div>
 
-                    </div>
+                    </div>#}
 
 
-                    <script type="text/javascript"><!--
+                    {#<script type="text/javascript"><!--
                         $(document).ready(function ($) {
                             var ua = navigator.userAgent,
                                     _device = (ua.match(/iPad/i) || ua.match(/iPhone/i) || ua.match(/iPod/i)) ? "smartphone" : "desktop";
@@ -227,14 +227,20 @@ _________________________________________________________ -->
                         function loacation() {
                             location.reload();
                         }
-                        //--></script>
-                    <span class="btn-login"> Login</span>
+                        //--></script>#}
+
+
+                    <span class="btn-login">
+                        <a href="{{ path('ecommerce_article_create') }}" style="color: white">
+                            <i class="fa fa-gift" aria-hidden="true"></i> Poster Produit
+                        </a>
+                    </span>
                 </li>
-                <li class="quick-register">
+                {#<li class="quick-register">
                     <div>
                         <a href="#"
                            class="btn-register">Inscription</a></div>
-                </li>
+                </li>#}
 
             </ul>
         </div>

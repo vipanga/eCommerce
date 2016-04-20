@@ -8,41 +8,48 @@
 
 {% block contenu_accueil %}
 
-    <div class="container">
-
-        <div class="col-md-12">
-            <ul class="breadcrumb">
-                <li><a href="{{ path('ecommerce_accueil_accueil') }}">Accueil</a>
-                </li>
-                <li><a href="{{ path('ecommerce_article_publications') }}">Mes articles</a>
-                </li>
-                <li>Supprimer article</li>
-            </ul>
+    <section id="yt_breadcrumb">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <ul class="breadcrumb">
+                        <li><a href="{{ path('ecommerce_accueil_accueil') }}">Accueil</a>
+                        </li>
+                        <li><a href="{{ path('ecommerce_article_publications') }}">Mes Produits</a>
+                        </li>
+                        <li>Supprimer Produit</li>
+                    </ul>
+                </div>
+            </div>
         </div>
+    </section>
+
+    <div class="container">
 
         <div class="col-md-8 col-md-offset-2" id="basket">
 
             <div class="box">
 
-                <h1 class="text-center">Supprimer l'article</h1>
+                <h1 class="text-center">Supprimer le produit</h1>
 
                 <hr>
 
                 <p class="text-center">
-                    Etes-vous certain de vouloir supprimer l'article "{{ article.getNameItem() }}" ?
+                    Etes-vous certain de vouloir supprimer le produit <strong>"{{ article.getNameItem() }}"</strong> ?
                 </p>
 
 
                 <hr>
 
-                <form action="{{ path('ecommerce_article_delete', {'id': article.id}) }}" method="POST">
+                <form action="{{ path('ecommerce_article_delete', {'id': article.id}) }}"
+                      method="POST" {{ form_enctype(form) }}>
                     <div class="box-footer">
                         <div class="pull-left">
-                            <a href="{{ path('ecommerce_article_publications') }}" class="btn btn-primary"><i
+                            <a href="{{ path('ecommerce_article_publications') }}" class="btn btn-info"><i
                                         class="fa fa-chevron-left"></i> Retour à la liste d'articles</a>
                         </div>
                         <div class="pull-right">
-                            <button type="submit" class="btn btn-danger"><i class="fa fa-trash-o"></i>Confirmer
+                            <button type="submit" class="btn btn-danger"><i class="fa fa-trash-o"></i> Confirmer
                                 supression <i class="fa fa-chevron-right"></i>
                             </button>
                         </div>
@@ -60,5 +67,7 @@
 
     </div>
     <!-- /.container -->
+
+    <br><br>
 
 {% endblock %}

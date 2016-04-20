@@ -198,7 +198,7 @@
                                             </div>#}
 
                                             <div class="price">
-                                                <span class="price-new">${{ article.getPrice() }}</span>
+                                                <span class="price-new">${{ article.getPrice()|number_format(0, ',', '.') }}</span>
                                             </div>
                                             <div class="text-muted">
                                                 <small>{{ article.getProvince() }}, {{ article.getCity() }}</small>

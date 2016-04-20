@@ -119,7 +119,7 @@ class ArticleController extends Controller
                 $em->flush();
 
                 // On définit un message flash
-                $this->get('session')->getFlashBag()->add('info', 'Article bien ajouté');
+//                $this->get('session')->getFlashBag()->add('info', 'Article bien ajouté');
 
                 // On redirige vers la page de visualisation de l'article nouvellement créé
                 return $this->redirect($this->generateUrl('ecommerce_article_detail', array('id' => $article->getId(), 'slug' => $article->getSlug())));

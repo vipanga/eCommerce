@@ -3,7 +3,7 @@
 {% extends "ecommerceArticleBundle::layout.html.twig" %}
 
 {% block titre %}
-    Acheter {{ article.getNameItem() }} - {{ parent() }}
+    Acheter {{ article.getNameItem() }} à {{ article.getProvince() }} - {{ parent() }}
 {% endblock %}
 
 {% block active %}active{% endblock %}
@@ -73,18 +73,25 @@
                                         </div>
                                     </div>
 
-                                    <a class="reviews_button"
-                                       href="{{ path('ecommerce_article_publisher_items', {'id': article.user.id, 'username': article.user.username}) }}">
-                                        Note vendeur</a> | <a class="write_review_button" href=""
-                                                              onclick="$('a[href=\'#tab-review\']').trigger('click'); return false;">Votre
-                                        commentaire</a>
+                                    <a href="#">
+                                        Note vendeur</a> |
+                                    <a class="write_review_button" href=""
+                                       onclick="$('a[href=\'#tab-review\']').trigger('click'); return false;">
+                                        Laisser un commentaire
+                                    </a>
+                                    <br>
+                                    <a href="{{ path('ecommerce_article_publisher_items', {'id': article.getUser().getId(), 'username': article.getUser().getUsername() }) }}">
+                                        Par: {{ article.getUser().getUsername() }}
+                                    </a>
                                 </div>
 
                                 <div class="product-label">
 
                                     <div class="product_page_price price" itemprop="offerDetails" itemscope=""
                                          itemtype="http://data-vocabulary.org/Offer">
-                                        <span class="price-new" itemprop="price">${{ article.getPrice() }}</span>
+                                        <span class="price-new"
+                                              itemprop="price">{{ article.getPrice()|number_format(0, ',', '.') }}
+                                            $</span>
 
 
                                     </div>

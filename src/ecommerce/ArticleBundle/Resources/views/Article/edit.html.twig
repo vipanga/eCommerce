@@ -3,12 +3,12 @@
 {% extends "ecommerceArticleBundle::layout.html.twig" %}
 
 {% block titre %}
-    Modifier article - {{ parent() }}
+    Modifier Produit - {{ parent() }}
 {% endblock %}
 
 {% block contenu_accueil %}
 
-    <div class="container">
+    {#<div class="container">
 
         <div class="col-md-12">
 
@@ -154,6 +154,183 @@
         </div>
 
     </div>
-    <!-- /.container -->
+    <!-- /.container -->#}
+
+
+
+    <section id="yt_breadcrumb">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <ul class="breadcrumb">
+                        <li><a href="{{ path('ecommerce_accueil_accueil') }}">Accueil</a>
+                        </li>
+                        <li>Modifier produit</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-1">
+
+            </div>
+
+            <div id="content" class="col-md-10 col-sm-12">
+                <h1 class="text-center">Veuillez remplir tous les détails concernant le produit</h1>
+
+                <form action="{{ path('ecommerce_article_edit', {'id': article.id}) }}" {{ form_enctype(form) }}
+                      method="POST">
+                    <fieldset id="account">
+                        <legend>Informations sur le produit</legend>
+
+                        <div class="form-group required">
+                            <label class="col-sm-2 control-label text-right" for="input-firstname">Catégorie</label>
+                            <div class="col-sm-10">
+                                {{ form_widget(form.genre, { 'attr': {'class': 'form-control' } }) }}
+                                <div class="has-error" style="color: red">
+                                    {{ form_errors(form.genre) }}
+                                </div>
+                            </div>
+                        </div>
+
+                        <br><br>
+
+                        <div class="form-group required">
+                            <label class="col-sm-2 control-label text-right" for="input-firstname">Nom Produit</label>
+                            <div class="col-sm-10">
+                                {{ form_widget(form.name_item, { 'attr': {'class': 'form-control', 'placeholder': 'Ex: Samsung Galaxy S5', 'value': article.getNameItem() } }) }}
+                                <div class="has-error" style="color: red">
+                                    {{ form_errors(form.name_item) }}
+                                </div>
+                            </div>
+                        </div>
+
+                        <br><br>
+
+                        <div class="form-group required">
+                            <label class="col-sm-2 control-label text-right" for="input-firstname">Quantité</label>
+                            <div class="col-sm-10">
+                                {{ form_widget(form.quantity, { 'attr': {'class': 'form-control', 'placeholder': 'Ex: 5', 'min': '1', 'max': '100000', 'pattern': '\d+', 'value': article.getQuantity() } }) }}
+                                <div class="has-error" style="color: red">
+                                    {{ form_errors(form.quantity) }}
+                                </div>
+                            </div>
+                        </div>
+
+                        <br><br>
+
+                        <div class="form-group required">
+                            <label class="col-sm-2 control-label text-right" for="input-firstname">Prix</label>
+                            <div class="col-sm-10">
+                                <div class="input-group">
+                                    {{ form_widget(form.price, { 'attr': {'class': 'form-control', 'placeholder': "Prix est en dollars américains, sans virgule ni point",
+                                        'pattern': '^(([1-9]*)|(([1-9]*)\.([0-9]*)))$', 'value': article.getPrice() } }) }}
+                                    <div class="input-group-addon">$ USD</div>
+                                </div>
+                                <div class="has-error" style="color: red">
+                                    {{ form_errors(form.price) }}
+                                </div>
+                            </div>
+                        </div>
+
+                        <br><br>
+
+                        <div class="form-group required">
+                            <label class="col-sm-2 control-label text-right" for="input-firstname">Etat Produit</label>
+                            <div class="col-sm-10">
+                                {{ form_widget(form.quality, { 'attr': {'class': 'form-control', 'value': article.getQuality() } }) }}
+                                <div class="has-error" style="color: red">
+                                    {{ form_errors(form.quality) }}
+                                </div>
+                            </div>
+                        </div>
+
+                    </fieldset>
+
+
+                    <fieldset id="address">
+                        <legend>Location Produit</legend>
+
+                        <div class="form-group required">
+                            <label class="col-sm-2 control-label text-right" for="input-company">Ville</label>
+                            <div class="col-sm-10">
+                                {{ form_widget(form.city, { 'attr': {'class': 'form-control', 'placeholder': 'Ex: Lubumbashi', 'value': article.getCity() } }) }}
+                                <div class="has-error" style="color: red">
+                                    {{ form_errors(form.city) }}
+                                </div>
+                            </div>
+                        </div>
+
+                        <br><br>
+
+                        <div class="form-group required">
+                            <label class="col-sm-2 control-label text-right" for="input-company">Province</label>
+                            <div class="col-sm-10">
+                                {{ form_widget(form.province, { 'attr': {'class': 'form-control', 'value': article.getProvince() } }) }}
+                                <div class="has-error" style="color: red">
+                                    {{ form_errors(form.province) }}
+                                </div>
+                            </div>
+                        </div>
+
+                        <br><br>
+
+                        <div class="form-group required">
+                            <label class="col-sm-2 control-label text-right" for="input-company">Pays</label>
+                            <div class="col-sm-10">
+                                {{ form_widget(form.country, { 'attr': {'class': 'form-control', 'value': article.getCountry() } }) }}
+                                <div class="has-error" style="color: red">
+                                    {{ form_errors(form.country) }}
+                                </div>
+                            </div>
+                        </div>
+
+                        <br><br>
+
+                        <div class="form-group required">
+                            <label class="col-sm-2 control-label text-right" for="input-company">Description</label>
+                            <div class="col-sm-10">
+                                {{ form_widget(form.description, { 'attr': {'class': 'form-control', 'rows': '3', 'placeholder': 'Commentaires sur votre article', 'value': article.getDescription() } }) }}
+                                <div class="has-error" style="color: red">
+                                    {{ form_errors(form.description) }}
+                                </div>
+                            </div>
+                        </div>
+
+                        <br><br>
+
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label text-right" for="input-company">Image</label>
+                            <div class="col-sm-10">
+                                {{ form_widget(form.image) }}
+                                <p class="help-block">Sélectionnez l’image de votre article.</p>
+                                <div class="has-error" style="color: red">
+                                    {{ form_errors(form.image) }}
+                                </div>
+                            </div>
+                        </div>
+
+                    </fieldset>
+
+                    {{ form_rest(form) }}
+
+                    <div class="buttons">
+                        <div class="pull-right">
+                            <input value="Enregistrer Modifications" class="btn btn-primary" type="submit">
+                        </div>
+                    </div>
+
+                </form>
+
+            </div>
+
+        </div>
+    </div>
+
+    <br><br>
 
 {% endblock %}

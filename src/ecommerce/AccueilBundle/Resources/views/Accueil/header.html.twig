@@ -94,7 +94,7 @@
                             <li class="checkout">
                                 <a href="{{ path('ecommerce_article_publications') }}" class="top-link-checkout"
                                    title="Checkout">
-                                    <span>Mes Articles</span>
+                                    <span>Mes Produits</span>
                                 </a>
                             </li>
                             <li class="checkout">
@@ -155,7 +155,7 @@ _________________________________________________________ -->
 
                     </div>
                 </div>
-                <script type="text/javascript">
+                {#<script type="text/javascript">
                     // Autocomplete */
                     (function ($) {
                         $.fn.Soautocomplete = function (option) {
@@ -363,14 +363,14 @@ _________________________________________________________ -->
                         });
                     });
 
-                </script>
+                </script>#}
 
             </div>
             <!-- //end Search -->
 
             <!-- Secondary menu -->
             <div class="cart-wishlish-compare pull-right col-md-4 col-sm-12 col-xs-12">
-                <ul class="wishlish-compare">
+                {#<ul class="wishlish-compare">
                     <li class="wishlist"><i class="fa fa-heart"></i><a
                                 href="http://opencart.magentech.com/themes/so_lovefashion/index.php?route=account/wishlist"
                                 id="wishlist-total" class="top-link-wishlist" title="My Wishlish (0)"><span>My Wishlish (0)</span></a>
@@ -380,21 +380,11 @@ _________________________________________________________ -->
                                 id="compare-total" class="top-link-compare"
                                 title="Compare (0)"><span>Compare (0)</span></a></li>
 
-                </ul>
+                </ul>#}
                 <!--Cart desktop-->
                 <div class="shopping_cart">
 
-
                     <div id="cart" class=" btn-group btn-shopping-cart">
-
-                        {#<div class="top_cart dropdown-toggle">
-                            <h3 class="title-mod">mon Panier</h3>
-                            <span class="number">0</span>
-                            <span class="text">produit(s)</span>
-                        </div>#}
-
-
-
                         {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
                             <div class="top_cart dropdown-toggle">
                                 <h3 class="title-mod"><a

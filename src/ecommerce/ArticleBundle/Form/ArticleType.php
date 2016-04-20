@@ -31,6 +31,8 @@ class ArticleType extends AbstractType {
                     ),
                     // *this line is important*
                     'choices_as_values' => true,
+                    'placeholder' => '-- Sélectionner --',
+                    'required' => true,
                 ))
                 ->add('description', 'textarea')
                 //->add('solde', 'checkbox', array('required' => false))
@@ -64,8 +66,11 @@ class ArticleType extends AbstractType {
                         'Tshopo' => 'Tshopo',
                         'Tshuapa' => 'Tshuapa',
                     ),
+
                     // *this line is important*
                     'choices_as_values' => true,
+                    'placeholder' => '-- Sélectionner Province --',
+                    'required' => true,
                 ))
                 ->add('country', ChoiceType::class, array(
                     'choices' => array(
@@ -85,7 +90,9 @@ class ArticleType extends AbstractType {
                     },
                     'property' => 'name',
                     'multiple' => false,
-                    'expanded' => false
+                    'expanded' => false,
+                    'placeholder' => '-- Sélectionner Catégorie --',
+                    'required' => true,
                 ))
         ;
     }

@@ -8,120 +8,202 @@
 
 {% block contenu_accueil %}
 
-    <div class="container">
-
-        <div class="col-md-12">
-            <ul class="breadcrumb">
-                <li><a href="{{ path('ecommerce_accueil_accueil') }}">Accueil</a>
-                </li>
-                <li>Mes articles</li>
-            </ul>
+    <section id="yt_breadcrumb">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <ul class="breadcrumb">
+                        <li><a href="{{ path('ecommerce_accueil_accueil') }}">Accueil</a>
+                        </li>
+                        <li>Mes Produits</li>
+                    </ul>
+                </div>
+            </div>
         </div>
+    </section>
 
-        <div class="col-md-8 col-md-offset-2" id="basket">
+    <div class="container">
+        <h1>Mes Produits
+        </h1>
 
-            <div class="box">
+        <!-- Filters -->
+        <div class="product-filter product-filter-bottom filters-panel" style="float: left; width: 100%;">
 
-                <h1 class="text-center">Articles postés</h1>
-
-                <hr>
-
-                <div class="col-sm-12 products-showing text-center">
-                    Affichage de
-                    <strong>
-                        {% if page == nombrePage %}
-                            {{ articles.count }}
-                        {% else %}
-                            {{ page * numberItemsPerPage }}
-                        {% endif %}
-                    </strong>
-                    sur
-                    <strong>
+            {#<div class="view-mode hidden-sm hidden-xs">
+                <div class="list-view">
+                    <button class="btn btn-default grid active" data-view="grid"><i
+                                class="fa fa-th-large"></i></button>
+                    <button class="btn btn-default list" data-view="list"><i class="fa fa-th-list"></i>
+                    </button>
+                </div>
+            </div>#}
+            <div class="short-by-show text-center ">
+                <div class="form-group">
+                    Affichage de {% if page == nombrePage %}
                         {{ articles.count }}
-                    </strong>
-                    articles
+                    {% else %}
+                        {{ page * numberItemsPerPage }}
+                    {% endif %} sur {{ articles.count }} produits({{ nombrePage }} Pages)
                 </div>
+            </div>
 
 
-                <hr>
-
-                <div class="table-responsive">
-                    <table class="table">
-                        <thead>
-                        <tr>
-                            <th colspan="2">Article</th>
-                            <th>Quantité</th>
-                            <th>Prix unitaire</th>
-                            <th colspan="3">Etat</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        {% for article in articles %}
-                            <tr>
-                                <td>
-                                    <a href="{{ path('ecommerce_article_detail', {'id': article.id, 'slug':article.slug}) }}">
-                                        {# On vérifie qu'une image est bien associée à l'article #}
-                                        {% if article.image is not null %}
-                                            <img src="{{ asset(article.image.webPath) }}"
-                                                 alt="{{ article.image.alt }}">
-                                        {% else %}
-                                            <img src="{{ asset('images/detailbig2.jpg') }}"
-                                                 alt="{{ article.getNameItem() }}">
-                                        {% endif %}
-                                    </a>
-                                </td>
-                                <td>
-                                    <a href="{{ path('ecommerce_article_detail', {'id': article.id, 'slug':article.slug}) }}">{{ article.getNameItem() }}</a>
-                                </td>
-                                <td>{{ article.getQuantity() }}</td>
-                                <td>{{ article.getPrice() }} Fc</td>
-                                <td>{{ article.getQuality() }}</td>
-                                <td><a href="{{ path('ecommerce_article_edit', {'id': article.id}) }}"><i
-                                                class="fa fa-pencil-square-o fa-lg" data-toggle="tooltip"
-                                                data-placement="top" title="Modifier l'article"></i></a></td>
-                                <td><a href="{{ path('ecommerce_article_delete', {'id': article.id}) }}"><i
-                                                class="fa fa-trash-o fa-lg" data-toggle="tooltip" data-placement="top"
-                                                title="Supprimer l'article"></i></a>
-                                </td>
-                            </tr>
+            <div class="box-pagination text-right">
+                <ul class="pagination">
+                    {#On utilise la fonction range(a, b) qui crée un tableau de valeurs entre a et b#}
+                    {% for p in range(1, nombrePage) %}
+                        {% if p == page %}
+                            <li class="active">
+                                <span>{{ p }}</span>
+                            </li>
                         {% else %}
-                            <div class="col-sm-12">
-                                <h3 class="text-center">Pas (encore !) d'articles</h3>
-                            </div>
-                        {% endfor %}
-                        </tbody>
-                        {#<tfoot>
+                            <li>
+                                <a href="{{ path('ecommerce_article_publications', {'page': p}) }}">{{ p }}</a>
+                            </li>
+                        {% endif %}
+
+                    {% endfor %}
+                    <li>
+                        <a href="{{ path('ecommerce_article_publications', {'page': nombrePage}) }}">
+                            <i class="fa fa-angle-double-right"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!-- //end Filters -->
+
+        <div class="row">
+            <div id="content" class="col-sm-12">
+
+                <form action="#" method="post" enctype="multipart/form-data">
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <thead>
                             <tr>
-                                <th colspan="5">Total</th>
-                                <th colspan="2">$55.00</th>
+                                <td class="text-center">Image</td>
+                                <td class="text-left">Nom du Produit</td>
+                                <td class="text-left">Etat</td>
+                                <td class="text-right">Prix Unitaire</td>
+                                <td class="text-left">Quantité</td>
                             </tr>
-                        </tfoot>#}
-                    </table>
+                            </thead>
+                            <tbody>
+                            {% for article in articles %}
+                                <tr>
+                                    <td class="text-center">
+                                        <a href="{{ path('ecommerce_article_detail', {'id': article.id, 'slug':article.slug}) }}">
+                                            {% if article.image is not null %}
+                                                <img itemprop="image"
+                                                     src="{{ asset(article.image.webPath|imagine_filter('my_thumb')) }}"
+                                                     alt="{{ article.getNameItem() }}"
+                                                     title="{{ article.getNameItem() }}"
+                                                     class="img-thumbnail" width="60">
+                                            {% else %}
+                                                <img src="{{ asset('img/default_profile.jpg'|imagine_filter('my_thumb')) }}"
+                                                     alt="{{ article.getNameItem() }}"
+                                                     title="{{ article.getNameItem() }}" class="img-thumbnail"
+                                                     width="60">
+                                            {% endif %}
+                                            {#<img src="Shopping%20Cart_files/28-60x60.png" alt="Bikum masen dumas chuka" title="Bikum masen dumas chuka" class="img-thumbnail">#}
+                                        </a>
+                                    </td>
+                                    <td class="text-left">
+                                        <a href="{{ path('ecommerce_article_detail', {'id': article.getId(), 'slug':article.getSlug()}) }}">
+                                            {{ article.getNameItem() }}
+                                        </a>
+                                    </td>
+                                    <td class="text-left">{{ article.getQuality() }}</td>
+                                    <td class="text-right">{{ article.getPrice()|number_format(0, ',', '.') }}$</td>
 
-                </div>
-                <!-- /.table-responsive -->
+                                    <td class="text-left">
+                                        <div class="input-group btn-block" style="max-width: 150px;">
+                                            <input name="quantity[340]" value="{{ article.getQuantity() }}" size="1"
+                                                   class="form-control quaility" type="text" disabled>
 
-                <div class="box-footer">
-                    <div class="pages">
-                        <ul class="pagination">
-                            {# On utilise la fonction range(a, b) qui crée un tableau de valeurs entre a et b #}
-                            {% for p in range(1, nombrePage) %}
-                                <li{% if p == page %} class="active"{% endif %}>
-                                    <a href="{{ path('ecommerce_article_publications', {'page': p}) }}">{{ p }}</a>
-                                </li>
+                                        <span class="input-group-btn">
+
+                                            <a href="{{ path('ecommerce_article_edit', {'id': article.id}) }}"
+                                               data-original-title="Modifier le produit" type="button"
+                                               data-toggle="tooltip" title="Modifier le produit" class="btn btn-warning"
+                                               role="button">
+                                                <i class="fa fa-refresh" style="color: white"></i>
+                                            </a>
+                                            <a href="{{ path('ecommerce_article_delete', {'id': article.id}) }}"
+                                               data-original-title="Supprimer le produit" type="button"
+                                               data-toggle="tooltip" title="Supprimer le produit" class="btn btn-danger"
+                                               role="button">
+                                                <i class="fa fa-trash-o" aria-hidden="true" style="color: white"></i>
+                                            </a>
+
+
+                                        </span>
+
+                                        </div>
+                                    </td>
+
+                                </tr>
+                            {% else %}
+                                <h4>Pas encore de produit</h4>
                             {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </form>
+
+                {#<br><br>#}
+                <!-- Filters -->
+                <div class="product-filter product-filter-bottom filters-panel" style="float: left; width: 100%;">
+
+                    {#<div class="view-mode hidden-sm hidden-xs">
+                        <div class="list-view">
+                            <button class="btn btn-default grid active" data-view="grid"><i
+                                        class="fa fa-th-large"></i></button>
+                            <button class="btn btn-default list" data-view="list"><i class="fa fa-th-list"></i>
+                            </button>
+                        </div>
+                    </div>#}
+                    <div class="short-by-show text-center ">
+                        <div class="form-group">
+                            Affichage de {% if page == nombrePage %}
+                                {{ articles.count }}
+                            {% else %}
+                                {{ page * numberItemsPerPage }}
+                            {% endif %} sur {{ articles.count }} produits({{ nombrePage }} Pages)
+                        </div>
+                    </div>
+
+
+                    <div class="box-pagination text-right">
+                        <ul class="pagination">
+                            {#On utilise la fonction range(a, b) qui crée un tableau de valeurs entre a et b#}
+                            {% for p in range(1, nombrePage) %}
+                                {% if p == page %}
+                                    <li class="active">
+                                        <span>{{ p }}</span>
+                                    </li>
+                                {% else %}
+                                    <li>
+                                        <a href="{{ path('ecommerce_article_publications', {'page': p}) }}">{{ p }}</a>
+                                    </li>
+                                {% endif %}
+
+                            {% endfor %}
+                            <li>
+                                <a href="{{ path('ecommerce_article_publications', {'page': nombrePage}) }}">
+                                    <i class="fa fa-angle-double-right"></i>
+                                </a>
+                            </li>
                         </ul>
                     </div>
                 </div>
+                <!-- //end Filters -->
+
 
             </div>
-            <!-- /.box -->
-
-
         </div>
-        <!-- /.col-md-12 -->
 
+        <br>
     </div>
-    <!-- /.container -->
 
 {% endblock %}
