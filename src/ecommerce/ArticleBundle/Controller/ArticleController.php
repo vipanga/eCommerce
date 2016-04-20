@@ -215,10 +215,11 @@ class ArticleController extends Controller
 
             // On vérifie que les valeurs entrées sont correctes
             if ($form->isValid()) {
-                $user = $article->getUser();
+                $user = $this->getUser();
                 $cart->setUser($user);
                 $cart->setArticle($article);
                 $cart->setUnitPrice($article->getPrice());
+                $cart->setImage($article->getImage());
                 $cart->setTotalPrice($article->getPrice() * $cart->getQuantity());
                 // On enregistre notre objet $review dans la base de données
                 $em = $this->getDoctrine()->getManager();
@@ -234,6 +235,96 @@ class ArticleController extends Controller
         }
 
         return $this->redirect($this->generateUrl('ecommerce_article_detail', array('id' => $article->getId(), 'slug' => $article->getSlug())));
+    }
+
+    /*
+     * Voir le panier
+     *
+     * */
+    public function cartViewAction(User $user1)
+    {
+        $user = $this->getUser();
+        // On vérifie si l'utilisateur est connecté, sinon on le redirige sur le formulaire de connection
+        if (!$this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY')) {
+            throw $this->createAccessDeniedException();
+        }
+        // On vérifie si l'utilisateur n'essaie pas de voir un panier qui ne lui appartient pas
+        // Si c'est le cas, on va le rediriger sur une page d'erreur
+        elseif ($user->getId() != $user1->getId()) {
+            // On redirige vers la page de visualisation de l'article modifié
+            return $this->redirect($this->generateUrl('ecommerce_accueil_error404'));
+        }
+
+        $carts = $this->getDoctrine()
+            ->getManager()
+            ->getRepository('ecommerceArticleBundle:Cart')
+            ->getCarts($user);
+
+        $total = 0;
+        $totalProduits = 0;
+
+        return $this->render('ecommerceArticleBundle:Article:cart_view.html.twig',
+            array(
+                'user' => $user,
+                'carts' => $carts,
+                'total' => $total,
+                'totalProduits' => $totalProduits,
+            )
+        );
+    }
+
+    /*
+     * Supprimer un panier
+     *
+     * */
+    public function cartDeleteAction(Cart $cart)
+    {
+        $user1 = $this->getUser();
+        $user2 = $cart->getUser();
+
+        // On vérifie si l'utilisateur est connecté, sinon on le redirige sur le formulaire de connection
+        if (!$this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY')) {
+            throw $this->createAccessDeniedException();
+        }
+        // On vérifie si l'utilisateur n'essaie pas de supprimer un article qui ne lui appartient pas
+        // Si c'est le cas, on va le rediriger sur une page d'erreur
+        elseif ($user1->getId() != $user2->getId()) {
+            // On redirige vers la page de visualisation de l'article modifié
+            return $this->redirect($this->generateUrl('ecommerce_accueil_error404'));
+        }
+
+        // On crée un formulaire vide, qui ne contiendra que le champ CSRF
+        // Cela permet de protéger la suppression d'article contre cette faille
+        $form = $this->createFormBuilder()->getForm();
+
+        $request = $this->getRequest();
+        if ($request->getMethod() == 'POST') {
+            $form->bind($request);
+
+            if ($form->isValid()) {
+                // On supprime le panier
+                $em = $this->getDoctrine()->getManager();
+                $em->remove($cart);
+                $em->flush();
+
+                // On définit un message flash
+                $this->get('session')->getFlashBag()->add('info', 'Le panier a bien été supprimé');
+
+                // Puis on redirige vers l'accueil
+                return $this->redirect($this->generateUrl('ecommerce_article_cart_view', array(
+                        'id' => $cart->getUser()->getId(),
+                        'username' => $cart->getUser()->getUsername(),
+                    )
+                ));
+            }
+        }
+
+        // Si la requête est en GET, on affiche une page de confirmation avant de supprimer
+        return $this->render('ecommerceArticleBundle:Article:cart_delete.html.twig', array(
+            'cart' => $cart,
+            'user' => $user2,
+            'form' => $form->createView(),
+        ));
     }
 
     /*

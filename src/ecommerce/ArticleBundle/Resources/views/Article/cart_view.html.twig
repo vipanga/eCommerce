@@ -1,0 +1,139 @@
+{# src/ecommerce/ArticleBundle/Resources/views/Article/cart_view.html.twig #}
+
+{% extends "ecommerceArticleBundle::layout.html.twig" %}
+
+{% block titre %}
+    Votre panier - {{ parent() }}
+{% endblock %}
+
+{% block active %}active{% endblock %}
+
+{% block contenu_accueil %}
+    <section id="yt_breadcrumb">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <ul class="breadcrumb">
+                        <li>
+                            <a href="{{ path('ecommerce_accueil_accueil') }}">Accueil</a>
+                        </li>
+                        <li>
+                            Mon Panier
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="container">
+        <div class="row">
+            <div id="content" class="col-sm-12">
+                <h1>Votre Panier
+                </h1>
+                <form action="#" method="post" enctype="multipart/form-data">
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <thead>
+                            <tr>
+                                <td class="text-center">Image</td>
+                                <td class="text-left">Nom du Produit</td>
+                                <td class="text-left">Date</td>
+                                <td class="text-left">Quantité</td>
+                                <td class="text-right">Prix Unitaire</td>
+                                <td class="text-right">Prix Total</td>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for cart in carts %}
+                                <tr>
+                                    <td class="text-center">
+                                        <a href="{{ path('ecommerce_article_detail', {'id': cart.article.id, 'slug':cart.article.slug}) }}">
+                                            {% if cart.getImage() is not null %}
+                                                <img itemprop="image"
+                                                     src="{{ asset(cart.image.webPath|imagine_filter('my_thumb')) }}"
+                                                     alt="{{ cart.getArticle().getNameItem() }}"
+                                                     title="{{ cart.getArticle().getNameItem() }}"
+                                                     class="img-thumbnail" width="60">
+                                            {% else %}
+                                                <img src="{{ asset('img/default_profile.jpg'|imagine_filter('my_thumb')) }}"
+                                                     alt="{{ cart.getArticle().getNameItem() }}"
+                                                     title="{{ cart.getArticle().getNameItem() }}" class="img-thumbnail"
+                                                     width="60">
+                                            {% endif %}
+                                            {#<img src="Shopping%20Cart_files/28-60x60.png" alt="Bikum masen dumas chuka" title="Bikum masen dumas chuka" class="img-thumbnail">#}
+                                        </a>
+                                    </td>
+                                    <td class="text-left">
+                                        <a href="{{ path('ecommerce_article_detail', {'id': cart.article.id, 'slug':cart.article.slug}) }}">
+                                            {{ cart.getArticle().getNameItem() }}
+                                        </a>
+                                    </td>
+                                    <td class="text-left">{{ cart.getDate()|date("d/M/Y") }}</td>
+                                    <td class="text-left">
+                                        <div class="input-group btn-block" style="max-width: 150px;">
+                                            <input name="quantity[340]" value="{{ cart.getQuantity() }}" size="1"
+                                                   class="form-control quaility" type="text" disabled>
+
+                                        <span class="input-group-btn">
+                                            {#<button data-original-title="Update" type="submit" data-toggle="tooltip" title="" class="btn btn-primary">
+                                                <i class="fa fa-refresh"></i>
+                                            </button>#}
+
+                                            {#<a href="{{ path('ecommerce_article_delete_cart', {'id': cart.getId()}) }}">
+                                                <button data-original-title="Supprimer le produit" type="button" data-toggle="tooltip" title="Supprimer le produit" class="btn btn-danger">
+                                                    <i class="fa fa-trash-o" aria-hidden="true"></i>
+                                                </button>
+                                            </a>#}
+
+                                            <a href="{{ path('ecommerce_article_delete_cart', {'id': cart.getId()}) }}"
+                                               data-original-title="Supprimer le produit" type="button"
+                                               data-toggle="tooltip" title="Supprimer le produit" class="btn btn-danger"
+                                               role="button">
+                                                <i class="fa fa-trash-o" aria-hidden="true" style="color: white"></i>
+                                            </a>
+
+
+                                        </span>
+
+                                        </div>
+                                    </td>
+                                    <td class="text-right">{{ cart.getUnitPrice() }}$</td>
+                                    <td class="text-right">{{ cart.getTotalPrice() }}$</td>
+                                    {% set total = total + cart.getTotalPrice() %}
+                                    {% set totalProduits = totalProduits + cart.getQuantity() %}
+                                </tr>
+                            {% else %}
+                                <h4>Pas encore de produit</h4>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </form>
+
+                {#<br><br>#}
+
+
+            </div>
+        </div>
+
+        <br>
+        <div class="row">
+            <div class="col-sm-4 col-sm-offset-8">
+                <table class="table table-bordered">
+                    <tbody>
+                    <tr>
+                        <td class="text-right"><strong>Total Produits:</strong></td>
+                        <td class="text-right">{{ totalProduits }}</td>
+                    </tr>
+                    <tr>
+                        <td class="text-right"><strong>Total:</strong></td>
+                        <td class="text-right">{{ total }}$</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

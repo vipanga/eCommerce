@@ -9,39 +9,44 @@
 {% block contenu_accueil %}
 
     <div class="container">
+        <ul class="breadcrumb">
+            <li><a href="{{ path('ecommerce_accueil_accueil') }}">Accueil</a>
+            </li>
+            <li>Page introuvable !</li>
+        </ul>
 
-        <div class="col-md-12">
+        <div class="row">
+            <div id="content" class="container error-page">
+                <div class="wrapper_404page">
+                    <div class="col-lg-7 col-md-7">
+                        <div class="content-404page">
+                            <p class="top-text">La page que vous cherchez n'existe pas (ou plus)!</p>
+                            <p class="img-404"><img src="{{ asset('img/404-img-text.png') }}" alt=""></p>
+                            <p class="bottom-text">Pour continuer veuillez retourner à la page précédente ou retourner
+                                simplement à la page d’accueil.</p>
+                            <div class="button-404">
+                                <a href="javascript:void(0);" onclick="goBack()" class="btn-404 prev-page-btn"
+                                   title="PREVIOUS PAGE">PRECEDENT</a>
+                                <a href="{{ path('ecommerce_accueil_accueil') }}" class="btn-404 back2home"
+                                   title="BACK TO HOMEPAGE">PAGE D'ACCUEIL</a>
+                            </div>
+                        </div>
+                    </div>
 
-            <ul class="breadcrumb">
-                <li><a href="{{ path('ecommerce_accueil_accueil') }}">Accueil</a>
-                </li>
-                <li>Page introuvable !</li>
-            </ul>
-
-
-            <div class="row" id="error-page">
-                <div class="col-sm-6 col-sm-offset-3">
-                    <div class="box">
-
-                        <p class="text-center">
-                            <img src="{{ asset('images/logo.png') }}" alt="Accueil">
-                        </p>
-
-                        <h3>La page que vous cherchez n'existe pas (ou plus).</h3>
-                        <h4 class="text-muted">Erreur 404 - Page introuvable</h4>
-
-                        <p class="text-center">Pour continuer vueillez utiliser le formulaire de <strong>recherche</strong> ou le <strong>menu</strong> ci-dessus.</p>
-
-                        <p class="buttons"><a href="{{ path('ecommerce_accueil_accueil') }}" class="btn btn-primary"><i class="fa fa-home"></i> Allez à l'accueil</a>
-                        </p>
+                    <div class="col-lg-5 col-md-5">
+                        <div class="img-right-404">
+                            <img src="{{ asset('img/404-image.png') }}" alt="">
+                        </div>
                     </div>
                 </div>
+
+
+
             </div>
 
-
         </div>
-        <!-- /.col-md-9 -->
+
+
     </div>
-    <!-- /.container -->
 
 {% endblock %}

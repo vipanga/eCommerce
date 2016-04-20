@@ -64,4 +64,16 @@ ecommerce_article_cart:
     path:     /cart/{id}
     defaults: { _controller: ecommerceArticleBundle:Article:cart }
     requirements:
-            article_id:  \d+
+            id:  \d+
+
+ecommerce_article_cart_view:
+    path:     /cart/{id}/{username}
+    defaults: { _controller: ecommerceArticleBundle:Article:cartView }
+    requirements:
+            id:  \d+
+
+ecommerce_article_delete_cart:
+    path:     /cart/delete/{id}
+    defaults: { _controller: ecommerceArticleBundle:Article:cartDelete }
+    requirements:
+        id:  \d+

@@ -30,9 +30,14 @@ class Cart
     private $user;
 
     /**
-     * @ORM\OneToOne(targetEntity="ecommerce\ArticleBundle\Entity\Article")
+     * @ORM\ManyToOne(targetEntity="ecommerce\ArticleBundle\Entity\Article")
      */
     private $article;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="ecommerce\ArticleBundle\Entity\Image")
+     */
+    private $image;
 
     /**
      * @var int
@@ -72,7 +77,7 @@ class Cart
     /**
      * Get id
      *
-     * @return integer
+     * @return integer 
      */
     public function getId()
     {
@@ -82,7 +87,7 @@ class Cart
     /**
      * Get quantity
      *
-     * @return integer
+     * @return integer 
      */
     public function getQuantity()
     {
@@ -105,7 +110,7 @@ class Cart
     /**
      * Get unitPrice
      *
-     * @return float
+     * @return float 
      */
     public function getUnitPrice()
     {
@@ -128,7 +133,7 @@ class Cart
     /**
      * Get totalPrice
      *
-     * @return float
+     * @return float 
      */
     public function getTotalPrice()
     {
@@ -151,7 +156,7 @@ class Cart
     /**
      * Get date
      *
-     * @return \DateTime
+     * @return \DateTime 
      */
     public function getDate()
     {
@@ -174,7 +179,7 @@ class Cart
     /**
      * Get user
      *
-     * @return \ecommerce\UserBundle\Entity\User
+     * @return \ecommerce\UserBundle\Entity\User 
      */
     public function getUser()
     {
@@ -197,7 +202,7 @@ class Cart
     /**
      * Get article
      *
-     * @return \ecommerce\ArticleBundle\Entity\Article
+     * @return \ecommerce\ArticleBundle\Entity\Article 
      */
     public function getArticle()
     {
@@ -213,6 +218,29 @@ class Cart
     public function setArticle(\ecommerce\ArticleBundle\Entity\Article $article = null)
     {
         $this->article = $article;
+
+        return $this;
+    }
+
+    /**
+     * Get image
+     *
+     * @return \ecommerce\ArticleBundle\Entity\Image
+     */
+    public function getImage()
+    {
+        return $this->image;
+    }
+
+    /**
+     * Set image
+     *
+     * @param \ecommerce\ArticleBundle\Entity\Image $image
+     * @return Cart
+     */
+    public function setImage(\ecommerce\ArticleBundle\Entity\Image $image = null)
+    {
+        $this->image = $image;
 
         return $this;
     }

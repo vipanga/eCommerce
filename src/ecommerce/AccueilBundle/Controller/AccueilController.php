@@ -18,18 +18,28 @@ class AccueilController extends Controller {
     public function menuAction() {
 
         $categories = $this->getDoctrine()
-                ->getManager()
-                ->getRepository('ecommerceArticleBundle:Category')
-                ->getCategories();
+            ->getManager()
+            ->getRepository('ecommerceArticleBundle:Category')
+            ->getCategories();
 
         return $this->render('ecommerceAccueilBundle:Accueil:menu.html.twig', array('categories' => $categories));
     }
-    
+
+    public function headerAction()
+    {
+        // On vérifie si l'utilisateur est connecté, sinon on le redirige sur le formulaire de connection
+        if ($this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY')) {
+            $user = $this->getUser();
+            return $this->render('ecommerceAccueilBundle:Accueil:header.html.twig', array('user' => $user));
+        }
+        return $this->render('ecommerceAccueilBundle:Accueil:header.html.twig');
+    }
+
     public function contactAction() {
         $googlemap = true;
         return $this->render('ecommerceAccueilBundle:Accueil:contact.html.twig', array('googlemap' => $googlemap));
     }
-    
+
     public function error404Action() {
         return $this->render('ecommerceAccueilBundle:Accueil:404.html.twig');
     }

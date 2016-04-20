@@ -1,0 +1,79 @@
+{# src/ecommerce/AccueilBundle/Resources/views/Accueil/cart_delete.html.twig #}
+
+{% extends "ecommerceAccueilBundle::layout.html.twig" %}
+
+{% block titre %}
+    Supprimer Panier - {{ parent() }}
+{% endblock %}
+
+{% block contenu_accueil %}
+
+    <section id="yt_breadcrumb">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <ul class="breadcrumb">
+                        <li><a href="{{ path('ecommerce_accueil_accueil') }}">Accueil</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('ecommerce_article_cart_view', {'id': user.getId(), 'username':user.getUsername()}) }}">Mon
+                                Panier</a>
+                        </li>
+                        <li>Supprimer panier</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="container">
+
+        <div class="col-md-8 col-md-offset-2" id="basket">
+
+            <div class="box">
+
+                <h1 class="text-center">Supprimer le panier</h1>
+
+                <hr>
+
+                <p class="text-center">
+                    Etes-vous certain de vouloir supprimer le panier <strong>"{{ cart.getArticle().getNameItem() }}
+                        "</strong> ?
+                </p>
+
+
+                <hr>
+
+                <form action="{{ path('ecommerce_article_delete_cart', {'id': cart.id}) }}"
+                      method="POST" {{ form_enctype(form) }}>
+                    <div class="box-footer">
+                        <div class="pull-left">
+                            <a href="{{ path('ecommerce_article_cart_view', {'id': user.getId(), 'username':user.getUsername()}) }}"
+                               class="btn btn-info"><i
+                                        class="fa fa-chevron-left"></i> Retour au panier</a>
+                        </div>
+
+                        {{ form_rest(form) }}
+
+                        <div class="pull-right">
+                            <button type="submit" class="btn btn-danger"><i class="fa fa-trash-o"></i> Confirmer
+                                supression <i class="fa fa-chevron-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+
+
+            </div>
+            <!-- /.box -->
+
+
+        </div>
+        <!-- /.col-md-12 -->
+
+    </div>
+    <!-- /.container -->
+
+    <br><br>
+
+{% endblock %}
