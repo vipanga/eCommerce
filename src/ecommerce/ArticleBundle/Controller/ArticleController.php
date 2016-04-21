@@ -164,8 +164,20 @@ class ArticleController extends Controller
                 $em->persist($comment);
                 $em->flush();
 
+
+                //On pourrait envoyer ici une notification à l'utilisateur.
+                /*$mailer = $this->get('mailer');
+
+                $message = \Swift_Message::newInstance()
+                    ->setSubject('Hello Tootiye')
+                    ->setFrom('tootiye@gmail.com')
+                    ->setTo('ipanga@outlook.fr')
+                    ->setBody($this->renderView('ecommerceAccueilBundle:Accueil:contact.html.twig'))
+                ;
+                $mailer->send($message);*/
+
                 // On définit un message flash
-                $this->get('session')->getFlashBag()->add('info', 'Commentaire bien ajouté');
+//                $this->get('session')->getFlashBag()->add('info', 'Commentaire bien ajouté');
 
                 // On redirige vers la page de visualisation de l'article où on vient de commenter
                 return $this->redirect($this->generateUrl('ecommerce_article_detail', array('id' => $article->getId(), 'slug' => $article->getSlug())));

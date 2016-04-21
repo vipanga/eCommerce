@@ -62,7 +62,7 @@
                         <div class="form-group required">
                             <label class="col-sm-2 control-label text-right" for="input-firstname">Quantité</label>
                             <div class="col-sm-10">
-                                {{ form_widget(form.quantity, { 'attr': {'class': 'form-control', 'placeholder': 'Ex: 10', 'min': '1', 'max': '100000', 'pattern': '\d+' } }) }}
+                                {{ form_widget(form.quantity, { 'attr': {'class': 'form-control', 'placeholder': 'Ex: 10', 'min': '1', 'max': '100000', 'pattern': '\d+', 'autocomplete': 'off' } }) }}
                                 <div class="has-error" style="color: red">
                                     {{ form_errors(form.quantity) }}
                                 </div>
@@ -77,7 +77,7 @@
                                 <div class="input-group">
                                     {#<div class="input-group-addon">$</div>#}
                                     {{ form_widget(form.price, { 'attr': {'class': 'form-control', 'placeholder': "Prix est en dollars américains, sans virgule ni point",
-                                        'pattern': '^(([1-9]*)|(([1-9]*)\.([0-9]*)))$' } }) }}
+                                        'pattern': '^(([1-9]*)|(([1-9]*)\.([0-9]*)))$', 'autocomplete': 'off' } }) }}
                                     <div class="input-group-addon">$ USD</div>
                                 </div>
                                 <div class="has-error" style="color: red">

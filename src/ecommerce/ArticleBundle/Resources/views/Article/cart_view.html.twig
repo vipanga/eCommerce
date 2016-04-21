@@ -98,8 +98,8 @@
 
                                         </div>
                                     </td>
-                                    <td class="text-right">{{ cart.getUnitPrice() }}$</td>
-                                    <td class="text-right">{{ cart.getTotalPrice() }}$</td>
+                                    <td class="text-right">{{ cart.getUnitPrice()|number_format(0, ',', '.') }}$</td>
+                                    <td class="text-right">{{ cart.getTotalPrice()|number_format(0, ',', '.') }}$</td>
                                     {% set total = total + cart.getTotalPrice() %}
                                     {% set totalProduits = totalProduits + cart.getQuantity() %}
                                 </tr>
@@ -128,7 +128,7 @@
                     </tr>
                     <tr>
                         <td class="text-right"><strong>Total:</strong></td>
-                        <td class="text-right">{{ total }}$</td>
+                        <td class="text-right">{{ total|number_format(0, ',', '.') }}$</td>
                     </tr>
                     </tbody>
                 </table>

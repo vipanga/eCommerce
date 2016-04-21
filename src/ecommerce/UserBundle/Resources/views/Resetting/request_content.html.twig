@@ -1,0 +1,62 @@
+{% trans_default_domain 'FOSUserBundle' %}
+
+{#<form action="{{ path('fos_user_resetting_send_email') }}" method="POST" class="fos_user_resetting_request">
+    <div>
+        {% if invalid_username is defined %}
+            <p>{{ 'resetting.request.invalid_username'|trans({'%username%': invalid_username}) }}</p>
+        {% endif %}
+        <label for="username">{{ 'resetting.request.username'|trans }}</label>
+        <input type="text" id="username" name="username" required="required" />
+    </div>
+    <div>
+        <input type="submit" value="{{ 'resetting.request.submit'|trans }}" />
+    </div>
+</form>#}
+
+<div class="container">
+    <ul class="breadcrumb">
+        <li><a href="{{ path('ecommerce_accueil_accueil') }}">Accueil</a>
+        </li>
+        <li>Mot de passe oublié</li>
+    </ul>
+    <div class="row">
+        <div class="col-md-1">
+
+        </div>
+        <div id="content" class="col-md-10">
+            {#<h1>Mot de passe oublié?</h1>
+            <p>Enter the e-mail address associated with your account. Click submit to have your password e-mailed to you.</p>#}
+            <form action="{{ path('fos_user_resetting_send_email') }}" method="POST"
+                  class="fos_user_resetting_request form-horizontal">
+                <fieldset>
+                    <legend>Mot de passe oublié?</legend>
+                    <div class="form-group required">
+                        {% if invalid_username is defined %}
+                            <div class="col-sm-12">
+                                <p style="color: red">{{ 'resetting.request.invalid_username'|trans({'%username%': invalid_username}) }}</p>
+                            </div>
+                        {% endif %}
+                        <label class="col-sm-4 control-label"
+                               for="username">{{ 'resetting.request.username'|trans }}</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" id="username" name="username" required="required"
+                                   placeholder="Nom d'utilisateur ou adresse e-mail"/>
+                        </div>
+                    </div>
+                </fieldset>
+                <div class="buttons clearfix">
+                    <div class="pull-left"><a href="{{ path('fos_user_security_login') }}" class="btn btn-default">Précédent</a>
+                    </div>
+                    <div class="pull-right">
+                        <input value="{{ 'resetting.request.submit'|trans }}" class="btn btn-primary" type="submit">
+                    </div>
+                </div>
+            </form>
+
+
+        </div>
+
+    </div>
+</div>
+
+<br><br>
