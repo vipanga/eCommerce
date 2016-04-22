@@ -134,27 +134,31 @@
 
                         {% for article in articles %}
                             <div class="product-layout col-md-3 col-sm-4 col-xs-4">
-                                <div class="product-item-container">
+                                <div itemscope itemtype="http://schema.org/Product" class="product-item-container">
                                     <div class="left-block">
                                         <div class="product-image-container lazy second_img ">
                                             <div class="image lazy-loaded flipper">
                                                 {# On vérifie qu'une image est bien associée à l'article #}
                                                 {% if article.image is not null %}
-                                                    <img data-src="{{ asset(article.image.webPath|imagine_filter('my_thumb')) }}"
+                                                    <img itemprop="image"
+                                                         data-src="{{ asset(article.image.webPath|imagine_filter('my_thumb')) }}"
                                                          src="{{ asset(article.image.webPath|imagine_filter('my_thumb')) }}"
                                                          title="{{ article.getNameItem() }}"
                                                          class="img_1 img-thumbnail">
-                                                    <img data-src="{{ asset(article.image.webPath|imagine_filter('my_thumb')) }}"
+                                                    <img itemprop="image"
+                                                         data-src="{{ asset(article.image.webPath|imagine_filter('my_thumb')) }}"
                                                          src="{{ asset(article.image.webPath|imagine_filter('my_thumb')) }}"
                                                          alt="{{ article.getNameItem() }}"
                                                          title="{{ article.getNameItem() }}"
                                                          class="img_0 img-thumbnail">
                                                 {% else %}
-                                                    <img data-src="{{ asset('images/detailbig2.jpg'|imagine_filter('my_thumb')) }}"
+                                                    <img itemprop="image"
+                                                         data-src="{{ asset('images/detailbig2.jpg'|imagine_filter('my_thumb')) }}"
                                                          src="{{ asset('images/detailbig2.jpg'|imagine_filter('my_thumb')) }}"
                                                          title="{{ article.getNameItem() }}"
                                                          class="img_1 img-thumbnail">
-                                                    <img data-src="{{ asset('images/detailbig2.jpg'|imagine_filter('my_thumb')) }}"
+                                                    <img itemprop="image"
+                                                         data-src="{{ asset('images/detailbig2.jpg'|imagine_filter('my_thumb')) }}"
                                                          src="{{ asset('images/detailbig2.jpg'|imagine_filter('my_thumb')) }}"
                                                          alt="{{ article.getNameItem() }}"
                                                          title="{{ article.getNameItem() }}"
@@ -180,7 +184,8 @@
                                         <div class="caption">
                                             <h4>
                                                 <a href="{{ path('ecommerce_article_detail', {'id': article.id, 'slug':article.slug}) }}"
-                                                   title="{{ article.getNameItem() }}">{{ article.getNameItem() }}</a>
+                                                   title="{{ article.getNameItem() }}"><span
+                                                            itemprop="name">{{ article.getNameItem() }}</span></a>
                                             </h4>
                                             {#<div class="ratings">
                                                 <div class="rating-box">
@@ -198,7 +203,9 @@
                                             </div>#}
 
                                             <div class="price">
-                                                <span class="price-new">${{ article.getPrice()|number_format(0, ',', '.') }}</span>
+                                                <span class="price-new" itemprop="price"
+                                                      content="{{ article.getPrice() }}">{{ article.getPrice()|number_format(0, ',', '.') }}</span>
+                                                <span class="price-new" itemprop="priceCurrency" content="USD">$</span>
                                             </div>
                                             <div class="text-muted">
                                                 <small>{{ article.getProvince() }}, {{ article.getCity() }}</small>
@@ -207,7 +214,7 @@
                                             <div class="description  item-desc  hidden">
                                                 <br>
                                                 <p>
-                                                    {{ article.getDescription() }}
+                                                    <span itemprop="description">{{ article.getDescription() }}</span>
                                                 </p>
                                             </div>
                                         </div>

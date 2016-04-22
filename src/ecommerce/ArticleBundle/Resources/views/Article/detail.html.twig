@@ -36,7 +36,7 @@
 
             <div id="content" class="col-lg-9 col-sm-8 col-xs-12">
 
-                <div class="product-view">
+                <div itemscope itemtype="http://schema.org/Product" class="product-view">
                     <div class="left-content-product">
                         <div class="row">
 
@@ -61,7 +61,7 @@
 
                             <div class="content-product-right col-md-6 col-xs-12">
                                 <div class="title-product">
-                                    <h1>{{ article.getNameItem() }}</h1>
+                                    <h1><span itemprop="name">{{ article.getNameItem() }}</span></h1>
                                 </div>
                                 <!-- Review ---->
                                 <div class="box-review">
@@ -87,23 +87,24 @@
 
                                 <div class="product-label">
 
-                                    <div class="product_page_price price" itemprop="offerDetails" itemscope=""
-                                         itemtype="http://data-vocabulary.org/Offer">
-                                        <span class="price-new"
-                                              itemprop="price">{{ article.getPrice()|number_format(0, ',', '.') }}
-                                            $</span>
+                                    <div class="product_page_price price" itemprop="offers" itemscope
+                                         itemtype="http://schema.org/Offer">
+                                        <span class="price-new" itemprop="price"
+                                              content="{{ article.getPrice() }}">{{ article.getPrice()|number_format(0, ',', '.') }}</span>
+                                        <span class="price-new" itemprop="priceCurrency" content="USD">$</span>
 
 
                                     </div>
                                     <div class="stock">
                                         <span>Disponibilité:</span>
-                                        <span class="status-stock">En Stock</span>
+                                        <span itemprop="availability" href="http://schema.org/InStock"
+                                              class="status-stock">En Stock</span>
                                     </div>
 
                                 </div>
 
 
-                                <div class="short_description">
+                                <div itemprop="description" class="short_description">
 
                                     {{ article.getDescription() }}
                                 </div>
@@ -111,7 +112,8 @@
                                 <div class="product-box-desc">
                                     <div class="inner-box-desc">
                                         <div class="price-tax"><span>Etat:</span> {{ article.getQuality() }}</div>
-                                        <div class="reward"><span>Quantité:</span> {{ article.getQuantity() }}</div>
+                                        <div itemprop="numberOfItems" class="reward">
+                                            <span>Quantité:</span> {{ article.getQuantity() }}</div>
 
                                         <div class="brand"><span>Téléphone:</span> {{ article.user.telephone }}</div>
 
