@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace FOS\UserBundle\Controller;
+namespace ecommerce\UserBundle\Controller;
 
 use FOS\UserBundle\FOSUserEvents;
 use FOS\UserBundle\Event\FormEvent;
@@ -76,7 +76,7 @@ class ChangePasswordController extends Controller
             return $response;
         }
 
-        return $this->render('FOSUserBundle:ChangePassword:changePassword.html.twig', array(
+        return $this->render('ecommerceUserBundle:ChangePassword:changePassword.html.twig', array(
             'form' => $form->createView()
         ));
     }

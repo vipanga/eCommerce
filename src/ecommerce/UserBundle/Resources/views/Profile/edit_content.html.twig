@@ -1,13 +1,5 @@
 {% trans_default_domain 'FOSUserBundle' %}
 
-{#{{ form_start(form, { 'action': path('fos_user_profile_edit'), 'attr': { 'class': 'fos_user_profile_edit' } }) }}
-{{ form_widget(form) }}
-<div>
-    <input type="submit" value="{{ 'profile.edit.submit'|trans }}" />
-</div>
-<h1>Bebe</h1>
-{{ form_end(form) }}#}
-
 <section id="yt_breadcrumb">
     <div class="container">
         <div class="row">
@@ -25,7 +17,7 @@
 
 <div class="container">
 
-    <div class="col-md-3">
+    <div class="col-sm-3">
         <!-- *** CUSTOMER MENU ***
 _________________________________________________________ -->
         {% include "ecommerceUserBundle:Profile:user_section.html.twig" %}
@@ -33,8 +25,185 @@ _________________________________________________________ -->
         <!-- *** CUSTOMER MENU END *** -->
     </div>
 
-    <div class="col-md-9">
-        <div class="box">
+    <div class="col-sm-9">
+        <div id="content" class="col-md-12">
+            <h1 class="text-center">Modification du profile</h1>
+
+            <form action="{{ path('fos_user_profile_edit') }}" {{ form_enctype(form) }} method="POST">
+                <fieldset id="account">
+                    <legend>Informations personnelles</legend>
+
+                    <div class="form-group required">
+                        <label class="col-sm-3 control-label text-right" for="input-firstname">Nom d'utilisateur</label>
+                        <div class="col-sm-9">
+                            {{ form_widget(form.username, { 'attr': {'class': 'form-control' } }) }}
+                            <div class="has-error" style="color: red">
+                                {{ form_errors(form.username) }}
+                            </div>
+                        </div>
+                    </div>
+
+                    <br><br>
+
+                    <div class="form-group required">
+                        <label class="col-sm-3 control-label text-right" for="input-firstname">Adresse e-mail</label>
+                        <div class="col-sm-9">
+                            {{ form_widget(form.email, { 'attr': {'class': 'form-control', 'placeholder': 'Adresse e-mail' } }) }}
+                            <div class="has-error" style="color: red">
+                                {{ form_errors(form.email) }}
+                            </div>
+                        </div>
+                    </div>
+
+                    <br><br>
+
+                    <div class="form-group required">
+                        <label class="col-sm-3 control-label text-right" for="input-firstname">Prénom</label>
+                        <div class="col-sm-9">
+                            {{ form_widget(form.first_name, { 'attr': {'class': 'form-control', 'placeholder': 'Votre prénom' } }) }}
+                            <div class="has-error" style="color: red">
+                                {{ form_errors(form.first_name) }}
+                            </div>
+                        </div>
+                    </div>
+
+                    <br><br>
+
+                    <div class="form-group required">
+                        <label class="col-sm-3 control-label text-right" for="input-firstname">Nom</label>
+                        <div class="col-sm-9">
+                            {{ form_widget(form.last_name, { 'attr': {'class': 'form-control', 'placeholder': 'Votre nom de famille' } }) }}
+                            <div class="has-error" style="color: red">
+                                {{ form_errors(form.last_name) }}
+                            </div>
+                        </div>
+                    </div>
+
+                    <br><br>
+
+                    <div class="form-group required">
+                        <label class="col-sm-3 control-label text-right" for="input-firstname">Sexe</label>
+                        <div class="col-sm-9">
+                            {{ form_widget(form.gender, { 'attr': {'class': 'form-control' } }) }}
+                            <div class="has-error" style="color: red">
+                                {{ form_errors(form.gender) }}
+                            </div>
+                        </div>
+                    </div>
+
+                </fieldset>
+
+
+                <fieldset id="address">
+                    <legend>Information de contact</legend>
+
+                    <div class="form-group required">
+                        <label class="col-sm-3 control-label text-right" for="input-firstname">Téléphone</label>
+                        <div class="col-sm-9">
+                            {{ form_widget(form.telephone, { 'attr': {'class': 'form-control' } }) }}
+                            <div class="has-error" style="color: red">
+                                {{ form_errors(form.telephone) }}
+                            </div>
+                        </div>
+                    </div>
+
+                    <br><br>
+
+                    <div class="form-group required">
+                        <label class="col-sm-3 control-label text-right" for="input-company">Ville</label>
+                        <div class="col-sm-9">
+                            {{ form_widget(form.city, { 'attr': {'class': 'form-control', 'placeholder': 'Ex: Lubumbashi' } }) }}
+                            <div class="has-error" style="color: red">
+                                {{ form_errors(form.city) }}
+                            </div>
+                        </div>
+                    </div>
+
+                    <br><br>
+
+                    <div class="form-group required">
+                        <label class="col-sm-3 control-label text-right" for="input-company">Province</label>
+                        <div class="col-sm-9">
+                            {{ form_widget(form.province, { 'attr': {'class': 'form-control' } }) }}
+                            <div class="has-error" style="color: red">
+                                {{ form_errors(form.province) }}
+                            </div>
+                        </div>
+                    </div>
+
+                    <br><br>
+
+                    <div class="form-group required">
+                        <label class="col-sm-3 control-label text-right" for="input-company">Date de naissance</label>
+                        <div class="col-sm-9">
+                            {{ form_widget(form.birth_date, { 'attr': {'class': 'form-control', 'placeholder': 'Ex: 02-12-1990' } }) }}
+                            <div class="has-error" style="color: red">
+                                {{ form_errors(form.birth_date) }}
+                            </div>
+                        </div>
+                    </div>
+
+                    <br><br>
+
+                    <div class="form-group required">
+                        <label class="col-sm-3 control-label text-right" for="input-company">Site web</label>
+                        <div class="col-sm-9">
+                            {{ form_widget(form.website, { 'attr': {'class': 'form-control', 'placeholder': 'Ex: www.votresite.com' } }) }}
+                            <div class="has-error" style="color: red">
+                                {{ form_errors(form.website) }}
+                            </div>
+                        </div>
+                    </div>
+
+                    <br><br>
+
+                    <div class="form-group required">
+                        <label class="col-sm-3 control-label text-right" for="input-company">Adresse</label>
+                        <div class="col-sm-9">
+                            {{ form_widget(form.address, { 'attr': {'class': 'form-control', 'rows': '3', 'placeholder': 'Votre adresse de résidence' } }) }}
+                            <div class="has-error" style="color: red">
+                                {{ form_errors(form.address) }}
+                            </div>
+                        </div>
+                    </div>
+
+                    <br><br>
+
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label text-right" for="input-company">Image</label>
+                        <div class="col-sm-9">
+                            {{ form_widget(form.image) }}
+                            <p class="help-block">Sélectionnez votre image de profile</p>
+                            <div class="has-error" style="color: red">
+                                {{ form_errors(form.image) }}
+                            </div>
+                        </div>
+                    </div>
+
+                </fieldset>
+
+                {{ form_rest(form) }}
+
+                <div class="buttons clearfix">
+                    <div class="pull-left"><a href="{{ path('fos_user_profile_show') }}" class="btn btn-default">Précédent</a>
+                    </div>
+                    <div class="pull-right">
+                        <input value="Enregistrer Modifications" class="btn btn-primary" type="submit">
+                    </div>
+                </div>
+
+                {#<div class="buttons">
+                    <div class="pull-right">
+                        <input value="Enregistrer Modifications" class="btn btn-primary" type="submit">
+                    </div>
+                </div>#}
+
+            </form>
+
+        </div>
+
+
+        {#<div class="box">
             <h3 class="text-center">Modifier vos détails personnel</h3>
             <hr>
             <form action="{{ path('fos_user_profile_edit') }}" {{ form_enctype(form) }} method="POST">
@@ -172,7 +341,7 @@ _________________________________________________________ -->
                     </div>
                 </div>
             </form>
-        </div>
+        </div>#}
     </div>
 
 </div>
