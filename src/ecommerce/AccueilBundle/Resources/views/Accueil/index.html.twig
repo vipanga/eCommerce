@@ -107,72 +107,36 @@
 
                     <div class="module  custom-shipping">
                         <div class="modcontent clearfix">
-                            <ul class="row shipping-days">
+                            <ul class="row text-center">
 
 
-                                <li class="col-sm-4 col-xs-12"
-                                    data-anijs="if: scroll, on: window, do: flipInY animated duration-md , before: $scrollReveal ">
-                                    <div class="icon icon1">
-                                        <div class="border"></div>
-
-
-                                    </div>
+                                <li class="col-sm-4 col-xs-12">
 
 
                                     <div class="content">
-                                        <h3>Free Shipping Item</h3>
-
-
-                                        <p>Lorem ipsum dolor amet consectetur</p>
-
-
+                                        <h3>Avec Nous</h3>
+                                        <p>Mieux préparer vos achats en ligne</p>
                                     </div>
 
 
                                 </li>
 
 
-                                <li class="col-sm-4 col-xs-12"
-                                    data-anijs="if: scroll, on: window, do: flipInY animated duration-md, before: $scrollReveal">
-                                    <div class="icon icon2">
-                                        <div class="border"></div>
-
-
-                                    </div>
-
-
+                                <li class="col-sm-4 col-xs-12">
                                     <div class="content">
-                                        <h3>CASH ON DELIVERY</h3>
-
-
-                                        <p>Lorem ipsum dolor amet consectetur</p>
-
-
+                                        <h3>TOOTIYE MART</h3>
+                                        <p>Premier marché virtuel de la RD Congo</p>
                                     </div>
 
 
                                 </li>
 
 
-                                <li class="col-sm-4 col-xs-12"
-                                    data-anijs="if: scroll, on: window, do: flipInY animated duration-md, before: $scrollReveal">
-                                    <div class="icon icon3">
-                                        <div class="border"></div>
-
-
-                                    </div>
-
-
+                                <li class="col-sm-4 col-xs-12">
                                     <div class="content">
-                                        <h3>Online support 24 / 7</h3>
-
-
-                                        <p>Lorem ipsum dolor amet consectetur</p>
-
-
+                                        <h3>Notre site</h3>
+                                        <p>Vous accompagne dans tous vos achats</p>
                                     </div>
-
-
                                 </li>
 
 
@@ -191,9 +155,9 @@
                 <div class="col-sm-12">
 
                     <div class="module  top-category">
-                        <div class="header-title"><h3 class="modtitle">Top Category</h3></div>
-                        <div class="modcontent clearfix"><p class="des">Lorem ipsum dolor sit amet consectetur
-                                adipisicing elit sed do eiusmod</p>
+                        <div class="header-title"><h3 class="modtitle">Les collections A la Une</h3></div>
+                        <div class="modcontent clearfix"><p class="des">Que vous cherchiez des meubles, autos, appareils
+                                électroménagers et bien d’autres</p>
 
 
                             <div class="main row">
@@ -206,12 +170,14 @@
 
 
                                                 <img src="{{ asset('img/c1.jpg') }}"
-                                                     alt="Tout ce qui concerne la mode">
+                                                     alt="Tout ce qui concerne la mode" title="Mode">
                                             </div>
 
 
                                             <div class="text">
-                                                <h3 class="title"><a href="#" title="Link Cate">Tout ce qui concerne
+                                                <h3 class="title"><a
+                                                            href="{{ path('ecommerce_article_cat', {'id': 1}) }}"
+                                                            title="Link Cate">Tout ce qui concerne
                                                         <span>la Mode</span></a></h3>
 
 
@@ -236,13 +202,16 @@
                                                     <div class="border"></div>
 
 
-                                                    <img src="{{ asset('img/c2.jpg') }}"
-                                                         alt="High-Tech et Electroménager">
+                                                    <img src="{{ asset('img/hi-tech-02.jpg') }}"
+                                                         alt="High-Tech et Electroménager"
+                                                         title="High-Tech et Electroménager">
                                                 </div>
 
 
                                                 <div class="text">
-                                                    <h3 class="title"><a href="#" title="Link Cate">High-Tech et
+                                                    <h3 class="title"><a
+                                                                href="{{ path('ecommerce_article_cat', {'id': 2}) }}"
+                                                                title="Link Cate">High-Tech et
                                                             <span>Electroménager</span></a></h3>
 
 
@@ -267,12 +236,14 @@
 
 
                                                     <img src="{{ asset('img/c3.jpg') }}"
-                                                         alt="Immobilier">
+                                                         alt="Immobilier" title="Immobilier">
                                                 </div>
 
 
                                                 <div class="text">
-                                                    <h3 class="title"><a href="#" title="Link Cate">Tout sur
+                                                    <h3 class="title"><a
+                                                                href="{{ path('ecommerce_article_cat', {'id': 3}) }}"
+                                                                title="Link Cate">Tout sur
                                                             <span>Immobilier</span></a></h3>
 
 
@@ -304,12 +275,13 @@
 
 
                                             <img src="{{ asset('img/c4.jpg') }}"
-                                                 alt="img cate">
+                                                 alt="img cate" title="Auto et Moto">
                                         </div>
 
 
                                         <div class="text">
-                                            <h3 class="title"><a href="#" title="Link Cate">Auto et
+                                            <h3 class="title"><a href="{{ path('ecommerce_article_cat', {'id': 4}) }}"
+                                                                 title="Link Cate">Auto et
                                                     <span>Moto</span></a>
                                             </h3>
 
@@ -400,9 +372,9 @@
                 <div class="col-sm-12">
                     <div class="module so-latest-blog  preset01-3 preset02-3 preset03-3 preset04-1 preset05-1">
                         <div class="header-title">
-                            <h3 class="modtitle">Our Blog</h3>
+                            <h3 class="modtitle">Et bien d'autres</h3>
                             <div class="form-group">
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod
+                                Des produits neufs ou d’occasions à un prix très abordable
                             </div>
                         </div>
 
@@ -415,39 +387,20 @@
                                         <div class="media">
                                             <div class="item">
                                                 <div class="media-left">
-                                                    <a href="http://opencart.magentech.com/themes/so_lovefashion/index.php?route=simple_blog/article/view&amp;simple_blog_article_id=8"
+                                                    <a href="#"
                                                        class="item-img" target="_self">
                                                         <span class="border-eff"></span>
                                                         <img src="{{ asset('img/blog2-370x270.jpg') }}"
-                                                             alt="Ac tincidunt Suspendisse malesuada"
+                                                             alt="Smartphones dernier cri"
                                                              class="media-object">
                                                     </a>
                                                 </div>
                                                 <div class="media-body">
-                                                    <div class="media-subcontent">
-                                                        <span class="media-date-added">11 Apr, 2016</span>
-                                                        <span class="media-comment"><i class="fa fa-comments-o"></i>&nbsp;8</span>
-                                                    </div>
                                                     <h4 class="media-heading">
-                                                        <a href="http://opencart.magentech.com/themes/so_lovefashion/index.php?route=simple_blog/article/view&amp;simple_blog_article_id=8"
-                                                           title="Ac tincidunt Suspendisse malesuada" target="_self">Ac
-                                                            tincidunt Suspendisse malesuada</a>
+                                                        <a href="#" title="Smartphones dernier cri" target="_self">
+                                                            Smartphones dernier cri
+                                                        </a>
                                                     </h4>
-                                                    <div class="media-content">
-
-                                                        <div class="description">
-
-                                                            Commodo laoreet semper tincidunt lorem Vestibulum nunc at In
-                                                            Curabitur magna. Euismod euismod Suspendisse tortor ant..
-                                                        </div>
-
-                                                        <div class="readmore">
-                                                            <a href="http://opencart.magentech.com/themes/so_lovefashion/index.php?route=simple_blog/article/view&amp;simple_blog_article_id=8"
-                                                               target="_self" class="readmore">Read more &nbsp;<i
-                                                                        class="fa fa-long-arrow-right"></i></a>
-                                                        </div>
-
-                                                    </div>
                                                 </div>
                                             </div>
 
@@ -458,40 +411,21 @@
                                         <div class="media">
                                             <div class="item">
                                                 <div class="media-left">
-                                                    <a href="http://opencart.magentech.com/themes/so_lovefashion/index.php?route=simple_blog/article/view&amp;simple_blog_article_id=7"
+                                                    <a href="#"
                                                        class="item-img" target="_self">
                                                         <span class="border-eff"></span>
                                                         <img src="{{ asset('img/blog7-370x270.jpg') }}"
-                                                             alt="Nure caten raverunt lector legere"
+                                                             alt="Ordinateurs de qualité supérieure"
                                                              class="media-object">
                                                     </a>
                                                 </div>
                                                 <div class="media-body">
-                                                    <div class="media-subcontent">
-                                                        <span class="media-date-added">11 Apr, 2016</span>
-                                                        <span class="media-comment"><i class="fa fa-comments-o"></i>&nbsp;3</span>
-                                                    </div>
                                                     <h4 class="media-heading">
-                                                        <a href="http://opencart.magentech.com/themes/so_lovefashion/index.php?route=simple_blog/article/view&amp;simple_blog_article_id=7"
-                                                           title="Nure caten raverunt lector legere" target="_self">Nure
-                                                            caten raverunt lector legere</a>
+                                                        <a href="#" title="Ordinateurs de qualité supérieure"
+                                                           target="_self">Nure
+                                                            Ordinateurs de qualité supérieure
+                                                        </a>
                                                     </h4>
-                                                    <div class="media-content">
-
-                                                        <div class="description">
-                                                            Neque
-                                                            porro quisquam est, qui dolorem ipsum quia dolor sit amet,
-                                                            consectetur,
-                                                            adipisci velit, sed quia non numquam e..
-                                                        </div>
-
-                                                        <div class="readmore">
-                                                            <a href="http://opencart.magentech.com/themes/so_lovefashion/index.php?route=simple_blog/article/view&amp;simple_blog_article_id=7"
-                                                               target="_self" class="readmore">Read more &nbsp;<i
-                                                                        class="fa fa-long-arrow-right"></i></a>
-                                                        </div>
-
-                                                    </div>
                                                 </div>
                                             </div>
 
@@ -502,41 +436,22 @@
                                         <div class="media">
                                             <div class="item">
                                                 <div class="media-left">
-                                                    <a href="http://opencart.magentech.com/themes/so_lovefashion/index.php?route=simple_blog/article/view&amp;simple_blog_article_id=6"
+                                                    <a href="#"
                                                        class="item-img" target="_self">
                                                         <span class="border-eff"></span>
                                                         <img src="{{ asset('img/blog10-370x270.jpg') }}"
-                                                             alt="Nire tmas kite traverunt lector legere legunt"
+                                                             alt="Meubles chic"
                                                              class="media-object">
                                                     </a>
                                                 </div>
                                                 <div class="media-body">
-                                                    <div class="media-subcontent">
-                                                        <span class="media-date-added">11 Apr, 2016</span>
-                                                        <span class="media-comment"><i class="fa fa-comments-o"></i>&nbsp;2</span>
-                                                    </div>
                                                     <h4 class="media-heading">
-                                                        <a href="http://opencart.magentech.com/themes/so_lovefashion/index.php?route=simple_blog/article/view&amp;simple_blog_article_id=6"
-                                                           title="Nire tmas kite traverunt lector legere legunt"
-                                                           target="_self">Nire tmas kite traverunt lector legere
-                                                            legunt</a>
+                                                        <a href="#"
+                                                           title="Meubles chic"
+                                                           target="_self">Meubles chic
+                                                        </a>
                                                     </h4>
-                                                    <div class="media-content">
 
-                                                        <div class="description">
-                                                            Neque
-                                                            porro quisquam est, qui dolorem ipsum quia dolor sit amet,
-                                                            consectetur,
-                                                            adipisci velit, sed quia non numquam e..
-                                                        </div>
-
-                                                        <div class="readmore">
-                                                            <a href="http://opencart.magentech.com/themes/so_lovefashion/index.php?route=simple_blog/article/view&amp;simple_blog_article_id=6"
-                                                               target="_self" class="readmore">Read more &nbsp;<i
-                                                                        class="fa fa-long-arrow-right"></i></a>
-                                                        </div>
-
-                                                    </div>
                                                 </div>
                                             </div>
 
