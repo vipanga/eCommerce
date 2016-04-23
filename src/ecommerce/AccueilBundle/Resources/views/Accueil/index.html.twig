@@ -25,9 +25,9 @@
                             <div class="sohomeslider-description">
                                 <h1>Derniers produit</h1>
                                 <h2>Collection Mode Masculin</h2>
-                                <p>Karen tincidunt tempus varius. Integer ante dolor, suscipit non faucibus a,
+                                {#<p>Karen tincidunt tempus varius. Integer ante dolor, suscipit non faucibus a,
                                     scelerisque vitae sapien, duis bibendum ligula lobortis elementum ullamcorper </p>
-                                <a href="#" title="Shop Now">Acheter</a>
+                                <a href="#" title="Shop Now">Acheter</a>#}
                             </div>
                         </div>
                     </div>
@@ -41,10 +41,10 @@
                             <div class="sohomeslider-description">
                                 <h1>Collection Dames</h1>
                                 <h2>Collection 2016</h2>
-                                <p>Karen tincidunt tempus varius. Integer ante dolor, suscipit non faucibus a,
+                                {#<p>Karen tincidunt tempus varius. Integer ante dolor, suscipit non faucibus a,
                                     scelerisque vitae sapien. Duis bibendum ligula lobortis elementum ullamcorper.
                                     Aliquam pellentesque pretium ipsum </p>
-                                <a href="#" title="Shop Now">Acheter</a>
+                                <a href="#" title="Shop Now">Acheter</a>#}
                             </div>
                         </div>
                     </div>
@@ -58,10 +58,10 @@
                             <div class="sohomeslider-description">
                                 <h1>Collection Enfants</h1>
                                 <h2>Collections 2016</h2>
-                                <p>Karen tincidunt tempus varius. Integer ante dolor, suscipit non faucibus a,
+                                {#<p>Karen tincidunt tempus varius. Integer ante dolor, suscipit non faucibus a,
                                     scelerisque vitae sapien. Duis bibendum ligula lobortis elementum ullamcorper.
                                     Aliquam pellentesque pretium ipsum </p>
-                                <a href="#" title="Shop Now">Acheter</a>
+                                <a href="#" title="Shop Now">Acheter</a>#}
                             </div>
                         </div>
                     </div>
@@ -175,12 +175,11 @@
 
 
                                             <div class="text">
-                                                <h3 class="title"><a
-                                                            href="{{ path('ecommerce_article_cat', {'id': 1}) }}"
+                                                <h3 class="title">
+                                                    <a href="{{ path('ecommerce_article_cat', {'id': 1}) }}"
                                                             title="Link Cate">Tout ce qui concerne
-                                                        <span>la Mode</span></a></h3>
-
-
+                                                        <span>la Mode</span></a>
+                                                </h3>
                                                 <a href="{{ path('ecommerce_article_cat', {'id': 1}) }}"
                                                    title="load more">
                                                     Tout Voir &nbsp;<i class="fa fa-long-arrow-right"></i>
@@ -422,7 +421,7 @@
                                                 <div class="media-body">
                                                     <h4 class="media-heading">
                                                         <a href="#" title="Ordinateurs de qualité supérieure"
-                                                           target="_self">Nure
+                                                           target="_self">
                                                             Ordinateurs de qualité supérieure
                                                         </a>
                                                     </h4>
@@ -436,7 +435,7 @@
                                         <div class="media">
                                             <div class="item">
                                                 <div class="media-left">
-                                                    <a href="#"
+                                                    <a href="{{ path('ecommerce_article_search', {'product': 'meuble', 'province': 'toutes'}) }}"
                                                        class="item-img" target="_self">
                                                         <span class="border-eff"></span>
                                                         <img src="{{ asset('img/blog10-370x270.jpg') }}"
@@ -446,7 +445,7 @@
                                                 </div>
                                                 <div class="media-body">
                                                     <h4 class="media-heading">
-                                                        <a href="#"
+                                                        <a href="{{ path('ecommerce_article_search', {'product': 'meuble', 'province': 'toutes'}) }}"
                                                            title="Meubles chic"
                                                            target="_self">Meubles chic
                                                         </a>
