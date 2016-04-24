@@ -69,34 +69,13 @@
                                             selected="selected">Toutes
                                     </option>
                                     <option value="#">
-                                        Name (A - Z)
-                                    </option>
-                                    <option value="#">
-                                        Name (Z - A)
-                                    </option>
-                                    <option value="#">
-                                        Price (Low &gt; High)
-                                    </option>
-                                    <option value="#">
-                                        Price (High &gt; Low)
-                                    </option>
-                                    <option value="#">
-                                        Rating (Highest)
-                                    </option>
-                                    <option value="#">
-                                        Rating (Lowest)
-                                    </option>
-                                    <option value="#">
-                                        Model (A - Z)
-                                    </option>
-                                    <option value="#">
-                                        Model (Z - A)
+                                        Toutes les provinces
                                     </option>
                                 </select>
                             </div>
 
                             <div class="form-group">
-                                <label class="control-label" for="input-limit">Articles:</label>
+                                <label class="control-label" for="input-limit">Affichage Produits:</label>
                                 <select id="input-limit" class="form-control" onchange="location = this.value;">
                                     <option value="{{ path('ecommerce_article_search', {'numberItemsPerPage': 12, 'product': product, 'province': province}) }}"
                                             {% if numberItemsPerPage == 12 %}selected="selected"{% endif %}>12

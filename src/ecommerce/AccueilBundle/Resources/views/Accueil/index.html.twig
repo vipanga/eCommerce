@@ -18,50 +18,50 @@
                     <div class="item ">
                         <a href="#" title="New arrivals" target="_blank">
                             <img class="responsive"
-                                 src="{{ asset('img/sl11-1920x700.jpg') }}"
+                                 src="{{ asset('img/tootiye-mode-01.jpg') }}"
                                  alt="New arrivals"/>
                         </a>
                         <div class="container">
                             <div class="sohomeslider-description">
-                                <h1>Derniers produit</h1>
-                                <h2>Collection Mode Masculin</h2>
-                                {#<p>Karen tincidunt tempus varius. Integer ante dolor, suscipit non faucibus a,
-                                    scelerisque vitae sapien, duis bibendum ligula lobortis elementum ullamcorper </p>
-                                <a href="#" title="Shop Now">Acheter</a>#}
+                                <h1>Produit de Mode</h1>
+                                <h2>Mode</h2>
+                                <p>Vêtements pour hommes, femmes et enfants. Sans oublier tous les accessoires qui vont
+                                    avec,
+                                    tels que sac à main, montre, bijoux etc… </p>
+                                <a href="{{ path('ecommerce_article_cat', {'id': 1}) }}" title="Shop Now">Visualiser</a>
                             </div>
                         </div>
                     </div>
                     <div class="item ">
                         <a href="#" title="Autumn Collection" target="_blank">
                             <img class="responsive"
-                                 src="{{ asset('img/sl12-1920x700.jpg') }}"
+                                 src="{{ asset('img/tootiye-electromenager-06.jpg') }}"
                                  alt="Autumn Collection"/>
                         </a>
                         <div class="container">
                             <div class="sohomeslider-description">
-                                <h1>Collection Dames</h1>
-                                <h2>Collection 2016</h2>
-                                {#<p>Karen tincidunt tempus varius. Integer ante dolor, suscipit non faucibus a,
-                                    scelerisque vitae sapien. Duis bibendum ligula lobortis elementum ullamcorper.
-                                    Aliquam pellentesque pretium ipsum </p>
-                                <a href="#" title="Shop Now">Acheter</a>#}
+                                <h1>Electroménager</h1>
+                                <h2 style="color: white">High-Tech</h2>
+                                <p style="color: white">Tous les produits High-Tech du moment, téléphones portables,
+                                    téléviseurs, lecteurs DVD, ordinateurs portables, ordinateurs de bureau et tous
+                                    les appareils électroménager </p>
+                                <a href="{{ path('ecommerce_article_cat', {'id': 2}) }}" title="Shop Now">Visualiser</a>
                             </div>
                         </div>
                     </div>
                     <div class="item ">
                         <a href="#" title="Bikini Collections" target="_blank">
                             <img class="responsive"
-                                 src="{{ asset('img/sl13-1920x700.jpg') }}"
+                                 src="{{ asset('img/tootiye-voiture-03.jpg') }}"
                                  alt="Bikini Collections"/>
                         </a>
                         <div class="container">
                             <div class="sohomeslider-description">
-                                <h1>Collection Enfants</h1>
-                                <h2>Collections 2016</h2>
-                                {#<p>Karen tincidunt tempus varius. Integer ante dolor, suscipit non faucibus a,
-                                    scelerisque vitae sapien. Duis bibendum ligula lobortis elementum ullamcorper.
-                                    Aliquam pellentesque pretium ipsum </p>
-                                <a href="#" title="Shop Now">Acheter</a>#}
+                                <h1>Auto et Moto</h1>
+                                <h2>Voitures</h2>
+                                <p>Voitures, motos, pièces de rechanges, casques et tous les accessoires
+                                    nécessaires pour votre confort </p>
+                                <a href="{{ path('ecommerce_article_cat', {'id': 4}) }}" title="Shop Now">Visualiser</a>
                             </div>
                         </div>
                     </div>
@@ -124,7 +124,7 @@
 
                                 <li class="col-sm-4 col-xs-12">
                                     <div class="content">
-                                        <h3>TOOTIYE MART</h3>
+                                        <h3>TOOTIYE MARKET</h3>
                                         <p>Premier marché virtuel de la RD Congo</p>
                                     </div>
 
@@ -155,7 +155,7 @@
                 <div class="col-sm-12">
 
                     <div class="module  top-category">
-                        <div class="header-title"><h3 class="modtitle">Les collections A la Une</h3></div>
+                        <div class="header-title"><h3 class="modtitle">Les produits A la Une</h3></div>
                         <div class="modcontent clearfix"><p class="des">Que vous cherchiez des meubles, autos, appareils
                                 électroménagers et bien d’autres</p>
 
@@ -169,18 +169,21 @@
                                                 <div class="border"></div>
 
 
-                                                <img src="{{ asset('img/c1.jpg') }}"
-                                                     alt="Tout ce qui concerne la mode" title="Mode">
+                                                <img src="{{ asset('img/c1-1.jpg') }}"
+                                                     alt="High-Tech et Electroménager"
+                                                     title="High-Tech et Electroménager">
                                             </div>
 
 
                                             <div class="text">
                                                 <h3 class="title">
-                                                    <a href="{{ path('ecommerce_article_cat', {'id': 1}) }}"
-                                                            title="Link Cate">Tout ce qui concerne
-                                                        <span>la Mode</span></a>
+                                                    <a href="{{ path('ecommerce_article_cat', {'id': 2}) }}"
+                                                       title="Link Cate">High-Tech et
+                                                        <span style="color: white">Electroménager</span>
+                                                    </a>
                                                 </h3>
-                                                <a href="{{ path('ecommerce_article_cat', {'id': 1}) }}"
+
+                                                <a href="{{ path('ecommerce_article_cat', {'id': 2}) }}"
                                                    title="load more">
                                                     Tout Voir &nbsp;<i class="fa fa-long-arrow-right"></i>
                                                 </a>
@@ -201,20 +204,21 @@
                                                     <div class="border"></div>
 
 
-                                                    <img src="{{ asset('img/c2.jpg') }}"
-                                                         alt="High-Tech et Electroménager"
-                                                         title="High-Tech et Electroménager">
+                                                    <img src="{{ asset('img/c2-04.jpg') }}"
+                                                         alt="Auto et Moto"
+                                                         title="Auto et Moto">
                                                 </div>
 
 
                                                 <div class="text">
                                                     <h3 class="title"><a
-                                                                href="{{ path('ecommerce_article_cat', {'id': 2}) }}"
-                                                                title="Link Cate">High-Tech et
-                                                            <span>Electroménager</span></a></h3>
+                                                                href="{{ path('ecommerce_article_cat', {'id': 4}) }}"
+                                                                title="Link Cate">Auto et
+                                                            <span style="color: white">Moto</span></a>
+                                                    </h3>
 
 
-                                                    <a href="{{ path('ecommerce_article_cat', {'id': 2}) }}"
+                                                    <a href="{{ path('ecommerce_article_cat', {'id': 4}) }}"
                                                        title="load more">
                                                         Tout Voir &nbsp;<i class="fa fa-long-arrow-right"></i>
                                                     </a>
@@ -234,8 +238,8 @@
                                                     <div class="border"></div>
 
 
-                                                    <img src="{{ asset('img/c3.jpg') }}"
-                                                         alt="Immobilier" title="Immobilier">
+                                                    <img src="{{ asset('img/c2-03.jpg') }}"
+                                                         alt="Tout sur Immobilier" title="Tout sur Immobilier">
                                                 </div>
 
 
@@ -243,7 +247,7 @@
                                                     <h3 class="title"><a
                                                                 href="{{ path('ecommerce_article_cat', {'id': 3}) }}"
                                                                 title="Link Cate">Tout sur
-                                                            <span>Immobilier</span></a></h3>
+                                                            <span style="color: white">Immobilier</span></a></h3>
 
 
                                                     <a href="{{ path('ecommerce_article_cat', {'id': 3}) }}"
@@ -274,18 +278,18 @@
 
 
                                             <img src="{{ asset('img/c4.jpg') }}"
-                                                 alt="img cate" title="Auto et Moto">
+                                                 alt="Tout sur la mode" title="Tout sur la mode">
                                         </div>
 
 
                                         <div class="text">
-                                            <h3 class="title"><a href="{{ path('ecommerce_article_cat', {'id': 4}) }}"
-                                                                 title="Link Cate">Auto et
-                                                    <span>Moto</span></a>
+                                            <h3 class="title"><a href="{{ path('ecommerce_article_cat', {'id': 1}) }}"
+                                                                 title="Link Cate">Toute la
+                                                    <span style="color: white">Mode</span></a>
                                             </h3>
 
 
-                                            <a href="{{ path('ecommerce_article_cat', {'id': 4}) }}" title="load more">
+                                            <a href="{{ path('ecommerce_article_cat', {'id': 1}) }}" title="load more">
                                                 View All &nbsp;<i
                                                         class="fa fa-long-arrow-right"></i>
                                             </a>
@@ -386,17 +390,18 @@
                                         <div class="media">
                                             <div class="item">
                                                 <div class="media-left">
-                                                    <a href="#"
+                                                    <a href="{{ path('ecommerce_article_categorie', {'id': 7}) }}"
                                                        class="item-img" target="_self">
                                                         <span class="border-eff"></span>
-                                                        <img src="{{ asset('img/blog2-370x270.jpg') }}"
+                                                        <img src="{{ asset('img/hi-tech-01.jpg'|imagine_filter('my_footer')) }}"
                                                              alt="Smartphones dernier cri"
                                                              class="media-object">
                                                     </a>
                                                 </div>
                                                 <div class="media-body">
                                                     <h4 class="media-heading">
-                                                        <a href="#" title="Smartphones dernier cri" target="_self">
+                                                        <a href="{{ path('ecommerce_article_categorie', {'id': 7}) }}"
+                                                           title="Smartphones dernier cri" target="_self">
                                                             Smartphones dernier cri
                                                         </a>
                                                     </h4>
@@ -410,19 +415,20 @@
                                         <div class="media">
                                             <div class="item">
                                                 <div class="media-left">
-                                                    <a href="#"
+                                                    <a href="{{ path('ecommerce_article_categorie', {'id': 8}) }}"
                                                        class="item-img" target="_self">
                                                         <span class="border-eff"></span>
-                                                        <img src="{{ asset('img/blog7-370x270.jpg') }}"
+                                                        <img src="{{ asset('img/hi-tech-03.jpg'|imagine_filter('my_footer')) }}"
                                                              alt="Ordinateurs de qualité supérieure"
                                                              class="media-object">
                                                     </a>
                                                 </div>
                                                 <div class="media-body">
                                                     <h4 class="media-heading">
-                                                        <a href="#" title="Ordinateurs de qualité supérieure"
+                                                        <a href="{{ path('ecommerce_article_categorie', {'id': 8}) }}"
+                                                           title="Ordinateurs de qualité supérieure"
                                                            target="_self">
-                                                            Ordinateurs de qualité supérieure
+                                                            Ordinateurs portable et desktop
                                                         </a>
                                                     </h4>
                                                 </div>
@@ -435,19 +441,19 @@
                                         <div class="media">
                                             <div class="item">
                                                 <div class="media-left">
-                                                    <a href="{{ path('ecommerce_article_search', {'product': 'meuble', 'province': 'toutes'}) }}"
+                                                    <a href="{{ path('ecommerce_article_categorie', {'id': 12}) }}"
                                                        class="item-img" target="_self">
                                                         <span class="border-eff"></span>
-                                                        <img src="{{ asset('img/blog10-370x270.jpg') }}"
+                                                        <img src="{{ asset('img/hi-tech-02.jpg'|imagine_filter('my_footer')) }}"
                                                              alt="Meubles chic"
                                                              class="media-object">
                                                     </a>
                                                 </div>
                                                 <div class="media-body">
                                                     <h4 class="media-heading">
-                                                        <a href="{{ path('ecommerce_article_search', {'product': 'meuble', 'province': 'toutes'}) }}"
+                                                        <a href="{{ path('ecommerce_article_categorie', {'id': 12}) }}"
                                                            title="Meubles chic"
-                                                           target="_self">Meubles chic
+                                                           target="_self">Electroménager
                                                         </a>
                                                     </h4>
 

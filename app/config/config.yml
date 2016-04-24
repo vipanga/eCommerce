@@ -94,11 +94,11 @@ liip_imagine:
             quality: 75
             filters:
                 thumbnail: { size: [270, 270], mode: outbound }
-        my_hitech:
-                    quality: 75
-                    filters:
-                        thumbnail: { size: [370, 320], mode: outbound }
         my_car:
                     quality: 75
                     filters:
-                        thumbnail: { size: [370, 670], mode: outbound }
+                        thumbnail: { size: [770, 320], mode: outbound }
+        my_footer:
+                    quality: 75
+                    filters:
+                        thumbnail: { size: [370, 270], mode: outbound }
