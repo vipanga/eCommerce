@@ -87,8 +87,11 @@ class User extends BaseUser {
      *
      * @ORM\Column(name="website", type="string", length=255, nullable=true)
      *
-     * @Assert\Url(
-     *    message = "L'url '{{ value }}' ne",
+     * @Assert\Length(
+     *      min = 3,
+     *      max = 40,
+     *      minMessage = "L'url ne doit pas avoir moins de {{ limit }} caractères",
+     *      maxMessage = "L'url ne doit pas avoir plus de {{ limit }} caractères"
      * )
      */
     private $website;

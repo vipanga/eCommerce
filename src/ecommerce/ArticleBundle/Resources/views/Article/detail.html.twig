@@ -106,8 +106,27 @@
 
                                 <div itemprop="description" class="short_description">
 
-                                    {{ article.getDescription() }}
+                                    {{ article.getDescription()|nl2br }}
                                 </div>
+
+                                <div class="addthis_native_toolbox">
+                                    <div class="row">
+                                        <div class="col-xs-12">
+                                            <div class="col-xs-3">
+                                                <a class="fb-share-button"
+                                                   data-href="{{ path('ecommerce_article_detail', {'id': article.getId(), 'slug':article.getSlug()}) }}"
+                                                   data-layout="button_count"></a>
+                                            </div>
+                                            <div class="col-xs-9">
+                                                <a class="g-plus" data-action="share" data-annotation="bubble"></a>
+                                                <a href="https://twitter.com/share"
+                                                   class="twitter-share-button">Tweet</a>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+
 
                                 <div class="product-box-desc">
                                     <div class="inner-box-desc">
@@ -216,7 +235,7 @@
                                                     à {{ comment.getDate()|date("H:i:s") }}</td>
                                             </tr>
                                             <tr>
-                                                <td colspan="2"><p>{{ comment.getContent() }}</p>
+                                                <td colspan="2"><p>{{ comment.getContent()|nl2br }}</p>
                                                 </td>
                                             </tr>
                                             </tbody>
@@ -544,8 +563,34 @@
 
 
 
+    {# Scripts pour les resaeaux sociaux #}
+    <script src="https://apis.google.com/js/platform.js" async defer>
+        {
+            lang: 'fr'
+        }
+    </script>
 
+    <div id="fb-root"></div>
+    <script>(function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s);
+            js.id = id;
+            js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));</script>
 
+    <script>
+        !function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https';
+            if (!d.getElementById(id)) {
+                js = d.createElement(s);
+                js.id = id;
+                js.src = p + '://platform.twitter.com/widgets.js';
+                fjs.parentNode.insertBefore(js, fjs);
+            }
+        }(document, 'script', 'twitter-wjs');
+    </script>
 
 
 

@@ -285,7 +285,7 @@
                                                         à {{ review.getDate()|date("H:i:s") }}</td>
                                                 </tr>
                                                 <tr>
-                                                    <td colspan="2"><p>{{ review.getContent() }}</p>
+                                                    <td colspan="2"><p>{{ review.getContent()|nl2br }}</p>
                                                         <!-- *** ETOILES ***-->
                                                         {% include "ecommerceArticleBundle:Article:Stars/stars_review.html.twig" %}
                                                         <!-- *** ETOILES *** -->

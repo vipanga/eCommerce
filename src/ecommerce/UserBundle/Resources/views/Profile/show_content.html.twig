@@ -63,7 +63,9 @@ _________________________________________________________ -->
                         <dd>{{ user.getBirthDate()|date('d-M-Y') }}</dd>
 
                         <dt>{{ 'profile.show.website'|trans }} :</dt>
-                        <dd><a target="_blank" href="{{ user.getWebsite() }}">{{ user.getWebsite() }}</a></dd>
+                        <dd><a target="_blank"
+                               href="{% if user.getWebsite() matches '/^http*/' %}{{ user.getWebsite() }}{% else %}http://{{ user.getWebsite() }}{% endif %}">{{ user.getWebsite() }}</a>
+                        </dd>
                     </dl>
                 </div>
                 <div class="col-sm-6">
@@ -84,7 +86,7 @@ _________________________________________________________ -->
                         <dd>{{ user.getProvince() }}</dd>
 
                         <dt>{{ 'profile.show.address'|trans }} :</dt>
-                        <dd>{{ user.getAddress() }}</dd>
+                        <dd>{{ user.getAddress()|nl2br }}</dd>
                     </dl>
                 </div>
 
@@ -93,7 +95,7 @@ _________________________________________________________ -->
                         <h4>Vos produits publié</h4>
                         <h5>
                             <a href="{{ path('ecommerce_article_publisher_items', {'id': user.getId(), 'username': user.getUserName()}) }}">
-                                http://www.watinu.com/shop/u/{{ user.getId() }}/{{ user.getUserName() }}
+                                http://www.tootiye.com/shop/u/{{ user.getId() }}/{{ user.getUserName() }}
                             </a>
                         </h5>
                     </div>
@@ -134,3 +136,31 @@ _________________________________________________________ -->
 
 </div>
 <!-- /.container -->
+
+<script src="https://apis.google.com/js/platform.js" async defer>
+    {
+        lang: 'fr'
+    }
+</script>
+
+<div id="fb-root"></div>
+<script>(function (d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s);
+        js.id = id;
+        js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
+
+<script>
+    !function (d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https';
+        if (!d.getElementById(id)) {
+            js = d.createElement(s);
+            js.id = id;
+            js.src = p + '://platform.twitter.com/widgets.js';
+            fjs.parentNode.insertBefore(js, fjs);
+        }
+    }(document, 'script', 'twitter-wjs');
+</script>
