@@ -17,7 +17,7 @@
 
 <div class="container">
 
-    <div class="col-sm-3">
+    <div class="col-md-3 col-sm-4">
         <!-- *** CUSTOMER MENU ***
 _________________________________________________________ -->
         {% include "ecommerceUserBundle:Profile:user_section.html.twig" %}
@@ -25,9 +25,9 @@ _________________________________________________________ -->
         <!-- *** CUSTOMER MENU END *** -->
     </div>
 
-    <div class="col-sm-9">
+    <div class="col-md-9 col-sm-8">
         <div id="content" class="col-md-12">
-            <h1 class="text-center">Modification du profile</h1>
+            <h1 class="text-center">Modifier profile</h1>
 
             <form action="{{ path('fos_user_profile_edit') }}" {{ form_enctype(form) }} method="POST">
                 <fieldset id="account">
@@ -185,163 +185,19 @@ _________________________________________________________ -->
                 {{ form_rest(form) }}
 
                 <div class="buttons clearfix">
-                    <div class="pull-left"><a href="{{ path('fos_user_profile_show') }}" class="btn btn-default">Précédent</a>
+                    <div class="pull-left"><a href="{{ path('fos_user_profile_show') }}" class="btn btn-default">Retour
+                            au profile</a>
                     </div>
                     <div class="pull-right">
-                        <input value="Enregistrer Modifications" class="btn btn-primary" type="submit">
+                        <input value="Enregistrer les modifications" class="btn btn-primary" type="submit">
                     </div>
                 </div>
-
-                {#<div class="buttons">
-                    <div class="pull-right">
-                        <input value="Enregistrer Modifications" class="btn btn-primary" type="submit">
-                    </div>
-                </div>#}
 
             </form>
 
         </div>
 
 
-        {#<div class="box">
-            <h3 class="text-center">Modifier vos détails personnel</h3>
-            <hr>
-            <form action="{{ path('fos_user_profile_edit') }}" {{ form_enctype(form) }} method="POST">
-                <div class="row">
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            {{ form_label(form.username) }}
-                            {{ form_widget(form.username, { 'attr': {'class': 'form-control', 'placeholder': 'Nom utilisateur' } }) }}
-                            <div class="has-error" style="color: red">
-                                {{ form_errors(form.username) }}
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            {{ form_label(form.email) }}
-                            {{ form_widget(form.email, { 'attr': {'class': 'form-control', 'placeholder': 'Adresse mail' } }) }}
-                            <div class="has-error" style="color: red">
-                                {{ form_errors(form.email) }}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- /.row -->
-
-                <div class="row">
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            {{ form_label(form.first_name) }}
-                            {{ form_widget(form.first_name, { 'attr': {'class': 'form-control', 'placeholder': 'Prenom' } }) }}
-                            <div class="has-error" style="color: red">
-                                {{ form_errors(form.first_name) }}
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            {{ form_label(form.last_name) }}
-                            {{ form_widget(form.last_name, { 'attr': {'class': 'form-control', 'placeholder': 'Nom' } }) }}
-                            <div class="has-error" style="color: red">
-                                {{ form_errors(form.last_name) }}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- /.row -->
-
-                <div class="row">
-                    <div class="col-sm-6 col-md-3">
-                        <div class="form-group">
-                            {{ form_label(form.gender) }}
-                            {{ form_widget(form.gender, { 'attr': {'class': 'form-control' } }) }}
-                            <div class="has-error" style="color: red">
-                                {{ form_errors(form.gender) }}
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-md-3">
-                        <div class="form-group">
-                            {{ form_label(form.telephone) }}
-                            {{ form_widget(form.telephone, { 'attr': {'class': 'form-control', 'placeholder': 'Téléphone' } }) }}
-                            <div class="has-error" style="color: red">
-                                {{ form_errors(form.telephone) }}
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-md-3">
-                        <div class="form-group">
-                            {{ form_label(form.city) }}
-                            {{ form_widget(form.city, { 'attr': {'class': 'form-control', 'placeholder': 'Votre ville' } }) }}
-                            <div class="has-error" style="color: red">
-                                {{ form_errors(form.city) }}
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-md-3">
-                        <div class="form-group">
-                            {{ form_label(form.province) }}
-                            {{ form_widget(form.province, { 'attr': {'class': 'form-control' } }) }}
-                            <div class="has-error" style="color: red">
-                                {{ form_errors(form.province) }}
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            {{ form_label(form.birth_date) }}
-                            {{ form_widget(form.birth_date, { 'attr': {'class': 'form-control', 'placeholder': '01-11-1990' } }) }}
-                            <div class="has-error" style="color: red">
-                                {{ form_errors(form.birth_date) }}
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            {{ form_label(form.website) }}
-                            <div class="input-group">
-                                <div class="input-group-addon">http://</div>
-                                {{ form_widget(form.website, { 'attr': {'class': 'form-control', 'placeholder': 'Votre site web' } }) }}
-                            </div>
-                            <div class="has-error" style="color: red">
-                                {{ form_errors(form.website) }}
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            {{ form_widget(form.image) }}
-                            <p class="help-block">Sélectionnez l’image de votre profile.</p>
-                            <div class="has-error">
-                                {{ form_errors(form.image) }}
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            {{ form_label(form.address) }}
-                            {{ form_widget(form.address, { 'attr': {'class': 'form-control', 'rows': '2', 'placeholder': 'Votre adresse' } }) }}
-                            <div class="has-error" style="color: red">
-                                {{ form_errors(form.address) }}
-                            </div>
-                        </div>
-                    </div>
-
-                    {{ form_rest(form) }}
-
-                    <div class="col-sm-12 text-center">
-                        <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Enregistrer
-                        </button>
-
-                    </div>
-                </div>
-            </form>
-        </div>#}
     </div>
 
 </div>

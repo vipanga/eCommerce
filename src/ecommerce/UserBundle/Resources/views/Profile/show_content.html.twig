@@ -30,12 +30,12 @@ _________________________________________________________ -->
         <!-- *** CUSTOMER MENU END *** -->
     </div>
 
-    <div class="col-md-9">
+    {#<div class="col-md-9">
         <div class="box">
-            {#<h1>Profile</h1>#}
-            {#<p class="lead">Informations générales.</p>#}
+            #}{#<h1>Profile</h1>#}{#
+            #}{#<p class="lead">Informations générales.</p>#}{#
 
-            {#<hr>#}
+            #}{#<hr>#}{#
 
             <h3 class="text-center">Détails personnel</h3>
 
@@ -132,35 +132,87 @@ _________________________________________________________ -->
             <!-- /.row -->
         </div>
 
+    </div>#}
+
+
+    <div class="col-sm-9">
+        <div id="content" class="col-md-12">
+            <h1 class="text-center">Profile</h1>
+            <fieldset id="account">
+                <legend>Informations personnelles</legend>
+
+                <dl class="dl-horizontal">
+                    <dt>{{ 'profile.show.username'|trans }} :</dt>
+                    <dd>{{ user.username }}</dd>
+
+                    <dt>{{ 'profile.show.email'|trans }} :</dt>
+                    <dd>{{ user.email }}</dd>
+                    <dt>{{ 'profile.show.first_name'|trans }} :</dt>
+                    <dd>{{ user.getFirstName() }}</dd>
+
+                    <dt>{{ 'profile.show.last_name'|trans }} :</dt>
+                    <dd>{{ user.getLastName() }}</dd>
+
+                    <dt>{{ 'profile.show.gender'|trans }} :</dt>
+                    <dd>{{ user.getGender() }}</dd>
+
+                    <dt>{{ 'profile.show.birth_date'|trans }} :</dt>
+                    <dd>{{ user.getBirthDate()|date('d-M-Y') }}</dd>
+                </dl>
+
+            </fieldset>
+
+
+            <fieldset id="address">
+                <legend>Information de contact</legend>
+
+                <dl class="dl-horizontal">
+
+                    <dt>{{ 'profile.show.telephone'|trans }} :</dt>
+                    <dd>{{ user.getTelephone() }}</dd>
+
+                    <dt>{{ 'profile.show.city'|trans }} :</dt>
+                    <dd>{{ user.getCity() }}</dd>
+
+                    <dt>{{ 'profile.show.province'|trans }} :</dt>
+                    <dd>{{ user.getProvince() }}</dd>
+
+                    <dt>{{ 'profile.show.website'|trans }} :</dt>
+                    <dd><a target="_blank"
+                           href="{% if user.getWebsite() matches '/^http*/' %}{{ user.getWebsite() }}{% else %}http://{{ user.getWebsite() }}{% endif %}">{{ user.getWebsite() }}</a>
+                    </dd>
+
+                    <dt>{{ 'profile.show.created'|trans }} :</dt>
+                    <dd>{{ user.getCreated()|date('d-M-Y') }}</dd>
+
+                    <dt>{{ 'profile.show.last_login'|trans }} :</dt>
+                    <dd>{{ user.lastLogin|date('d-M-Y') }} à {{ user.lastLogin|date('H:i:s') }}</dd>
+
+                    <dt>{{ 'profile.show.address'|trans }} :</dt>
+                    <dd>{{ user.getAddress()|nl2br }}</dd>
+                </dl>
+
+            </fieldset>
+
+            <fieldset id="account">
+                <legend>Votre Stand</legend>
+
+                <dl class="dl-horizontal">
+
+                    <dt>Adresse du stand</dt>
+                    <dd>
+                        <a href="{{ path('ecommerce_article_publisher_items', {'id': user.getId(), 'username': user.getUserName()}) }}">
+                            http://www.tootiye.com/shop/u/{{ user.getId() }}/{{ user.getUserName() }}
+                        </a>
+                    </dd>
+                </dl>
+
+            </fieldset>
+
+        </div>
+
+
     </div>
 
 </div>
 <!-- /.container -->
-
-<script src="https://apis.google.com/js/platform.js" async defer>
-    {
-        lang: 'fr'
-    }
-</script>
-
-<div id="fb-root"></div>
-<script>(function (d, s, id) {
-        var js, fjs = d.getElementsByTagName(s)[0];
-        if (d.getElementById(id)) return;
-        js = d.createElement(s);
-        js.id = id;
-        js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5";
-        fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));</script>
-
-<script>
-    !function (d, s, id) {
-        var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https';
-        if (!d.getElementById(id)) {
-            js = d.createElement(s);
-            js.id = id;
-            js.src = p + '://platform.twitter.com/widgets.js';
-            fjs.parentNode.insertBefore(js, fjs);
-        }
-    }(document, 'script', 'twitter-wjs');
-</script>

@@ -19,8 +19,8 @@ profile:
     show:
         username: 'Nom d''utilisateur'
         email: 'Adresse e-mail'
-        first_name: 'Nom de famille'
-        last_name: 'Prénom'
+        first_name: 'Prénom'
+        last_name: 'Nom de famille'
         gender: 'Sexe'
         telephone: 'Téléphone'
         city: 'Ville'

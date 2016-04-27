@@ -1,37 +1,49 @@
 <div class="panel panel-default sidebar-menu">
 
     <div class="panel-heading">
-        <h3 class="panel-title">Paramètres personnels</h3>
+        <h3 class="panel-title text-center">Paramètres</h3>
     </div>
 
     <div class="panel-body">
-        <div class="row">
-            <div class="col-md-12">
+        {#<div class="row">
+            <div class="col-md-12">#}
                 <p class="text-center">
                     {# On vérifie qu'une image est bien associée à l'article #}
                     {% if app.user.getImage() is not null %}
                         <img itemprop="image" src="{{ asset(app.user.image.webPath) }}"
-                             alt="{{ app.user.getUsername() }}" class="img-rounded img-responsive" alt="">
+                             alt="{{ app.user.getUsername() }}" class="img-rounded img-responsive">
                     {% else %}
                         <img src="{{ asset('img/default_profile.jpg') }}" alt="{{ app.user.getUsername() }}"
-                             class="img-rounded img-responsive" alt="">
+                             class="img-rounded img-responsive">
                     {% endif %}
                 </p>
-                {#<p class="text-center">rounded</p>#}
-            </div>
-        </div>
+
+        <h3 class="text-center">{{ app.user.getUsername() }}</h3>
+        <p class="text-center">{{ app.user.getWebsite() }}</p>
+        {#</div>
+    </div>#}
+
+        <hr>
 
         <ul class="nav nav-pills nav-stacked">
 
-            <li {% if ((user.getUsername() is defined) or (form.username is defined)) %}style="background-color: #E74847;"{% endif %}>
+            <li {% if user.getUsername() is defined %}style="background-color: #E74847;"{% endif %}>
                 <a href="{{ path('fos_user_profile_show') }}"
-                   {% if ((user.getUsername() is defined) or (form.username is defined)) %}style="color: white"{% endif %}><i
-                            class="fa fa-list"></i> Mon profile</a>
+                   {% if user.getUsername() is defined %}style="color: white"{% endif %}>
+                    <i class="fa fa-list"></i> Profile
+                </a>
+            </li>
+            <li {% if form.username is defined %}style="background-color: #E74847;"{% endif %}>
+                <a href="{{ path('fos_user_profile_edit') }}"
+                   {% if form.username is defined %}style="color: white"{% endif %}>
+                    <i class="fa fa-pencil-square-o" aria-hidden="true"></i> Modifier profile
+                </a>
             </li>
             <li {% if ((user.getUsername() is not defined) and (form.username is not defined)) %}style="background-color: #E74847;"{% endif %}>
                 <a href="{{ path('fos_user_change_password') }}"
-                   {% if ((user.getUsername() is not defined) and (form.username is not defined)) %}style="color: white"{% endif %}><i
-                            class="fa fa-user"></i> Sécurité</a>
+                   {% if ((user.getUsername() is not defined) and (form.username is not defined)) %}style="color: white"{% endif %}>
+                    <i class="fa fa-user"></i> Mot de passe
+                </a>
             </li>
             <li>
                 <a href="{{ path('fos_user_security_logout') }}"><i class="fa fa-sign-out"></i> Déconnexion</a>

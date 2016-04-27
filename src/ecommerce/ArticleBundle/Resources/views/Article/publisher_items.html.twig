@@ -36,9 +36,15 @@
                     <div class="row">
                         <div class="col-sm-12">
                             <h3>Produits publiés par {{ user.username }}</h3>
+
+                            <a class="fb-share-button"
+                               data-href="{{ path('ecommerce_article_publisher_items', {'id': user.getId(), 'username': user.getUserName()}) }}"
+                               data-layout="button_count"></a>
+                            <a class="g-plus" data-action="share" data-annotation="bubble"></a>
+                            <a href="https://twitter.com/share"
+                               class="twitter-share-button">Tweet</a>
                         </div>
                     </div>
-
 
                     <!-- Filters -->
                     <div class="product-filter filters-panel">
@@ -369,7 +375,7 @@
                                 $('.products-list .product-layout').addClass('col-lg-12');
                                 $('.products-list .product-layout .left-block').addClass('col-lg-4 col-md-4 col-xs-12');
                                 $('.products-list .product-layout .right-block').addClass('col-lg-8 col-md-8 col-xs-12');
-                                $('.products-list .product-layout .item-desc').removeClass('hidden')
+                                $('.products-list .product-layout .item-desc').removeClass('hidden');
                                 $('.list-view .' + view).addClass('active');
                                 $.cookie('display', 'list');
                             } else {
@@ -418,5 +424,33 @@
 
 
 
+
+    <script src="https://apis.google.com/js/platform.js" async defer>
+        {
+            lang: 'fr'
+        }
+    </script>
+
+    <div id="fb-root"></div>
+    <script>(function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s);
+            js.id = id;
+            js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));</script>
+
+    <script>
+        !function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https';
+            if (!d.getElementById(id)) {
+                js = d.createElement(s);
+                js.id = id;
+                js.src = p + '://platform.twitter.com/widgets.js';
+                fjs.parentNode.insertBefore(js, fjs);
+            }
+        }(document, 'script', 'twitter-wjs');
+    </script>
 
 {% endblock %}
