@@ -233,6 +233,7 @@ class ArticleController extends Controller
                 $cart->setUnitPrice($article->getPrice());
                 $cart->setImage($article->getImage());
                 $cart->setTotalPrice($article->getPrice() * $cart->getQuantity());
+                $cart->setSeller($article->getUser());
                 // On enregistre notre objet $review dans la base de données
                 $em = $this->getDoctrine()->getManager();
                 $em->persist($cart);

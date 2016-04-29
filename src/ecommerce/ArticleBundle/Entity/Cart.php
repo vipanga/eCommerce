@@ -35,6 +35,11 @@ class Cart
     private $article;
 
     /**
+     * @ORM\ManyToOne(targetEntity="ecommerce\UserBundle\Entity\User")
+     */
+    private $seller;
+
+    /**
      * @ORM\ManyToOne(targetEntity="ecommerce\ArticleBundle\Entity\Image")
      */
     private $image;
@@ -223,9 +228,32 @@ class Cart
     }
 
     /**
+     * Get seller
+     *
+     * @return \ecommerce\UserBundle\Entity\User
+     */
+    public function getSeller()
+    {
+        return $this->seller;
+    }
+
+    /**
+     * Set seller
+     *
+     * @param \ecommerce\UserBundle\Entity\User $seller
+     * @return Cart
+     */
+    public function setSeller(\ecommerce\UserBundle\Entity\User $seller = null)
+    {
+        $this->seller = $seller;
+
+        return $this;
+    }
+
+    /**
      * Get image
      *
-     * @return \ecommerce\ArticleBundle\Entity\Image
+     * @return \ecommerce\ArticleBundle\Entity\Image 
      */
     public function getImage()
     {

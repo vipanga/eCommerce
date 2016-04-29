@@ -38,7 +38,7 @@
                             <tr>
                                 <td class="text-center">Image</td>
                                 <td class="text-left">Nom du Produit</td>
-                                <td class="text-left">Date</td>
+                                <td class="text-left">Vendeur</td>
                                 <td class="text-left">Quantité</td>
                                 <td class="text-right">Prix Unitaire</td>
                                 <td class="text-right">Prix Total</td>
@@ -69,7 +69,11 @@
                                             {{ cart.getArticle().getNameItem() }}
                                         </a>
                                     </td>
-                                    <td class="text-left">{{ cart.getDate()|date("d/M/Y") }}</td>
+                                    <td class="text-left">
+                                        <a href="{{ path('ecommerce_article_publisher_items', {'id': cart.getSeller().getId(), 'username': cart.getSeller().getUsername() }) }}">
+                                            {{ cart.getSeller().getUsername() }}
+                                        </a>
+                                    </td>
                                     <td class="text-left">
                                         <div class="input-group btn-block" style="max-width: 150px;">
                                             <input name="quantity[340]" value="{{ cart.getQuantity() }}" size="1"
@@ -104,7 +108,11 @@
                                     {% set totalProduits = totalProduits + cart.getQuantity() %}
                                 </tr>
                             {% else %}
-                                <h4>Pas encore de produit</h4>
+                                <tr>
+                                    <td class="text-center" colspan="6">
+                                        <h3>Le panier est Vide</h3>
+                                    </td>
+                                </tr>
                             {% endfor %}
                             </tbody>
                         </table>

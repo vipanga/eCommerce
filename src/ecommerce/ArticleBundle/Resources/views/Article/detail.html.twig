@@ -73,8 +73,7 @@
                                         </div>
                                     </div>
 
-                                    <a>
-                                        Note vendeur</a> |
+                                    <span> Note vendeur</span> |
                                     <a class="write_review_button" href=""
                                        onclick="$('a[href=\'#tab-review\']').trigger('click'); return false;">
                                         Laisser un commentaire
@@ -157,7 +156,7 @@
                                             <div class="form-group box-info-product">
                                                 <div class="option quantity">
 
-                                                    <div style="-moz-user-select: none;" unselectable="on"
+                                                    <div style="-moz-user-select: none;"
                                                          class="input-group quantity-control">
                                                         <label>Quantité</label>
                                                         {{ form_widget(form_cart.quantity, { 'attr': {'class': 'form-control', 'value': 1 } }) }}
@@ -218,7 +217,7 @@
                         <ul class="nav nav-tabs ">
                             <li class="active"><a data-toggle="tab" href="#tab-review">Commentaires
                                     ({{ comments|length }})</a></li>
-                            <li class="item_nonactive"><a data-toggle="tab" href="#tab-1">Description</a></li>
+                            {#<li class="item_nonactive"><a data-toggle="tab" href="#tab-1">Description</a></li>#}
                         </ul>
 
                         <div class="tab-content  col-xs-12">
@@ -284,11 +283,11 @@
 
                             </div>
 
-                            <div id="tab-1" class="tab-pane fade">
+                            {#<div id="tab-1" class="tab-pane fade">
                                 <div>
                                     {{ article.getDescription() }}
                                 </div>
-                            </div>
+                            </div>#}
 
                         </div>
 

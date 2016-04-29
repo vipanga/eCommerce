@@ -19,6 +19,10 @@ class CartRepository extends EntityRepository
             ->setParameter('user', $user)
             ->leftJoin('c.image', 'i')
             ->addSelect('i')
+            ->leftJoin('c.seller', 's')
+            ->addSelect('s')
+            ->leftJoin('c.article', 'a')
+            ->addSelect('a')
             ->orderBy('c.date', 'DESC')
             ->getQuery();
 
